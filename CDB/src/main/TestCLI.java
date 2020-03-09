@@ -48,7 +48,7 @@ public class TestCLI {
 			
 			switch(test) {
 				case QUIT:
-					System.out.println("Arret du Service");
+					System.out.println("Service Stopped...");
 					System.exit(0);
 					
 				case COMPUTER_LIST:
@@ -62,13 +62,13 @@ public class TestCLI {
 					break;
 					
 				case COMPUTER_DETAIL:
-					System.out.println("\nEntrez un ID");
+					System.out.println("\nEnter ID");
 					try {
 						choice = scan.nextInt();
-
 					}
-					catch(Exception e){
+					catch(NumberFormatException e){
 						choice=-1;
+						System.out.println("Invalide Entry\n" +e.getMessage());
 					}
 					if(choice>0) {
 						Optional<Computer> comp = DAOComputer.getComputerById(choice);
@@ -76,6 +76,7 @@ public class TestCLI {
 							System.out.println(comp.get().toString());
 							System.out.println();
 						}
+						else System.out.println("Computer not found\n");
 					}
 					break;
 				case CREATE_COMPUTER:
@@ -88,7 +89,7 @@ public class TestCLI {
 					//Delete
 					break;
 				case ERROR:
-					System.out.println("Entree non valide\n");
+					System.out.println("Invalide Entry\n");
 			}
 		}
 

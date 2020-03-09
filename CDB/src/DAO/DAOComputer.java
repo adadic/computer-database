@@ -2,6 +2,7 @@ package DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -38,5 +39,15 @@ public class DAOComputer {
 					computer.getLong("company_id")));
 
 		else return Optional.empty();
+	}
+	
+	public static int insertComputer(long id, String name, Timestamp introduced, Timestamp discontinued, long company_id) throws SQLException{
+		//Prepare Statement
+		
+		int result = 0;
+		//int result = statement.executeUpdate(insertQuery);
+		
+		
+		return result;
 	}
 }

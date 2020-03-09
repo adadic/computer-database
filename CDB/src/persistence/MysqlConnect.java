@@ -36,12 +36,6 @@ public final class MysqlConnect {
 		return res;
 	}
 	
-	public int insert (String insertQuery) throws SQLException{
-		statement = db.conn.createStatement();
-		int result = statement.executeUpdate(insertQuery);
-		return result;
-	}
-	
 	public int drop (String dropQuery) throws SQLException{
 		statement = db.conn.createStatement();
 		int result = statement.executeUpdate(dropQuery);
