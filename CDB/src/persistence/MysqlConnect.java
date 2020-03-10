@@ -35,11 +35,10 @@ public final class MysqlConnect {
 		ResultSet res = statement.executeQuery(query);
 		return res;
 	}
-	
-	public int drop (String dropQuery) throws SQLException{
+	public ResultSet query(PreparedStatement query) throws SQLException{
 		statement = db.conn.createStatement();
-		int result = statement.executeUpdate(dropQuery);
-		return result;
+		ResultSet res = query.executeQuery();
+		return res;
 	}
 	
 }

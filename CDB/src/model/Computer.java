@@ -7,19 +7,28 @@ public class Computer {
 	private String name;
 	private Timestamp introduced;
 	private Timestamp discontinued;
-	private long company_id;
+	private Company company;
 	
 	public Computer(String name) {
 		this.name = name;
 	}
 	
-	public Computer(long id, String name, Timestamp introduced, Timestamp discontinued, long company_id) {
+	public Computer(long id, String name, Timestamp introduced, Timestamp discontinued, Company company) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.introduced = introduced;
 		this.discontinued = discontinued;
-		this.company_id = company_id;
+		this.company = company;
+	}
+
+	public Computer(long id, String name, Timestamp introduced, Timestamp discontinued) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.introduced = introduced;
+		this.discontinued = discontinued;
+		this.company = null;
 	}
 
 	public long getId() {
@@ -53,18 +62,20 @@ public class Computer {
 	public void setDiscontinued(Timestamp discontinued) {
 		this.discontinued = discontinued;
 	}
-
-	public long getCompany_id() {
-		return company_id;
-	}
-
-	public void setCompany_id(long company_id) {
-		this.company_id = company_id;
-	}
 	
 	@Override
 	public String toString() {
-		return id + "\t|\t" + name + "\t|\t" + introduced + "\t|\t" + discontinued + "\t|\t" + company_id;
+		if(company!=null)return id + "\t|\t" + name + "\t|\t" + introduced + "\t|\t" + discontinued + "\t|\t" + company.getId() + "\t|\t" + company.getName();
+		return id + "\t|\t" + name + "\t|\t" + introduced + "\t|\t" + discontinued + "\t|\tnull\t|\tnull";
+
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 	
 }

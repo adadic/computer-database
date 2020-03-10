@@ -13,6 +13,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="mysql-connector-java-8.0.19.jar"/>
+	<classpathentry exported="true" kind="lib" path="mysql-connector-java-8.0.19.jar"/>
+	<classpathentry exported="true" kind="lib" path="slf4j-api-1.7.28.jar"/>
+	<classpathentry kind="lib" path="slf4j-jdk14-1.7.28.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

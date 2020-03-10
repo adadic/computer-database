@@ -9,6 +9,16 @@ public class Company {
 		this.id = id;
 		this.name = name;
 	}
+	public Company(Company company) {
+		if(company.getId()!=0) {
+			this.id = company.getId();
+			this.name = company.getName();
+		}
+		else {
+			this.id =  0;
+			this.name = null;
+		}
+	}
 	public String getName() {
 		return name;
 	}
