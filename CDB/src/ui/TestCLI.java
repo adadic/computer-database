@@ -54,11 +54,11 @@ public class TestCLI {
 					ActionCLI.stopSystem();
 					
 				case COMPUTER_LIST:
-					ActionCLI.listComputer(computers);
+					ActionCLI.listComputer(scan,computers);
 					break;
 					
 				case COMPANY_LIST:
-					ActionCLI.listCompany(companies);
+					ActionCLI.listCompany(scan,companies);
 					break;
 					
 				case COMPUTER_DETAIL:

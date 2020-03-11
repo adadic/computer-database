@@ -10,6 +10,7 @@ import java.util.Scanner;
 import mapper.DateMapper;
 import model.Company;
 import model.Computer;
+import model.Page;
 import persistence.DAOCompany;
 import persistence.DAOComputer;
 
@@ -20,14 +21,12 @@ public class ActionCLI {
 		System.exit(0);
 	}
 	
-	public static void listComputer(ArrayList<Computer> computers) {
-		for(Computer comp : computers)System.out.println(comp.toString());
-		System.out.println();
+	public static void listComputer(Scanner scan, ArrayList<Computer> computers) {
+		Page.listComputer(scan,computers);
 	}
 
-	public static void listCompany(ArrayList<Company> companies) {
-		for(Company comp : companies)System.out.println(comp.toString());
-		System.out.println();
+	public static void listCompany(Scanner scan, ArrayList<Company> companies) {
+		Page.listCompany(scan,companies);
 	}
 
 	public static void computerGetDetail(Scanner scan) throws SQLException {
