@@ -3,12 +3,14 @@ package service;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
 
 import mapper.DateMapper;
 import model.Company;
 import model.Computer;
+import persistence.DAOCompany;
 import persistence.DAOComputer;
 
 public class ActionCLI {
@@ -48,25 +50,42 @@ public class ActionCLI {
 		}
 	}
 
-	public static int createComputer(Scanner scan) throws SQLException {
+	private static int createComputer(Scanner scan) throws SQLException {
 		String name;
 		String introduced;
 		String discontinued;
-		int company_id=0;
+		int company_id=-1;
 		
 		System.out.println("\nCreating new Computer...");
 		System.out.println("Enter a Name :");
 		scan.useDelimiter("\n");
 		name = scan.next();
 		
-		System.out.println("You can stop here (Press 0 to STOP or Press 1)...");
+		System.out.println("You can stop here (Press 1 to Continue)...");
 		int press = 0;
-		press = scan.nextInt();
-		
-		if(press!=0) {
+		try{
+			press = scan.nextInt();
+		}
+		catch(InputMismatchException e) {
+			press = 0;
+		}
+		if(press==1) {
 			System.out.println("\nCompany reference...");
-			System.out.println("Enter ID of Company (Wrong number result in no Company)");
-			company_id = scan.nextInt();
+			System.out.println("Enter ID of Company (0 for NO Company)");
+			while(company_id!=0) {
+				try{
+					company_id = scan.nextInt();
+					if(company_id == 0) {
+						Optional<Company> check = DAOCompany.getCompanyById(company_id);
+						if(!check.isPresent()) System.out.println("Company doesn't exist\n");
+					}
+				}
+				catch(InputMismatchException e) {
+					System.out.println("Input MissMatch.... Enter ID :");
+					@SuppressWarnings("unused")
+					String garbagge = scan.next();
+				}
+			}
 			
 			
 			System.out.println("\nIntroduction Timestamp...");
@@ -74,31 +93,36 @@ public class ActionCLI {
 			introduced = scan.next();
 			if(!introduced.equals("0")) {
 				long introducedTime = DateMapper.getDate(introduced);
-				
-				System.out.println("\nDiscontiued Timestamp...");
-				System.out.println("Witch is after introduction!!!");
-				System.out.println("Enter Timestamp : (DD-MM-YY HH:mm or 0 if nothing)");
-				discontinued = scan.next();
-				if(!discontinued.equals("0")) {
-					long discontinuedTime = DateMapper.getDate(discontinued);
-					if(introducedTime>discontinuedTime) 
+				if(introducedTime>0) {
+					System.out.println("\nDiscontiued Timestamp...");
+					System.out.println("Witch is after introduction!!!");
+					System.out.println("Enter Timestamp : (DD-MM-YY HH:mm or 0 if nothing)");
+					discontinued = scan.next();
+					if(!discontinued.equals("0")) {
+						long discontinuedTime = DateMapper.getDate(discontinued);
+						if(introducedTime>discontinuedTime) {
+							if(discontinuedTime==0) System.out.println("Input MissMatch --> NO discontinued TimeStamp");
+							else System.out.println("Discontinued before inserted --> No discontinued Timestamp\n");
+							return DAOComputer.insertComputer(name,
+								new Timestamp(introducedTime),
+								null,
+								company_id);
+						}
+							
 						return DAOComputer.insertComputer(name,
+								new Timestamp(introducedTime),
+								new Timestamp(discontinuedTime),
+								company_id);
+					}
+				
+				
+					return DAOComputer.insertComputer(name,
 							new Timestamp(introducedTime),
 							null,
 							company_id);
-					return DAOComputer.insertComputer(name,
-							new Timestamp(introducedTime),
-							new Timestamp(discontinuedTime),
-							company_id);
 				}
-				return DAOComputer.insertComputer(name,
-						new Timestamp(introducedTime),
-						null,
-						company_id);
-
+				System.out.println("Input MissMatch --> NO introduced & discontinued TimeStamp");
 			}
-			
-			
 			return DAOComputer.insertComputer(name,null,null,company_id);
 		}
 		else {
@@ -106,7 +130,7 @@ public class ActionCLI {
 		}
 	}
 
-	public static int deleteComputer(Scanner scan) throws SQLException {
+	private static int deleteComputer(Scanner scan) throws SQLException {
 		int id;
 		System.out.println("\nEnter Computer ID to Delete");
 		id = scan.nextInt();
@@ -115,7 +139,7 @@ public class ActionCLI {
 		
 	}
 
-	public static int updateComputer(Scanner scan) throws SQLException {
+	private static int updateComputer(Scanner scan) throws SQLException {
 		
 		System.out.println("\nSelect Computer ID to Change");
 		scan.useDelimiter("\n");
@@ -166,6 +190,45 @@ public class ActionCLI {
 			
 		}
 		return 0;
+		
+	}
+	
+	public static void computerCreation(Scanner scan, ArrayList<Computer> computers) throws SQLException {
+		int result;
+		try {
+			result = ActionCLI.createComputer(scan);
+		} catch (SQLException e) {
+			result = 0;
+		}
+		if(result==1) {
+			System.out.println("\nNew Computer Inserted\n");
+			computers = DAOComputer.getComputers();
+		}
+		else System.out.println("\nThere was a problem in creating Computer\n");
+	}
+
+	public static void computerUpdate(Scanner scan, ArrayList<Computer> computers) throws SQLException {
+		int result;
+		try {
+			result = ActionCLI.updateComputer(scan);
+		} catch (SQLException e) {
+			result = 0;
+		}
+		if(result == 1) {
+			System.out.println("Computer was Changed\n");
+			computers = DAOComputer.getComputers();
+		}
+		else System.out.println("Computer not found\n");
+		
+	}
+
+	public static void computerDelition(Scanner scan, ArrayList<Computer> computers) throws SQLException {
+		int result = ActionCLI.deleteComputer(scan);
+		if(result == 1) {
+			System.out.println("Computer was removed\n");
+			computers = DAOComputer.getComputers();
+		}
+		else System.out.println("Computer not found\n");
 		
 	}
 	

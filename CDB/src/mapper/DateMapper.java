@@ -2,10 +2,17 @@ package mapper;
 
 import java.util.Calendar;
 
+
 public class DateMapper {
 	
-	public static long getDate(String givenDate) {
-		String[] date = givenDate.substring(0, givenDate.indexOf(" ")).split("-");
+	public static long getDate(String givenDate){
+		String[] date;
+		try{
+			date = givenDate.substring(0, givenDate.indexOf(" ")).split("-");
+		}
+		catch(StringIndexOutOfBoundsException e) {
+			return 0;
+		}
 		String[] hour = givenDate.substring(givenDate.indexOf(" ")+1).split(":");
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.DATE, Integer.parseInt(date[0]));

@@ -25,7 +25,6 @@ public class TestCLI {
 		
 		ArrayList<Computer> computers = DAOComputer.getComputers();
 		ArrayList<Company> companies = DAOCompany.getCompanies();
-		int result;
 		
 		while(true) {
 			System.out.println("Welcome in our Command Line Interface (CLI)");
@@ -39,6 +38,7 @@ public class TestCLI {
 			System.out.println("\nChoose your option:");
 	
 			Scanner scan = new Scanner(System.in);
+			
 			try {
 				choice = scan.nextInt();
 
@@ -66,34 +66,21 @@ public class TestCLI {
 					break;
 					
 				case CREATE_COMPUTER:
-					result = ActionCLI.createComputer(scan);
-					if(result==1) {
-						System.out.println("\nNew Computer Inserted\n");
-						computers = DAOComputer.getComputers();
-					}
-					else System.out.println("\nThere was a problem in creating Computer\n");
+					ActionCLI.computerCreation(scan,computers);
 					break;
 					
 				case UPDATE_COMPUTER:
-					result = ActionCLI.updateComputer(scan);
-					if(result == 1) {
-						System.out.println("Computer was Changed\n");
-						computers = DAOComputer.getComputers();
-					}
-					else System.out.println("Computer not found\n");
+					ActionCLI.computerUpdate(scan, computers);
 					break;
 					
 				case DELETE_COMPUTER:
-					result = ActionCLI.deleteComputer(scan);
-					if(result == 1) {
-						System.out.println("Computer was removed\n");
-						computers = DAOComputer.getComputers();
-					}
-					else System.out.println("Computer not found\n");
+					ActionCLI.computerDelition(scan, computers);
 					break;
 					
 				case ERROR:
 					System.out.println("Invalide Entry\n");
+				default:
+					
 			}
 		}
 
