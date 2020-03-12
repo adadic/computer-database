@@ -10,7 +10,7 @@ public class Page {
 	private static int currentPage;
 	private static int maxPage;
 	
-	public void listComputer(Scanner scan, ArrayList<Computer> computers) {
+	public static void listComputer(Scanner scan, ArrayList<Computer> computers) {
 		
 		boolean inList = true;
 		int choice;
@@ -51,7 +51,7 @@ public class Page {
 		
 	}
 
-	public void listCompany(Scanner scan, ArrayList<Company> companies) {
+	public static void listCompany(Scanner scan, ArrayList<Company> companies) {
 		boolean inList = true;
 		int choice;
 		currentPage = 1;
@@ -84,7 +84,7 @@ public class Page {
 			}
 			
 			
-			if(choice == 0 || choice > maxPage) inList = false;
+			if(choice == 0) inList = false;
 			currentPage = choice;
 		}
 		

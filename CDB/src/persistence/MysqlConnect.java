@@ -1,17 +1,22 @@
 package persistence;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public final class MysqlConnect {
+public final class MysqlConnect implements AutoCloseable{
 	
-	public java.sql.Connection conn;
-	private Statement statement;
-	public static MysqlConnect db;
+	private Connection conn;
+	private static MysqlConnect db;
+	
+	private String url = "jdbc:mysql://localhost:3306/computer-database-db";
+	private String driver = "com.mysql.cj.jdbc.Driver";
+	private String userName = "admincdb";
+	private String password = "qwerty1234";
 	
 	private MysqlConnect() {
-		String url = "jdbc:mysql://localhost:3306/computer-database-db";
-		String driver = "com.mysql.cj.jdbc.Driver";
-		String userName = "admincdb";
-		String password = "qwerty1234";
+		
 		try {
 			System.out.println("Connexion\n");
 			Class.forName(driver).newInstance();
@@ -23,6 +28,11 @@ public final class MysqlConnect {
 		
 	}
 	
+	public Connection getConn() {
+		return conn;
+	}
+
+	
 	public static synchronized MysqlConnect getDbCon() {
 		if (db == null) {
 			db = new MysqlConnect();
@@ -30,15 +40,23 @@ public final class MysqlConnect {
 		return db;
 	}
 
-	public ResultSet query(String query) throws SQLException{
-		statement = db.conn.createStatement();
-		ResultSet res = statement.executeQuery(query);
-		return res;
-	}
 	public ResultSet query(PreparedStatement query) throws SQLException{
-		statement = db.conn.createStatement();
 		ResultSet res = query.executeQuery();
 		return res;
+	}
+
+	@Override
+	public void close() throws SQLException {
+		if(conn != null) {
+			conn.close();
+			conn = null;
+			db = null;
+		}
+		
+	}
+	
+	protected void finalize() throws SQLException{
+		this.close();
 	}
 	
 }

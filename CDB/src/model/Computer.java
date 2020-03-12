@@ -9,28 +9,14 @@ public class Computer {
 	private Timestamp discontinued;
 	private Company company;
 	
-	public Computer(String name) {
-		this.name = name;
+	public Computer(ComputerBuilder builder) {
+		this.id = builder.id;
+		this.name = builder.name;
+		this.introduced = builder.introduced;
+		this.discontinued = builder.discontinued;
+		this.company = builder.company;
 	}
 	
-	public Computer(long id, String name, Timestamp introduced, Timestamp discontinued, Company company) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.introduced = introduced;
-		this.discontinued = discontinued;
-		this.company = company;
-	}
-
-	public Computer(long id, String name, Timestamp introduced, Timestamp discontinued) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.introduced = introduced;
-		this.discontinued = discontinued;
-		this.company = null;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -65,8 +51,15 @@ public class Computer {
 	
 	@Override
 	public String toString() {
-		if(company!=null)return id + "\t|\t" + name + "\t|\t" + introduced + "\t|\t" + discontinued + "\t|\t" + company.getId() + "\t|\t" + company.getName();
-		return id + "\t|\t" + name + "\t|\t" + introduced + "\t|\t" + discontinued + "\t|\tnull\t|\tnull";
+		if(company!=null) {
+			return id + "\t|\t" + name + "\t|\t" 
+					+ introduced + "\t|\t" + discontinued 
+					+ "\t|\t" + company.getId() + "\t|\t" 
+					+ company.getName();
+		}
+		return id + "\t|\t" + name + "\t|\t" 
+			+ introduced + "\t|\t" + discontinued 
+			+ "\t|\tnull\t|\tnull";
 
 	}
 
@@ -76,6 +69,43 @@ public class Computer {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+	
+	public static class ComputerBuilder{
+		private long id;
+		private String name;
+		private Timestamp introduced;
+		private Timestamp discontinued;
+		private Company company;
+		
+		public ComputerBuilder(String name) {
+			this.name = name;
+		}
+		
+		public ComputerBuilder id(long id) {
+			this.id = id;
+			return this;
+		}
+		
+		public ComputerBuilder introduced(Timestamp introduced) {
+			this.introduced = introduced;
+			return this;
+		}
+		
+		public ComputerBuilder discontinued(Timestamp discontinued) {
+			this.discontinued = discontinued;
+			return this;
+		}
+		
+		public ComputerBuilder company(Company company) {
+			this.company = company;
+			return this;
+		}
+		
+		public Computer build() {
+			return new Computer(this);
+		}
+		
 	}
 	
 }

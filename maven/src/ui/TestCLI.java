@@ -1,11 +1,16 @@
 package ui;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import model.Company;
+import model.Computer;
+import persistence.DAOCompany;
+import persistence.DAOComputer;
 import service.ActionCLI;
 
 public class TestCLI {
@@ -16,9 +21,11 @@ public class TestCLI {
 	public static void main(String[] args) throws SQLException {
 		Logger logger = LoggerFactory.getLogger(TestCLI.class);
 	    logger.info("TestCLI");
-	    
-	    ActionCLI actionCLI = new ActionCLI();
-	    
+
+		
+		ArrayList<Computer> computers = DAOComputer.getComputers();
+		ArrayList<Company> companies = DAOCompany.getCompanies();
+		
 		while(true) {
 			System.out.println("Welcome in our Command Line Interface (CLI)");
 			System.out.println("\tFeatured by OXYL");
@@ -44,30 +51,30 @@ public class TestCLI {
 			
 			switch(test) {
 				case QUIT:
-					actionCLI.stopSystem();
+					ActionCLI.stopSystem();
 					
 				case COMPUTER_LIST:
-					actionCLI.listComputer(scan);
+					ActionCLI.listComputer(scan,computers);
 					break;
 					
 				case COMPANY_LIST:
-					actionCLI.listCompany(scan);
+					ActionCLI.listCompany(scan,companies);
 					break;
 					
 				case COMPUTER_DETAIL:
-					actionCLI.computerGetDetail(scan);
+					ActionCLI.computerGetDetail(scan);
 					break;
 					
 				case CREATE_COMPUTER:
-					actionCLI.computerCreation(scan);
+					ActionCLI.computerCreation(scan,computers);
 					break;
 					
 				case UPDATE_COMPUTER:
-					actionCLI.computerUpdate(scan);
+					ActionCLI.computerUpdate(scan, computers);
 					break;
 					
 				case DELETE_COMPUTER:
-					actionCLI.computerDelition(scan);
+					ActionCLI.computerDelition(scan, computers);
 					break;
 					
 				case ERROR:

@@ -9,11 +9,16 @@ public class Company {
 		this.id = id;
 		this.name = name;
 	}
-	public Company(CompanyBuilder builder) {
-		this.id = builder.id;
-		this.name = builder.name;
+	public Company(Company company) {
+		if(company.getId()!=0) {
+			this.id = company.getId();
+			this.name = company.getName();
+		}
+		else {
+			this.id =  0;
+			this.name = null;
+		}
 	}
-	
 	public String getName() {
 		return name;
 	}
@@ -21,11 +26,9 @@ public class Company {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	public long getId() {
 		return id;
 	}
-	
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -33,20 +36,6 @@ public class Company {
 	@Override
 	public String toString() {
 		return id + "\t|\t" + name;
-	}
-	
-	public static class CompanyBuilder{
-		private long id;
-		private String name;
-		
-		public CompanyBuilder(long id, String name) {
-			this.id = id;
-			this.name = name;
-		}
-		
-		public Company build() {
-			return new Company(this);
-		}
 	}
 	
 }

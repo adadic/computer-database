@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 public class DateMapper {
 	
-	public long getDate(String givenDate){
+	public static long getDate(String givenDate){
 		String[] date;
 		try{
 			date = givenDate.substring(0, givenDate.indexOf(" ")).split("-");
