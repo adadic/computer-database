@@ -1,6 +1,7 @@
 package ui;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
@@ -35,9 +36,10 @@ public class TestCLI {
 			
 			try {
 				choice = scan.nextInt();
+				System.out.println("Affichage choice = " + choice);
 
 			}
-			catch(Exception e){
+			catch(InputMismatchException e){
 				choice=-1;
 			}
 			
