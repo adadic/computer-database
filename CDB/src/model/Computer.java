@@ -7,7 +7,7 @@ public class Computer {
 	private String name;
 	private Timestamp introduced;
 	private Timestamp discontinued;
-	private Company company;
+	private Company company = null;
 	
 	public Computer(ComputerBuilder builder) {
 		this.id = builder.id;

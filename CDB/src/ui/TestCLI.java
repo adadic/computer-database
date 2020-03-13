@@ -6,7 +6,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import service.ActionCLI;
+import service.ServiceCLI;
 
 public class TestCLI {
 	
@@ -17,20 +17,21 @@ public class TestCLI {
 		Logger logger = LoggerFactory.getLogger(TestCLI.class);
 	    logger.info("TestCLI");
 	    
-	    ActionCLI actionCLI = new ActionCLI();
+	    ServiceCLI serviceCLI = new ServiceCLI();
 	    
 		while(true) {
 			System.out.println("Welcome in our Command Line Interface (CLI)");
-			System.out.println("\tFeatured by OXYL");
-			System.out.println("\n1- Computer List");
+			System.out.println("\tFeatured by OXYL\n");
+			System.out.println("1- Computer List");
 			System.out.println("2- Company List");
 			System.out.println("3- Computer Detail");
 			System.out.println("4- Create Computer");
 			System.out.println("5- Update Computer");
 			System.out.println("6- Delete Computer");
-			System.out.println("\nChoose your option:");
+			System.out.println("\nChoose your option : (QUIT --> 0)");
 	
 			Scanner scan = new Scanner(System.in);
+			scan.useDelimiter("\n");
 			
 			try {
 				choice = scan.nextInt();
@@ -44,30 +45,31 @@ public class TestCLI {
 			
 			switch(test) {
 				case QUIT:
-					actionCLI.stopSystem();
+					scan.close();
+					serviceCLI.stopSystem();
 					
 				case COMPUTER_LIST:
-					actionCLI.listComputer(scan);
+					serviceCLI.listComputer();
 					break;
 					
 				case COMPANY_LIST:
-					actionCLI.listCompany(scan);
+					serviceCLI.listCompany();
 					break;
 					
 				case COMPUTER_DETAIL:
-					actionCLI.computerGetDetail(scan);
+					serviceCLI.computerGetDetail();
 					break;
 					
 				case CREATE_COMPUTER:
-					actionCLI.computerCreation(scan);
+					serviceCLI.computerCreation();
 					break;
 					
 				case UPDATE_COMPUTER:
-					actionCLI.computerUpdate(scan);
+					serviceCLI.computerUpdate();
 					break;
 					
 				case DELETE_COMPUTER:
-					actionCLI.computerDelition(scan);
+					serviceCLI.computerDelition();
 					break;
 					
 				case ERROR:

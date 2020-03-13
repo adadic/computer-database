@@ -65,7 +65,12 @@ public class DAOComputer {
 			preparedStatement.setString(1, name);
 			preparedStatement.setTimestamp(2, introduced);
 			preparedStatement.setTimestamp(3, discontinued);
-			preparedStatement.setLong(4, Integer.parseInt(company_id));
+			if(company_id.equals("0")) {
+				preparedStatement.setNString(4, null);
+			}
+			else{
+				preparedStatement.setLong(4, Integer.parseInt(company_id));
+			}
 	
 			return preparedStatement.executeUpdate();
 		}
