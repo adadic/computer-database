@@ -24,11 +24,11 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/CDB/mysql-connector-java-8.0.19.jar"/>
-	<classpathentry kind="lib" path="/CDB/slf4j-api-1.7.28.jar"/>
-	<classpathentry kind="lib" path="/CDB/slf4j-jdk14-1.7.28.jar"/>
 	<classpathentry kind="lib" path="javax.servlet.jar"/>
 	<classpathentry kind="lib" path="hamcrest-core-1.3.jar"/>
 	<classpathentry kind="lib" path="junit-4.13.jar"/>
+	<classpathentry kind="lib" path="slf4j-api-1.7.28.jar"/>
+	<classpathentry kind="lib" path="slf4j-jdk14-1.7.28.jar"/>
+	<classpathentry kind="lib" path="mysql-connector-java-8.0.19.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
