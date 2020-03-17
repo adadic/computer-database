@@ -5,6 +5,9 @@ import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import mapper.DateMapper;
 import model.Company;
 import persistence.DAOCompany;
@@ -13,6 +16,7 @@ public class ServiceInputs {
 	private Scanner scan;
 	private DAOCompany daoCompany;
 	private DateMapper dateMapper;
+	final Logger logger = LoggerFactory.getLogger(ServiceInputs.class);
 	
 	public ServiceInputs() {
 		this.scan = new Scanner(System.in);
@@ -24,14 +28,14 @@ public class ServiceInputs {
 	public int consoleID() {
 		int input;
 		while(true) {
-			System.out.println("\nEnter ID");
+			logger.info("\nEnter ID");
 			try {
 				input = scan.nextInt();
 				return input;
 			}
 			catch(NumberFormatException e){
 				input=-1;
-				System.out.println("Invalide Entry\n");
+				logger.error("Invalide Entry\n");
 			}
 		}
 	}
@@ -45,11 +49,11 @@ public class ServiceInputs {
 					return id;
 				}
 				else {
-					System.out.println("Company does not exist");
+					logger.error("Company does not exist");
 				}
 			}
 			catch(InputMismatchException e) {
-				System.out.println("Input MissMatch.... Enter ID :");
+				logger.warn("Input MissMatch.... Enter ID :");
 				@SuppressWarnings("unused")
 				String garbagge = scan.next();
 			}
@@ -66,7 +70,7 @@ public class ServiceInputs {
 				}
 			}
 			catch (NullPointerException e){
-				System.out.println("Wrong timestamp Format... Try again :");
+				logger.warn("Wrong timestamp Format... Try again :");
 			}
 		}
 	}
@@ -80,11 +84,11 @@ public class ServiceInputs {
 					return discontinuedTime;
 				}
 				else {
-					System.out.println("Can't be before introduction Time \nRe-enter Discontinued Time :");
+					logger.warn("Can't be before introduction Time \nRe-enter Discontinued Time :");
 				}
 			}
 			catch (NullPointerException e) {
-				System.out.println("Wrong timestamp Format... Try again :");
+				logger.warn("Wrong timestamp Format... Try again :");
 			}
 		}
 	}
@@ -102,7 +106,7 @@ public class ServiceInputs {
 				}
 			}
 			catch (NullPointerException e){
-				System.out.println("Wrong timestamp Format... Try again :");
+				logger.warn("Wrong timestamp Format... Try again :");
 			}
 		}
 	}
@@ -119,11 +123,11 @@ public class ServiceInputs {
 					return -1;
 				}
 				else {
-					System.out.println("Can't be before introduction Time \nRe-enter Discontinued Time :");
+					logger.warn("Can't be before introduction Time \nRe-enter Discontinued Time :");
 				}
 			}
 			catch (NullPointerException e) {
-				System.out.println("Wrong timestamp Format... Try again :");
+				logger.warn("Wrong timestamp Format... Try again :");
 			}
 		}
 	}

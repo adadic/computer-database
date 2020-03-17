@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import service.ServiceInputs;
 
 public class Page {
@@ -10,6 +13,7 @@ public class Page {
 	private static int currentPage;
 	private static int maxPage;
 	private ServiceInputs serviceInputs;
+	final Logger logger = LoggerFactory.getLogger(Page.class);
 	
 	public Page(){
 		serviceInputs = new ServiceInputs();
@@ -20,20 +24,20 @@ public class Page {
 		maxPage=(int) Math.ceil(computers.size()/lengthList);
 		while(true) {
 			
-			System.out.println("\nId\t|\tname\t|\tintroduced\t|\tdiscontinued\t|\tId Company\t|\tCompany name\n");
+			logger.info("\nId\t|\tname\t|\tintroduced\t|\tdiscontinued\t|\tId Company\t|\tCompany name\n");
 			
 			if(currentPage!=maxPage) {
 				for(int i = (currentPage-1)*lengthList; i <currentPage*lengthList; i++) {
-					System.out.println(computers.get(i).toString());
+					logger.info(computers.get(i).toString());
 				}
 			}
 			else {
 				for(int i = (currentPage-1)*lengthList; i <computers.size(); i++) {
-					System.out.println(computers.get(i).toString());
+					logger.info(computers.get(i).toString());
 				}
 			}
-			System.out.println(currentPage + "/" + maxPage);
-			System.out.println("Enter page number (0 or above maxPage --> quit) :");
+			logger.info(currentPage + "/" + maxPage);
+			logger.info("Enter page number (0 or above maxPage --> quit) :");
 			int choice = serviceInputs.consoleID();
 			
 			
@@ -51,20 +55,20 @@ public class Page {
 		maxPage=(int) Math.ceil(companies.size()/lengthList);
 		while(true) {
 			
-			System.out.println("\nId\t|\tname\t|\tintroduced\t|\tdiscontinued\t|\tId Company\t|\tCompany name\n");
+			logger.info("\nId\t|\tname\t|\tintroduced\t|\tdiscontinued\t|\tId Company\t|\tCompany name\n");
 			
 			if(currentPage!=maxPage) {
 				for(int i = (currentPage-1)*lengthList; i <currentPage*lengthList; i++) {
-					System.out.println(companies.get(i).toString());
+					logger.info(companies.get(i).toString());
 				}
 			}
 			else {
 				for(int i = (currentPage-1)*lengthList; i <companies.size(); i++) {
-					System.out.println(companies.get(i).toString());
+					logger.info(companies.get(i).toString());
 				}
 			}
-			System.out.println(currentPage + "/" + maxPage);
-			System.out.println("Enter page number (0 or above maxPage --> quit) :");
+			logger.info(currentPage + "/" + maxPage);
+			logger.info("Enter page number (0 or above maxPage --> quit) :");
 			int choice = serviceInputs.consoleID();
 			
 			

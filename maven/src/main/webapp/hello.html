@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello Java EE</title>
+  </head>
+  <body>
+    <p>Hello Java EE</p>
+    <label>Choose your PC :</label>
+    <select id="computers">
+    	<c:forEach items="${computer}" var="computer">
+    		<option>${computer.id} - ${computer.nom}
+    	</c:forEach>
+    </select>
+    
+  </body>
+</html>
