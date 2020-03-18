@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import persistence.DAOComputer;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,14 +12,15 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class MainServlet extends HttpServlet {
-
-    DAOComputer daoComputer;
+	private static final long serialVersionUID = 1L;
+	
+	DAOComputer daoComputer;
     final Logger logger = LoggerFactory.getLogger(MainServlet.class);
 
 
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
+    public MainServlet() {
+    	super();
+    	daoComputer = new DAOComputer();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,6 +30,6 @@ public class MainServlet extends HttpServlet {
         } catch (SQLException e) {
             logger.error("Couldn't get Computers from DB.");
         }
-        request.getRequestDispatcher("/WEB-INF/dashboard.html").forward(request,response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.html").forward(request,response);
     }
 }
