@@ -1,3 +1,4 @@
+<%@ page pageEncoding= "UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 <!-- Bootstrap -->
-<link href="../maven/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="../maven/css/font-awesome.css" rel="stylesheet" media="screen">
-<link href="../maven/css/main.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/font-awesome.css" rel="stylesheet" media="screen">
+<link href="css/main.css" rel="stylesheet" media="screen">
 </head>
 <body>
     <header class="navbar navbar-inverse navbar-fixed-top">
@@ -31,7 +32,7 @@
                     </form>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-success" id="addComputer" href="addComputer.html">Add Computer</a> 
+                    <a class="btn btn-success" id="addComputer" href="/maven/addComputer">Add Computer</a> 
                     <a class="btn btn-default" id="editComputer" href="#" onclick="$.fn.toggleEditMode();">Edit</a>
                 </div>
             </div>
@@ -75,6 +76,7 @@
                 </thead>
                 <!-- Browse attribute computers -->
                 <tbody id="results">
+	                
                     <tr>
                         <td class="editMode">
                             <input type="checkbox" name="cb" class="cb" value="0">
