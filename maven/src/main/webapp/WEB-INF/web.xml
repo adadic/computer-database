@@ -37,19 +37,49 @@
 		<url-pattern>/editComputer</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>error403</servlet-name>
+		<servlet-class>servlet.Error403</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>error403</servlet-name>
+		<url-pattern>/error403</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>error404</servlet-name>
+		<servlet-class>servlet.Error404</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>error404</servlet-name>
+		<url-pattern>/error404</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>error500</servlet-name>
+		<servlet-class>servlet.Error500</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>error500</servlet-name>
+		<url-pattern>/error500</url-pattern>
+	</servlet-mapping>
+	
 	<error-page>
 		<error-code>403</error-code>
-		<location>/403</location>
+		<location>/error403</location>
 	</error-page>
 	
 	<error-page>
 		<error-code>404</error-code>
-		<location>/404</location>
+		<location>/error404</location>
 	</error-page>
 	
 	<error-page>
 		<error-code>500</error-code>
-		<location>/500</location>
+		<location>/error500</location>
 	</error-page>
 	
 </web-app>
