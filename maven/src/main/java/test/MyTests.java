@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import junit.framework.TestCase;
+import mapper.DateMapper;
 import model.Company;
 import persistence.DAOComputer;
 
@@ -32,6 +33,12 @@ public class MyTests extends TestCase{
 		ArrayList<Company> list = new ArrayList<>();
 		assertEquals(true,list.add(company));
 		
+	}
+	
+	@Test
+	public void testDate() {
+		DateMapper dm = new DateMapper();
+		assertEquals(0, dm.getDate("2020-02-23 12:30"));
 	}
 	
 }

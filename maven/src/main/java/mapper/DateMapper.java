@@ -1,5 +1,6 @@
 package mapper;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 
 
@@ -7,7 +8,8 @@ public class DateMapper {
 	
 	public long getDate(String givenDate){
 		 try{
-			String[] date = givenDate.substring(0, givenDate.indexOf(" ")).split("-");
+			 Timestamp ts = Timestamp.valueOf(givenDate);
+			/*String[] date = givenDate.substring(0, givenDate.indexOf(" ")).split("-");
 			String[] hour = givenDate.substring(givenDate.indexOf(" ")+1).split(":");
 			Calendar cal = Calendar.getInstance();
 			cal.set(Calendar.DATE, Integer.parseInt(date[0]));
@@ -16,9 +18,10 @@ public class DateMapper {
 			cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hour[0]));
 			cal.set(Calendar.MINUTE, Integer.parseInt(hour[1]));
 			cal.set(Calendar.SECOND, 0);
-			return cal.getTime().getTime();
+			return cal.getTime().getTime();*/
+			 return ts.getTime();
 		}
-		catch(StringIndexOutOfBoundsException e) {
+		catch(IllegalArgumentException e) {
 			return 0;
 		}
 		
