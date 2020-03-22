@@ -76,14 +76,14 @@ public class ServiceCLI {
 		
 		
 		logger.info("\nIntroduction Timestamp...");
-		logger.info("Enter Timestamp : (DD-MM-YY HH:mm or 0 if nothing)");
+		logger.info("Enter Timestamp : (YYYY-MM-DD or 0 if nothing)");
 		
 		long introducedTime = serviceInputs.consoleIntroduced();
 		
 		if(introducedTime != 0) {
 			logger.info("\nDiscontiued Timestamp...");
 			logger.info("Witch is after introduction!!!");
-			logger.info("Enter Timestamp : (DD-MM-YY HH:mm or 0 if nothing)");
+			logger.info("Enter Timestamp : (YYYY-MM-DD or 0 if nothing)");
 			
 			long discontinuedTime = serviceInputs.consoleDiscontinued(introducedTime);
 			return insertChoice(name,introducedTime,discontinuedTime,company_id);
@@ -136,7 +136,7 @@ public class ServiceCLI {
 			String changeName = scan.next();
 			if(!changeName.equals("0")) name = changeName;
 			
-			logger.info("Introduced : (DD-MM-YY HH:mm)");
+			logger.info("Introduced : (YYYY-MM-DD)");
 			logger.info("-1 to remove parameter");
 			
 			long introducedTime = serviceInputs.consoleUpdateIntroduced();
@@ -144,7 +144,7 @@ public class ServiceCLI {
 				if(introducedTime != 0) {
 					introduced = new Timestamp(introducedTime);
 				}
-				logger.info("Discontinued : (DD-MM-YY HH:mm)");
+				logger.info("Discontinued : (YYYY-MM-DD)");
 				long discontinuedTime = serviceInputs.consoleUpdateDiscontinued(introducedTime);
 				if(discontinuedTime > introducedTime) {
 					return daoComputer.updateComputer(id, name, introduced, new Timestamp(discontinuedTime), company_id);

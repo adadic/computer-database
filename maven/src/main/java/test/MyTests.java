@@ -38,7 +38,7 @@ public class MyTests extends TestCase{
 	@Test
 	public void testDate() {
 		DateMapper dm = new DateMapper();
-		assertEquals(0, dm.getDate("2020-02-23 12:30"));
+		assertEquals(1582412400000L, dm.getDate("2020-02-23 00:00:00"));
 	}
 	
 }
