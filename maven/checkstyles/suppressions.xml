@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-
+<!DOCTYPE xml>
 <suppressions>
   <suppress files="[\\/]generated-sources[\\/]" checks="[a-zA-Z0-9]*"/>
   <suppress files="[/\\]target[/\\]" checks=".*"/>
