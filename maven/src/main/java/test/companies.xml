@@ -1,0 +1,212 @@
+<DATA>
+
+	<ROW>
+		<id>1</id>
+		<name>Apple Inc.</name>
+	</ROW>
+
+	<ROW>
+		<id>2</id>
+		<name>Thinking Machines</name>
+	</ROW>
+
+	<ROW>
+		<id>3</id>
+		<name>RCA</name>
+	</ROW>
+
+	<ROW>
+		<id>4</id>
+		<name>Netronics</name>
+	</ROW>
+
+	<ROW>
+		<id>5</id>
+		<name>Tandy Corporation</name>
+	</ROW>
+
+	<ROW>
+		<id>6</id>
+		<name>Commodore International</name>
+	</ROW>
+
+	<ROW>
+		<id>7</id>
+		<name>MOS Technology</name>
+	</ROW>
+
+	<ROW>
+		<id>8</id>
+		<name>Micro Instrumentation and Telemetry Systems</name>
+	</ROW>
+
+	<ROW>
+		<id>9</id>
+		<name>IMS Associates, Inc.</name>
+	</ROW>
+
+	<ROW>
+		<id>10</id>
+		<name>Digital Equipment Corporation</name>
+	</ROW>
+
+	<ROW>
+		<id>11</id>
+		<name>Lincoln Laboratory</name>
+	</ROW>
+
+	<ROW>
+		<id>12</id>
+		<name>Moore School of Electrical Engineering</name>
+	</ROW>
+
+	<ROW>
+		<id>13</id>
+		<name>IBM</name>
+	</ROW>
+
+	<ROW>
+		<id>14</id>
+		<name>Amiga Corporation</name>
+	</ROW>
+
+	<ROW>
+		<id>15</id>
+		<name>Canon</name>
+	</ROW>
+
+	<ROW>
+		<id>16</id>
+		<name>Nokia</name>
+	</ROW>
+
+	<ROW>
+		<id>17</id>
+		<name>Sony</name>
+	</ROW>
+
+	<ROW>
+		<id>18</id>
+		<name>OQO</name>
+	</ROW>
+
+	<ROW>
+		<id>19</id>
+		<name>NeXT</name>
+	</ROW>
+
+	<ROW>
+		<id>20</id>
+		<name>Atari</name>
+	</ROW>
+
+	<ROW>
+		<id>22</id>
+		<name>Acorn computer</name>
+	</ROW>
+
+	<ROW>
+		<id>23</id>
+		<name>Timex Sinclair</name>
+	</ROW>
+
+	<ROW>
+		<id>24</id>
+		<name>Nintendo</name>
+	</ROW>
+
+	<ROW>
+		<id>25</id>
+		<name>Sinclair Research Ltd</name>
+	</ROW>
+
+	<ROW>
+		<id>26</id>
+		<name>Xerox</name>
+	</ROW>
+
+	<ROW>
+		<id>27</id>
+		<name>Hewlett-Packard</name>
+	</ROW>
+
+	<ROW>
+		<id>28</id>
+		<name>Zemmix</name>
+	</ROW>
+
+	<ROW>
+		<id>29</id>
+		<name>ACVS</name>
+	</ROW>
+
+	<ROW>
+		<id>30</id>
+		<name>Sanyo</name>
+	</ROW>
+
+	<ROW>
+		<id>31</id>
+		<name>Cray</name>
+	</ROW>
+
+	<ROW>
+		<id>32</id>
+		<name>Evans & Sutherland</name>
+	</ROW>
+
+	<ROW>
+		<id>33</id>
+		<name>E.S.R. Inc.</name>
+	</ROW>
+
+	<ROW>
+		<id>34</id>
+		<name>OMRON</name>
+	</ROW>
+
+	<ROW>
+		<id>35</id>
+		<name>BBN Technologies</name>
+	</ROW>
+
+	<ROW>
+		<id>36</id>
+		<name>Lenovo Group</name>
+	</ROW>
+
+	<ROW>
+		<id>37</id>
+		<name>ASUS</name>
+	</ROW>
+
+	<ROW>
+		<id>38</id>
+		<name>Amstrad</name>
+	</ROW>
+
+	<ROW>
+		<id>39</id>
+		<name>Sun Microsystems</name>
+	</ROW>
+
+	<ROW>
+		<id>40</id>
+		<name>Texas Instruments</name>
+	</ROW>
+
+	<ROW>
+		<id>41</id>
+		<name>HTC Corporation</name>
+	</ROW>
+
+	<ROW>
+		<id>42</id>
+		<name>Research In Motion</name>
+	</ROW>
+
+	<ROW>
+		<id>43</id>
+		<name>Samsung Electronics</name>
+	</ROW>
+</DATA>
