@@ -1,0 +1,4443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<ROW>
+		<id>1</id>
+		<name>MacBook Pro 15.4 inch</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>2</id>
+		<name>CM-2a</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>2</company_id>
+	</ROW>
+
+	<ROW>
+		<id>3</id>
+		<name>CM-200</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>2</company_id>
+	</ROW>
+
+	<ROW>
+		<id>4</id>
+		<name>CM-5e</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>2</company_id>
+	</ROW>
+
+	<ROW>
+		<id>5</id>
+		<name>CM-5</name>
+		<introduced>1991-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>2</company_id>
+	</ROW>
+
+	<ROW>
+		<id>6</id>
+		<name>MacBook Pro</name>
+		<introduced>2006-01-10 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>7</id>
+		<name>Apple IIe</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>8</id>
+		<name>Apple IIc</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>9</id>
+		<name>Apple IIGS</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>10</id>
+		<name>Apple IIc Plus</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>11</id>
+		<name>Apple II Plus</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>12</id>
+		<name>Apple III</name>
+		<introduced>1980-05-01 00:00:00</introduced>
+		<discontinued>1984-04-01 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>13</id>
+		<name>Apple Lisa</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>14</id>
+		<name>CM-2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>2</company_id>
+	</ROW>
+
+	<ROW>
+		<id>15</id>
+		<name>Connection Machine</name>
+		<introduced>1987-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>2</company_id>
+	</ROW>
+
+	<ROW>
+		<id>16</id>
+		<name>Apple II</name>
+		<introduced>1977-04-01 00:00:00</introduced>
+		<discontinued>1993-10-01 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>17</id>
+		<name>Apple III Plus</name>
+		<introduced>1983-12-01 00:00:00</introduced>
+		<discontinued>1984-04-01 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>18</id>
+		<name>COSMAC ELF</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>3</company_id>
+	</ROW>
+
+	<ROW>
+		<id>19</id>
+		<name>COSMAC VIP</name>
+		<introduced>1977-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>3</company_id>
+	</ROW>
+
+	<ROW>
+		<id>20</id>
+		<name>ELF II</name>
+		<introduced>1977-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>4</company_id>
+	</ROW>
+
+	<ROW>
+		<id>21</id>
+		<name>Macintosh</name>
+		<introduced>1984-01-24 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>22</id>
+		<name>Macintosh II</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>23</id>
+		<name>Macintosh Plus</name>
+		<introduced>1986-01-16 00:00:00</introduced>
+		<discontinued>1990-10-15 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>24</id>
+		<name>Macintosh IIfx</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>25</id>
+		<name>iMac</name>
+		<introduced>1998-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>26</id>
+		<name>Mac Mini</name>
+		<introduced>2005-01-22 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>27</id>
+		<name>Mac Pro</name>
+		<introduced>2006-08-07 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>28</id>
+		<name>Power Macintosh</name>
+		<introduced>1994-03-01 00:00:00</introduced>
+		<discontinued>2006-08-01 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>29</id>
+		<name>PowerBook</name>
+		<introduced>1991-01-01 00:00:00</introduced>
+		<discontinued>2006-01-01 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>30</id>
+		<name>Xserve</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>31</id>
+		<name>Powerbook 100</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>32</id>
+		<name>Powerbook 140</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>33</id>
+		<name>Powerbook 170</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>34</id>
+		<name>PowerBook Duo</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>35</id>
+		<name>PowerBook 190</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>36</id>
+		<name>Macintosh Quadra</name>
+		<introduced>1991-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>37</id>
+		<name>Macintosh Quadra 900</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>38</id>
+		<name>Macintosh Quadra 700</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>39</id>
+		<name>Macintosh LC</name>
+		<introduced>1990-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>40</id>
+		<name>Macintosh LC II</name>
+		<introduced>1990-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>41</id>
+		<name>Macintosh LC III</name>
+		<introduced>1993-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>42</id>
+		<name>Macintosh LC III+</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>43</id>
+		<name>Macintosh Quadra 605</name>
+		<introduced>1993-10-21 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>44</id>
+		<name>Macintosh LC 500 series</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>45</id>
+		<name>TRS-80 Color Computer</name>
+		<introduced>1980-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>5</company_id>
+	</ROW>
+
+	<ROW>
+		<id>46</id>
+		<name>Acorn System 2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>47</id>
+		<name>Dragon 32/64</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>48</id>
+		<name>MEK6800D2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>49</id>
+		<name>Newbear 77/68</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>50</id>
+		<name>Commodore PET</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>51</id>
+		<name>Commodore 64</name>
+		<introduced>1982-08-01 00:00:00</introduced>
+		<discontinued>1994-01-01 00:00:00</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>52</id>
+		<name>Commodore 64C</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>53</id>
+		<name>Commodore SX-64</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>54</id>
+		<name>Commodore 128</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>55</id>
+		<name>Apple I</name>
+		<introduced>1976-04-01 00:00:00</introduced>
+		<discontinued>1977-10-01 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>56</id>
+		<name>KIM-1</name>
+		<introduced>1975-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>7</company_id>
+	</ROW>
+
+	<ROW>
+		<id>57</id>
+		<name>Altair 8800</name>
+		<introduced>1974-12-19 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>8</company_id>
+	</ROW>
+
+	<ROW>
+		<id>58</id>
+		<name>IMSAI 8080</name>
+		<introduced>1975-08-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>9</company_id>
+	</ROW>
+
+	<ROW>
+		<id>59</id>
+		<name>IMSAI Series Two</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>60</id>
+		<name>VAX</name>
+		<introduced>1977-10-25 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>61</id>
+		<name>VAX 11/780</name>
+		<introduced>1977-10-25 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>62</id>
+		<name>VAX 11/750</name>
+		<introduced>1980-10-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>67</id>
+		<name>IBM PC</name>
+		<introduced>1981-08-12 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>68</id>
+		<name>Macintosh Classic</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>69</id>
+		<name>Macintosh Classic II</name>
+		<introduced>1991-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>70</id>
+		<name>Amiga</name>
+		<introduced>1985-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>14</company_id>
+	</ROW>
+
+	<ROW>
+		<id>71</id>
+		<name>Amiga 1000</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>72</id>
+		<name>Amiga 500</name>
+		<introduced>1987-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>73</id>
+		<name>Amiga 500+</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>74</id>
+		<name>Amiga 2000</name>
+		<introduced>1986-01-01 00:00:00</introduced>
+		<discontinued>1990-01-01 00:00:00</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>75</id>
+		<name>Amiga 3000</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>76</id>
+		<name>Amiga 600</name>
+		<introduced>1992-03-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>77</id>
+		<name>Macintosh 128K</name>
+		<introduced>1984-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>78</id>
+		<name>Macintosh 512K</name>
+		<introduced>1984-09-10 00:00:00</introduced>
+		<discontinued>1986-04-14 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>79</id>
+		<name>Macintosh SE</name>
+		<introduced>1987-03-02 00:00:00</introduced>
+		<discontinued>1989-08-01 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>80</id>
+		<name>Macintosh SE/30</name>
+		<introduced>1989-01-19 00:00:00</introduced>
+		<discontinued>1991-10-21 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>81</id>
+		<name>Canon Cat</name>
+		<introduced>1987-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>15</company_id>
+	</ROW>
+
+	<ROW>
+		<id>82</id>
+		<name>Nokia 770</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>16</company_id>
+	</ROW>
+
+	<ROW>
+		<id>83</id>
+		<name>Nokia N800</name>
+		<introduced>2007-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>16</company_id>
+	</ROW>
+
+	<ROW>
+		<id>84</id>
+		<name>Mylo</name>
+		<introduced>2006-09-21 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>17</company_id>
+	</ROW>
+
+	<ROW>
+		<id>85</id>
+		<name>OQO 02</name>
+		<introduced>2007-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>18</company_id>
+	</ROW>
+
+	<ROW>
+		<id>86</id>
+		<name>OQO 01+</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>87</id>
+		<name>Pinwheel calculator</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>88</id>
+		<name>iBook</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>89</id>
+		<name>MacBook</name>
+		<introduced>2006-05-16 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>90</id>
+		<name>NeXTstation</name>
+		<introduced>1990-01-01 00:00:00</introduced>
+		<discontinued>1993-01-01 00:00:00</discontinued>
+		<company_id>19</company_id>
+	</ROW>
+
+	<ROW>
+		<id>91</id>
+		<name>NeXTcube</name>
+		<introduced>1988-01-01 00:00:00</introduced>
+		<discontinued>1993-01-01 00:00:00</discontinued>
+		<company_id>19</company_id>
+	</ROW>
+
+	<ROW>
+		<id>92</id>
+		<name>NeXTstation Color Turbo</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>93</id>
+		<name>NeXTstation Color</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>94</id>
+		<name>NeXTstation Turbo</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>95</id>
+		<name>NeXTcube Turbo</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>19</company_id>
+	</ROW>
+
+	<ROW>
+		<id>96</id>
+		<name>NeXTcube 040</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>19</company_id>
+	</ROW>
+
+	<ROW>
+		<id>97</id>
+		<name>NeXTcube 030</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>19</company_id>
+	</ROW>
+
+	<ROW>
+		<id>98</id>
+		<name>Tinkertoy Tic-Tac-Toe Computer</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>99</id>
+		<name>Z3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>100</id>
+		<name>Z4</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>101</id>
+		<name>Z1</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>102</id>
+		<name>Z2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>103</id>
+		<name>Wang 2200</name>
+		<introduced>1973-05-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>104</id>
+		<name>Wang VS</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>105</id>
+		<name>Wang OIS</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>106</id>
+		<name>BBC Micro</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>22</company_id>
+	</ROW>
+
+	<ROW>
+		<id>108</id>
+		<name>Cray-1</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>109</id>
+		<name>Cray-3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>110</id>
+		<name>Cray-2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>111</id>
+		<name>Cray-4</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>112</id>
+		<name>Cray X1</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>113</id>
+		<name>Cray XD1</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>114</id>
+		<name>Cray T3D</name>
+		<introduced>1993-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>115</id>
+		<name>Cray T3E</name>
+		<introduced>1995-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>116</id>
+		<name>Cray C90</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>117</id>
+		<name>Cray T90</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>118</id>
+		<name>Cray SV1</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>119</id>
+		<name>Cray J90</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>120</id>
+		<name>Cray XT3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>121</id>
+		<name>Cray CS6400</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>122</id>
+		<name>Atari ST</name>
+		<introduced>1985-01-01 00:00:00</introduced>
+		<discontinued>1993-01-01 00:00:00</discontinued>
+		<company_id>20</company_id>
+	</ROW>
+
+	<ROW>
+		<id>123</id>
+		<name>Amiga 2500</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>124</id>
+		<name>Amiga 2500</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>125</id>
+		<name>Amiga 4000</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>126</id>
+		<name>Amiga 3000UX</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>127</id>
+		<name>Amiga 3000T</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>128</id>
+		<name>Amiga 4000T</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>129</id>
+		<name>Amiga 1200</name>
+		<introduced>1992-10-01 00:00:00</introduced>
+		<discontinued>1996-01-01 00:00:00</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>130</id>
+		<name>Atari 1040 STf</name>
+		<introduced>1986-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>131</id>
+		<name>Atari 520 ST</name>
+		<introduced>1985-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>132</id>
+		<name>Atari 520 STfm</name>
+		<introduced>1986-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>133</id>
+		<name>Atari 1040 STe</name>
+		<introduced>1989-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>134</id>
+		<name>Atari MEGA STe</name>
+		<introduced>1991-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>135</id>
+		<name>Atari 520 ST+</name>
+		<introduced>1985-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>136</id>
+		<name>Atari 520 STm</name>
+		<introduced>1985-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>137</id>
+		<name>Atari 130 ST</name>
+		<introduced>1985-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>138</id>
+		<name>Atari 260 ST</name>
+		<introduced>1985-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>139</id>
+		<name>Atari MEGA ST</name>
+		<introduced>1987-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>140</id>
+		<name>Atari 520 STf</name>
+		<introduced>1986-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>141</id>
+		<name>Atari 1040 STfm</name>
+		<introduced>1986-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>142</id>
+		<name>Atari 2080 ST</name>
+		<introduced>1986-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>143</id>
+		<name>Atari 260 ST+</name>
+		<introduced>1985-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>144</id>
+		<name>Atari 4160 STe</name>
+		<introduced>1988-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>145</id>
+		<name>TRS-80 Color Computer 2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>146</id>
+		<name>TRS-80 Color Computer 3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>147</id>
+		<name>TRS-80 Model 1</name>
+		<introduced>1977-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>5</company_id>
+	</ROW>
+
+	<ROW>
+		<id>148</id>
+		<name>Timex Sinclair 2068</name>
+		<introduced>1983-11-01 00:00:00</introduced>
+		<discontinued>1984-04-01 00:00:00</discontinued>
+		<company_id>23</company_id>
+	</ROW>
+
+	<ROW>
+		<id>149</id>
+		<name>ZX Spectrum</name>
+		<introduced>1982-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>25</company_id>
+	</ROW>
+
+	<ROW>
+		<id>150</id>
+		<name>Xerox Star</name>
+		<introduced>1981-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>26</company_id>
+	</ROW>
+
+	<ROW>
+		<id>151</id>
+		<name>Xerox Alto</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>152</id>
+		<name>Acorn Archimedes</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>22</company_id>
+	</ROW>
+
+	<ROW>
+		<id>153</id>
+		<name>Nintendo Entertainment System</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>154</id>
+		<name>Super Nintendo Entertainment System</name>
+		<introduced>1991-08-01 00:00:00</introduced>
+		<discontinued>1999-01-01 00:00:00</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>155</id>
+		<name>Super Famicom</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>156</id>
+		<name>Nintendo GameCube</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>157</id>
+		<name>Game Boy line</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>158</id>
+		<name>PlayStation</name>
+		<introduced>1994-12-03 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>17</company_id>
+	</ROW>
+
+	<ROW>
+		<id>159</id>
+		<name>PlayStation 2</name>
+		<introduced>2000-03-24 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>17</company_id>
+	</ROW>
+
+	<ROW>
+		<id>160</id>
+		<name>Game &amp; Watch</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>161</id>
+		<name>EDSAC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>162</id>
+		<name>IBM System/4 Pi</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>163</id>
+		<name>IBM AP-101</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>164</id>
+		<name>IBM TC-1</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>165</id>
+		<name>IBM AP-101B</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>166</id>
+		<name>IBM AP-101S</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>167</id>
+		<name>ProLiant</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>27</company_id>
+	</ROW>
+
+	<ROW>
+		<id>168</id>
+		<name>Http://nepomuk.semanticdesktop.org/xwiki/</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>169</id>
+		<name>Sinclair QL</name>
+		<introduced>1984-01-01 00:00:00</introduced>
+		<discontinued>1986-01-01 00:00:00</discontinued>
+		<company_id>25</company_id>
+	</ROW>
+
+	<ROW>
+		<id>170</id>
+		<name>Sinclair ZX81</name>
+		<introduced>1981-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>25</company_id>
+	</ROW>
+
+	<ROW>
+		<id>171</id>
+		<name>Sinclair ZX80</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>25</company_id>
+	</ROW>
+
+	<ROW>
+		<id>172</id>
+		<name>Atari 65XE</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>20</company_id>
+	</ROW>
+
+	<ROW>
+		<id>173</id>
+		<name>Deep Blue</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>174</id>
+		<name>Macintosh Quadra 650</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>175</id>
+		<name>Macintosh Quadra 610</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>176</id>
+		<name>Macintosh Quadra 800</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>177</id>
+		<name>Macintosh Quadra 950</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>178</id>
+		<name>PowerBook 160</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>179</id>
+		<name>PowerBook 145B</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>180</id>
+		<name>PowerBook 170</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>181</id>
+		<name>PowerBook 145</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>182</id>
+		<name>PowerBook G3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>183</id>
+		<name>PowerBook 140</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>184</id>
+		<name>Macintosh IIcx</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>185</id>
+		<name>Powerbook 180</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>186</id>
+		<name>PowerBook G4</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>187</id>
+		<name>Macintosh XL</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>188</id>
+		<name>PowerBook 100</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>189</id>
+		<name>PowerBook 2400c</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>190</id>
+		<name>PowerBook 1400</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>191</id>
+		<name>Macintosh Quadra 630</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>192</id>
+		<name>Macintosh Quadra 660AV</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>193</id>
+		<name>Macintosh Quadra 840AV</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>194</id>
+		<name>PowerBook 5300</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>195</id>
+		<name>PowerBook 3400c</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>196</id>
+		<name>Macintosh Color Classic</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>197</id>
+		<name>Macintosh 512Ke</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>198</id>
+		<name>Macintosh IIsi</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>199</id>
+		<name>Macintosh IIx</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>200</id>
+		<name>PowerBook 500 series</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>201</id>
+		<name>Power Macintosh G3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>202</id>
+		<name>Macintosh IIci</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>203</id>
+		<name>iMac G5</name>
+		<introduced>2004-08-31 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>204</id>
+		<name>Power Mac G4</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>205</id>
+		<name>Power Macintosh 7100</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>206</id>
+		<name>Power Macintosh 9600</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>207</id>
+		<name>Power Macintosh 7200</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>208</id>
+		<name>Power Macintosh 7300</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>209</id>
+		<name>Power Macintosh 8600</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>210</id>
+		<name>Power Macintosh 6200</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>211</id>
+		<name>Power Macintosh 8100</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>212</id>
+		<name>Compact Macintosh</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>213</id>
+		<name>Power Macintosh 4400</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>214</id>
+		<name>Power Macintosh 9500</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>215</id>
+		<name>Macintosh Portable</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>216</id>
+		<name>EMac</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>217</id>
+		<name>Power Macintosh 7600</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>218</id>
+		<name>Power Mac G5</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>219</id>
+		<name>Power Macintosh 7500</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>220</id>
+		<name>Power Macintosh 6100</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>221</id>
+		<name>Power Macintosh 8500</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>222</id>
+		<name>Macintosh IIvi</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>223</id>
+		<name>Macintosh IIvx</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>224</id>
+		<name>IMac G3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>225</id>
+		<name>IMac G4</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>226</id>
+		<name>Power Mac G4 Cube</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>227</id>
+		<name>Intel iMac</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>228</id>
+		<name>Deep Thought</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>229</id>
+		<name>Wii</name>
+		<introduced>2006-11-19 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>230</id>
+		<name>IBM System x</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>231</id>
+		<name>IBM System i</name>
+		<introduced>2006-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>232</id>
+		<name>IBM System z</name>
+		<introduced>2006-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>233</id>
+		<name>IBM System p</name>
+		<introduced>2000-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>234</id>
+		<name>LC 575</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>235</id>
+		<name>Macintosh TV</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>236</id>
+		<name>Macintosh Performa</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>237</id>
+		<name>Macintosh II series</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>238</id>
+		<name>Power Macintosh 6400</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>239</id>
+		<name>Power Macintosh 6500</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>240</id>
+		<name>Apple PenLite</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>241</id>
+		<name>Wallstreet</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>242</id>
+		<name>Twentieth Anniversary Macintosh</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>243</id>
+		<name>Power Macintosh 5500</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>244</id>
+		<name>iBook G3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>245</id>
+		<name>Power Macintosh 5200 LC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>246</id>
+		<name>Power Macintosh 5400</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>247</id>
+		<name>CM-1</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>248</id>
+		<name>MSX</name>
+		<introduced>1983-01-01 00:00:00</introduced>
+		<discontinued>1995-01-01 00:00:00</discontinued>
+		<company_id>28</company_id>
+	</ROW>
+
+	<ROW>
+		<id>249</id>
+		<name>PlayStation 3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>17</company_id>
+	</ROW>
+
+	<ROW>
+		<id>250</id>
+		<name>MSX2</name>
+		<introduced>1986-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>29</company_id>
+	</ROW>
+
+	<ROW>
+		<id>251</id>
+		<name>MSX2+</name>
+		<introduced>1988-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>30</company_id>
+	</ROW>
+
+	<ROW>
+		<id>252</id>
+		<name>MSX turbo R</name>
+		<introduced>1990-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>253</id>
+		<name>Panasonic FS A1GT</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>254</id>
+		<name>Panasonic FS A1ST</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>255</id>
+		<name>PDP-11</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>256</id>
+		<name>PDP-1</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>257</id>
+		<name>PDP-10</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>258</id>
+		<name>PDP-8</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>259</id>
+		<name>PDP-6</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>260</id>
+		<name>DECSYSTEM-20</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>261</id>
+		<name>PDP-7</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>262</id>
+		<name>PDP-5</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>263</id>
+		<name>PDP-12</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>264</id>
+		<name>LINC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>265</id>
+		<name>PDP-14</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>266</id>
+		<name>PDP-15</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>267</id>
+		<name>PDP-16</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>268</id>
+		<name>Cray X2</name>
+		<introduced>2007-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>31</company_id>
+	</ROW>
+
+	<ROW>
+		<id>269</id>
+		<name>Cray X-MP</name>
+		<introduced>1982-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>31</company_id>
+	</ROW>
+
+	<ROW>
+		<id>270</id>
+		<name>Evans &amp; Sutherland ES-1</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>32</company_id>
+	</ROW>
+
+	<ROW>
+		<id>271</id>
+		<name>Commodore VIC-20</name>
+		<introduced>1980-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>272</id>
+		<name>PowerBook 150</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>273</id>
+		<name>MacBook Air</name>
+		<introduced>2008-01-15 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>275</id>
+		<name>Digi-Comp</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>276</id>
+		<name>Digi-Comp II</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>33</company_id>
+	</ROW>
+
+	<ROW>
+		<id>279</id>
+		<name>Nintendo 64</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>280</id>
+		<name>Game Boy Advance</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>281</id>
+		<name>Game Boy</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>282</id>
+		<name>Nintendo DS Lite</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>283</id>
+		<name>Nintendo DS</name>
+		<introduced>2004-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>284</id>
+		<name>Game Boy Color</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>285</id>
+		<name>Game Boy Advance SP</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>286</id>
+		<name>Virtual Boy</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>287</id>
+		<name>Game Boy Micro</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>288</id>
+		<name>Roadrunner</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>289</id>
+		<name>HP 9000</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>290</id>
+		<name>OMRON Luna-88K2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>291</id>
+		<name>OMRON Luna-88K</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>34</company_id>
+	</ROW>
+
+	<ROW>
+		<id>292</id>
+		<name>Motorola series 900</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>293</id>
+		<name>Motorola M8120</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>294</id>
+		<name>Triton Dolphin System 100</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>295</id>
+		<name>BBN TC2000</name>
+		<introduced>1989-08-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>35</company_id>
+	</ROW>
+
+	<ROW>
+		<id>296</id>
+		<name>WRT54G</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>297</id>
+		<name>ThinkPad</name>
+		<introduced>1992-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>36</company_id>
+	</ROW>
+
+	<ROW>
+		<id>298</id>
+		<name>Apple Newton</name>
+		<introduced>1993-01-01 00:00:00</introduced>
+		<discontinued>1998-01-01 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>301</id>
+		<name>ASUS Eee PC 901</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>37</company_id>
+	</ROW>
+
+	<ROW>
+		<id>302</id>
+		<name>ASUS Eee PC 701</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>304</id>
+		<name>System/38</name>
+		<introduced>1979-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>305</id>
+		<name>System/36</name>
+		<introduced>1983-01-01 00:00:00</introduced>
+		<discontinued>2000-01-01 00:00:00</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>307</id>
+		<name>IBM RT</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>309</id>
+		<name>IBM 801</name>
+		<introduced>1980-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>311</id>
+		<name>ASCI White</name>
+		<introduced>2001-01-01 00:00:00</introduced>
+		<discontinued>2006-01-01 00:00:00</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>312</id>
+		<name>Blue Gene</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>313</id>
+		<name>ASCI Blue Pacific</name>
+		<introduced>1998-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>314</id>
+		<name>iPhone</name>
+		<introduced>2007-06-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>315</id>
+		<name>Nokia N810</name>
+		<introduced>2007-10-17 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>16</company_id>
+	</ROW>
+
+	<ROW>
+		<id>316</id>
+		<name>EDSAC 2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>317</id>
+		<name>Titan</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>318</id>
+		<name>Pilot ACE</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>319</id>
+		<name>HP Mini 1000</name>
+		<introduced>2008-10-29 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>27</company_id>
+	</ROW>
+
+	<ROW>
+		<id>320</id>
+		<name>HP 2133 Mini-Note PC</name>
+		<introduced>2008-04-15 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>27</company_id>
+	</ROW>
+
+	<ROW>
+		<id>321</id>
+		<name>Kogan Agora Pro</name>
+		<introduced>2008-12-04 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>322</id>
+		<name>D-Series Machines</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>323</id>
+		<name>ZX Spectrum 48K</name>
+		<introduced>1982-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>25</company_id>
+	</ROW>
+
+	<ROW>
+		<id>324</id>
+		<name>ZX Spectrum 16K</name>
+		<introduced>1982-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>25</company_id>
+	</ROW>
+
+	<ROW>
+		<id>325</id>
+		<name>ZX Spectrum 128</name>
+		<introduced>1985-09-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>25</company_id>
+	</ROW>
+
+	<ROW>
+		<id>326</id>
+		<name>ZX Spectrum +3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>38</company_id>
+	</ROW>
+
+	<ROW>
+		<id>327</id>
+		<name>ZX Spectrum +2</name>
+		<introduced>1986-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>38</company_id>
+	</ROW>
+
+	<ROW>
+		<id>328</id>
+		<name>ZX Spectrum +2A</name>
+		<introduced>1987-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>38</company_id>
+	</ROW>
+
+	<ROW>
+		<id>329</id>
+		<name>ZX Spectrum +</name>
+		<introduced>1984-06-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>25</company_id>
+	</ROW>
+
+	<ROW>
+		<id>330</id>
+		<name>Acer Extensa</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>331</id>
+		<name>Acer Extensa 5220</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>332</id>
+		<name>Dell Latitude</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>333</id>
+		<name>Toshiba Satellite</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>334</id>
+		<name>Timex Sinclair 2048</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>23</company_id>
+	</ROW>
+
+	<ROW>
+		<id>335</id>
+		<name>Sprinter</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>336</id>
+		<name>Timex Computer 2048</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>337</id>
+		<name>Pentagon</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>338</id>
+		<name>Belle</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>339</id>
+		<name>Loki</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>25</company_id>
+	</ROW>
+
+	<ROW>
+		<id>340</id>
+		<name>Hobbit</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>341</id>
+		<name>NeXT Computer</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>19</company_id>
+	</ROW>
+
+	<ROW>
+		<id>342</id>
+		<name>TRS-80</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>343</id>
+		<name>TRS-80 Model 2</name>
+		<introduced>1980-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>5</company_id>
+	</ROW>
+
+	<ROW>
+		<id>344</id>
+		<name>TRS-80 Model 3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>5</company_id>
+	</ROW>
+
+	<ROW>
+		<id>345</id>
+		<name>STacy</name>
+		<introduced>1989-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>346</id>
+		<name>ST BOOK</name>
+		<introduced>1990-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>347</id>
+		<name>Atari 520 STE</name>
+		<introduced>1989-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>348</id>
+		<name>Amiga 2000 Model A</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>349</id>
+		<name>Amiga 2000 Model B</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>350</id>
+		<name>Amiga 2000 Model C</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>351</id>
+		<name>IBM 3270</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>352</id>
+		<name>CALDIC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>353</id>
+		<name>Modbook</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>354</id>
+		<name>Compaq SystemPro</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>355</id>
+		<name>ARRA</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>356</id>
+		<name>IBM System Cluster 1350</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>357</id>
+		<name>Finite element machine</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>358</id>
+		<name>ES7000</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>359</id>
+		<name>HP MediaSmart Server</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>360</id>
+		<name>HP Superdome</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>361</id>
+		<name>IBM Power Systems</name>
+		<introduced>2008-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>362</id>
+		<name>Oslo Analyzer</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>363</id>
+		<name>Microsoft Softcard</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>364</id>
+		<name>WITCH</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>365</id>
+		<name>Analytical engine</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>366</id>
+		<name>EDVAC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>367</id>
+		<name>BINAC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>368</id>
+		<name>Earth Simulator</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>369</id>
+		<name>BARK</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>371</id>
+		<name>ILLIAC IV</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>372</id>
+		<name>ILLIAC II</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>373</id>
+		<name>ILLIAC III</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>374</id>
+		<name>Water integrator</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>375</id>
+		<name>CSIRAC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>376</id>
+		<name>System X</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>377</id>
+		<name>Harvest</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>378</id>
+		<name>ChipTest</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>379</id>
+		<name>HiTech</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>380</id>
+		<name>Bomba</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>381</id>
+		<name>ACE</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>382</id>
+		<name>ASCI Red</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>383</id>
+		<name>ASCI Thors Hammer</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>384</id>
+		<name>ASCI Purple</name>
+		<introduced>2005-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>385</id>
+		<name>ASCI Blue Mountain</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>386</id>
+		<name>Columbia</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>387</id>
+		<name>HP Integrity</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>388</id>
+		<name>APEXC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>389</id>
+		<name>Datasaab D2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>390</id>
+		<name>BRLESC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>391</id>
+		<name>DYSEAC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>393</id>
+		<name>Hydra</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>394</id>
+		<name>FUJIC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>395</id>
+		<name>RAYDAC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>396</id>
+		<name>Harvard Mark III</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>397</id>
+		<name>DATAR</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>398</id>
+		<name>ReserVec</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>399</id>
+		<name>DASK</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>400</id>
+		<name>UTEC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>401</id>
+		<name>DRTE Computer</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>402</id>
+		<name>PowerEdge</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>403</id>
+		<name>Apple Network Server</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>404</id>
+		<name>Goodyear MPP</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>405</id>
+		<name>Macintosh 128K technical details</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>406</id>
+		<name>Power Macintosh G3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>407</id>
+		<name>CER-10</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>408</id>
+		<name>CER-20</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>409</id>
+		<name>IBM BladeCenter</name>
+		<introduced>2002-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>410</id>
+		<name>Wisconsin Integrally Synchronized Computer</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>411</id>
+		<name>Amstrad CPC</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>38</company_id>
+	</ROW>
+
+	<ROW>
+		<id>412</id>
+		<name>Amstrad CPC 6128</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>38</company_id>
+	</ROW>
+
+	<ROW>
+		<id>413</id>
+		<name>Amstrad CPC 664</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>38</company_id>
+	</ROW>
+
+	<ROW>
+		<id>414</id>
+		<name>Amstrad CPC 464</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>38</company_id>
+	</ROW>
+
+	<ROW>
+		<id>415</id>
+		<name>Intergraph</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>416</id>
+		<name>Enterprise</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>417</id>
+		<name>MTX500</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>418</id>
+		<name>Acorn Electron</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>419</id>
+		<name>Sony Vaio P</name>
+		<introduced>2009-02-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>17</company_id>
+	</ROW>
+
+	<ROW>
+		<id>420</id>
+		<name>VAIO</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>17</company_id>
+	</ROW>
+
+	<ROW>
+		<id>421</id>
+		<name>Sony Vaio P VGN-P588E/Q</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>422</id>
+		<name>Sony Vaio P VGN-P530H/G</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>423</id>
+		<name>Sony Vaio P VGN-P530H/W</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>424</id>
+		<name>Sony Vaio P VGN-P530H/Q</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>425</id>
+		<name>Sony Vaio P VGN-P530H/R</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>426</id>
+		<name>Sony Vaio P VGN-P588E/R</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>427</id>
+		<name>Sony Vaio P VGN-P598E/Q</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>428</id>
+		<name>Timex Sinclair 1000</name>
+		<introduced>1982-07-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>23</company_id>
+	</ROW>
+
+	<ROW>
+		<id>429</id>
+		<name>Komputer 2086</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>430</id>
+		<name>Galaksija</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>431</id>
+		<name>Vector-06C</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>432</id>
+		<name>Elektronika BK</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>433</id>
+		<name>Sun386i</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>39</company_id>
+	</ROW>
+
+	<ROW>
+		<id>434</id>
+		<name>Xerox Daybreak</name>
+		<introduced>1985-01-01 00:00:00</introduced>
+		<discontinued>1989-01-01 00:00:00</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>435</id>
+		<name>Xerox NoteTaker</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>26</company_id>
+	</ROW>
+
+	<ROW>
+		<id>437</id>
+		<name>LGP-30</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>438</id>
+		<name>LGP-21</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>439</id>
+		<name>ASUS Eee PC 900</name>
+		<introduced>2008-05-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>37</company_id>
+	</ROW>
+
+	<ROW>
+		<id>440</id>
+		<name>Atari TT030</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>441</id>
+		<name>Bi Am ZX-Spectrum 48/64</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>442</id>
+		<name>Bi Am ZX-Spectrum 128</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>443</id>
+		<name>PlayStation Portable</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>444</id>
+		<name>MSI Wind Netbook</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>445</id>
+		<name>Sharp Mebius NJ70A</name>
+		<introduced>2009-04-21 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>446</id>
+		<name>HTC Snap</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>41</company_id>
+	</ROW>
+
+	<ROW>
+		<id>447</id>
+		<name>Commodore Educator 64</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>448</id>
+		<name>Amiga 1500</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>449</id>
+		<name>Commodore 65</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>450</id>
+		<name>Commodore 16</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>451</id>
+		<name>Commodore CBM-II</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>452</id>
+		<name>Commodore Plus/4</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>453</id>
+		<name>Commodore LCD</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>454</id>
+		<name>Commodore MAX Machine</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>6</company_id>
+	</ROW>
+
+	<ROW>
+		<id>455</id>
+		<name>Aster CT-80</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>456</id>
+		<name>Test</name>
+		<introduced>2009-01-01 00:00:00</introduced>
+		<discontinued>2009-01-01 00:00:00</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>457</id>
+		<name>MSI GX723</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>458</id>
+		<name>Eee PC 1000HV</name>
+		<introduced>2009-05-22 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>459</id>
+		<name>VTech Laser 200</name>
+		<introduced>1983-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>460</id>
+		<name>CrunchPad</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>461</id>
+		<name>Neo Geo</name>
+		<introduced>1990-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>462</id>
+		<name>Sega Mega Drive</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>463</id>
+		<name>Sega Master System</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>464</id>
+		<name>TurboGrafx-16</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>465</id>
+		<name>Sun-3</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>39</company_id>
+	</ROW>
+
+	<ROW>
+		<id>466</id>
+		<name>Pleiades</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>467</id>
+		<name>IBM Sequoia</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>468</id>
+		<name>Inves Spectrum 48k plus</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>469</id>
+		<name>iPhone 3G</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>470</id>
+		<name>iPhone 3GS</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>471</id>
+		<name>Beagle Board</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>40</company_id>
+	</ROW>
+
+	<ROW>
+		<id>472</id>
+		<name>HP nPar</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>473</id>
+		<name>MacBook Family</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>474</id>
+		<name>Reservisor</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>475</id>
+		<name>BladeSystem</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>476</id>
+		<name>lenovo thinkpad t60p</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>477</id>
+		<name>lenovo thinkpad x200</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>36</company_id>
+	</ROW>
+
+	<ROW>
+		<id>478</id>
+		<name>lenovo thinkpad t60</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>479</id>
+		<name>lenovo thinkpad w700</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>480</id>
+		<name>lenovo thinkpad t41</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>481</id>
+		<name>lenovo thinkpad z61p</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>482</id>
+		<name>lenovo thinkpad x61s</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>483</id>
+		<name>lenovo thinkpad t43</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>484</id>
+		<name>lenovo thinkpad r400</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>485</id>
+		<name>lenovo thinkpad x60s</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>486</id>
+		<name>lenovo thinkpad x301</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>487</id>
+		<name>lenovo thinkpad t42</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>488</id>
+		<name>lenovo thinkpad r61</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>489</id>
+		<name>lenovo thinkpad w500</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>490</id>
+		<name>lenovo thinkpad sl400</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>491</id>
+		<name>lenovo thinkpad x40</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>492</id>
+		<name>lenovo thinkpad x200 tablet</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>36</company_id>
+	</ROW>
+
+	<ROW>
+		<id>493</id>
+		<name>lenovo thinkpad t400s</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>494</id>
+		<name>Nokia N900</name>
+		<introduced>2009-10-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>16</company_id>
+	</ROW>
+
+	<ROW>
+		<id>495</id>
+		<name>Internet Tablet</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>496</id>
+		<name>Meiko Computing Surface</name>
+		<introduced>1986-01-01 00:00:00</introduced>
+		<discontinued>1993-01-01 00:00:00</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>497</id>
+		<name>CS-2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>499</id>
+		<name>IBM 5100</name>
+		<introduced>1975-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>503</id>
+		<name>System/34</name>
+		<introduced>1978-01-01 00:00:00</introduced>
+		<discontinued>1983-01-01 00:00:00</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>504</id>
+		<name>System/32</name>
+		<introduced>1975-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>13</company_id>
+	</ROW>
+
+	<ROW>
+		<id>507</id>
+		<name>English Electric DEUCE</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>508</id>
+		<name>CER-203</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>509</id>
+		<name>CER-22</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>510</id>
+		<name>Kentucky Linux Athlon Testbed</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>511</id>
+		<name>QNAP TS-101</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>512</id>
+		<name>iPad</name>
+		<introduced>2010-01-01 00:00:00</introduced>
+		<discontinued>2011-03-02 00:00:00</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>513</id>
+		<name>iPhone 2G</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>514</id>
+		<name>Inslaw</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>515</id>
+		<name>WePad</name>
+		<introduced>2010-07-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>516</id>
+		<name>MacBook Parts</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>517</id>
+		<name>MacBook 13-inch Core 2 Duo 2.13GHz (MC240LL/A) DDR2 Model</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>518</id>
+		<name>MacBook 13-inch Core 2 Duo 2.13GHz (MC240T/A) DDR2 Model</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>519</id>
+		<name>MacBook 13-inch Core 2 Duo 2.13GHz (MC240X/A) DDR2 Model</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>520</id>
+		<name>MacBook 13-inch Core 2 Duo 2.26GHz (Unibody MC207LL/A) DDR3 Model</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>521</id>
+		<name>MC240LL/A</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>522</id>
+		<name>D.K.COMMUNICATION</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>523</id>
+		<name>iPhone 4</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>524</id>
+		<name>Nintendo 3DS</name>
+		<introduced>2010-03-23 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>24</company_id>
+	</ROW>
+
+	<ROW>
+		<id>525</id>
+		<name>ASUS Eee PC 1005PE</name>
+		<introduced>2010-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>37</company_id>
+	</ROW>
+
+	<ROW>
+		<id>526</id>
+		<name>National Law Enforcement System</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>527</id>
+		<name>BlackBerry PlayBook</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>42</company_id>
+	</ROW>
+
+	<ROW>
+		<id>528</id>
+		<name>Barnes &amp; Noble nook</name>
+		<introduced>2009-10-20 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>529</id>
+		<name>SAM Coupé</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>530</id>
+		<name>HTC Dream</name>
+		<introduced>2008-10-22 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>41</company_id>
+	</ROW>
+
+	<ROW>
+		<id>531</id>
+		<name>Samsung Galaxy Tab</name>
+		<introduced>2010-09-02 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>43</company_id>
+	</ROW>
+
+	<ROW>
+		<id>532</id>
+		<name>BlackBerry PlayBook</name>
+		<introduced>2010-09-27 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>42</company_id>
+	</ROW>
+
+	<ROW>
+		<id>533</id>
+		<name>Tianhe-I</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>534</id>
+		<name>Kno</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>535</id>
+		<name>ThinkPad 701 C</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>536</id>
+		<name>ThinkPad 340 CSE</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>537</id>
+		<name>ThinkPad 755 CX</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>538</id>
+		<name>ThinkPad 755 CE</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>539</id>
+		<name>ThinkPad 370 C</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>540</id>
+		<name>Coleco Adam</name>
+		<introduced>1983-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>541</id>
+		<name>Nebulae</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>542</id>
+		<name>Alex eReader</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>543</id>
+		<name>Acer Iconia</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>544</id>
+		<name>Archos 101</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>545</id>
+		<name>Fujitsu Lifebook T900</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>546</id>
+		<name>Motorola Xoom</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>547</id>
+		<name>ViewSonic G Tablet</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>548</id>
+		<name>DEC Professional</name>
+		<introduced>1982-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>549</id>
+		<name>DEC Multia</name>
+		<introduced>1994-11-07 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>550</id>
+		<name>DEC Firefly</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>551</id>
+		<name>DEC 3000 AXP</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>552</id>
+		<name>DEC 2000 AXP</name>
+		<introduced>1993-05-25 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>553</id>
+		<name>DEC 4000 AXP</name>
+		<introduced>1992-11-10 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>554</id>
+		<name>DEC 7000/10000 AXP</name>
+		<introduced>1992-11-10 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>555</id>
+		<name>DEC Professional 350</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>556</id>
+		<name>DEC Rainbow 100</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>557</id>
+		<name>DEC Professional 325</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>558</id>
+		<name>DECmate II</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>559</id>
+		<name>DECmate</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>560</id>
+		<name>DECsystem</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>561</id>
+		<name>NetApp Filer</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>562</id>
+		<name>DEC GT40</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>10</company_id>
+	</ROW>
+
+	<ROW>
+		<id>563</id>
+		<name>ecoATM</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>564</id>
+		<name>MindWave BrainCubed Education Bundle</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>565</id>
+		<name>PalmPilot</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>566</id>
+		<name>Upcoming iPhone 5</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>567</id>
+		<name>Dell Inspiron 560 Desktop Computer </name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>568</id>
+		<name>IPad 2</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>569</id>
+		<name>HP TouchPad</name>
+		<introduced>2011-02-09 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>27</company_id>
+	</ROW>
+
+	<ROW>
+		<id>570</id>
+		<name>HP Veer</name>
+		<introduced>2011-02-09 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>27</company_id>
+	</ROW>
+
+	<ROW>
+		<id>571</id>
+		<name>Lenovo Thinkpad Edge 11</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>36</company_id>
+	</ROW>
+
+	<ROW>
+		<id>572</id>
+		<name>Dell Vostro</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>573</id>
+		<name>Gateway LT3103U</name>
+		<introduced>2008-01-01 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>NULL</company_id>
+	</ROW>
+
+	<ROW>
+		<id>574</id>
+		<name>iPhone 4S</name>
+		<introduced>2011-10-14 00:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>575</id>
+		<name>AZERTY</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>576</id>
+		<name>AZERTY</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>1</company_id>
+	</ROW>
+
+	<ROW>
+		<id>577</id>
+		<name>hello buddy</name>
+		<introduced>NULL</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>19</company_id>
+	</ROW>
+
+	<ROW>
+		<id>578</id>
+		<name>Darness</name>
+		<introduced>1999-12-11 23:00:00</introduced>
+		<discontinued>NULL</discontinued>
+		<company_id>3</company_id>
+	</ROW>
+</dataset>
