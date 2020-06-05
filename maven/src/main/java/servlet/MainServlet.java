@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MainServlet extends HttpServlet {
@@ -31,5 +32,18 @@ public class MainServlet extends HttpServlet {
 		request.setAttribute( "computers", computers );
 		request.setAttribute("size", computers.size());
         this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
+    }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	try {
+			if(!serviceUI.deleteComputer(request)) {
+				request.setAttribute("errorLog","Computer not modify");
+		    	this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
+			}
+		} catch (NumberFormatException | SQLException e) {
+			request.setAttribute("errorLog","Computer not modify");
+	    	this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
+		}
+		response.sendRedirect("dashboard");
     }
 }

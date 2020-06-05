@@ -3,6 +3,8 @@ package service;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -99,8 +101,57 @@ public class ServiceUI {
 	}
 
 	public boolean editComputer(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return false;
+		String id = request.getParameter("id");
+		String name = request.getParameter("computerName");
+		String introduced = request.getParameter("introduced");
+		String discontinued = request.getParameter("discontinued");
+		String compId = request.getParameter("companyId");
+		Timestamp introDate;
+		Timestamp disconDate;
+		
+		if(name == "") {
+			logger.error("No name Given");
+			return false;
+		}
+		else {
+			if(introduced != "" && introduced.matches("\\d{4}-\\d{2}-\\d{2}")) {
+				introDate = new Timestamp(dateMapper.getDate(introduced));
+				if(discontinued != "" && discontinued.matches("\\d{4}-\\d{2}-\\d{2}")) {
+					disconDate = new Timestamp(dateMapper.getDate(discontinued));
+					
+				}
+				else {
+					disconDate = null;
+				}
+			}
+			else {
+				introDate = null;
+				disconDate = null;
+			}
+			
+		}
+		try {
+			daoComputer.updateComputer(Long.valueOf(id), name, introDate, disconDate, Long.valueOf(compId));
+			return true;
+		} catch (SQLException e) {
+			logger.error("Server problem");
+			return false;
+		}
+	}
+
+	public boolean deleteComputer(HttpServletRequest request) throws NumberFormatException, SQLException {
+		String selected = request.getParameter("selection");
+		String str[] = selected.split(",");
+		List<String> list = new ArrayList<String>();
+		list = Arrays.asList(str);
+		
+		if(list.isEmpty()) {
+			return false;
+		}
+		for(String element: list){
+			daoComputer.deleteComputer(Long.valueOf(element));
+		}
+		return true;
 	}
 
 }

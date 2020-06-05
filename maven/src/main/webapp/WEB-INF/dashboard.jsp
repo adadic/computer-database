@@ -81,7 +81,7 @@
 	                <c:forEach items="${computers}" var="computer">
         				<tr>
 	                        <td class="editMode">
-	                            <input type="checkbox" name="cb" class="cb" value="0">
+	                            <input type="checkbox" name="cb" class="cb" value="${computer.id}">
 	                        </td>
 	                        <td>
 	                            <a href="editComputer?id=${computer.id}" onclick="">${computer.name}</a>
@@ -124,6 +124,11 @@
         </div>
         </div>
     </footer>
+    <c:if test="${not empty errorLog}">
+	    <script>
+	         window.location.replace("/maven/dashboard?")
+	    </script>
+	</c:if>
 <script src="./js/jquery.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/dashboard.js"></script>

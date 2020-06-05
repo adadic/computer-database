@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -88,7 +89,13 @@ public class DAOComputer {
 			preparedStatement.setString(1, name);
 			preparedStatement.setTimestamp(2, introduced);
 			preparedStatement.setTimestamp(3, discontinued);
-			preparedStatement.setLong(4, company_id);
+			if(company_id < 1) {
+
+				preparedStatement.setNull(4, Types.BIGINT);
+			}
+			else{
+				preparedStatement.setLong(4, company_id);
+			}
 			preparedStatement.setLong(5, id);
 			return preparedStatement.executeUpdate();
 		}

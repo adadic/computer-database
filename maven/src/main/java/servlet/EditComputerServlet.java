@@ -32,6 +32,7 @@ public class EditComputerServlet extends HttpServlet{
 	    	ArrayList<Company> companies = serviceUI.getCompanies();
 			request.setAttribute("companies", companies);
 	    	String id_computer = request.getParameter("id");
+
 	    	Optional<Computer> computer = serviceUI.getComputerById(id_computer);
 	    	if(computer.isPresent()) {
 	    		request.setAttribute( "computer", computer.get());
@@ -41,8 +42,8 @@ public class EditComputerServlet extends HttpServlet{
 	    
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	if(!serviceUI.editComputer(request)) {
-	    		request.setAttribute("errorLog","Computer not modify");
-		    	this.getServletContext().getRequestDispatcher("/WEB-INF/addComputer.jsp").forward(request,response);
+	    		request.setAttribute("errorLog","Computer(s) not deleted");
+		    	this.getServletContext().getRequestDispatcher("/WEB-INF/editComputer.jsp").forward(request,response);
 	    	}
 	    	else{
 	    		response.sendRedirect("dashboard");
