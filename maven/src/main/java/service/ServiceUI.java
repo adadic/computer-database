@@ -3,6 +3,7 @@ package service;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import mapper.DateMapper;
 import model.Company;
+import model.Computer;
 import persistence.DAOCompany;
 import persistence.DAOComputer;
 import servlet.MainServlet;
@@ -74,6 +76,31 @@ public class ServiceUI {
 			logger.error("Couldn't get Companies");
 			return null;
 		}
+	}
+	
+	public ArrayList<Computer> getComputers(){
+		DAOComputer daoComputer = new DAOComputer();
+		try {
+			return daoComputer.getComputers();
+		} catch (SQLException e) {
+			logger.error("Couldn't get computer list");
+			return null;
+		}
+	}
+
+	public Optional<Computer> getComputerById(String id_computer) {
+		DAOComputer daoComputer = new DAOComputer();
+		try {
+			return daoComputer.getComputerById(Long.valueOf(id_computer));
+		} catch (SQLException e) {
+			logger.error("Couldn't get computer list");
+			return null;
+		}
+	}
+
+	public boolean editComputer(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

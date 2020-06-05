@@ -20,6 +20,7 @@ public final class MysqlConnect implements AutoCloseable{
 		try {
 			Class.forName(driver).newInstance();
 			this.conn = DataSource.getConnection();
+			//this.conn = DriverManager.getConnection(url, userName, password);
 		}
 		catch(Exception sqle){
 			sqle.printStackTrace();

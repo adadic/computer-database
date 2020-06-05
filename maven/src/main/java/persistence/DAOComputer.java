@@ -41,6 +41,7 @@ public class DAOComputer {
 	}
 	
 	public Optional<Computer> getComputerById(long id) throws SQLException {
+		computerMapper = new ComputerMapper();
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
 			PreparedStatement preparedStatement = db.getConn().prepareStatement(computerByIdRequest); 

@@ -88,17 +88,23 @@ public class Computer {
 		}
 		
 		public ComputerBuilder introduced(Timestamp introduced) {
-			this.introduced = introduced;
+			if(introduced != null) {
+				this.introduced = introduced;
+			}
 			return this;
 		}
 		
 		public ComputerBuilder discontinued(Timestamp discontinued) {
-			this.discontinued = discontinued;
+			if(discontinued != null) {
+				this.discontinued = discontinued;
+			}
 			return this;
 		}
 		
 		public ComputerBuilder company(Company company) {
-			this.company = company;
+			if(company != null) {
+				this.company = company;
+			}
 			return this;
 		}
 		

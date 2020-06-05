@@ -16,5 +16,7 @@ public class ComputerMapper {
 				.discontinued(resultSet.getTimestamp("computer.discontinued"))
 				.company(new Company.CompanyBuilder(resultSet.getLong("company.id"), resultSet.getString("company.name")).build())
 				.build();
+		
+		
 	}
 }

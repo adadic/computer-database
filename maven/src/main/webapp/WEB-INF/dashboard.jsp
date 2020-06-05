@@ -10,6 +10,7 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="./css/font-awesome.css" rel="stylesheet" media="screen">
 	<link href="./css/main.css" rel="stylesheet" media="screen">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <header class="navbar navbar-inverse navbar-fixed-top">
@@ -83,7 +84,7 @@
 	                            <input type="checkbox" name="cb" class="cb" value="0">
 	                        </td>
 	                        <td>
-	                            <a href="editComputer" onclick="">${computer.name}</a>
+	                            <a href="editComputer?id=${computer.id}" onclick="">${computer.name}</a>
 	                        </td>
 	                        <td>${fn:substring(computer.introduced,0,10)}</td>
 	                        <td>${fn:substring(computer.discontinued,0,10)}</td>
@@ -126,6 +127,7 @@
 <script src="./js/jquery.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/dashboard.js"></script>
+<script src="./js/function.js"></script>
 
 </body>
 </html>

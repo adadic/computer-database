@@ -1,3 +1,5 @@
+<%@ page pageEncoding= "UTF-8" %>
+<%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 	<title>Computer Database</title>
@@ -6,6 +8,8 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="./css/font-awesome.css" rel="stylesheet" media="screen">
 	<link href="./css/main.css" rel="stylesheet" media="screen">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="./js/function.js"></script>
 </head>
 <body>
     <header class="navbar navbar-inverse navbar-fixed-top">
@@ -18,7 +22,7 @@
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 box">
                     <div class="label label-default pull-right">
-                        id: 0
+                        id: ${computer.id}
                     </div>
                     <h1>Edit Computer</h1>
 
@@ -27,11 +31,11 @@
                         <fieldset>
                             <div class="form-group">
                                 <label for="computerName">Computer name</label>
-                                <input type="text" class="form-control" id="computerName" placeholder="Computer name">
+                                <input type="text" class="form-control" id="computerName" placeholder="Computer name" required>
                             </div>
                             <div class="form-group">
                                 <label for="introduced">Introduced date</label>
-                                <input type="date" class="form-control" id="introduced" placeholder="Introduced date">
+                                <input type="date" class="form-control" min="1970-01-01" onchange="setDate();" id="introduced" placeholder="Introduced date">
                             </div>
                             <div class="form-group">
                                 <label for="discontinued">Discontinued date</label>
@@ -41,6 +45,9 @@
                                 <label for="companyId">Company</label>
                                 <select class="form-control" id="companyId" >
                                     <option value="0">--</option>
+                                    <c:forEach items="${companies}" var="company">
+                                    	<option value="${company.id}">${company.name}</option>
+                                    </c:forEach>
                                 </select>
                             </div>            
                         </fieldset>
@@ -54,5 +61,21 @@
             </div>
         </div>
     </section>
+    <c:if test="${not empty computer}">
+	    <script>
+	        $('#computerName').val("${computer.name}");
+	        $('#introduced').val("${computer.introduced}".substring(0, 10));
+	        $('#discontinued').val("${computer.discontinued}".substring(0, 10));
+	        $('#companyId [value="${computer.company.id}"]').prop('selected', 'true');
+	        if($('#introduced').val() == ""){
+	    		$('#discontinued').prop("disabled", true);
+	        }
+	    </script>
+	</c:if>
+    <c:if test="${not empty errorLog}">
+	    <script>
+	         alert("${errorLog}");
+	    </script>
+	</c:if>
 </body>
 </html>
