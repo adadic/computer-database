@@ -11,8 +11,12 @@
 	<link href="./css/font-awesome.css" rel="stylesheet" media="screen">
 	<link href="./css/main.css" rel="stylesheet" media="screen">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="shortcut icon" href="#">
 </head>
 <body>
+<script>
+	var direction = 0;
+</script>
     <header class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#"> Application - Computer Database </a>
@@ -26,7 +30,7 @@
             </h1>
             <div id="actions" class="form-horizontal">
                 <div class="pull-left">
-                    <form id="searchForm" action="#" method="GET" class="form-inline">
+                    <form id="searchForm" action="" method="GET" class="form-inline">
 
                         <input type="search" id="searchbox" name="search" class="form-control" placeholder="Search name" />
                         <input type="submit" id="searchsubmit" value="Filter by name"
@@ -59,7 +63,7 @@
                                     </a>
                             </span>
                         </th>
-                        <th>
+                        <th onclick="sortTable();">
                             Computer name
                         </th>
                         <th>
@@ -126,7 +130,12 @@
     </footer>
     <c:if test="${not empty errorLog}">
 	    <script>
-	         window.location.replace("/maven/dashboard?")
+	         window.location.replace("/maven/dashboard?");
+	    </script>
+	</c:if>
+	<c:if test="${not empty search}">
+	    <script>
+	         $('#searchbox').val("${search}");
 	    </script>
 	</c:if>
 <script src="./js/jquery.min.js"></script>

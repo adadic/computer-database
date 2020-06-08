@@ -10,7 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import junit.framework.TestCase;
-import mapper.ComputerMapper;
 import mapper.DateMapper;
 import model.Company;
 import model.Computer;

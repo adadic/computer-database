@@ -28,9 +28,17 @@ public class MainServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	ArrayList<Computer> computers = serviceUI.getComputers();
-		request.setAttribute( "computers", computers );
-		request.setAttribute("size", computers.size());
+    	String search = request.getParameter("search");
+    	ArrayList<Computer> computers;
+    	computers = serviceUI.getComputers();
+    	
+    	if(search != null) {
+    		computers.removeIf(element -> !element.getName().contains(search));
+    		request.setAttribute("search", search);
+    	}
+    	
+    	request.setAttribute( "computers", computers );
+    	request.setAttribute("size", computers.size());
         this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
     }
     
