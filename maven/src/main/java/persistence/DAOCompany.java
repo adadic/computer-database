@@ -14,6 +14,7 @@ public class DAOCompany {
 	private CompanyMapper companyMapper;
 	private final String allCompaniesRequest = "SELECT id, name FROM company;";
 	private final String companyByIdRequest = "SELECT id, name FROM company WHERE id = ? ;";
+	private final String deleteCompany = "DELETE FROM company WHERE id = ?";
 	
 	public ArrayList<Company> getCompanies() throws SQLException {
 
@@ -53,6 +54,18 @@ public class DAOCompany {
 			
 		}
 		return Optional.empty();
+	}
+	
+	public int deleteCompany(long id) throws SQLException{
+		try(MysqlConnect db = MysqlConnect.getDbCon()){
+			PreparedStatement preparedStatement = db.getConn().prepareStatement(deleteCompany);
+			preparedStatement.setLong(1, id);
+			return preparedStatement.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 }
