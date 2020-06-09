@@ -3,7 +3,6 @@ package servlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import model.Computer;
 import service.ServiceUI;
 
 import javax.servlet.ServletException;
@@ -12,33 +11,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-public class MainServlet extends HttpServlet {
+public class DashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-    final Logger logger = LoggerFactory.getLogger(MainServlet.class);
+    final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
     ServiceUI serviceUI;
 
 
-    public MainServlet() {
+    public DashboardServlet() {
     	super();
     	this.serviceUI = new ServiceUI();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    	int page = 1;
+    	int lines = 10;
     	String search = request.getParameter("search");
-    	ArrayList<Computer> computers;
-    	computers = serviceUI.getComputers();
-    	
-    	if(search != null) {
-    		computers.removeIf(element -> !element.getName().contains(search));
-    		request.setAttribute("search", search);
+		String pageString = request.getParameter("page");
+		String linesString = request.getParameter("lines");
+		
+		if(pageString != null) {
+    		page = Integer.valueOf(pageString);
     	}
-    	
-    	request.setAttribute( "computers", computers );
-    	request.setAttribute("size", computers.size());
+    	if(linesString != null) {
+    		lines = Integer.valueOf(linesString);
+    	}
+    	System.out.println(page);
+    	System.out.println(lines);
+    	System.out.println(search);
+    	request.setAttribute("page", page);
+    	request.setAttribute("search", search);
+    	request.setAttribute("max", 20);
+    	request.setAttribute("lines", lines);
+    	request.setAttribute("size", serviceUI.getCountComputer());
+    	request.setAttribute( "computers", serviceUI.getComputersRows(page, lines, search) );
         this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
     }
     

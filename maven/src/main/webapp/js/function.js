@@ -16,17 +16,38 @@ function toDate(dateStr) {
   return new Date(parts[2], parts[1] - 1, parts[0])
 }
 
-function sortTable(){
+function sortTable() {
 	if(direction == 1){
-		$('tr td:nth-child(2)').sortElements(function(a, b){
-		    return $(a).text().toUpperCase() > $(b).text().toUpperCase() ? -1 : 1;
-		});
+		var compare_rows = function (a,b){
+		  	var a_val = $(a).text().toLowerCase();
+		  	var b_val = $(b).text().toLowerCase();
+			if (a_val < b_val){
+				return 1;
+			}
+			if (a_val > b_val){
+			    return -1;
+			}
+			    return 0;
+		};
 		direction = 0;
 	}
 	else{
-		$('tr td:nth-child(2)').sortElements(function(a, b){
-		    return $(a).text().toUpperCase() > $(b).text().toUpperCase() ? 1 : -1;
-		});
+	
+		var compare_rows = function (a,b){
+		  	var a_val = $(a).text().toLowerCase();
+		  	var b_val = $(b).text().toLowerCase();
+			if (a_val > b_val){
+				return 1;
+			}
+			if (a_val < b_val){
+			    return -1;
+			}
+			    return 0;
+		};
 		direction = 1;
 	}
+	
+	$('table tbody tr').sort(compare_rows).appendTo('table tbody');
+
+	
 }

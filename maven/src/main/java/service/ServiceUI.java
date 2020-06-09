@@ -17,14 +17,14 @@ import model.Company;
 import model.Computer;
 import persistence.DAOCompany;
 import persistence.DAOComputer;
-import servlet.MainServlet;
+import servlet.DashboardServlet;
 
 public class ServiceUI {
 	private DAOComputer daoComputer;
 	private DAOCompany daoCompany;
 	private DateMapper dateMapper;
 	
-	final Logger logger = LoggerFactory.getLogger(MainServlet.class);
+	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 	
 	public ServiceUI() {
 		super();
@@ -84,6 +84,16 @@ public class ServiceUI {
 		DAOComputer daoComputer = new DAOComputer();
 		try {
 			return daoComputer.getComputers();
+		} catch (SQLException e) {
+			logger.error("Couldn't get computer list");
+			return null;
+		}
+	}
+	
+	public ArrayList<Computer> getComputersRows(int page, int lines, String search){
+		DAOComputer daoComputer = new DAOComputer();
+		try {
+			return daoComputer.getComputersRows(page, lines, search);
 		} catch (SQLException e) {
 			logger.error("Couldn't get computer list");
 			return null;
@@ -152,6 +162,14 @@ public class ServiceUI {
 			daoComputer.deleteComputer(Long.valueOf(element));
 		}
 		return true;
+	}
+
+	public int getCountComputer() {
+		try {
+			return daoComputer.countComputer();
+		} catch (SQLException e) {
+			return -1;
+		}
 	}
 
 }

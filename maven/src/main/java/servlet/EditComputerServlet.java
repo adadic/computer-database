@@ -20,7 +20,7 @@ public class EditComputerServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	ServiceUI serviceUI;
 	
-	final Logger logger = LoggerFactory.getLogger(MainServlet.class);
+	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 
 
 	    public EditComputerServlet() {

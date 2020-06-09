@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public class Error404 extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
-	final Logger logger = LoggerFactory.getLogger(MainServlet.class);
+	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 
 
 	    public Error404() {

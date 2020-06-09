@@ -16,11 +16,15 @@ public class DAOComputer {
 	
 	private final String allComputersRequest = "SELECT computer.id, computer.name, computer.introduced, computer.discontinued, company.id, company.name" 
 			+ " FROM computer LEFT JOIN company ON computer.company_id = company.id;";
+	private final String computerRequest = "SELECT computer.id, computer.name, computer.introduced, computer.discontinued, company.id, company.name" 
+			+ " FROM computer LEFT JOIN company ON computer.company_id = company.id WHERE computer.name LIKE ? LIMIT ? OFFSET ?;";
+	
 	private final String computerByIdRequest = "SELECT computer.id, computer.name, computer.introduced, computer.discontinued, company.id, company.name"
 			+ " FROM computer LEFT JOIN company ON computer.company_id = company.id WHERE computer.id = ? ;";
 	private final String insertComputer = "INSERT INTO computer (name, introduced, discontinued, company_id) VALUES (?,?,?,?);";
 	private final String updateComputer = "UPDATE computer SET name = ? , introduced = ? , discontinued = ? , company_id = ? WHERE id = ? ;";
 	private final String deleteComputer = "DELETE FROM computer WHERE id = ?";
+	private final String countComputer = "SELECT COUNT(*) as number FROM computer;";
 	
 	public ArrayList<Computer> getComputers() throws SQLException {
 		
@@ -29,6 +33,34 @@ public class DAOComputer {
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
 			PreparedStatement preparedStatement = db.getConn().prepareStatement(allComputersRequest);
+			ResultSet requestComputers = db.query(preparedStatement);
+			
+			while(requestComputers.next()) {
+				computers.add(computerMapper.getComputer(requestComputers));
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return computers;
+	}
+	
+public ArrayList<Computer> getComputersRows(int page, int lines, String search) throws SQLException {
+		
+		computerMapper = new ComputerMapper();
+		ArrayList<Computer> computers = new ArrayList<>();
+		if(search == null) {
+			search = "%";
+		}
+		else {
+			search = "%" + search + "%";
+		}
+		
+		try(MysqlConnect db = MysqlConnect.getDbCon()){
+			PreparedStatement preparedStatement = db.getConn().prepareStatement(computerRequest);
+			preparedStatement.setString(1, search);
+			preparedStatement.setLong(2, lines);
+			preparedStatement.setLong(3, lines * (page - 1));
 			ResultSet requestComputers = db.query(preparedStatement);
 			
 			while(requestComputers.next()) {
@@ -117,6 +149,22 @@ public class DAOComputer {
 		catch(SQLException e) {
 			e.printStackTrace();
 			return 0;
+		}
+	}
+	
+	public int countComputer () throws SQLException{
+		try(MysqlConnect db = MysqlConnect.getDbCon()){
+			PreparedStatement preparedStatement = db.getConn().prepareStatement(countComputer);
+			ResultSet resultSet = db.query(preparedStatement);
+			
+			if(resultSet.next()) {
+				return resultSet.getInt("number");
+			}
+			return -1;
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 }
