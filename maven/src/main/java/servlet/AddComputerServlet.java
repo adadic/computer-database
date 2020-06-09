@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Company;
-import service.ServiceUI;
+import service.AddService;
+import service.CommunService;
 
 
 public class AddComputerServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	private ServiceUI serviceUI;
+	private AddService addService;
+	private CommunService serviceUI;
 
 
 	    public AddComputerServlet() {
 	    	super();
-	    	this.serviceUI = new ServiceUI();
+	    	this.addService = new AddService();
+	    	this.serviceUI = new CommunService();
 	    }
 
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,7 +32,7 @@ public class AddComputerServlet extends HttpServlet{
 	    }
 	    
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    	if(!serviceUI.addComputer(request)) {
+	    	if(!addService.addComputer(request)) {
 	    		request.setAttribute("errorLog","Computer not added");
 		    	this.getServletContext().getRequestDispatcher("/WEB-INF/addComputer.jsp").forward(request,response);
 	    	}

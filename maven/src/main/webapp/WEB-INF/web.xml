@@ -9,7 +9,7 @@
 
 	<servlet>
 		<servlet-name>dashboardServlet</servlet-name>
-		<servlet-class>servlet.MainServlet</servlet-class>
+		<servlet-class>servlet.DashboardServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>

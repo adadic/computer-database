@@ -3,7 +3,7 @@ package servlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import service.ServiceUI;
+import service.DashboardService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,14 +14,13 @@ import java.sql.SQLException;
 
 public class DashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
     final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
-    ServiceUI serviceUI;
+    private DashboardService dashboardService;
 
 
     public DashboardServlet() {
     	super();
-    	this.serviceUI = new ServiceUI();
+    	this.dashboardService = new DashboardService();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,14 +44,14 @@ public class DashboardServlet extends HttpServlet {
     	request.setAttribute("search", search);
     	request.setAttribute("max", 20);
     	request.setAttribute("lines", lines);
-    	request.setAttribute("size", serviceUI.getCountComputer());
-    	request.setAttribute( "computers", serviceUI.getComputersRows(page, lines, search) );
+    	request.setAttribute("size", dashboardService.getCountComputer());
+    	request.setAttribute( "computers", dashboardService.getComputersRows(page, lines, search) );
         this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {
-			if(!serviceUI.deleteComputer(request)) {
+			if(!dashboardService.deleteComputer(request)) {
 				request.setAttribute("errorLog","Computer not modify");
 		    	this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
 			}

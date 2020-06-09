@@ -9,23 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import model.Company;
 import model.Computer;
-import service.ServiceUI;
+import service.EditService;
+import service.CommunService;
 
 public class EditComputerServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	ServiceUI serviceUI;
+	private EditService editService;
+	private CommunService serviceUI;
 	
-	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 
 
 	    public EditComputerServlet() {
 	    	super();
-	    	this.serviceUI = new ServiceUI();
+	    	this.editService = new EditService();
+	    	this.serviceUI = new CommunService();
 	    }
 
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +32,7 @@ public class EditComputerServlet extends HttpServlet{
 			request.setAttribute("companies", companies);
 	    	String id_computer = request.getParameter("id");
 
-	    	Optional<Computer> computer = serviceUI.getComputerById(id_computer);
+	    	Optional<Computer> computer = editService.getComputerById(id_computer);
 	    	if(computer.isPresent()) {
 	    		request.setAttribute( "computer", computer.get());
 	    	}
@@ -41,7 +40,7 @@ public class EditComputerServlet extends HttpServlet{
 	    }
 	    
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    	if(!serviceUI.editComputer(request)) {
+	    	if(!editService.editComputer(request)) {
 	    		request.setAttribute("errorLog","Computer(s) not deleted");
 		    	this.getServletContext().getRequestDispatcher("/WEB-INF/editComputer.jsp").forward(request,response);
 	    	}
