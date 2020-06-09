@@ -30,9 +30,10 @@ public class EditComputerServlet extends HttpServlet{
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	ArrayList<Company> companies = serviceUI.getCompanies();
 			request.setAttribute("companies", companies);
+			
 	    	String id_computer = request.getParameter("id");
-
 	    	Optional<Computer> computer = editService.getComputerById(id_computer);
+	    	
 	    	if(computer.isPresent()) {
 	    		request.setAttribute( "computer", computer.get());
 	    	}

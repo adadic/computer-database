@@ -11,17 +11,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import model.Computer;
+import model.Pagination;
 import persistence.DAOComputer;
 import servlet.DashboardServlet;
 
 public class DashboardService {
 
 	private DAOComputer daoComputer;
+	private Pagination pagination;
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 	
 	public DashboardService() {
 		super();
 		this.daoComputer = new DAOComputer();
+		this.pagination = new Pagination();
 	}
 
 	public ArrayList<Computer> getComputersRows(int page, int lines, String search){
@@ -55,5 +58,10 @@ public class DashboardService {
 			daoComputer.deleteComputer(Long.valueOf(element));
 		}
 		return true;
+	}
+	
+	public ArrayList<Integer> getPageInfo(){
+		return null;
+		
 	}
 }

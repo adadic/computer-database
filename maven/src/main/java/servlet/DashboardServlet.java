@@ -24,7 +24,7 @@ public class DashboardServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    	
     	int page = 1;
     	int lines = 10;
     	String search = request.getParameter("search");
