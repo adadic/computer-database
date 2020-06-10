@@ -9,22 +9,9 @@
 	<link href="./css/font-awesome.css" rel="stylesheet" media="screen">
 	<link href="./css/main.css" rel="stylesheet" media="screen">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="./js/function.js"></script>
 </head>
 <body>
-    <script type="text/javascript">
-		function setDate(){
-			if($('#introduced').val() != ""){
-				if($('#discontinued').val() < $('#introduced').val()){
-					$('#discontinued').val("");
-				}
-				$('#discontinued').prop("disabled", false);
-				$('#discontinued').attr("min", $('#introduced').val());
-			}
-			else{
-				$('#discontinued').prop("disabled", true);
-			}
-		}
-	</script>
     <header class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <a class="navbar-brand" href="dashboard"> Application - Computer Database </a>

@@ -15,11 +15,11 @@ $(function() {
         } else {
             $("#selectall").prop("checked", false);
         }
-        if ($(".cb:checked").length != 0) {
-            $("#deleteSelected").enable();
-        } else {
-            $("#deleteSelected").disable();
-        }
+//        if ($(".cb:checked").length != 0) {
+//            $("#deleteSelected").enable();
+//        } else {
+//            $("#deleteSelected").disable();
+//        }
     });
 
 });
@@ -48,6 +48,7 @@ $(function() {
         if($(".editMode").is(":visible")) {
             $(".editMode").hide();
             $("#editComputer").text("Edit");
+            $('.cb').prop('checked', false);
         }
         else {
             $(".editMode").show();
@@ -90,4 +91,3 @@ $(document).keydown(function(e) {
             break;
     }
 });
-

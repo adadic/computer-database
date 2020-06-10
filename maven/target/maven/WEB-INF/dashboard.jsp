@@ -10,8 +10,13 @@
 	<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="./css/font-awesome.css" rel="stylesheet" media="screen">
 	<link href="./css/main.css" rel="stylesheet" media="screen">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="shortcut icon" href="#">
 </head>
 <body>
+<script>
+	var direction = 0;
+</script>
     <header class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#"> Application - Computer Database </a>
@@ -25,7 +30,7 @@
             </h1>
             <div id="actions" class="form-horizontal">
                 <div class="pull-left">
-                    <form id="searchForm" action="#" method="GET" class="form-inline">
+                    <form id="searchForm" action="" method="GET" class="form-inline">
 
                         <input type="search" id="searchbox" name="search" class="form-control" placeholder="Search name" />
                         <input type="submit" id="searchsubmit" value="Filter by name"
@@ -58,7 +63,7 @@
                                     </a>
                             </span>
                         </th>
-                        <th>
+                        <th onclick="sortTable();">
                             Computer name
                         </th>
                         <th>
@@ -80,10 +85,10 @@
 	                <c:forEach items="${computers}" var="computer">
         				<tr>
 	                        <td class="editMode">
-	                            <input type="checkbox" name="cb" class="cb" value="0">
+	                            <input type="checkbox" name="cb" class="cb" value="${computer.id}">
 	                        </td>
 	                        <td>
-	                            <a href="editComputer" onclick="">${computer.name}</a>
+	                            <a href="editComputer?id=${computer.id}" onclick="">${computer.name}</a>
 	                        </td>
 	                        <td>${fn:substring(computer.introduced,0,10)}</td>
 	                        <td>${fn:substring(computer.discontinued,0,10)}</td>
@@ -99,33 +104,122 @@
     <footer class="navbar-fixed-bottom">
         <div class="container text-center">
             <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                  </a>
-              </li>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li>
-                <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
+                
+              <c:choose>
+              	<c:when test="${page > max-2}">
+	              	<li>
+	                    <a href="?page=${page-1}&lines=${lines}&search=${search}" aria-label="Previous">
+	                      <span aria-hidden="true">&laquo;</span>
+		                  </a>
+		              </li>
+		              <li><a href="?page=${max-4}&lines=${lines}&search=${search}">${max-4}</a></li>
+		              <li><a href="?page=${max-3}&lines=${lines}&search=${search}">${max-3}</a></li>
+		              <li><a href="?page=${max-2}&lines=${lines}&search=${search}">${max-2}</a></li>
+		              <li><a href="?page=${max-1}&lines=${lines}&search=${search}">${max-1}</a></li>
+		              <li><a href="?page=${max}&lines=${lines}&search=${search}">${max}</a></li>
+		              <c:choose>
+		              		<c:when test="${page == max - 1}">
+		              		 	<li>
+				                    <a href="?page=${max}&lines=${lines}&search=${search}" aria-label="Next">
+					                    <span aria-hidden="true">&raquo;</span>
+					                </a>
+				              	</li>
+		              		</c:when>
+		              		<c:otherwise>
+		              			<li>
+				                    <a href="" aria-label="Next">
+					                    <span aria-hidden="true">&raquo;</span>
+					                </a>	
+				              	</li>
+		              		</c:otherwise>
+		              	</c:choose>
+	              </c:when>
+	              
+	              <c:when test="${page > 2}">
+	              	<li>
+	                    <a href="?page=${page-1}&lines=${lines}&search=${search}" aria-label="Previous">
+	                      <span aria-hidden="true">&laquo;</span>
+		                  </a>
+		              </li>
+		              <li><a href="?page=${page-2}&lines=${lines}&search=${search}">${page-2}</a></li>
+		              <li><a href="?page=${page-1}&lines=${lines}&search=${search}">${page-1}</a></li>
+		              <li><a href="?page=${page}&lines=${lines}&search=${search}">${page}</a></li>
+		              <li><a href="?page=${page+1}&lines=${lines}&search=${search}">${page+1}</a></li>
+		              <li><a href="?page=${page+2}&lines=${lines}&search=${search}">${page+2}</a></li>
+		              <li>
+		                <a href="?page=${page+1}&lines=${lines}&search=${search}" aria-label="Next">
+		                    <span aria-hidden="true">&raquo;</span>
+		                </a>
+		              </li>
+	              </c:when>
+	              
+	              <c:otherwise>
+	              	<c:choose>
+	              		<c:when test="${page == 1}">
+	              		 	<li>
+			                    <a href="" aria-label="Previous">
+			                      <span aria-hidden="true">&laquo;</span>
+				                </a>
+			              	</li>
+	              		</c:when>
+	              		<c:otherwise>
+	              			<li>
+			                    <a href="?page=1&lines=${lines}&search=${search}" aria-label="Previous">
+			                      <span aria-hidden="true">&laquo;</span>
+				                </a>
+			              	</li>
+	              		</c:otherwise>
+	              	</c:choose>
+		             
+		              <li><a href="?page=1&lines=${lines}&search=${search}">1</a></li>
+		              <li><a href="?page=2&lines=${lines}&search=${search}">2</a></li>
+		              <li><a href="?page=3&lines=${lines}&search=${search}">3</a></li>
+		              <li><a href="?page=4&lines=${lines}&search=${search}">4</a></li>
+		              <li><a href="?page=5&lines=${lines}&search=${search}">5</a></li>
+		              <li>
+		                <a href="?page=${page+1}&lines=${lines}&search=${search}" aria-label="Next">
+		                    <span aria-hidden="true">&raquo;</span>
+		                </a>
+		              </li>
+	              </c:otherwise>
+              </c:choose>
+              
         </ul>
 
         <div class="btn-group btn-group-sm pull-right" role="group" >
-            <button type="button" class="btn btn-default">10</button>
-            <button type="button" class="btn btn-default">50</button>
-            <button type="button" class="btn btn-default">100</button>
+            <button type="button" class="btn btn-default" onclick="location.href = '?page=1&lines=10&search=${search}';">10</button>
+            <button type="button" class="btn btn-default" onclick="location.href = '?page=1&lines=25&search=${search}';">25</button>
+            <button type="button" class="btn btn-default" onclick="location.href = '?page=1&lines=50&search=${search}';">50</button>
+            <button type="button" class="btn btn-default" onclick="location.href = '?page=1&lines=100&search=${search}';">100</button>
         </div>
         </div>
     </footer>
+    <c:if test="${not empty errorLog}">
+	    <script>
+	         window.location.replace("/maven/dashboard?");
+	    </script>
+	</c:if>
+	<c:if test="${not empty search}">
+	    <script>
+	         $('#searchbox').val("${search}");
+	    </script>
+	</c:if>
+	<script>
+		$('.pagination li a').css('background','white');
+		$('.pagination li a:contains(${page})').css('background','#969696c9');
+
+		$('.navbar-fixed-bottom button').css('background','white');
+		if(${lines} == "10"){
+			$('.navbar-fixed-bottom button:nth-child(1)').css('background','#969696c9');
+		}
+		else{
+			$('.navbar-fixed-bottom button:contains(${lines})').css('background','#969696c9');
+		}
+	</script>
 <script src="./js/jquery.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/dashboard.js"></script>
+<script src="./js/function.js"></script>
 
 </body>
 </html>

@@ -3,6 +3,7 @@ package servlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import model.Pagination;
 import service.DashboardService;
 
 import javax.servlet.ServletException;
@@ -16,36 +17,24 @@ public class DashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
     private DashboardService dashboardService;
+    private Pagination page;
 
 
     public DashboardServlet() {
     	super();
     	this.dashboardService = new DashboardService();
+    	this.page = new Pagination();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	int page = 1;
-    	int lines = 10;
-    	String search = request.getParameter("search");
-		String pageString = request.getParameter("page");
-		String linesString = request.getParameter("lines");
-		
-		if(pageString != null) {
-    		page = Integer.valueOf(pageString);
-    	}
-    	if(linesString != null) {
-    		lines = Integer.valueOf(linesString);
-    	}
-    	System.out.println(page);
-    	System.out.println(lines);
-    	System.out.println(search);
-    	request.setAttribute("page", page);
-    	request.setAttribute("search", search);
-    	request.setAttribute("max", 20);
-    	request.setAttribute("lines", lines);
-    	request.setAttribute("size", dashboardService.getCountComputer());
-    	request.setAttribute( "computers", dashboardService.getComputersRows(page, lines, search) );
+    	page = dashboardService.paginate(request);
+    	request.setAttribute("page", page.getPage());
+    	request.setAttribute("search", page.getSearch());
+    	request.setAttribute("max", page.getMaxPage());
+    	request.setAttribute("lines", page.getLines());
+    	request.setAttribute("size", page.getCount());
+    	request.setAttribute( "computers", dashboardService.getComputersRows(page.getPage(), page.getLines(), page.getSearch()) );
         this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
     }
     

@@ -24,7 +24,7 @@ public class DAOComputer {
 	private final String insertComputer = "INSERT INTO computer (name, introduced, discontinued, company_id) VALUES (?,?,?,?);";
 	private final String updateComputer = "UPDATE computer SET name = ? , introduced = ? , discontinued = ? , company_id = ? WHERE id = ? ;";
 	private final String deleteComputer = "DELETE FROM computer WHERE id = ?";
-	private final String countComputer = "SELECT COUNT(*) as number FROM computer;";
+	private final String countComputer = "SELECT COUNT(*) as number FROM computer WHERE computer.name LIKE ?;";
 	
 	public ArrayList<Computer> getComputers() throws SQLException {
 		
@@ -57,10 +57,7 @@ public ArrayList<Computer> getComputersRows(int page, int lines, String search) 
 		}
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
-			PreparedStatement preparedStatement = db.getConn().prepareStatement(computerRequest);
-			preparedStatement.setString(1, search);
-			preparedStatement.setLong(2, lines);
-			preparedStatement.setLong(3, lines * (page - 1));
+			PreparedStatement preparedStatement = extractedGetRows(page, lines, search, db);
 			ResultSet requestComputers = db.query(preparedStatement);
 			
 			while(requestComputers.next()) {
@@ -71,6 +68,14 @@ public ArrayList<Computer> getComputersRows(int page, int lines, String search) 
 			e.printStackTrace();
 		}
 		return computers;
+	}
+
+	private PreparedStatement extractedGetRows(int page, int lines, String search, MysqlConnect db) throws SQLException {
+		PreparedStatement preparedStatement = db.getConn().prepareStatement(computerRequest);
+		preparedStatement.setString(1, search);
+		preparedStatement.setLong(2, lines);
+		preparedStatement.setLong(3, lines * (page - 1));
+		return preparedStatement;
 	}
 	
 	public Optional<Computer> getComputerById(long id) throws SQLException {
@@ -95,16 +100,7 @@ public ArrayList<Computer> getComputersRows(int page, int lines, String search) 
 	public int insertComputer(String name, Timestamp introduced, Timestamp discontinued, String company_id) throws SQLException{
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
-			PreparedStatement preparedStatement = db.getConn().prepareStatement(insertComputer); 
-			preparedStatement.setString(1, name);
-			preparedStatement.setTimestamp(2, introduced);
-			preparedStatement.setTimestamp(3, discontinued);
-			if(company_id.equals("0")) {
-				preparedStatement.setNString(4, null);
-			}
-			else{
-				preparedStatement.setLong(4, Integer.parseInt(company_id));
-			}
+			PreparedStatement preparedStatement = extractedInsert(name, introduced, discontinued, company_id, db);
 	
 			return preparedStatement.executeUpdate();
 		}
@@ -112,6 +108,21 @@ public ArrayList<Computer> getComputersRows(int page, int lines, String search) 
 			e.printStackTrace();
 			return 0;
 		}
+	}
+
+	private PreparedStatement extractedInsert(String name, Timestamp introduced, Timestamp discontinued,
+			String company_id, MysqlConnect db) throws SQLException {
+		PreparedStatement preparedStatement = db.getConn().prepareStatement(insertComputer); 
+		preparedStatement.setString(1, name);
+		preparedStatement.setTimestamp(2, introduced);
+		preparedStatement.setTimestamp(3, discontinued);
+		if(company_id.equals("0")) {
+			preparedStatement.setNString(4, null);
+		}
+		else{
+			preparedStatement.setLong(4, Integer.parseInt(company_id));
+		}
+		return preparedStatement;
 	}
 	
 	public int updateComputer(long id, String name, Timestamp introduced, Timestamp discontinued, long company_id) throws SQLException{
@@ -152,9 +163,16 @@ public ArrayList<Computer> getComputersRows(int page, int lines, String search) 
 		}
 	}
 	
-	public int countComputer () throws SQLException{
+	public int countComputer (String search) throws SQLException{
+		if(search == null) {
+			search = "%";
+		}
+		else {
+			search = "%" + search + "%";
+		}
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
 			PreparedStatement preparedStatement = db.getConn().prepareStatement(countComputer);
+			preparedStatement.setString(1, search);
 			ResultSet resultSet = db.query(preparedStatement);
 			
 			if(resultSet.next()) {

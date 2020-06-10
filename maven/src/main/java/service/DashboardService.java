@@ -18,34 +18,36 @@ import servlet.DashboardServlet;
 public class DashboardService {
 
 	private DAOComputer daoComputer;
-	private Pagination pagination;
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 	
 	public DashboardService() {
+		
 		super();
 		this.daoComputer = new DAOComputer();
-		this.pagination = new Pagination();
 	}
 
 	public ArrayList<Computer> getComputersRows(int page, int lines, String search){
+		
 		DAOComputer daoComputer = new DAOComputer();
 		try {
 			return daoComputer.getComputersRows(page, lines, search);
 		} catch (SQLException e) {
 			logger.error("Couldn't get computer list");
-			return null;
+			return new ArrayList<Computer>();
 		}
 	}
 	
-	public int getCountComputer() {
+	public int getCountComputer(String search) {
+		
 		try {
-			return daoComputer.countComputer();
+			return daoComputer.countComputer(search);
 		} catch (SQLException e) {
 			return -1;
 		}
 	}
 
 	public boolean deleteComputer(HttpServletRequest request) throws NumberFormatException, SQLException {
+		
 		String selected = request.getParameter("selection");
 		String str[] = selected.split(",");
 		List<String> list = new ArrayList<String>();
@@ -57,11 +59,26 @@ public class DashboardService {
 		for(String element: list){
 			daoComputer.deleteComputer(Long.valueOf(element));
 		}
+		
 		return true;
 	}
-	
-	public ArrayList<Integer> getPageInfo(){
-		return null;
+
+	public Pagination paginate(HttpServletRequest request) {
 		
+		int page = 1;
+    	int lines = 10;
+    	String search = request.getParameter("search");
+		String pageString = request.getParameter("page");
+		String linesString = request.getParameter("lines");
+		
+		if(pageString != null) {
+    		page = Integer.valueOf(pageString);
+    	}
+    	if(linesString != null) {
+    		lines = Integer.valueOf(linesString);
+    	}
+    	int count = getCountComputer(search);
+    	
+		return new Pagination(page, lines, search, count);
 	}
 }
