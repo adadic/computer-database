@@ -46,7 +46,10 @@ public class AddService {
 				introDate = new Timestamp(dateMapper.getDate(introduced));
 				if(discontinued != "" && discontinued.matches("\\d{4}-\\d{2}-\\d{2}")) {
 					disconDate = new Timestamp(dateMapper.getDate(discontinued));
-					
+					if(disconDate.getTime() < introDate.getTime()) {
+						
+						return false;
+					}
 				}
 				else {
 					disconDate = null;
