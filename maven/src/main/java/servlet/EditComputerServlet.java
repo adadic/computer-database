@@ -15,19 +15,20 @@ import service.EditService;
 import service.CommunService;
 
 public class EditComputerServlet extends HttpServlet{
+	
 	private static final long serialVersionUID = 1L;
 	private EditService editService;
 	private CommunService serviceUI;
-	
-
 
 	    public EditComputerServlet() {
+	    	
 	    	super();
 	    	this.editService = new EditService();
 	    	this.serviceUI = new CommunService();
 	    }
 
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    	
 	    	ArrayList<Company> companies = serviceUI.getCompanies();
 			request.setAttribute("companies", companies);
 			
@@ -37,10 +38,12 @@ public class EditComputerServlet extends HttpServlet{
 	    	if(computer.isPresent()) {
 	    		request.setAttribute( "computer", computer.get());
 	    	}
+	    	
 	    	this.getServletContext().getRequestDispatcher("/WEB-INF/editComputer.jsp").forward(request,response);
 	    }
 	    
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    	
 	    	if(!editService.editComputer(request)) {
 	    		request.setAttribute("errorLog","Computer(s) not deleted");
 		    	this.getServletContext().getRequestDispatcher("/WEB-INF/editComputer.jsp").forward(request,response);

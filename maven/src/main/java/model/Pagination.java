@@ -4,6 +4,7 @@ package model;
 public class Pagination {
 	
 	private static final int NBLINESTART = 10;
+	private static final int PAGEINIT = 1;
 	
 	private int lines;
 	private int page;
@@ -12,12 +13,14 @@ public class Pagination {
 	private String search;
 	
 	public Pagination(){
+		
 		this.lines = NBLINESTART;
-		this.page = 1;
+		this.page = PAGEINIT;
 		this.maxPage = this.page;
 	}
 
 	public Pagination(int page, int lines, String search, int count) {
+		
 		this.page = page;
 		this.lines = lines;
 		this.search = search;
@@ -26,22 +29,27 @@ public class Pagination {
 	}
 
 	public int getLines() {
+		
 		return lines;
 	}
 
 	public int getPage() {
+		
 		return page;
 	}
 
 	public int getMaxPage() {
+		
 		return maxPage;
 	}
 
 	public int getCount() {
+		
 		return count;
 	}
 
 	public String getSearch() {
+		
 		return search;
 	}
 

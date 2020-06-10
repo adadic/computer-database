@@ -16,12 +16,15 @@ public class Page {
 	final Logger logger = LoggerFactory.getLogger(Page.class);
 	
 	public Page(){
+		
 		serviceInputs = new ServiceInputs();
 	}
 	
 	public void listComputer(ArrayList<Computer> computers) {
+		
 		currentPage = 1;
 		maxPage=(int) Math.ceil(computers.size()/lengthList);
+		
 		while(true) {
 			
 			logger.info("\nId\t|\tname\t|\tintroduced\t|\tdiscontinued\t|\tId Company\t|\tCompany name\n");
@@ -36,8 +39,10 @@ public class Page {
 					logger.info(computers.get(i).toString());
 				}
 			}
+			
 			logger.info(currentPage + "/" + maxPage);
 			logger.info("Enter page number (0 or above maxPage --> quit) :");
+			
 			int choice = serviceInputs.consoleID();
 			
 			
@@ -46,13 +51,13 @@ public class Page {
 			}
 			currentPage = choice;
 		}
-		
-		
 	}
 
 	public void listCompany(ArrayList<Company> companies) {
+		
 		currentPage = 1;
 		maxPage=(int) Math.ceil(companies.size()/lengthList);
+		
 		while(true) {
 			
 			logger.info("\nId\t|\tname\t|\tintroduced\t|\tdiscontinued\t|\tId Company\t|\tCompany name\n");
@@ -67,8 +72,10 @@ public class Page {
 					logger.info(companies.get(i).toString());
 				}
 			}
+			
 			logger.info(currentPage + "/" + maxPage);
 			logger.info("Enter page number (0 or above maxPage --> quit) :");
+			
 			int choice = serviceInputs.consoleID();
 			
 			
@@ -77,9 +84,5 @@ public class Page {
 			}
 			currentPage = choice;
 		}
-		
 	}
-
-	
-	
 }

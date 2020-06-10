@@ -22,22 +22,27 @@ public class EditService {
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 	
 	public EditService() {
+		
 		super();
 		this.daoComputer = new DAOComputer();
 		this.dateMapper = new DateMapper();
 	}
 	
 	public Optional<Computer> getComputerById(String id_computer) {
+		
 		DAOComputer daoComputer = new DAOComputer();
 		try {
+			
 			return daoComputer.getComputerById(Long.valueOf(id_computer));
 		} catch (SQLException e) {
 			logger.error("Couldn't get computer list");
+			
 			return null;
 		}
 	}
 
 	public boolean editComputer(HttpServletRequest request) {
+		
 		String id = request.getParameter("id");
 		String name = request.getParameter("computerName");
 		String introduced = request.getParameter("introduced");
@@ -67,11 +72,14 @@ public class EditService {
 			}
 			
 		}
+		
 		try {
 			daoComputer.updateComputer(Long.valueOf(id), name, introDate, disconDate, Long.valueOf(compId));
+			
 			return true;
 		} catch (SQLException e) {
 			logger.error("Server problem");
+			
 			return false;
 		}
 	}

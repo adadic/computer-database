@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class DashboardServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
     final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
     private DashboardService dashboardService;
@@ -21,6 +22,7 @@ public class DashboardServlet extends HttpServlet {
 
 
     public DashboardServlet() {
+    	
     	super();
     	this.dashboardService = new DashboardService();
     	this.page = new Pagination();
@@ -35,10 +37,12 @@ public class DashboardServlet extends HttpServlet {
     	request.setAttribute("lines", page.getLines());
     	request.setAttribute("size", page.getCount());
     	request.setAttribute( "computers", dashboardService.getComputersRows(page.getPage(), page.getLines(), page.getSearch()) );
+    	
         this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
     }
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
     	try {
 			if(!dashboardService.deleteComputer(request)) {
 				request.setAttribute("errorLog","Computer not modify");

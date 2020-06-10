@@ -20,6 +20,7 @@ public class AddService {
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 	
 	public AddService() {
+		
 		super();
 		this.daoComputer = new DAOComputer();
 		this.dateMapper = new DateMapper();
@@ -27,6 +28,7 @@ public class AddService {
 
 	
 	public boolean addComputer(HttpServletRequest request) {
+		
 		String name = request.getParameter("computerName");
 		String introduced = request.getParameter("introduced");
 		String discontinued = request.getParameter("discontinued");
@@ -36,6 +38,7 @@ public class AddService {
 		
 		if(name == "") {
 			logger.error("No name Given");
+			
 			return false;
 		}
 		else {
@@ -57,9 +60,11 @@ public class AddService {
 		}
 		try {
 			daoComputer.insertComputer(name, introDate, disconDate, compId);
+			
 			return true;
 		} catch (SQLException e) {
 			logger.error("Server problem");
+			
 			return false;
 		}
 	}

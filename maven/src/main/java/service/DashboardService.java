@@ -30,9 +30,11 @@ public class DashboardService {
 		
 		DAOComputer daoComputer = new DAOComputer();
 		try {
+			
 			return daoComputer.getComputersRows(page, lines, search);
 		} catch (SQLException e) {
 			logger.error("Couldn't get computer list");
+			
 			return new ArrayList<Computer>();
 		}
 	}
@@ -40,8 +42,10 @@ public class DashboardService {
 	public int getCountComputer(String search) {
 		
 		try {
+			
 			return daoComputer.countComputer(search);
 		} catch (SQLException e) {
+			
 			return -1;
 		}
 	}
@@ -54,6 +58,7 @@ public class DashboardService {
 		list = Arrays.asList(str);
 		
 		if(list.isEmpty()) {
+			
 			return false;
 		}
 		for(String element: list){

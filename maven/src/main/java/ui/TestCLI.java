@@ -14,6 +14,7 @@ public class TestCLI {
 	static int choice;
 
 	public static void main(String[] args) throws SQLException {
+		
 		Logger logger = LoggerFactory.getLogger(TestCLI.class);
 		logger.info("TestCLI");
 
@@ -77,7 +78,5 @@ public class TestCLI {
 
 			}
 		}
-
 	}
-
 }

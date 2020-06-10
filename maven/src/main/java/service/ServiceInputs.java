@@ -19,6 +19,7 @@ public class ServiceInputs {
 	final Logger logger = LoggerFactory.getLogger(ServiceInputs.class);
 	
 	public ServiceInputs() {
+		
 		this.scan = new Scanner(System.in);
 		this.scan.useDelimiter("\n");
 		this.daoCompany = new DAOCompany();
@@ -26,11 +27,13 @@ public class ServiceInputs {
 	}
 
 	public int consoleID() {
+		
 		int input;
 		while(true) {
 			logger.info("\nEnter ID");
 			try {
 				input = scan.nextInt();
+				
 				return input;
 			}
 			catch(NumberFormatException e){
@@ -41,6 +44,7 @@ public class ServiceInputs {
 	}
 
 	public int consoleCompanyID() throws SQLException {
+		
 		while(true) {
 			try{
 				int id = scan.nextInt();
@@ -61,6 +65,7 @@ public class ServiceInputs {
 	}
 
 	public long consoleIntroduced() {
+		
 		while(true) {
 			String input = scan.next();
 			try {
@@ -76,6 +81,7 @@ public class ServiceInputs {
 	}
 
 	public long consoleDiscontinued(long introducedTime) {
+		
 		while(true) {
 			String input = scan.next();
 			try{
@@ -94,6 +100,7 @@ public class ServiceInputs {
 	}
 
 	public long consoleUpdateIntroduced() {
+		
 		while(true) {
 			String input = scan.next();
 			try {
@@ -112,6 +119,7 @@ public class ServiceInputs {
 	}
 
 	public long consoleUpdateDiscontinued(long introducedTime) {
+		
 		while(true) {
 			String input = scan.next();
 			try{

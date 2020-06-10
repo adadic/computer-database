@@ -25,38 +25,42 @@ public final class MysqlConnect implements AutoCloseable{
 		catch(Exception sqle){
 			sqle.printStackTrace();
 		}
-		
 	}
 	
 	public Connection getConn() {
+		
 		return conn;
 	}
 
 	
 	public static synchronized MysqlConnect getDbCon() {
+		
 		if (db == null) {
 			db = new MysqlConnect();
 		}
+		
 		return db;
 	}
 
 	public ResultSet query(PreparedStatement query) throws SQLException{
+		
 		ResultSet res = query.executeQuery();
+		
 		return res;
 	}
 
 	@Override
 	public void close() throws SQLException {
+		
 		if(conn != null) {
 			conn.close();
 			conn = null;
 			db = null;
 		}
-		
 	}
 	
 	protected void finalize() throws SQLException{
+		
 		this.close();
 	}
-	
 }
