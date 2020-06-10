@@ -46,12 +46,16 @@ public class DashboardServlet extends HttpServlet {
     	try {
 			if(!dashboardService.deleteComputer(request)) {
 				request.setAttribute("errorLog","Computer not modify");
-		    	this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
 			}
 		} catch (NumberFormatException | SQLException e) {
 			request.setAttribute("errorLog","Computer not modify");
 	    	this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
 		}
-		response.sendRedirect("dashboard");
+    	request.setAttribute("page", page.getPage());
+    	request.setAttribute("search", page.getSearch());
+    	request.setAttribute("max", page.getMaxPage());
+    	request.setAttribute("lines", page.getLines());
+    	request.setAttribute("size", page.getCount());
+    	this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
     }
 }

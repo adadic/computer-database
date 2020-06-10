@@ -18,6 +18,8 @@ import servlet.DashboardServlet;
 public class DashboardService {
 
 	private DAOComputer daoComputer;
+	private static final int INITPAGE = 1;
+	private static final int INITLINES = 10;
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 	
 	public DashboardService() {
@@ -70,8 +72,8 @@ public class DashboardService {
 
 	public Pagination paginate(HttpServletRequest request) {
 		
-		int page = 1;
-    	int lines = 10;
+		int page = INITPAGE;
+    	int lines = INITLINES;
     	String search = request.getParameter("search");
 		String pageString = request.getParameter("page");
 		String linesString = request.getParameter("lines");

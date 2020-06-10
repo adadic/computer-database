@@ -12,6 +12,7 @@ public enum EnumQuery {
 	DELETECOMPUTER("DELETE FROM computer WHERE id = ?"),
 	UPDATECOMPUTER("UPDATE computer SET name = ? , introduced = ? , discontinued = ? , company_id = ? WHERE id = ? ;"),
 	COUNTCOMPUTER("SELECT COUNT(*) as number FROM computer WHERE computer.name LIKE ?;"),
+	DELETECOMPUTERCOMPANY("DELETE FROM computer WHERE company_id = ?"),
 	ALLCOMPANY("SELECT id, name FROM company;"),
 	IDCOMPANY("SELECT id, name FROM company WHERE id = ? ;"),
 	DELETECOMPANY("DELETE FROM company WHERE id = ?");

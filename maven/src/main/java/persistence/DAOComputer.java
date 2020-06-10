@@ -164,7 +164,7 @@ public class DAOComputer {
 	
 
 	
-	public int deleteComputer (long id) throws SQLException{
+public int deleteComputer (long id) throws SQLException{
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
 			PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.DELETECOMPUTER.getQuery());
@@ -178,7 +178,22 @@ public class DAOComputer {
 			return 0;
 		}
 	}
-	
+
+	public int deleteComputerCompany (long id) throws SQLException{
+		
+		try(MysqlConnect db = MysqlConnect.getDbCon()){
+			PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.DELETECOMPUTERCOMPANY.getQuery());
+			preparedStatement.setLong(1, id);
+			
+			return preparedStatement.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			
+			return 0;
+		}
+	}
+
 	public int countComputer (String search) throws SQLException{
 		
 		if(search == null) {

@@ -106,6 +106,46 @@
             <ul class="pagination">
                 
               <c:choose>
+              	<c:when test="${max < 5}">
+	              	<c:choose>
+		              		<c:when test="${page > 1}">
+		              		 	<li>
+				                    <a href="?page=${page - 1}&lines=${lines}&search=${search}" aria-label="Previous">
+					                    <span aria-hidden="true">&laquo;</span>
+					                </a>
+				              	</li>
+		              		</c:when>
+		              		<c:otherwise>
+		              			<li>
+				                    <a href="" aria-label="Previous">
+					                    <span aria-hidden="true">&laquo;</span>
+					                </a>	
+				              	</li>
+		              		</c:otherwise>
+		              	</c:choose>
+		              <c:forEach var = "i" begin = "1" end = "${max}">
+		              	<li><a href="?page=${i}&lines=${lines}&search=${search}">${i}</a></li>
+				      </c:forEach>
+		              
+		              <c:choose>
+		              		<c:when test="${page < max}">
+				              	<li>
+				                    <a href="?page=${page + 1}&lines=${lines}&search=${search}" aria-label="Next">
+				                    	<span aria-hidden="true">&raquo;</span>
+				                	</a>
+				             	</li>
+		              		</c:when>
+		              		<c:otherwise>
+		              			<li>
+				                    <a href="" aria-label="Next">
+				                    	<span aria-hidden="true">&raquo;</span>
+				                	</a>
+				             	</li>
+		              		</c:otherwise>
+		              	</c:choose>
+	           		 	
+		              		
+	              </c:when>
               	<c:when test="${page > max-2}">
 	              	<li>
 	                    <a href="?page=${page-1}&lines=${lines}&search=${search}" aria-label="Previous">
