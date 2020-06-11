@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.DTOCompany;
+import dto.DTOComputer;
 import model.Company;
 import service.AddService;
 import service.CommunService;
@@ -37,12 +39,19 @@ public class AddComputerServlet extends HttpServlet{
 	    
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	
-	    	if(!addService.addComputer(request)) {
-	    		request.setAttribute("errorLog","Computer not added");
-		    	this.getServletContext().getRequestDispatcher("/WEB-INF/addComputer.jsp").forward(request,response);
-	    	}
-	    	else{
-	    		response.sendRedirect("dashboard");
-	    	}
+	    	System.out.println(request.getParameter("companyId"));
+//	    	DTOComputer computer = new DTOComputer.DTOComputerBuilder(request.getParameter("computerName"))
+//	    			.introduced(request.getParameter("introduced"))
+//	    			.discontinued(request.getParameter("discontinued"))
+//	    			.company(new DTOCompany.DTOCompanyBuilder(request.getParameter("companyId")[0], request.getParameter("companyId")[1]).build())
+//	    			.build();
+//	    	
+//	    	if(!addService.addComputer(computer)) {
+//	    		request.setAttribute("errorLog","Computer not added");
+//		    	this.getServletContext().getRequestDispatcher("/WEB-INF/addComputer.jsp").forward(request,response);
+//	    	}
+//	    	else{
+//	    		response.sendRedirect("dashboard");
+//	    	}
 	    }
 }

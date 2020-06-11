@@ -95,10 +95,10 @@ public class DAOComputer {
 	}
 	
 	
-	public int insertComputer(String name, Timestamp introduced, Timestamp discontinued, String company_id) throws SQLException{
+	public int insertComputer(Computer computer, String company_id) throws SQLException{
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
-			PreparedStatement preparedStatement = extractedInsert(name, introduced, discontinued, company_id, db);
+			PreparedStatement preparedStatement = extractedInsert(computer.getName(), computer.getIntroduced(), computer.getDiscontinued(), company_id, db);
 	
 			return preparedStatement.executeUpdate();
 		}

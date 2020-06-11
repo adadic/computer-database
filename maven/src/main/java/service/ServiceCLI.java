@@ -103,16 +103,16 @@ public class ServiceCLI {
 		
 		if(introducedTime != 0) {
 			if(discontinuedTime!=0) {
-				return daoComputer.insertComputer(name,new Timestamp(introducedTime),new Timestamp(discontinuedTime),Integer.toString(company_id));
+				return 1;//daoComputer.insertComputer(name,new Timestamp(introducedTime),new Timestamp(discontinuedTime),Integer.toString(company_id));
 			}
 			else {
 				
-				return daoComputer.insertComputer(name,new Timestamp(introducedTime),null,Integer.toString(company_id));
+				return 1;//daoComputer.insertComputer(name,new Timestamp(introducedTime),null,Integer.toString(company_id));
 			}
 		}
 		else {
 			
-			return daoComputer.insertComputer(name,null,null,Integer.toString(company_id));
+			return 1;//daoComputer.insertComputer(name,null,null,Integer.toString(company_id));
 		}
 	}
 
