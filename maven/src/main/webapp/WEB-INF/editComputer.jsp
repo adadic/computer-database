@@ -44,9 +44,9 @@
                             <div class="form-group">
                                 <label for="companyId">Company</label>
                                 <select class="form-control" id="companyId" name="companyId" >
-                                    <option value="0" rank="0">--</option>
+                                    <option value="0">--</option>
                                     <c:forEach items="${companies}" var="company">
-                                    	<option value="{id:${company.id}, name:${company.name}}" rank="${company.id}">${company.name}</option>
+                                    	<option value="${company.id}">${company.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>            
@@ -66,7 +66,7 @@
 	        $('#computerName').val("${computer.name}");
 	        $('#introduced').val("${computer.introduced}".substring(0, 10));
 	        $('#discontinued').val("${computer.discontinued}".substring(0, 10));
-	        $('#companyId [rank="${computer.company.id}"]').prop('selected', 'true');
+	        $('#companyId [value="${computer.company.id}"]').prop('selected', 'true');
 	        if($('#introduced').val() == ""){
 	    		$('#discontinued').prop("disabled", true);
 	        }

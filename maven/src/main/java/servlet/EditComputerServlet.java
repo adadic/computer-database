@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.DTOCompany;
 import dto.DTOComputer;
-import mapper.ArrayMapper;
 import model.Company;
 import model.Computer;
 import service.EditService;
@@ -21,18 +20,18 @@ public class EditComputerServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	private EditService editService;
-	private CommunService serviceUI;
+	private CommunService communService;
 
 	    public EditComputerServlet() {
 	    	
 	    	super();
 	    	this.editService = new EditService();
-	    	this.serviceUI = new CommunService();
+	    	this.communService = new CommunService();
 	    }
 
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	
-	    	ArrayList<Company> companies = serviceUI.getCompanies();
+	    	ArrayList<Company> companies = communService.getCompanies();
 			request.setAttribute("companies", companies);
 			
 	    	String id_computer = request.getParameter("id");
@@ -47,12 +46,11 @@ public class EditComputerServlet extends HttpServlet{
 	    
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	
-	    	String[] company = ArrayMapper.toArray(request.getParameter("company_id"));
 	    	DTOComputer computer = new DTOComputer.DTOComputerBuilder(request.getParameter("computerName"))
 	    			.id(request.getParameter("id"))
 	    			.introduced(request.getParameter("introduced"))
 	    			.discontinued(request.getParameter("discontinued"))
-	    			.company(new DTOCompany.DTOCompanyBuilder(company[0], company[1]).build())
+	    			.company(new DTOCompany.DTOCompanyBuilder(request.getParameter("companyId"), "none").build())
 	    			.build();
 	    	
 	    	if(!editService.editComputer(computer)) {

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.DTOCompany;
 import dto.DTOComputer;
-import mapper.ArrayMapper;
 import model.Company;
 import service.AddService;
 import service.CommunService;
@@ -40,12 +39,11 @@ public class AddComputerServlet extends HttpServlet{
 	    
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	
-	    	String[] company = ArrayMapper.toArray(request.getParameter("company_id"));
 	    	DTOComputer computer = new DTOComputer.DTOComputerBuilder(request.getParameter("computerName"))
 	    			.id("0")
 	    			.introduced(request.getParameter("introduced"))
 	    			.discontinued(request.getParameter("discontinued"))
-	    			.company(new DTOCompany.DTOCompanyBuilder(company[0], company[1]).build())
+	    			.company(new DTOCompany.DTOCompanyBuilder(request.getParameter("companyId"), "none").build())
 	    			.build();
 	    	
 	    	if(!addService.addComputer(computer)) {
