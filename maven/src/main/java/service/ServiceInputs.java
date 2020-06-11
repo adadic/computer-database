@@ -15,7 +15,6 @@ import persistence.DAOCompany;
 public class ServiceInputs {
 	private Scanner scan;
 	private DAOCompany daoCompany;
-	private DateMapper dateMapper;
 	final Logger logger = LoggerFactory.getLogger(ServiceInputs.class);
 	
 	public ServiceInputs() {
@@ -23,7 +22,6 @@ public class ServiceInputs {
 		this.scan = new Scanner(System.in);
 		this.scan.useDelimiter("\n");
 		this.daoCompany = new DAOCompany();
-		this.dateMapper = new DateMapper();
 	}
 
 	public int consoleID() {
@@ -69,7 +67,7 @@ public class ServiceInputs {
 		while(true) {
 			String input = scan.next();
 			try {
-				long inputTime = dateMapper.getDate(input);
+				long inputTime = DateMapper.getDate(input);
 				if(inputTime > 0 || input.equals("0")) {
 					return inputTime;
 				}
@@ -85,7 +83,7 @@ public class ServiceInputs {
 		while(true) {
 			String input = scan.next();
 			try{
-				long discontinuedTime = dateMapper.getDate(input);
+				long discontinuedTime = DateMapper.getDate(input);
 				if((discontinuedTime > 0 && discontinuedTime > introducedTime)) {
 					return discontinuedTime;
 				}
@@ -104,7 +102,7 @@ public class ServiceInputs {
 		while(true) {
 			String input = scan.next();
 			try {
-				long inputTime = dateMapper.getDate(input);
+				long inputTime = DateMapper.getDate(input);
 				if(inputTime > 0 || input.equals("0")) {
 					return inputTime;
 				}
@@ -123,7 +121,7 @@ public class ServiceInputs {
 		while(true) {
 			String input = scan.next();
 			try{
-				long discontinuedTime = dateMapper.getDate(input);
+				long discontinuedTime = DateMapper.getDate(input);
 				if((discontinuedTime > 0 && discontinuedTime > introducedTime)) {
 					return discontinuedTime;
 				}

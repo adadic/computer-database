@@ -31,6 +31,7 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	page = dashboardService.paginate(request);
+    	request.setAttribute("ok", request.getParameter("ok"));
     	request.setAttribute("page", page.getPage());
     	request.setAttribute("search", page.getSearch());
     	request.setAttribute("max", page.getMaxPage());
@@ -56,6 +57,6 @@ public class DashboardServlet extends HttpServlet {
     	request.setAttribute("max", page.getMaxPage());
     	request.setAttribute("lines", page.getLines());
     	request.setAttribute("size", page.getCount());
-    	this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);
+		response.sendRedirect("dashboard?ok=1");
     }
 }

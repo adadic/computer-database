@@ -244,6 +244,11 @@
 	         $('#searchbox').val("${search}");
 	    </script>
 	</c:if>
+	<c:if test="${not empty ok}">
+	    <script>
+	         alert("Computer(s) Deleted");
+	    </script>
+	</c:if>
 	<script>
 		$('.pagination li a').css('background','white');
 		$('.pagination li a:contains(${page})').css('background','#969696c9');
