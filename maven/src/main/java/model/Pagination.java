@@ -1,6 +1,5 @@
 package model;
 
-
 public class Pagination {
 	
 	private static final int NBLINESTART = 10;
@@ -19,13 +18,13 @@ public class Pagination {
 		this.maxPage = this.page;
 	}
 
-	public Pagination(int page, int lines, String search, int count) {
+	public Pagination(PaginationBuilder builder) {
 		
-		this.page = page;
-		this.lines = lines;
-		this.search = search;
-		this.count = count;
-		this.maxPage = count / lines + 1;
+		this.page = builder.page;
+		this.lines = builder.lines;
+		this.search = builder.search;
+		this.count = builder.count;
+		this.maxPage = builder.count / builder.lines + 1;
 	}
 
 	public int getLines() {
@@ -53,5 +52,29 @@ public class Pagination {
 		return search;
 	}
 
-	
+	public static class PaginationBuilder{
+		
+		private int lines;
+		private int page;
+		private int count;
+		private String search;
+			
+		public PaginationBuilder(int lines, int page, String search) {
+			
+			this.page = page;
+			this.lines = lines;
+			this.search = search;
+		}
+		public PaginationBuilder count(int count) {
+			
+			this.count = count;
+			
+			return this;
+		}
+		
+		public Pagination build() {
+			
+			return new Pagination(this);
+		}
+	}
 }

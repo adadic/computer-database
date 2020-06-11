@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dto.DTOPagination;
+import mapper.PaginationMapper;
 import model.Computer;
 import model.Pagination;
 import persistence.DAOComputer;
@@ -18,8 +18,6 @@ import servlet.DashboardServlet;
 public class DashboardService {
 
 	private DAOComputer daoComputer;
-	private static final int INITPAGE = 1;
-	private static final int INITLINES = 10;
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 	
 	public DashboardService() {
@@ -28,12 +26,12 @@ public class DashboardService {
 		this.daoComputer = new DAOComputer();
 	}
 
-	public ArrayList<Computer> getComputersRows(int page, int lines, String search){
+	public ArrayList<Computer> getComputersRows(Pagination page){
 		
 		DAOComputer daoComputer = new DAOComputer();
 		try {
 			
-			return daoComputer.getComputersRows(page, lines, search);
+			return daoComputer.getComputersRows(page.getPage(), page.getLines(), page.getSearch());
 		} catch (SQLException e) {
 			logger.error("Couldn't get computer list");
 			
@@ -52,9 +50,8 @@ public class DashboardService {
 		}
 	}
 
-	public boolean deleteComputer(HttpServletRequest request) throws NumberFormatException, SQLException {
-		
-		String selected = request.getParameter("selection");
+	public boolean deleteComputer(String selected) throws NumberFormatException, SQLException {
+				
 		String str[] = selected.split(",");
 		List<String> list = new ArrayList<String>();
 		list = Arrays.asList(str);
@@ -70,22 +67,8 @@ public class DashboardService {
 		return true;
 	}
 
-	public Pagination paginate(HttpServletRequest request) {
-		
-		int page = INITPAGE;
-    	int lines = INITLINES;
-    	String search = request.getParameter("search");
-		String pageString = request.getParameter("page");
-		String linesString = request.getParameter("lines");
-		
-		if(pageString != null) {
-    		page = Integer.valueOf(pageString);
-    	}
-    	if(linesString != null) {
-    		lines = Integer.valueOf(linesString);
-    	}
-    	int count = getCountComputer(search);
+	public Pagination paginate(DTOPagination dtoPagination) {
     	
-		return new Pagination(page, lines, search, count);
+		return PaginationMapper.getPage(dtoPagination, getCountComputer(dtoPagination.getSearch()));
 	}
 }
