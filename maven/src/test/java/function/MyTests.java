@@ -22,12 +22,12 @@ public class MyTests extends TestCase{
 		MockitoAnnotations.initMocks(this);
 	}
 	
-	@Test
-	public void testFunction() throws SQLException {
-		DAOComputer daoComputer = new DAOComputer();
-		
-		//assertEquals(1,daoComputer.insertComputer("AZERTY", null, null, "1"));
-	}
+//	@Test
+//	public void testFunction() throws SQLException {
+//		DAOComputer daoComputer = new DAOComputer();
+//		
+//		assertEquals(1,daoComputer.insertComputer("AZERTY", null, null, "1"));
+//	}
 	
 	@Test
 	public void testMock() {
@@ -39,8 +39,7 @@ public class MyTests extends TestCase{
 	
 	@Test
 	public void testDate() {
-		DateMapper dm = new DateMapper();
-		assertEquals(1582412400000L, dm.getDate("2020-02-23"));
+		assertEquals(1582412400000L, DateMapper.getDate("2020-02-23"));
 	}
 	
 	@Test

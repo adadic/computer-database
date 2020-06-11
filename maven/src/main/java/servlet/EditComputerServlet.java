@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.DTOCompany;
+import dto.DTOComputer;
+import mapper.ArrayMapper;
 import model.Company;
 import model.Computer;
 import service.EditService;
@@ -44,7 +47,15 @@ public class EditComputerServlet extends HttpServlet{
 	    
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    	
-	    	if(!editService.editComputer(request)) {
+	    	String[] company = ArrayMapper.toArray(request.getParameter("company_id"));
+	    	DTOComputer computer = new DTOComputer.DTOComputerBuilder(request.getParameter("computerName"))
+	    			.id(request.getParameter("id"))
+	    			.introduced(request.getParameter("introduced"))
+	    			.discontinued(request.getParameter("discontinued"))
+	    			.company(new DTOCompany.DTOCompanyBuilder(company[0], company[1]).build())
+	    			.build();
+	    	
+	    	if(!editService.editComputer(computer)) {
 	    		request.setAttribute("errorLog","Computer(s) not deleted");
 		    	this.getServletContext().getRequestDispatcher("/WEB-INF/editComputer.jsp").forward(request,response);
 	    	}

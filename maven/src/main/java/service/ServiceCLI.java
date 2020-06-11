@@ -100,19 +100,28 @@ public class ServiceCLI {
 	}
 
 	private int insertChoice(String name, long introducedTime, long discontinuedTime, int company_id) throws SQLException {
-		
+
 		if(introducedTime != 0) {
 			if(discontinuedTime!=0) {
-				return 1;//daoComputer.insertComputer(name,new Timestamp(introducedTime),new Timestamp(discontinuedTime),Integer.toString(company_id));
+				return daoComputer.insertComputer(new Computer.ComputerBuilder(name)
+						.introduced(new Timestamp(introducedTime))
+						.discontinued(new Timestamp(discontinuedTime))
+						.company(new Company.CompanyBuilder(company_id, "").build())
+						.build());
 			}
 			else {
 				
-				return 1;//daoComputer.insertComputer(name,new Timestamp(introducedTime),null,Integer.toString(company_id));
+				return daoComputer.insertComputer(new Computer.ComputerBuilder(name)
+						.introduced(new Timestamp(introducedTime))
+						.company(new Company.CompanyBuilder(company_id, "").build())
+						.build());
 			}
 		}
 		else {
 			
-			return 1;//daoComputer.insertComputer(name,null,null,Integer.toString(company_id));
+			return daoComputer.insertComputer(new Computer.ComputerBuilder(name)
+					.company(new Company.CompanyBuilder(company_id, "").build())
+					.build());
 		}
 	}
 
@@ -168,20 +177,36 @@ public class ServiceCLI {
 				long discontinuedTime = serviceInputs.consoleUpdateDiscontinued(introducedTime);
 				if(discontinuedTime > introducedTime) {
 					
-					return daoComputer.updateComputer(id, name, introduced, new Timestamp(discontinuedTime), company_id);
+					return daoComputer.updateComputer(new Computer.ComputerBuilder(name)
+							.id(id)
+							.introduced(introduced)
+							.discontinued(new Timestamp(discontinuedTime))
+							.company(new Company.CompanyBuilder(company_id, "").build())
+							.build());
 				}
 				else if(discontinuedTime == 0) {
 					
-					return daoComputer.updateComputer(id, name, introduced, discontinued, company_id);
+					return daoComputer.updateComputer(new Computer.ComputerBuilder(name)
+							.id(id)
+							.introduced(introduced)
+							.discontinued(discontinued)
+							.company(new Company.CompanyBuilder(company_id, "").build())
+							.build());
 				}
 				else{
 					
-					return daoComputer.updateComputer(id, name, introduced, null, company_id);
+					return daoComputer.updateComputer(new Computer.ComputerBuilder(name)
+							.id(id)
+							.introduced(introduced)
+							.company(new Company.CompanyBuilder(company_id, "").build())
+							.build());
 				}
 			}
 			else{
 				
-				return daoComputer.updateComputer(id, name, null, null, company_id);
+				return daoComputer.updateComputer(new Computer.ComputerBuilder(name)
+						.company(new Company.CompanyBuilder(company_id, "").build())
+						.build());
 			}
 		}
 		

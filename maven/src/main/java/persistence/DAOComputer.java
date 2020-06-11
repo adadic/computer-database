@@ -95,10 +95,10 @@ public class DAOComputer {
 	}
 	
 	
-	public int insertComputer(Computer computer, String company_id) throws SQLException{
+	public int insertComputer(Computer computer) throws SQLException{
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
-			PreparedStatement preparedStatement = extractedInsert(computer.getName(), computer.getIntroduced(), computer.getDiscontinued(), company_id, db);
+			PreparedStatement preparedStatement = extractedInsert(computer.getName(), computer.getIntroduced(), computer.getDiscontinued(), computer.getCompany().getId(), db);
 	
 			return preparedStatement.executeUpdate();
 		}
@@ -110,27 +110,27 @@ public class DAOComputer {
 	}
 
 	private PreparedStatement extractedInsert(String name, Timestamp introduced, Timestamp discontinued,
-			String company_id, MysqlConnect db) throws SQLException {
+			long company_id, MysqlConnect db) throws SQLException {
 		
 		PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.INSERTCOMPUTER.getQuery()); 
 		preparedStatement.setString(1, name);
 		preparedStatement.setTimestamp(2, introduced);
 		preparedStatement.setTimestamp(3, discontinued);
 		
-		if(company_id.equals("0")) {
+		if(company_id == 0) {
 			preparedStatement.setNString(4, null);
 		}
 		else{
-			preparedStatement.setLong(4, Integer.parseInt(company_id));
+			preparedStatement.setLong(4, company_id);
 		}
 		
 		return preparedStatement;
 	}
 	
-	public int updateComputer(long id, String name, Timestamp introduced, Timestamp discontinued, long company_id) throws SQLException{
+	public int updateComputer(Computer computer) throws SQLException{
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
-			PreparedStatement preparedStatement = extractedUpdate(id, name, introduced, discontinued, company_id, db);
+			PreparedStatement preparedStatement = extractedUpdate(computer.getId(), computer.getName(), computer.getIntroduced(), computer.getDiscontinued(), computer.getCompany().getId(), db);
 			
 			return preparedStatement.executeUpdate();
 		}
