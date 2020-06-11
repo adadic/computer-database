@@ -1,3 +1,7 @@
 Servers/*
 .metadata/
 maven/target
+maven/.idea
+maven/.settings
+maven/.classpath
+maven/.project
