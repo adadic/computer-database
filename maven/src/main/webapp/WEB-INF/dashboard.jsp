@@ -14,12 +14,10 @@
 	<link rel="shortcut icon" href="#">
 </head>
 <body>
-<script>
-	var direction = 0;
-</script>
+
     <header class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#"> Application - Computer Database </a>
+            <a class="navbar-brand" href="dashboard"> Application - Computer Database </a>
         </div>
     </header>
 
@@ -63,9 +61,14 @@
                                     </a>
                             </span>
                         </th>
-                        <th onclick="sortTable();">
-                            Computer name
-                        </th>
+                        <c:choose>
+                        	<c:when test="${fn:contains(order,'computer') and direction == 1}">
+                        		<th onclick="sortTable('computer', 0, ${lines}, '${search}');">Computer name</th>
+                        	</c:when>
+                        	<c:otherwise>
+                        		<th onclick="sortTable('computer', 1, ${lines}, '${search}');">Computer name</th>
+                        	</c:otherwise>
+                        </c:choose>
                         <th>
                             Introduced date
                         </th>
@@ -74,9 +77,14 @@
                             Discontinued date
                         </th>
                         <!-- Table header for Company -->
-                        <th>
-                            Company
-                        </th>
+                        <c:choose>
+                        	<c:when test="${fn:contains(order,'company') and direction == 1}">
+                        		<th onclick="sortTable('company', 0, ${lines}, '${search}');">Company</th>
+                        	</c:when>
+                        	<c:otherwise>
+                        		<th onclick="sortTable('company', 1, ${lines}, '${search}');">Company</th>
+                        	</c:otherwise>
+                        </c:choose>
 
                     </tr>
                 </thead>
@@ -110,7 +118,7 @@
 	              	<c:choose>
 		              		<c:when test="${page > 1}">
 		              		 	<li>
-				                    <a href="?page=${page - 1}&lines=${lines}&search=${search}" aria-label="Previous">
+				                    <a href="?order=${order}&direction=${direction}&page=${page - 1}&lines=${lines}&search=${search}" aria-label="Previous">
 					                    <span aria-hidden="true">&laquo;</span>
 					                </a>
 				              	</li>
@@ -124,13 +132,13 @@
 		              		</c:otherwise>
 		              	</c:choose>
 		              <c:forEach var = "i" begin = "1" end = "${max}">
-		              	<li><a href="?page=${i}&lines=${lines}&search=${search}">${i}</a></li>
+		              	<li><a href="?order=${order}&direction=${direction}&page=${i}&lines=${lines}&search=${search}">${i}</a></li>
 				      </c:forEach>
 		              
 		              <c:choose>
 		              		<c:when test="${page < max}">
 				              	<li>
-				                    <a href="?page=${page + 1}&lines=${lines}&search=${search}" aria-label="Next">
+				                    <a href="?order=${order}&direction=${direction}&page=${page + 1}&lines=${lines}&search=${search}" aria-label="Next">
 				                    	<span aria-hidden="true">&raquo;</span>
 				                	</a>
 				             	</li>
@@ -148,19 +156,19 @@
 	              </c:when>
               	<c:when test="${page > max-2}">
 	              	<li>
-	                    <a href="?page=${page-1}&lines=${lines}&search=${search}" aria-label="Previous">
+	                    <a href="?order=${order}&direction=${direction}&page=${page-1}&lines=${lines}&search=${search}" aria-label="Previous">
 	                      <span aria-hidden="true">&laquo;</span>
 		                  </a>
 		              </li>
-		              <li><a href="?page=${max-4}&lines=${lines}&search=${search}">${max-4}</a></li>
-		              <li><a href="?page=${max-3}&lines=${lines}&search=${search}">${max-3}</a></li>
-		              <li><a href="?page=${max-2}&lines=${lines}&search=${search}">${max-2}</a></li>
-		              <li><a href="?page=${max-1}&lines=${lines}&search=${search}">${max-1}</a></li>
-		              <li><a href="?page=${max}&lines=${lines}&search=${search}">${max}</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=${max-4}&lines=${lines}&search=${search}">${max-4}</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=${max-3}&lines=${lines}&search=${search}">${max-3}</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=${max-2}&lines=${lines}&search=${search}">${max-2}</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=${max-1}&lines=${lines}&search=${search}">${max-1}</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=${max}&lines=${lines}&search=${search}">${max}</a></li>
 		              <c:choose>
 		              		<c:when test="${page == max - 1}">
 		              		 	<li>
-				                    <a href="?page=${max}&lines=${lines}&search=${search}" aria-label="Next">
+				                    <a href="?order=${order}&direction=${direction}&page=${max}&lines=${lines}&search=${search}" aria-label="Next">
 					                    <span aria-hidden="true">&raquo;</span>
 					                </a>
 				              	</li>
@@ -177,17 +185,17 @@
 	              
 	              <c:when test="${page > 2}">
 	              	<li>
-	                    <a href="?page=${page-1}&lines=${lines}&search=${search}" aria-label="Previous">
+	                    <a href="?order=${order}&direction=${direction}&page=${page-1}&lines=${lines}&search=${search}" aria-label="Previous">
 	                      <span aria-hidden="true">&laquo;</span>
 		                  </a>
 		              </li>
-		              <li><a href="?page=${page-2}&lines=${lines}&search=${search}">${page-2}</a></li>
-		              <li><a href="?page=${page-1}&lines=${lines}&search=${search}">${page-1}</a></li>
-		              <li><a href="?page=${page}&lines=${lines}&search=${search}">${page}</a></li>
-		              <li><a href="?page=${page+1}&lines=${lines}&search=${search}">${page+1}</a></li>
-		              <li><a href="?page=${page+2}&lines=${lines}&search=${search}">${page+2}</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=${page-2}&lines=${lines}&search=${search}">${page-2}</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=${page-1}&lines=${lines}&search=${search}">${page-1}</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=${page}&lines=${lines}&search=${search}">${page}</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=${page+1}&lines=${lines}&search=${search}">${page+1}</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=${page+2}&lines=${lines}&search=${search}">${page+2}</a></li>
 		              <li>
-		                <a href="?page=${page+1}&lines=${lines}&search=${search}" aria-label="Next">
+		                <a href="?order=${order}&direction=${direction}&page=${page+1}&lines=${lines}&search=${search}" aria-label="Next">
 		                    <span aria-hidden="true">&raquo;</span>
 		                </a>
 		              </li>
@@ -204,20 +212,20 @@
 	              		</c:when>
 	              		<c:otherwise>
 	              			<li>
-			                    <a href="?page=1&lines=${lines}&search=${search}" aria-label="Previous">
+			                    <a href="?order=${order}&direction=${direction}&page=1&lines=${lines}&search=${search}" aria-label="Previous">
 			                      <span aria-hidden="true">&laquo;</span>
 				                </a>
 			              	</li>
 	              		</c:otherwise>
 	              	</c:choose>
 		             
-		              <li><a href="?page=1&lines=${lines}&search=${search}">1</a></li>
-		              <li><a href="?page=2&lines=${lines}&search=${search}">2</a></li>
-		              <li><a href="?page=3&lines=${lines}&search=${search}">3</a></li>
-		              <li><a href="?page=4&lines=${lines}&search=${search}">4</a></li>
-		              <li><a href="?page=5&lines=${lines}&search=${search}">5</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=1&lines=${lines}&search=${search}">1</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=2&lines=${lines}&search=${search}">2</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=3&lines=${lines}&search=${search}">3</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=4&lines=${lines}&search=${search}">4</a></li>
+		              <li><a href="?order=${order}&direction=${direction}&page=5&lines=${lines}&search=${search}">5</a></li>
 		              <li>
-		                <a href="?page=${page+1}&lines=${lines}&search=${search}" aria-label="Next">
+		                <a href="?order=${order}&direction=${direction}&page=${page+1}&lines=${lines}&search=${search}" aria-label="Next">
 		                    <span aria-hidden="true">&raquo;</span>
 		                </a>
 		              </li>
@@ -227,10 +235,10 @@
         </ul>
 
         <div class="btn-group btn-group-sm pull-right" role="group" >
-            <button type="button" class="btn btn-default" onclick="location.href = '?page=1&lines=10&search=${search}';">10</button>
-            <button type="button" class="btn btn-default" onclick="location.href = '?page=1&lines=25&search=${search}';">25</button>
-            <button type="button" class="btn btn-default" onclick="location.href = '?page=1&lines=50&search=${search}';">50</button>
-            <button type="button" class="btn btn-default" onclick="location.href = '?page=1&lines=100&search=${search}';">100</button>
+            <button type="button" class="btn btn-default" onclick="location.href = '?order=${order}&direction=${direction}&page=1&lines=10&search=${search}';">10</button>
+            <button type="button" class="btn btn-default" onclick="location.href = '?order=${order}&direction=${direction}&page=1&lines=25&search=${search}';">25</button>
+            <button type="button" class="btn btn-default" onclick="location.href = '?order=${order}&direction=${direction}&page=1&lines=50&search=${search}';">50</button>
+            <button type="button" class="btn btn-default" onclick="location.href = '?order=${order}&direction=${direction}&page=1&lines=100&search=${search}';">100</button>
         </div>
         </div>
     </footer>

@@ -13,6 +13,7 @@ import model.Computer;
 
 public class DAOComputer {
 	
+	private static final int ASC = 1;
 	private ComputerMapper computerMapper;
 	
 	public DAOComputer() {
@@ -43,15 +44,10 @@ public class DAOComputer {
 		
 		ArrayList<Computer> computers = new ArrayList<>();
 		
-		if(search == null) {
-			search = "%";
-		}
-		else {
-			search = "%" + search + "%";
-		}
+		search = checkSearch(search);
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
-			PreparedStatement preparedStatement = extractedGetRows(page, lines, search, db);
+			PreparedStatement preparedStatement = setGetRows(page, lines, search, db);
 			ResultSet requestComputers = db.query(preparedStatement);
 			
 			while(requestComputers.next()) {
@@ -65,7 +61,7 @@ public class DAOComputer {
 		return computers;
 	}
 
-	private PreparedStatement extractedGetRows(int page, int lines, String search, MysqlConnect db) throws SQLException {
+	private PreparedStatement setGetRows(int page, int lines, String search, MysqlConnect db) throws SQLException {
 		
 		PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.PAGECOMPUTER.getQuery());
 		preparedStatement.setString(1, search);
@@ -98,7 +94,7 @@ public class DAOComputer {
 	public int insertComputer(Computer computer) throws SQLException{
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
-			PreparedStatement preparedStatement = extractedInsert(computer.getName(), computer.getIntroduced(), computer.getDiscontinued(), computer.getCompany().getId(), db);
+			PreparedStatement preparedStatement = setInsert(computer.getName(), computer.getIntroduced(), computer.getDiscontinued(), computer.getCompany().getId(), db);
 	
 			return preparedStatement.executeUpdate();
 		}
@@ -109,7 +105,7 @@ public class DAOComputer {
 		}
 	}
 
-	private PreparedStatement extractedInsert(String name, Timestamp introduced, Timestamp discontinued,
+	private PreparedStatement setInsert(String name, Timestamp introduced, Timestamp discontinued,
 			long company_id, MysqlConnect db) throws SQLException {
 		
 		PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.INSERTCOMPUTER.getQuery()); 
@@ -130,7 +126,7 @@ public class DAOComputer {
 	public int updateComputer(Computer computer) throws SQLException{
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
-			PreparedStatement preparedStatement = extractedUpdate(computer.getId(), computer.getName(), computer.getIntroduced(), computer.getDiscontinued(), computer.getCompany().getId(), db);
+			PreparedStatement preparedStatement = setUpdate(computer.getId(), computer.getName(), computer.getIntroduced(), computer.getDiscontinued(), computer.getCompany().getId(), db);
 			
 			return preparedStatement.executeUpdate();
 		}
@@ -141,7 +137,7 @@ public class DAOComputer {
 		}
 	}
 
-	private PreparedStatement extractedUpdate(long id, String name, Timestamp introduced, Timestamp discontinued,
+	private PreparedStatement setUpdate(long id, String name, Timestamp introduced, Timestamp discontinued,
 			long company_id, MysqlConnect db) throws SQLException {
 		
 		PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.UPDATECOMPUTER.getQuery());
@@ -164,7 +160,7 @@ public class DAOComputer {
 	
 
 	
-public int deleteComputer (long id) throws SQLException{
+	public int deleteComputer (long id) throws SQLException{
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
 			PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.DELETECOMPUTER.getQuery());
@@ -196,12 +192,7 @@ public int deleteComputer (long id) throws SQLException{
 
 	public int countComputer (String search) throws SQLException{
 		
-		if(search == null) {
-			search = "%";
-		}
-		else {
-			search = "%" + search + "%";
-		}
+		search = checkSearch(search);
 		
 		try(MysqlConnect db = MysqlConnect.getDbCon()){
 			PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.COUNTCOMPUTER.getQuery());
@@ -220,5 +211,61 @@ public int deleteComputer (long id) throws SQLException{
 			
 			return -1;
 		}
+	}
+
+	public ArrayList<Computer> getComputersSort(int page, int lines, String search, String order, int direct) throws SQLException {
+		ArrayList<Computer> computers = new ArrayList<>();
+		
+		search = checkSearch(search);
+		
+		try(MysqlConnect db = MysqlConnect.getDbCon()){
+			PreparedStatement preparedStatement = setSortRow(page, lines, search, order, direct, db);
+			ResultSet requestComputers = db.query(preparedStatement);
+			
+			while(requestComputers.next()) {
+				computers.add(computerMapper.getComputer(requestComputers));
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return computers;
+	}
+
+	private PreparedStatement setSortRow(int page, int lines, String search, String order, int direct, MysqlConnect db)
+			throws SQLException {
+		PreparedStatement preparedStatement;
+		if(order.equals("computer")) {
+			if(direct == ASC) {
+				preparedStatement = db.getConn().prepareStatement(EnumQuery.SORTPAGECOMPUTERASC.getQuery());
+			}
+			else {
+				preparedStatement = db.getConn().prepareStatement(EnumQuery.SORTPAGECOMPUTERDESC.getQuery());
+			}
+		}
+		else{
+			if(direct == ASC) {
+				preparedStatement = db.getConn().prepareStatement(EnumQuery.SORTPAGECOMPANYASC.getQuery());
+			}
+			else {
+				preparedStatement = db.getConn().prepareStatement(EnumQuery.SORTPAGECOMPANYDESC.getQuery());
+			}
+		}
+		
+		preparedStatement.setString(1, search);
+		preparedStatement.setLong(2, lines);
+		preparedStatement.setLong(3, lines * (page - 1));
+		return preparedStatement;
+	}
+
+	private String checkSearch(String search) {
+		if(search == null) {
+			search = "%";
+		}
+		else {
+			search = "%" + search + "%";
+		}
+		return search;
 	}
 }

@@ -16,6 +16,9 @@ import persistence.DAOComputer;
 import servlet.DashboardServlet;
 
 public class DashboardService {
+	
+	private final static int ASC = 1;
+	private final static int DESC = 0;
 
 	private DAOComputer daoComputer;
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
@@ -29,13 +32,37 @@ public class DashboardService {
 	public ArrayList<Computer> getComputersRows(Pagination page){
 		
 		DAOComputer daoComputer = new DAOComputer();
-		try {
-			
-			return daoComputer.getComputersRows(page.getPage(), page.getLines(), page.getSearch());
-		} catch (SQLException e) {
-			logger.error("Couldn't get computer list");
-			
-			return new ArrayList<Computer>();
+		
+		if(page.getOrder() != null) {
+			if(page.getDirection() == 1) {
+				try {
+					
+					return daoComputer.getComputersSort(page.getPage(), page.getLines(), page.getSearch(), page.getOrder(), ASC);
+				} catch (SQLException e) {
+					logger.error("Couldn't get computer list");
+					
+					return new ArrayList<Computer>();
+				}
+			}else {
+				try {
+					
+					return daoComputer.getComputersSort(page.getPage(), page.getLines(), page.getSearch(), page.getOrder(), DESC);
+				} catch (SQLException e) {
+					logger.error("Couldn't get computer list");
+					
+					return new ArrayList<Computer>();
+				}
+			}
+		}
+		else {
+			try {
+				
+				return daoComputer.getComputersRows(page.getPage(), page.getLines(), page.getSearch());
+			} catch (SQLException e) {
+				logger.error("Couldn't get computer list");
+				
+				return new ArrayList<Computer>();
+			}
 		}
 	}
 	

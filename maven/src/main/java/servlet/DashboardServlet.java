@@ -32,14 +32,20 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	DTOPagination dtoPagination = new DTOPagination.DTOPaginationBuilder(request.getParameter("lines"), request.getParameter("page"), request.getParameter("search"))
+    			.order(request.getParameter("order"))
+    			.direction(request.getParameter("direction"))
     			.build();
+    	
     	page = dashboardService.paginate(dtoPagination);
+    	
     	request.setAttribute("ok", request.getParameter("ok"));
     	request.setAttribute("page", page.getPage());
     	request.setAttribute("search", page.getSearch());
     	request.setAttribute("max", page.getMaxPage());
     	request.setAttribute("lines", page.getLines());
     	request.setAttribute("size", page.getCount());
+    	request.setAttribute("order", page.getOrder());
+    	request.setAttribute("direction", page.getDirection());
     	request.setAttribute( "computers", dashboardService.getComputersRows(page) );
     	
         this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request,response);

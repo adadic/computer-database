@@ -15,7 +15,15 @@ public enum EnumQuery {
 	DELETECOMPUTERCOMPANY("DELETE FROM computer WHERE company_id = ?"),
 	ALLCOMPANY("SELECT id, name FROM company;"),
 	IDCOMPANY("SELECT id, name FROM company WHERE id = ? ;"),
-	DELETECOMPANY("DELETE FROM company WHERE id = ?");
+	DELETECOMPANY("DELETE FROM company WHERE id = ?"),
+	SORTPAGECOMPUTERASC("SELECT computer.id, computer.name, computer.introduced, computer.discontinued, company.id, company.name" 
+			+ " FROM computer LEFT JOIN company ON computer.company_id = company.id WHERE computer.name LIKE ? ORDER BY computer.name ASC LIMIT ? OFFSET ?;"),
+	SORTPAGECOMPANYASC("SELECT computer.id, computer.name, computer.introduced, computer.discontinued, company.id, company.name" 
+			+ " FROM computer LEFT JOIN company ON computer.company_id = company.id WHERE computer.name LIKE ? ORDER BY company.name ASC LIMIT ? OFFSET ?;"),
+	SORTPAGECOMPUTERDESC("SELECT computer.id, computer.name, computer.introduced, computer.discontinued, company.id, company.name" 
+			+ " FROM computer LEFT JOIN company ON computer.company_id = company.id WHERE computer.name LIKE ? ORDER BY computer.name DESC LIMIT ? OFFSET ?;"),
+	SORTPAGECOMPANYDESC("SELECT computer.id, computer.name, computer.introduced, computer.discontinued, company.id, company.name" 
+			+ " FROM computer LEFT JOIN company ON computer.company_id = company.id WHERE computer.name LIKE ? ORDER BY company.name DESC LIMIT ? OFFSET ?;");
 	
 	private String message;
 	

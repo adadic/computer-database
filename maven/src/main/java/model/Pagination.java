@@ -10,6 +10,8 @@ public class Pagination {
 	private int maxPage;
 	private int count;
 	private String search;
+	private String order;
+	private int direction;
 	
 	public Pagination(){
 		
@@ -25,6 +27,8 @@ public class Pagination {
 		this.search = builder.search;
 		this.count = builder.count;
 		this.maxPage = builder.count / builder.lines + 1;
+		this.order = builder.order;
+		this.direction = builder.direction;
 	}
 
 	public int getLines() {
@@ -52,12 +56,26 @@ public class Pagination {
 		return search;
 	}
 
+	public String getOrder() {
+		
+		return order;
+	}
+
+	public int getDirection() {
+		
+		return direction;
+	}
+
+
+
 	public static class PaginationBuilder{
 		
 		private int lines;
 		private int page;
 		private int count;
 		private String search;
+		private String order;
+		private int direction;
 			
 		public PaginationBuilder(int lines, int page, String search) {
 			
@@ -75,6 +93,20 @@ public class Pagination {
 		public Pagination build() {
 			
 			return new Pagination(this);
+		}
+		
+		public PaginationBuilder order(String order) {
+			
+			this.order = order;
+			
+			return this;
+		}
+		
+		public PaginationBuilder direction(int direction) {
+			
+			this.direction = direction;
+			
+			return this;
 		}
 	}
 }
