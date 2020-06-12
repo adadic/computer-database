@@ -1,2 +1,12 @@
-/Servers/
-/.metadata/
+Servers/*
+.metadata/
+maven/target
+maven/.idea
+maven/.settings
+maven/.classpath
+maven/.project
+CDB/bin
+CDB/.classpath
+CDB/.settings
+CDB/.project
+CDB/WebContent
