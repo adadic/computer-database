@@ -33,7 +33,7 @@ public class EditService {
 		} catch (SQLException e) {
 			logger.error("Couldn't get computer list");
 
-			return null;
+			return Optional.empty();
 		}
 	}
 

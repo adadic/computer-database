@@ -30,7 +30,7 @@ public class CommunService {
 		} catch (SQLException e) {
 			logger.error("Couldn't get Companies");
 
-			return null;
+			return new ArrayList<Company>();
 		}
 	}
 }
