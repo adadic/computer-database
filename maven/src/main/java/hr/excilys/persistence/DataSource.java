@@ -8,17 +8,23 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public class DataSource {
 
+	private static final String URL = "jdbc:mysql://localhost:3306/computer-database-db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private static final String UNAME = "admincdb";
+	private static final String PWD = "qwerty1234";
+	private static final String CACHEPS = "true";
+	private static final String CACHESIZE = "250";
+	private static final String CACHELIMIT = "2048";
+
 	private static HikariConfig config = new HikariConfig();
 	private static HikariDataSource ds;
 
 	static {
-		config.setJdbcUrl(
-				"jdbc:mysql://localhost:3306/computer-database-db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-		config.setUsername("admincdb");
-		config.setPassword("qwerty1234");
-		config.addDataSourceProperty("cachePrepStmts", "true");
-		config.addDataSourceProperty("prepStmtCacheSize", "250");
-		config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+		config.setJdbcUrl(URL);
+		config.setUsername(UNAME);
+		config.setPassword(PWD);
+		config.addDataSourceProperty("cachePrepStmts", CACHEPS);
+		config.addDataSourceProperty("prepStmtCacheSize", CACHESIZE);
+		config.addDataSourceProperty("prepStmtCacheSqlLimit", CACHELIMIT);
 		ds = new HikariDataSource(config);
 	}
 

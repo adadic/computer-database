@@ -28,7 +28,7 @@ public class CommunService {
 
 			return daoCompany.getCompanies();
 		} catch (SQLException e) {
-			logger.error("Couldn't get Companies");
+			logger.error("Application was unable to get the Company List");
 
 			return new ArrayList<Company>();
 		}

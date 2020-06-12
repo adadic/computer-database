@@ -61,7 +61,6 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -95,7 +94,6 @@
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 			<version>${hikari.version}</version>
-			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
