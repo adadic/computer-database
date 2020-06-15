@@ -26,6 +26,7 @@
 		<dbunit.version>2.5.3</dbunit.version>
 		<hikari.version>2.6.1</hikari.version>
 		<selenium.version>1.0.1</selenium.version>
+		<h2.version>1.4.200</h2.version>
 	</properties>
 
 	<dependencies>
@@ -102,7 +103,14 @@
 			<version>${selenium.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.version}</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -173,7 +181,15 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>selenium-maven-plugin</artifactId>
-					<version>1.0.1</version>
+					<version>${selenium.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.6.0</version>
+					<configuration>
+						<mainClass>com.zetcode.JavaSeH2Server</mainClass>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>

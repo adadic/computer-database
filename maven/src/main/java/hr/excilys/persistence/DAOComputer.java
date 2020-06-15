@@ -135,7 +135,6 @@ public class DAOComputer {
 		preparedStatement.setTimestamp(3, discontinued);
 
 		if (company_id < 1) {
-
 			preparedStatement.setNull(4, Types.BIGINT);
 		} else {
 			preparedStatement.setLong(4, company_id);

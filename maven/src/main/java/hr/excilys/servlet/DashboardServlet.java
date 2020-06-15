@@ -18,7 +18,6 @@ import java.sql.SQLException;
 public class DashboardServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private static final String PAGEERROR = "-1";
 	private static final String ARRAYEMPTY = "-2";
 	private static final String DELETEERROR = "-3";
 	private static final String DELETESUCCESS = "1";
@@ -43,12 +42,8 @@ public class DashboardServlet extends HttpServlet {
 		page = dashboardService.paginate(dtoPagination);
 
 		request.setAttribute("ok", request.getParameter("ok"));
-		if(page.hasError()) {
-			request.setAttribute("msg", PAGEERROR);
-		}
-		else {
-			request.setAttribute("msg", request.getParameter("msg"));
-		}
+		request.setAttribute("msg", request.getParameter("msg"));
+
 		request.setAttribute("page", page.getPage());
 		request.setAttribute("search", page.getSearch());
 		request.setAttribute("max", page.getMaxPage());
