@@ -11,7 +11,7 @@ import hr.excilys.model.Computer;
 
 public class ComputerMapper {
 
-	public Computer getComputer(ResultSet resultSet) throws SQLException {
+	public static Computer getComputer(ResultSet resultSet) throws SQLException {
 
 		return new Computer.ComputerBuilder(resultSet.getString("computer.name")).id(resultSet.getLong("computer.id"))
 				.introduced(resultSet.getTimestamp("computer.introduced"))

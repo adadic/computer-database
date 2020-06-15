@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import hr.excilys.dto.DTOPagination;
+import hr.excilys.mapper.ArrayMapper;
 import hr.excilys.model.Pagination;
 import hr.excilys.service.DashboardService;
 
@@ -17,6 +18,10 @@ import java.sql.SQLException;
 public class DashboardServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private static final String PAGEERROR = "-1";
+	private static final String ARRAYEMPTY = "-2";
+	private static final String DELETEERROR = "-3";
+	private static final String DELETESUCCESS = "1";
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 	private DashboardService dashboardService;
 	private Pagination page;
@@ -38,6 +43,12 @@ public class DashboardServlet extends HttpServlet {
 		page = dashboardService.paginate(dtoPagination);
 
 		request.setAttribute("ok", request.getParameter("ok"));
+		if(page.hasError()) {
+			request.setAttribute("msg", PAGEERROR);
+		}
+		else {
+			request.setAttribute("msg", request.getParameter("msg"));
+		}
 		request.setAttribute("page", page.getPage());
 		request.setAttribute("search", page.getSearch());
 		request.setAttribute("max", page.getMaxPage());
@@ -53,22 +64,15 @@ public class DashboardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String selected = request.getParameter("selection");
-
 		try {
-			if (!dashboardService.deleteComputer(selected)) {
-				request.setAttribute("errorLog", "Computer not modify");
+			if (!dashboardService.deleteComputer(ArrayMapper.stringTransform(request.getParameter("selection")))) {
+				request.setAttribute("msg", ARRAYEMPTY);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request, response);
 			}
 		} catch (NumberFormatException | SQLException e) {
-			request.setAttribute("errorLog", "Computer not modify");
+			request.setAttribute("msg", DELETEERROR);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request, response);
 		}
-
-		request.setAttribute("page", page.getPage());
-		request.setAttribute("search", page.getSearch());
-		request.setAttribute("max", page.getMaxPage());
-		request.setAttribute("lines", page.getLines());
-		request.setAttribute("size", page.getCount());
-		response.sendRedirect("dashboard?ok=1");
+		response.sendRedirect("?msg=" + DELETESUCCESS);
 	}
 }

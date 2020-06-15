@@ -8,6 +8,7 @@
 <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="./css/font-awesome.css" rel="stylesheet" media="screen">
 <link href="./css/main.css" rel="stylesheet" media="screen">
+<link rel="shortcut icon" href="#">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="./js/function.js"></script>
@@ -21,6 +22,13 @@
 	</header>
 
 	<section id="main">
+		<c:if test="${msg == -1}">
+			<div class="container">
+				<div class="alert alert-danger">
+					Couldn't add computer, check your fields<br />
+				</div>
+			</div>
+		</c:if>
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-8 col-xs-offset-2 box">
@@ -47,7 +55,7 @@
 								<label for="companyId">Company</label> <select
 									class="form-control" id="companyId" name="companyId">
 									<option value="0">--</option>
-									
+
 									<c:forEach items="${companies}" var="company">
 										<option value="${company.id}">${company.name}</option>
 									</c:forEach>
@@ -64,10 +72,5 @@
 			</div>
 		</div>
 	</section>
-	<c:if test="${not empty errorLog}">
-		<script>
-			alert("${errorLog}");
-		</script>
-	</c:if>
 </body>
 </html>

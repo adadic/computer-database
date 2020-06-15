@@ -8,6 +8,7 @@
 <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="./css/font-awesome.css" rel="stylesheet" media="screen">
 <link href="./css/main.css" rel="stylesheet" media="screen">
+<link rel="shortcut icon" href="#">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="./js/function.js"></script>
@@ -20,6 +21,13 @@
 		</div>
 	</header>
 	<section id="main">
+		<c:if test="${msg == -1}">
+			<div class="container">
+				<div class="alert alert-danger">
+					Couldn't update computer's field, check them! <br />
+				</div>
+			</div>
+		</c:if>
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-8 col-xs-offset-2 box">

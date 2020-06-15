@@ -19,6 +19,8 @@ import hr.excilys.service.EditService;
 public class EditComputerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private static final String UPDATEERROR = "-1";
+	private static final String UPDATESUCCESS = "3";
 	private EditService editService;
 	private CommunService communService;
 
@@ -54,10 +56,10 @@ public class EditComputerServlet extends HttpServlet {
 				.company(new DTOCompany.DTOCompanyBuilder(request.getParameter("companyId"), "none").build()).build();
 
 		if (!editService.editComputer(computer)) {
-			request.setAttribute("errorLog", "Computer(s) not deleted");
+			request.setAttribute("msg", UPDATEERROR);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/editComputer.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("dashboard");
+			response.sendRedirect("dashboard?msg=" + UPDATESUCCESS);
 		}
 	}
 }
