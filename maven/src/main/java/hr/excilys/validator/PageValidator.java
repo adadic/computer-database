@@ -1,5 +1,8 @@
 package hr.excilys.validator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import hr.excilys.dto.DTOPagination;
 import hr.excilys.model.Pagination;
 
@@ -11,6 +14,7 @@ public class PageValidator {
 	public static final int INITDIRECTION = 0;
 	public static final int DIRECTION = 1;
 	public static final boolean ERROR = true;
+	private final static Logger LOGGER = LoggerFactory.getLogger(PageValidator.class);
 
 	public static boolean checkString(DTOPagination dtoPage) {
 
@@ -19,9 +23,15 @@ public class PageValidator {
 			@SuppressWarnings("unused")
 			int x = 1 / Integer.valueOf(dtoPage.getLines());
 			Integer.valueOf(dtoPage.getDirection());
+			LOGGER.info("Page can be created");
 
 			return true;
-		} catch (NumberFormatException | ArithmeticException e) {
+		} catch (NumberFormatException nfe) {
+			LOGGER.error("A String was given instead of number");
+
+			return false;
+		} catch (ArithmeticException arite) {
+			LOGGER.error("Lines equals 0, can't do that!");
 
 			return false;
 		}

@@ -8,12 +8,16 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import hr.excilys.mapper.ComputerMapper;
 import hr.excilys.model.Computer;
 
 public class DAOComputer {
 
 	private static final int ASC = 1;
+	private final static Logger LOGGER = LoggerFactory.getLogger(DAOComputer.class);
 
 	public ArrayList<Computer> getComputers() throws SQLException {
 
@@ -27,8 +31,9 @@ public class DAOComputer {
 				computers.add(ComputerMapper.getComputer(requestComputers));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Cannot get all Computers, probleme in the Query");
 		}
+		LOGGER.info("All Computers are here");
 
 		return computers;
 	}
@@ -47,8 +52,10 @@ public class DAOComputer {
 				computers.add(ComputerMapper.getComputer(requestComputers));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Cannot get Computers at {} page and with {} lines, probleme in the Query maybe search -> {}",
+					page, lines, search);
 		}
+		LOGGER.info("Computer at {} page and with {} lines fetched (search -> {})", page, lines, search);
 
 		return computers;
 	}
@@ -71,12 +78,14 @@ public class DAOComputer {
 			ResultSet requestComputer = db.query(preparedStatement);
 
 			if (requestComputer.next()) {
+				LOGGER.info("Computer with id = {} : Found", id);
 
 				return Optional.of(ComputerMapper.getComputer(requestComputer));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Computer with id = {} : Probleme in Query", id);
 		}
+		LOGGER.info("Computer with id = {} : NOT Found", id);
 
 		return Optional.empty();
 	}
@@ -89,7 +98,7 @@ public class DAOComputer {
 
 			return preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Computer NOT added, probleme in query : Check fields");
 
 			return 0;
 		}
@@ -120,7 +129,7 @@ public class DAOComputer {
 
 			return preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Computer NOT updated, probleme in query : Check fields");
 
 			return 0;
 		}
@@ -153,7 +162,7 @@ public class DAOComputer {
 
 			return preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Computer NOT deleted, probleme in query");
 
 			return 0;
 		}
@@ -169,13 +178,15 @@ public class DAOComputer {
 			ResultSet resultSet = db.query(preparedStatement);
 
 			if (resultSet.next()) {
+				LOGGER.info("Count has been made with no probleme");
 
 				return resultSet.getInt("number");
 			}
+			LOGGER.info("ResultSet Empty");
 
 			return -1;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Probleme in Query with search = {}", search);
 
 			return -1;
 		}
@@ -194,8 +205,10 @@ public class DAOComputer {
 			while (requestComputers.next()) {
 				computers.add(ComputerMapper.getComputer(requestComputers));
 			}
+			LOGGER.info("Computer Sort Done");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Probleme in query, check fields : page = {}, lines = {}, search = {}, order = {}, direct = {}",
+					page, lines, search, order, direct);
 		}
 
 		return computers;
@@ -231,6 +244,8 @@ public class DAOComputer {
 
 		if (search == null) {
 			search = "%";
+		} else if (search.contains("%")) {
+			search = search.replace("%", "\\%");
 		} else {
 			search = "%" + search + "%";
 		}

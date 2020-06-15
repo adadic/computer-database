@@ -24,7 +24,7 @@ public class DbUnit extends DBTestCase {
 
 	protected IDataSet getDataSet() throws Exception {
 		
-		return new FlatXmlDataSetBuilder().build(new FileInputStream("src/main/ressources/companies.xml"));
+		return new FlatXmlDataSetBuilder().build(new FileInputStream("src/main/resources/companies.xml"));
 	}
 
 	protected DatabaseOperation getSetUpOperation() throws Exception {

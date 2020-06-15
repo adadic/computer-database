@@ -7,11 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import hr.excilys.mapper.CompanyMapper;
 import hr.excilys.model.Company;
 
 public class DAOCompany {
 
+	private final static Logger LOGGER = LoggerFactory.getLogger(DAOCompany.class);
 	public ArrayList<Company> getCompanies() throws SQLException {
 
 		ArrayList<Company> companies = new ArrayList<>();
@@ -24,8 +28,9 @@ public class DAOCompany {
 			while (requestCompanies.next()) {
 				companies.add(CompanyMapper.getCompany(requestCompanies));
 			}
+			LOGGER.info("Companies Fetched");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Cannot get all Copanies, probleme with the database");
 
 		}
 
@@ -40,11 +45,13 @@ public class DAOCompany {
 			ResultSet company = db.query(preparedStatement);
 
 			if (company.next()) {
+				LOGGER.info("Company(id : {}) fetched", id);
 
 				return Optional.of(new Company(company.getLong("id"), company.getString("name")));
 			}
+			LOGGER.info("No company by id = {}", id);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Cannot get Company by id = {}", id);
 
 		}
 
@@ -65,10 +72,11 @@ public class DAOCompany {
 			preparedStatement.executeUpdate();
             conn.commit();
             conn.setAutoCommit(true);
+			LOGGER.info("Computer Sort Done");
             
 			return 1;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error("Probleme in query with id : {}", id);
 
 			return 0;
 		}
