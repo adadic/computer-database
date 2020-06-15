@@ -10,21 +10,19 @@ public final class MysqlConnect implements AutoCloseable {
 
 	private Connection conn;
 	private static MysqlConnect db;
-	private final static String DRIVER = "com.mysql.cj.jdbc.Driver";
 
 	private MysqlConnect() {
-
-		try {
-			Class.forName(DRIVER).newInstance();
-			this.conn = DataSource.getConnection();
-		} catch (Exception sqle) {
-			sqle.printStackTrace();
-		}
 	}
 
 	public Connection getConn() {
-
-		return this.conn;
+		
+		try {
+			conn = DataSource.getConnection();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		
+		return conn;
 	}
 
 	public static synchronized MysqlConnect getDbCon() {
