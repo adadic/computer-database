@@ -1,13 +1,13 @@
 package hr.excilys.persistence;
 
-import static org.junit.Assert.*;
-
 import java.sql.SQLException;
 
 import org.junit.Test;
 
-public class DAOCompanyTest {
+import junit.framework.TestCase;
 
+public class DAOCompanyTest extends TestCase {
+	
 	@Test
 	public void testGetCompanies() {
 		fail("Not yet implemented");

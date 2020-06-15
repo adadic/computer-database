@@ -29,40 +29,25 @@ public class PageValidator {
 
 	public static void checkPage(Pagination page) {
 
-		if (testPage(page)) {
-			page.setHasError(ERROR);
-		}
-	}
-
-	private static boolean testPage(Pagination page) {
-
-		boolean error = false;
 		if (page.getLines() < MINLINE) {
 			page.setLines(MINLINE);
 			page.setMaxPage(page.getCount() / MINLINE);
-			error = true;
 		}
 		if (page.getLines() > MAXLINE) {
 			page.setLines(MAXLINE);
 			page.setMaxPage(page.getCount() / MAXLINE);
-			error = true;
 		}
 
 		if (page.getPage() < MINPAGE) {
 			page.setPage(MINPAGE);
-			error = true;
 		}
 		if (page.getPage() > page.getMaxPage()) {
 			page.setPage(page.getMaxPage());
-			error = true;
 		}
 
 		if (page.getDirection() != INITDIRECTION && page.getDirection() != DIRECTION) {
 			page.setDirection(INITDIRECTION);
-			error = true;
 		}
-
-		return error;
 	}
 
 }

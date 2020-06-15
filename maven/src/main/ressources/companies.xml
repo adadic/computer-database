@@ -2,47 +2,47 @@
 <!DOCTYPE dataset>
 <dataset>
 
-	<company id="1" name="Apple Inc."/>
-	<company id="2" name="Thinking Machines"/>
-	<company id="3" name="RCA"/>
-	<company id="4" name="Netronics"/>
-	<company id="5" name="Tandy Corporation"/>
-	<company id="6" name="Commodore International"/>
-	<company id="7" name="MOS Technology"/>
-	<company id="8" name="Micro Instrumentation and Telemetry Systems"/>
-	<company id="9" name="IMS Associates, Inc."/>
-	<company id="10" name="Digital Equipment Corporation"/>
-	<company id="11" name="Lincoln Laboratory"/>
-	<company id="12" name="Moore School of Electrical Engineering"/>
-	<company id="13" name="IBM"/>
-	<company id="14" name="Amiga Corporation"/>
-	<company id="15" name="Canon"/>
-	<company id="16" name="Nokia"/>
-	<company id="17" name="Sony"/>
-	<company id="18" name="OQO"/>
-	<company id="19" name="NeXT"/>
-	<company id="20" name="Atari"/>
-	<company id="22" name="Acorn computer"/>
-	<company id="23" name="Timex Sinclair"/>
-	<company id="24" name="Nintendo"/>
-	<company id="25" name="Sinclair Research Ltd"/>
-	<company id="26" name="Xerox"/>
-	<company id="27" name="Hewlett-Packard"/>
-	<company id="28" name="Zemmix"/>
-	<company id="29" name="ACVS"/>
-	<company id="30" name="Sanyo"/>
-	<company id="31" name="Cray"/>
-	<company id="32" name="Evans &amp; Sutherland"/>
-	<company id="33" name="E.S.R. Inc."/>
-	<company id="34" name="OMRON"/>
-	<company id="35" name="BBN Technologies"/>
-	<company id="36" name="Lenovo Group"/>
-	<company id="37" name="ASUS"/>
-	<company id="38" name="Amstrad"/>
-	<company id="39" name="Sun Microsystems"/>
-	<company id="40" name="Texas Instruments"/>
-	<company id="41" name="HTC Corporation"/>
-	<company id="42" name="Research In Motion"/>
-	<company id="43" name="Samsung Electronics"/>
+	<COMPANY id="1" name="Apple Inc."/>
+	<COMPANY id="2" name="Thinking Machines"/>
+	<COMPANY id="3" name="RCA"/>
+	<COMPANY id="4" name="Netronics"/>
+	<COMPANY id="5" name="Tandy Corporation"/>
+	<COMPANY id="6" name="Commodore International"/>
+	<COMPANY id="7" name="MOS Technology"/>
+	<COMPANY id="8" name="Micro Instrumentation and Telemetry Systems"/>
+	<COMPANY id="9" name="IMS Associates, Inc."/>
+	<COMPANY id="10" name="Digital Equipment Corporation"/>
+	<COMPANY id="11" name="Lincoln Laboratory"/>
+	<COMPANY id="12" name="Moore School of Electrical Engineering"/>
+	<COMPANY id="13" name="IBM"/>
+	<COMPANY id="14" name="Amiga Corporation"/>
+	<COMPANY id="15" name="Canon"/>
+	<COMPANY id="16" name="Nokia"/>
+	<COMPANY id="17" name="Sony"/>
+	<COMPANY id="18" name="OQO"/>
+	<COMPANY id="19" name="NeXT"/>
+	<COMPANY id="20" name="Atari"/>
+	<COMPANY id="22" name="Acorn computer"/>
+	<COMPANY id="23" name="Timex Sinclair"/>
+	<COMPANY id="24" name="Nintendo"/>
+	<COMPANY id="25" name="Sinclair Research Ltd"/>
+	<COMPANY id="26" name="Xerox"/>
+	<COMPANY id="27" name="Hewlett-Packard"/>
+	<COMPANY id="28" name="Zemmix"/>
+	<COMPANY id="29" name="ACVS"/>
+	<COMPANY id="30" name="Sanyo"/>
+	<COMPANY id="31" name="Cray"/>
+	<COMPANY id="32" name="Evans &amp; Sutherland"/>
+	<COMPANY id="33" name="E.S.R. Inc."/>
+	<COMPANY id="34" name="OMRON"/>
+	<COMPANY id="35" name="BBN Technologies"/>
+	<COMPANY id="36" name="Lenovo Group"/>
+	<COMPANY id="37" name="ASUS"/>
+	<COMPANY id="38" name="Amstrad"/>
+	<COMPANY id="39" name="Sun Microsystems"/>
+	<COMPANY id="40" name="Texas Instruments"/>
+	<COMPANY id="41" name="HTC Corporation"/>
+	<COMPANY id="42" name="Research In Motion"/>
+	<COMPANY id="43" name="Samsung Electronics"/>
 
 </dataset>

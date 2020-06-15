@@ -12,7 +12,6 @@ public class Pagination {
 	private String search;
 	private String order;
 	private int direction;
-	private boolean hasError;
 
 	public Pagination() {
 
@@ -30,7 +29,6 @@ public class Pagination {
 		this.maxPage = builder.count / builder.lines + 1;
 		this.order = builder.order;
 		this.direction = builder.direction;
-		this.hasError = builder.hasError;
 	}
 
 	public int getLines() {
@@ -98,16 +96,6 @@ public class Pagination {
 		this.direction = direction;
 	}
 
-	public void setHasError(boolean hasError) {
-
-		this.hasError = hasError;
-	}
-	
-	public boolean hasError() {
-		
-		return this.hasError;
-	}
-
 	public static class PaginationBuilder {
 
 		private int lines;
@@ -116,7 +104,6 @@ public class Pagination {
 		private String search;
 		private String order;
 		private int direction;
-		private boolean hasError;
 
 		public PaginationBuilder(int lines, int page, String search) {
 
@@ -147,13 +134,6 @@ public class Pagination {
 		public PaginationBuilder direction(int direction) {
 
 			this.direction = direction;
-
-			return this;
-		}
-
-		public PaginationBuilder hasError(boolean hasError) {
-
-			this.hasError = hasError;
 
 			return this;
 		}
