@@ -5,5 +5,5 @@
 > So donn't be shy and **read** it
 
 ## IDE
-![Eclipse, Logo](/img/eclipse.png)
-![IntelliJ, Logo](/img/intellij.png)
+![Eclipse, Logo](/img/eclipse.png =100x100)
+![IntelliJ, Logo](/img/intellij.png =100x100)
