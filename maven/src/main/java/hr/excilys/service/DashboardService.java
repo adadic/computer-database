@@ -2,7 +2,6 @@ package hr.excilys.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,6 +13,7 @@ import hr.excilys.model.Computer;
 import hr.excilys.model.Pagination;
 import hr.excilys.persistence.DAOComputer;
 import hr.excilys.servlet.DashboardServlet;
+import hr.excilys.validator.PageValidator;
 
 public class DashboardService {
 
@@ -78,25 +78,33 @@ public class DashboardService {
 		}
 	}
 
-	public boolean deleteComputer(String selected) throws NumberFormatException, SQLException {
+	public boolean deleteComputer(List<String> selected) throws NumberFormatException, SQLException {
 
-		String str[] = selected.split(",");
-		List<String> list = new ArrayList<String>();
-		list = Arrays.asList(str);
-
-		if (list.isEmpty()) {
+		if (selected.isEmpty()) {
 
 			return false;
 		}
-		for (String element : list) {
-			daoComputer.deleteComputer(Long.valueOf(element));
-		}
+
+		selected.stream().forEach(e -> {
+			try {
+				daoComputer.deleteComputer(Long.valueOf(e));
+			} catch (NumberFormatException e1) {
+
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+
+				e1.printStackTrace();
+			}
+		});
 
 		return true;
 	}
 
 	public Pagination paginate(DTOPagination dtoPagination) {
-
-		return PaginationMapper.getPage(dtoPagination, getCountComputer(dtoPagination.getSearch()));
+		
+		Pagination page = PaginationMapper.getPage(dtoPagination, getCountComputer(dtoPagination.getSearch()));
+		PageValidator.checkPage(page);
+		
+		return page;
 	}
 }

@@ -24,8 +24,58 @@
 	</header>
 
 	<section id="main">
+		<c:if test="${not empty msg}">
+			<c:choose>
+				<c:when test="${msg == -1}">
+					<div class="container">
+						<div class="alert alert-danger">
+							You were redirected to the most likable URL you were trying to
+							get! <br /> (Don't trust the URL above) <br />
+						</div>
+					</div>
+				</c:when>
+				<c:when test="${msg == -2}">
+					<div class="container">
+						<div class="alert alert-danger">
+							You havn't selected Computers that you want to delete <br />
+						</div>
+					</div>
+				</c:when>
+				<c:when test="${msg == -3}">
+					<div class="container">
+						<div class="alert alert-danger">
+							Probleme in response format from Web page to Server. Try again ! <br />
+						</div>
+					</div>
+				</c:when>
+				<c:when test="${msg == 1}">
+					<div class="container">
+						<div class="success">
+							Computer(s) deleted <br />
+						</div>
+					</div>
+				</c:when>
+				<c:when test="${msg == 2}">
+					<div class="container">
+						<div class="success">
+							Computer added <br />
+						</div>
+					</div>
+				</c:when>
+				<c:when test="${msg == 3}">
+					<div class="container">
+						<div class="success">
+							Computer Updated <br />
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+			</c:choose>
+
+		</c:if>
 		<div class="container">
-			<h1 id="homeTitle">${size} Computers found</h1>
+			<h1 id="homeTitle">${size}Computersfound</h1>
 			<div id="actions" class="form-horizontal">
 				<div class="pull-left">
 					<form id="searchForm" action="" method="GET" class="form-inline">
@@ -244,19 +294,9 @@
 			</div>
 		</div>
 	</footer>
-	<c:if test="${not empty errorLog}">
-		<script>
-	         window.location.replace("/maven/dashboard?");
-	    </script>
-	</c:if>
 	<c:if test="${not empty search}">
 		<script>
 	         $('#searchbox').val("${search}");
-	    </script>
-	</c:if>
-	<c:if test="${not empty ok}">
-		<script>
-	         alert("Computer(s) Deleted");
 	    </script>
 	</c:if>
 	<script>

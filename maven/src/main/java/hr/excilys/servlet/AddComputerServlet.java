@@ -17,6 +17,8 @@ import hr.excilys.service.CommunService;
 public class AddComputerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private static final int ADDSUCCESS = 2;
+	private static final int ADDERROR = -1;
 	private AddService addService;
 	private CommunService serviceUI;
 
@@ -44,10 +46,10 @@ public class AddComputerServlet extends HttpServlet {
 				.company(new DTOCompany.DTOCompanyBuilder(request.getParameter("companyId"), "none").build()).build();
 
 		if (!addService.addComputer(computer)) {
-			request.setAttribute("errorLog", "Computer not added");
+			request.setAttribute("msg", ADDERROR);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/addComputer.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("dashboard");
+			response.sendRedirect("dashboard?msg=" + ADDSUCCESS);
 		}
 	}
 }

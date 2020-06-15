@@ -14,12 +14,6 @@ import hr.excilys.model.Computer;
 public class DAOComputer {
 
 	private static final int ASC = 1;
-	private ComputerMapper computerMapper;
-
-	public DAOComputer() {
-
-		computerMapper = new ComputerMapper();
-	}
 
 	public ArrayList<Computer> getComputers() throws SQLException {
 
@@ -30,7 +24,7 @@ public class DAOComputer {
 			ResultSet requestComputers = db.query(preparedStatement);
 
 			while (requestComputers.next()) {
-				computers.add(computerMapper.getComputer(requestComputers));
+				computers.add(ComputerMapper.getComputer(requestComputers));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,7 +44,7 @@ public class DAOComputer {
 			ResultSet requestComputers = db.query(preparedStatement);
 
 			while (requestComputers.next()) {
-				computers.add(computerMapper.getComputer(requestComputers));
+				computers.add(ComputerMapper.getComputer(requestComputers));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -78,7 +72,7 @@ public class DAOComputer {
 
 			if (requestComputer.next()) {
 
-				return Optional.of(computerMapper.getComputer(requestComputer));
+				return Optional.of(ComputerMapper.getComputer(requestComputer));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -166,21 +160,6 @@ public class DAOComputer {
 		}
 	}
 
-	public int deleteComputerCompany(long id) throws SQLException {
-
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			PreparedStatement preparedStatement = db.getConn()
-					.prepareStatement(EnumQuery.DELETECOMPUTERCOMPANY.getQuery());
-			preparedStatement.setLong(1, id);
-
-			return preparedStatement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-
-			return 0;
-		}
-	}
-
 	public int countComputer(String search) throws SQLException {
 
 		search = checkSearch(search);
@@ -214,7 +193,7 @@ public class DAOComputer {
 			ResultSet requestComputers = db.query(preparedStatement);
 
 			while (requestComputers.next()) {
-				computers.add(computerMapper.getComputer(requestComputers));
+				computers.add(ComputerMapper.getComputer(requestComputers));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

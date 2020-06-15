@@ -2,30 +2,26 @@ package hr.excilys.mapper;
 
 import hr.excilys.dto.DTOPagination;
 import hr.excilys.model.Pagination;
+import hr.excilys.validator.PageValidator;
 
 public class PaginationMapper {
 
 	private static final int INITPAGE = 1;
 	private static final int INITLINES = 10;
 	private static final int INITZERO = 0;
+	private static final boolean HASERROR = true;
 
 	public static Pagination getPage(DTOPagination dtoPagination, int count) {
 
-		int page = INITPAGE;
-		int lines = INITLINES;
-		int direction = INITZERO;
+		if (PageValidator.checkString(dtoPagination)) {
 
-		if (dtoPagination.getPage() != null) {
-			page = Integer.valueOf(dtoPagination.getPage());
-		}
-		if (dtoPagination.getLines() != null) {
-			lines = Integer.valueOf(dtoPagination.getLines());
-		}
-		if (dtoPagination.getDirection() != null) {
-			direction = Integer.valueOf(dtoPagination.getDirection());
+			return new Pagination.PaginationBuilder(Integer.valueOf(dtoPagination.getLines()),
+					Integer.valueOf(dtoPagination.getPage()), dtoPagination.getSearch()).count(count)
+							.order(dtoPagination.getOrder()).direction(Integer.valueOf(dtoPagination.getDirection()))
+							.build();
 		}
 
-		return new Pagination.PaginationBuilder(lines, page, dtoPagination.getSearch()).count(count)
-				.order(dtoPagination.getOrder()).direction(direction).build();
+		return new Pagination.PaginationBuilder(INITLINES, INITPAGE, dtoPagination.getSearch()).count(count)
+				.order(dtoPagination.getOrder()).direction(INITZERO).hasError(HASERROR).build();
 	}
 }

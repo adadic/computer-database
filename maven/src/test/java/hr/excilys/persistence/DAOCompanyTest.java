@@ -2,6 +2,8 @@ package hr.excilys.persistence;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import org.junit.Test;
 
 public class DAOCompanyTest {
@@ -17,8 +19,9 @@ public class DAOCompanyTest {
 	}
 
 	@Test
-	public void testDeleteCompany() {
-		fail("Not yet implemented");
+	public void testDeleteCompany() throws SQLException {
+		DAOCompany daoCompany = new DAOCompany();
+		assertEquals(1, daoCompany.deleteCompany(100));
 	}
 
 }

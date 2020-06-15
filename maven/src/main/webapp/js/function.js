@@ -18,9 +18,9 @@ function toDate(dateStr) {
 
 function sortTable(str, direction, lines, search){
 	if (typeof search === "undefined") {
-		window.location.replace("?order=" + str + "&direction=" + direction + "&lines=" + lines + "&search=");
+		window.location.replace("?order=" + str + "&page=1&direction=" + direction + "&lines=" + lines + "&search=");
 	}
 	else{
-		window.location.replace("?order=" + str + "&direction=" + direction + "&lines=" + lines + "&search=" + search);
+		window.location.replace("?order=" + str + "&page=1&direction=" + direction + "&lines=" + lines + "&search=" + search);
 	}
 }
