@@ -24,16 +24,16 @@ public final class MysqlConnect implements AutoCloseable {
 
 	public Connection getConn() {
 
-		return conn;
+		return this.conn;
 	}
 
 	public static synchronized MysqlConnect getDbCon() {
 
-		if (db == null) {
-			db = new MysqlConnect();
+		if (MysqlConnect.db == null) {
+			MysqlConnect.db = new MysqlConnect();
 		}
 
-		return db;
+		return MysqlConnect.db;
 	}
 
 	public ResultSet query(PreparedStatement query) throws SQLException {
@@ -46,10 +46,10 @@ public final class MysqlConnect implements AutoCloseable {
 	@Override
 	public void close() throws SQLException {
 
-		if (conn != null) {
-			conn.close();
-			conn = null;
-			db = null;
+		if (this.conn != null) {
+			this.conn.close();
+			this.conn = null;
+			MysqlConnect.db = null;
 		}
 	}
 
