@@ -16,6 +16,7 @@ import hr.excilys.model.Company;
 public class DAOCompany {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(DAOCompany.class);
+
 	public ArrayList<Company> getCompanies() throws SQLException {
 
 		ArrayList<Company> companies = new ArrayList<>();
@@ -61,7 +62,7 @@ public class DAOCompany {
 	public int deleteCompany(long id) throws SQLException {
 
 		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			
+
 			Connection conn = db.getConn();
 			conn.setAutoCommit(false);
 			PreparedStatement preparedStatement = conn.prepareStatement(EnumQuery.DELETECOMPUTERCOMPANY.getQuery());
@@ -70,10 +71,10 @@ public class DAOCompany {
 			preparedStatement = conn.prepareStatement(EnumQuery.DELETECOMPANY.getQuery());
 			preparedStatement.setLong(1, id);
 			preparedStatement.executeUpdate();
-            conn.commit();
-            conn.setAutoCommit(true);
+			conn.commit();
+			conn.setAutoCommit(true);
 			LOGGER.info("Computer Sort Done");
-            
+
 			return 1;
 		} catch (SQLException e) {
 			LOGGER.error("Probleme in query with id : {}", id);

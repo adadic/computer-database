@@ -26,28 +26,6 @@
 	<section id="main">
 		<c:if test="${not empty msg}">
 			<c:choose>
-				<c:when test="${msg == -1}">
-					<div class="container">
-						<div class="alert alert-danger">
-							You were redirected to the most likable URL you were trying to
-							get! <br /> (Don't trust the URL above) <br />
-						</div>
-					</div>
-				</c:when>
-				<c:when test="${msg == -2}">
-					<div class="container">
-						<div class="alert alert-danger">
-							You havn't selected Computers that you want to delete <br />
-						</div>
-					</div>
-				</c:when>
-				<c:when test="${msg == -3}">
-					<div class="container">
-						<div class="alert alert-danger">
-							Probleme in response format from Web page to Server. Try again ! <br />
-						</div>
-					</div>
-				</c:when>
 				<c:when test="${msg == 1}">
 					<div class="container">
 						<div class="success">
@@ -66,6 +44,29 @@
 					<div class="container">
 						<div class="success">
 							Computer Updated <br />
+						</div>
+					</div>
+				</c:when>
+				<c:when test="${msg == -1}">
+					<div class="container">
+						<div class="alert alert-danger">
+							You were redirected to the most likable URL you were trying to
+							get! <br /> (Don't trust the URL above) <br />
+						</div>
+					</div>
+				</c:when>
+				<c:when test="${msg == -2}">
+					<div class="container">
+						<div class="alert alert-danger">
+							You havn't selected Computers that you want to delete <br />
+						</div>
+					</div>
+				</c:when>
+				<c:when test="${msg == -3}">
+					<div class="container">
+						<div class="alert alert-danger">
+							Probleme in response format from Web page to Server. Try again !
+							<br />
 						</div>
 					</div>
 				</c:when>

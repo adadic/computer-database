@@ -3,11 +3,14 @@ package hr.excilys.service;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import hr.excilys.dto.DTOComputer;
 import hr.excilys.mapper.ComputerMapper;
 import hr.excilys.model.Computer;
 import hr.excilys.persistence.DAOComputer;
 
+@Service("addService")
 public class AddService {
 
 	private DAOComputer daoComputer;

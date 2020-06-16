@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import hr.excilys.dto.DTOPagination;
 import hr.excilys.mapper.PaginationMapper;
 import hr.excilys.model.Computer;
@@ -11,6 +13,7 @@ import hr.excilys.model.Pagination;
 import hr.excilys.persistence.DAOComputer;
 import hr.excilys.validator.PageValidator;
 
+@Service("dashboardService")
 public class DashboardService {
 
 	private final static int ASC = 1;
@@ -25,10 +28,7 @@ public class DashboardService {
 	}
 
 	public ArrayList<Computer> getComputersRows(Pagination page) {
-
-		DAOComputer daoComputer = new DAOComputer();
-
-		if (page.getOrder() != null) {
+		if (page.getOrder() != null && !page.getOrder().isEmpty()) {
 			if (page.getDirection() == 1) {
 				try {
 

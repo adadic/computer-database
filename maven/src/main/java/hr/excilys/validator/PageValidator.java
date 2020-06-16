@@ -27,7 +27,7 @@ public class PageValidator {
 
 			return true;
 		} catch (NumberFormatException nfe) {
-			LOGGER.error("A String was given instead of number");
+			LOGGER.error("A String was given instead of number, page : {} and lines : {}", dtoPage.getPage(), dtoPage.getLines());
 
 			return false;
 		} catch (ArithmeticException arite) {

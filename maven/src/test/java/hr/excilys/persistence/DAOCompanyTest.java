@@ -7,16 +7,6 @@ import org.junit.Test;
 import junit.framework.TestCase;
 
 public class DAOCompanyTest extends TestCase {
-	
-	@Test
-	public void testGetCompanies() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetCompanyById() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testDeleteCompany() throws SQLException {
