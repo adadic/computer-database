@@ -4,10 +4,12 @@ import java.sql.Timestamp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import hr.excilys.dto.DTOComputer;
 import hr.excilys.mapper.DateMapper;
 
+@Component
 public class ComputerValidator {
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(ComputerValidator.class);

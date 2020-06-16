@@ -13,7 +13,7 @@ import hr.excilys.model.Pagination;
 import hr.excilys.persistence.DAOComputer;
 import hr.excilys.validator.PageValidator;
 
-@Service("dashboardService")
+@Service
 public class DashboardService {
 
 	private final static int ASC = 1;

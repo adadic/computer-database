@@ -5,10 +5,12 @@ import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
@@ -16,7 +18,8 @@ import hr.excilys.model.Company;
 import hr.excilys.service.AddService;
 import hr.excilys.service.CommunService;
 
-@WebServlet("/addComputer")
+@Controller
+@RequestMapping(value = "/addComputer")
 public class AddComputerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

@@ -1,5 +1,8 @@
 package hr.excilys.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Pagination {
 
 	private static final int NBLINESTART = 10;

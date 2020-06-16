@@ -1,6 +1,7 @@
 package hr.excilys.persistence;
 
 import java.sql.PreparedStatement;
+import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import hr.excilys.mapper.ComputerMapper;
 import hr.excilys.model.Computer;
 
+@Repository
 public class DAOComputer {
 
 	private static final int ASC = 1;

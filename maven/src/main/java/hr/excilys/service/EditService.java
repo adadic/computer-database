@@ -10,7 +10,7 @@ import hr.excilys.mapper.ComputerMapper;
 import hr.excilys.model.Computer;
 import hr.excilys.persistence.DAOComputer;
 
-@Service("editService")
+@Service
 public class EditService {
 
 	private DAOComputer daoComputer;

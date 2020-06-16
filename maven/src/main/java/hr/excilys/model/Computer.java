@@ -2,6 +2,9 @@ package hr.excilys.model;
 
 import java.sql.Timestamp;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Computer {
 
 	private long id;

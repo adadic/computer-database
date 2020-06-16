@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import hr.excilys.model.Company;
 import hr.excilys.persistence.DAOCompany;
 
-@Service("communService")
+@Service
 public class CommunService {
 
 	private DAOCompany daoCompany;
