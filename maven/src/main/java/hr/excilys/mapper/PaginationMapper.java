@@ -1,9 +1,12 @@
 package hr.excilys.mapper;
 
+import org.springframework.stereotype.Component;
+
 import hr.excilys.dto.DTOPagination;
 import hr.excilys.model.Pagination;
 import hr.excilys.validator.PageValidator;
 
+@Component
 public class PaginationMapper {
 
 	private static final int INITPAGE = 1;

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/error403")
+@RequestMapping("/error403")
 public class Error403 extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

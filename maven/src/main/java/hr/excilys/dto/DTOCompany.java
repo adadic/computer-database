@@ -1,5 +1,8 @@
 package hr.excilys.dto;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class DTOCompany {
 
 	private String id;

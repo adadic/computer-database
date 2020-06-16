@@ -21,7 +21,7 @@ import hr.excilys.service.CommunService;
 import hr.excilys.service.EditService;
 
 @Controller
-@RequestMapping(value = "/editComputer")
+@RequestMapping("/editComputer")
 public class EditComputerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

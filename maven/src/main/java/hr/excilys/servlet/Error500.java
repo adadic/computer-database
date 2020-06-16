@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/error500")
+@RequestMapping("/error500")
 public class Error500 extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

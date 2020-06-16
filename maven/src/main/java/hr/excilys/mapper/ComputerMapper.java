@@ -5,11 +5,14 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import hr.excilys.dto.DTOComputer;
 import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
 import hr.excilys.validator.ComputerValidator;
 
+@Component
 public class ComputerMapper {
 
 	private static final long IDNULL = 0L;

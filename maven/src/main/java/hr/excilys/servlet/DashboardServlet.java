@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @Controller
-@RequestMapping(value = "/dashboard")
+@RequestMapping("/dashboard")
 public class DashboardServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
