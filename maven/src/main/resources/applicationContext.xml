@@ -19,11 +19,8 @@
 		<property name="name" value="communService" />
 	</bean>
 
-	<bean id="addService" class="hr.excilys.service.AddService">
-		<property name="name" value="addService" />
-	</bean>
-
-	<bean id="dashboardService" class="hr.excilys.service.DashboardService">
+	<bean id="dashboardService"
+		class="hr.excilys.service.DashboardService">
 		<property name="name" value="dashboardService" />
 	</bean>
 

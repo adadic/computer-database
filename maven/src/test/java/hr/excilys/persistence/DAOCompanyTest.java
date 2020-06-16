@@ -11,7 +11,7 @@ public class DAOCompanyTest extends TestCase {
 	@Test
 	public void testDeleteCompany() throws SQLException {
 		DAOCompany daoCompany = new DAOCompany();
-		assertEquals(0, daoCompany.deleteCompany(100));
+		assertEquals(1, daoCompany.deleteCompany(100));
 	}
 
 }

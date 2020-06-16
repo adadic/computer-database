@@ -28,10 +28,7 @@ public class DashboardService {
 	}
 
 	public ArrayList<Computer> getComputersRows(Pagination page) {
-
-		DAOComputer daoComputer = new DAOComputer();
-
-		if (page.getOrder() != null) {
+		if (page.getOrder() != null && !page.getOrder().isEmpty()) {
 			if (page.getDirection() == 1) {
 				try {
 
