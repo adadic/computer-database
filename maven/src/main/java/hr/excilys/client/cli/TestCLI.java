@@ -1,4 +1,4 @@
-package hr.excilys.ui;
+package hr.excilys.client.cli;
 
 import java.sql.SQLException;
 import java.util.InputMismatchException;
@@ -7,7 +7,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import hr.excilys.service.ServiceCLI;
+import hr.excilys.client.service.ServiceCLI;
 
 public class TestCLI {
 

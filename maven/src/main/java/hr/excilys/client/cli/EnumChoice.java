@@ -1,4 +1,4 @@
-package hr.excilys.ui;
+package hr.excilys.client.cli;
 
 public enum EnumChoice {
 	QUIT, COMPUTER_LIST, COMPANY_LIST, COMPUTER_DETAIL, CREATE_COMPUTER, UPDATE_COMPUTER, DELETE_COMPUTER, ERROR;

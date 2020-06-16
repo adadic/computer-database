@@ -1,4 +1,4 @@
-package hr.excilys.service;
+package hr.excilys.client.service;
 
 import java.sql.SQLException;
 import java.util.InputMismatchException;

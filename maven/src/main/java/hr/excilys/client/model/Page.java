@@ -1,11 +1,13 @@
-package hr.excilys.model;
+package hr.excilys.client.model;
 
 import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import hr.excilys.service.ServiceInputs;
+import hr.excilys.client.service.ServiceInputs;
+import hr.excilys.model.Company;
+import hr.excilys.model.Computer;
 
 public class Page {
 

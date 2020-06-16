@@ -1,4 +1,4 @@
-package hr.excilys.service;
+package hr.excilys.client.service;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -9,9 +9,9 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import hr.excilys.client.model.Page;
 import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
-import hr.excilys.model.Page;
 import hr.excilys.persistence.DAOCompany;
 import hr.excilys.persistence.DAOComputer;
 
