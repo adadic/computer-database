@@ -1,4 +1,4 @@
-package injection;
+package hr.excilys.injection;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
