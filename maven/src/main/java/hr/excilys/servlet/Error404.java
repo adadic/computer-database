@@ -19,7 +19,7 @@ public class Error404 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

@@ -41,7 +41,7 @@ public class EditComputerServlet extends HttpServlet {
 		} else {
 			throw new ServletException("communService unavailable");
 		}
-		
+
 		obj = servletContext.getAttribute("EditService");
 		if (obj instanceof EditService) {
 			EditService editService = (EditService) obj;

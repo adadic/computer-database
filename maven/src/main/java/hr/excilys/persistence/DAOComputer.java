@@ -209,7 +209,8 @@ public class DAOComputer {
 			}
 			LOGGER.info("Computer Sort Done");
 		} catch (SQLException e) {
-			LOGGER.error("Probleme in query, check fields : page = {}, lines = {}, search = {}, order = {}, direct = {}",
+			LOGGER.error(
+					"Probleme in query, check fields : page = {}, lines = {}, search = {}, order = {}, direct = {}",
 					page, lines, search, order, direct);
 		}
 

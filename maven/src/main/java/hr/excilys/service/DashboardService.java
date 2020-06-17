@@ -93,10 +93,10 @@ public class DashboardService {
 	}
 
 	public Pagination paginate(DTOPagination dtoPagination) {
-		
+
 		Pagination page = PaginationMapper.getPage(dtoPagination, getCountComputer(dtoPagination.getSearch()));
 		PageValidator.checkPage(page);
-		
+
 		return page;
 	}
 }

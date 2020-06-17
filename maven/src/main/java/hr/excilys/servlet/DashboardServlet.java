@@ -27,7 +27,7 @@ public class DashboardServlet extends HttpServlet {
 	private static final String DELETEERROR = "-3";
 	private static final String DELETESUCCESS = "1";
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -40,10 +40,10 @@ public class DashboardServlet extends HttpServlet {
 		if (obj instanceof DashboardService) {
 			DashboardService dashboardService = (DashboardService) obj;
 			Pagination page = dashboardService.paginate(dtoPagination);
-	
+
 			request.setAttribute("ok", request.getParameter("ok"));
 			request.setAttribute("msg", request.getParameter("msg"));
-	
+
 			request.setAttribute("page", page.getPage());
 			request.setAttribute("search", page.getSearch());
 			request.setAttribute("max", page.getMaxPage());
@@ -51,7 +51,7 @@ public class DashboardServlet extends HttpServlet {
 			request.setAttribute("size", page.getCount());
 			request.setAttribute("order", page.getOrder());
 			request.setAttribute("direction", page.getDirection());
-	
+
 			request.setAttribute("computers", dashboardService.getComputersRows(page));
 			this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request, response);
 		} else {

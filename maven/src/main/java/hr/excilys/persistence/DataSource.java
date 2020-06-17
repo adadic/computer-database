@@ -10,7 +10,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Component
 public class DataSource {
-	
+
 	private static HikariConfig config = new HikariConfig("/hikari.properties");
 	private static HikariDataSource ds = new HikariDataSource(config);
 
