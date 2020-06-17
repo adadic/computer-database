@@ -9,18 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
+import hr.excilys.main.SpringConfiguration;
 import hr.excilys.model.Company;
 import hr.excilys.service.AddService;
 import hr.excilys.service.CommunService;
 
-@Controller
-@RequestMapping(value = "/addComputer")
 @WebServlet("/addComputer")
 public class AddComputerServlet extends HttpServlet {
 
@@ -28,11 +27,9 @@ public class AddComputerServlet extends HttpServlet {
 	private static final int ADDSUCCESS = 2;
 	private static final int ADDERROR = -1;
 
-	@Autowired
-	private CommunService communService = new CommunService();
-
-	@Autowired
-	private AddService addService = new AddService();
+	static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+	private CommunService communService = applicationContext.getBean(CommunService.class);
+	private AddService addService = applicationContext.getBean(AddService.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

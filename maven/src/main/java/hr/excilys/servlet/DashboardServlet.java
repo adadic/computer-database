@@ -2,11 +2,11 @@ package hr.excilys.servlet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import hr.excilys.dto.DTOPagination;
+import hr.excilys.main.SpringConfiguration;
 import hr.excilys.mapper.ArrayMapper;
 import hr.excilys.model.Pagination;
 import hr.excilys.service.DashboardService;
@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@Controller
-@RequestMapping(value = "/dashboard")
 @WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
 
@@ -30,8 +28,8 @@ public class DashboardServlet extends HttpServlet {
 	private static final String DELETESUCCESS = "1";
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
 
-	@Autowired
-	private DashboardService dashboardService = new DashboardService();
+	static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+	private DashboardService dashboardService = applicationContext.getBean(DashboardService.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

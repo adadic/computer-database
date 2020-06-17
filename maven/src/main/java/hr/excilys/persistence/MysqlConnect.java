@@ -8,9 +8,7 @@ import java.sql.SQLException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public final class MysqlConnect implements AutoCloseable {
 
 	private Connection conn;

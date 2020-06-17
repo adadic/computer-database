@@ -18,9 +18,6 @@ public class EditService {
 	private DAOComputer daoComputer;
 
 	public EditService() {
-
-		super();
-		this.daoComputer = new DAOComputer();
 	}
 
 	public Optional<Computer> getComputerById(String id_computer) {

@@ -18,9 +18,6 @@ public class AddService {
 	private DAOComputer daoComputer;
 
 	public AddService() {
-
-		super();
-		this.daoComputer = new DAOComputer();
 	}
 
 	public boolean addComputer(DTOComputer dtoComputer) {

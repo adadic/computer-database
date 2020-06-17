@@ -16,9 +16,6 @@ public class CommunService {
 	private DAOCompany daoCompany;
 
 	public CommunService() {
-
-		super();
-		this.daoCompany = new DAOCompany();
 	}
 
 	public ArrayList<Company> getCompanies() {

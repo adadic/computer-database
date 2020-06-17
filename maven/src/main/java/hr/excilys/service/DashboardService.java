@@ -24,9 +24,6 @@ public class DashboardService {
 	private DAOComputer daoComputer;
 
 	public DashboardService() {
-
-		super();
-		this.daoComputer = new DAOComputer();
 	}
 
 	public ArrayList<Computer> getComputersRows(Pagination page) {

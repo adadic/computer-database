@@ -10,19 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
+import hr.excilys.main.SpringConfiguration;
 import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
 import hr.excilys.service.CommunService;
 import hr.excilys.service.EditService;
 
-@Controller
-@RequestMapping(value = "/editComputer")
 @WebServlet("/editComputer")
 public class EditComputerServlet extends HttpServlet {
 
@@ -30,11 +28,9 @@ public class EditComputerServlet extends HttpServlet {
 	private static final String UPDATEERROR = "-1";
 	private static final String UPDATESUCCESS = "3";
 
-	@Autowired
-	private CommunService communService = new CommunService();
-
-	@Autowired
-	private EditService editService = new EditService();
+	static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+	private CommunService communService = applicationContext.getBean(CommunService.class);
+	private EditService editService = applicationContext.getBean(EditService.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
