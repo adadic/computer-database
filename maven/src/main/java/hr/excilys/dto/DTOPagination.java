@@ -1,8 +1,8 @@
 package hr.excilys.dto;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class DTOPagination {
 
 	private String lines;
@@ -10,6 +10,11 @@ public class DTOPagination {
 	private String search;
 	private String order;
 	private String direction;
+
+	public DTOPagination() {
+		
+		super();
+	}
 
 	public DTOPagination(DTOPaginationBuilder builder) {
 

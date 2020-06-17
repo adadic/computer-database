@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hr.excilys.dto.DTOPagination;
@@ -19,6 +20,7 @@ public class DashboardService {
 	private final static int ASC = 1;
 	private final static int DESC = 0;
 
+	@Autowired
 	private DAOComputer daoComputer;
 
 	public DashboardService() {

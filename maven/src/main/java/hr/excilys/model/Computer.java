@@ -2,6 +2,7 @@ package hr.excilys.model;
 
 import java.sql.Timestamp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,7 +12,14 @@ public class Computer {
 	private String name;
 	private Timestamp introduced;
 	private Timestamp discontinued;
+	
+	@Autowired
 	private Company company = null;
+
+	public Computer() {
+		
+		super();
+	}
 
 	public Computer(ComputerBuilder builder) {
 

@@ -1,5 +1,6 @@
 package hr.excilys.dto;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,7 +10,23 @@ public class DTOComputer {
 	private String name;
 	private String introduced;
 	private String discontinued;
+	
+	@Autowired
 	private DTOCompany company;
+
+	public DTOComputer() {
+		
+		super();
+	}
+	
+	public DTOComputer(String id, String name, String introduced, String discontinued, DTOCompany company) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.introduced = introduced;
+		this.discontinued = discontinued;
+		this.company = company;
+	}
 
 	public DTOComputer(DTOComputerBuilder builder) {
 

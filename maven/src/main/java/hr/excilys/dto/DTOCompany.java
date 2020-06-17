@@ -8,8 +8,14 @@ public class DTOCompany {
 	private String id;
 	private String name;
 
+	public DTOCompany() {
+		
+		super();
+	}
+
 	public DTOCompany(String id, String name) {
 
+		super();
 		this.id = id;
 		this.name = name;
 	}
