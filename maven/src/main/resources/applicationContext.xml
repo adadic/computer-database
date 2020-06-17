@@ -10,4 +10,14 @@
 
 	<context:component-scan
 		base-package="hr.excilys" />
+
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<constructor-arg value="/hikari.properties" />
+	</bean>
+
+	<bean id="hikariDataSource"
+		class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
 </beans>
