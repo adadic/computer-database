@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DateMapper {
+public final class DateMapper {
 
 	public static long getDate(String givenDate) {
 

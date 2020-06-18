@@ -3,7 +3,7 @@ package hr.excilys.dto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DTOPagination {
+public final class DTOPagination {
 
 	private String lines;
 	private String page;

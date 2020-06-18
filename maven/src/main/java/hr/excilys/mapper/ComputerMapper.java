@@ -13,7 +13,7 @@ import hr.excilys.model.Computer;
 import hr.excilys.validator.ComputerValidator;
 
 @Component
-public class ComputerMapper {
+public final class ComputerMapper {
 
 	private static final long IDNULL = 0L;
 

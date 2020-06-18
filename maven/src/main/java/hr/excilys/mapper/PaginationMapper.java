@@ -7,7 +7,7 @@ import hr.excilys.model.Pagination;
 import hr.excilys.validator.PageValidator;
 
 @Component
-public class PaginationMapper {
+public final class PaginationMapper {
 
 	private static final int INITPAGE = 1;
 	private static final int INITLINES = 10;

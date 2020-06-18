@@ -15,7 +15,7 @@ import hr.excilys.mapper.CompanyMapper;
 import hr.excilys.model.Company;
 
 @Repository
-public class DAOCompany {
+public final class DAOCompany {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(DAOCompany.class);
 

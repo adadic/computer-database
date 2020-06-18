@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import hr.excilys.model.Company;
 
 @Component
-public class CompanyMapper {
+public final class CompanyMapper {
 
 	public static Company getCompany(ResultSet resultSet) throws SQLException {
 

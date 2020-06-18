@@ -3,7 +3,7 @@ package hr.excilys.dto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DTOCompany {
+public final class DTOCompany {
 
 	private String id;
 	private String name;

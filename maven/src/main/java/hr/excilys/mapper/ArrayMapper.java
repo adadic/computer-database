@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ArrayMapper {
+public final class ArrayMapper {
 
 	public static List<String> stringTransform(String selected) {
 

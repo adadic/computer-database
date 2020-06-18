@@ -16,7 +16,7 @@ import hr.excilys.mapper.ComputerMapper;
 import hr.excilys.model.Computer;
 
 @Repository
-public class DAOComputer {
+public final class DAOComputer {
 
 	private static final int ASC = 1;
 	private final static Logger LOGGER = LoggerFactory.getLogger(DAOComputer.class);
@@ -180,7 +180,6 @@ public class DAOComputer {
 			ResultSet resultSet = db.query(preparedStatement);
 
 			if (resultSet.next()) {
-				LOGGER.info("Count has been made with no probleme");
 
 				return resultSet.getInt("number");
 			}

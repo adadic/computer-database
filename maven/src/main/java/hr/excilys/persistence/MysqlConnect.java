@@ -25,7 +25,6 @@ public final class MysqlConnect implements AutoCloseable {
 		} catch (SQLException sqle) {
 			LOGGER.info("Cannot fetch connexion to database with Hikari");
 		}
-		LOGGER.info("Connexion established");
 
 		return conn;
 	}
