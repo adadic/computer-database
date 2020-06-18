@@ -1,12 +1,13 @@
 package hr.excilys.persistence;
 
-import java.sql.PreparedStatement;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -21,70 +22,54 @@ public final class DAOComputer {
 	private static final int ASC = 1;
 	private final static Logger LOGGER = LoggerFactory.getLogger(DAOComputer.class);
 
-	public ArrayList<Computer> getComputers() throws SQLException {
+	@Autowired
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	@Autowired
+	private ComputerMapper computerMapper;
 
-		ArrayList<Computer> computers = new ArrayList<>();
+	public List<Computer> getComputers() throws SQLException {
 
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.ALLCOMPUTER.getQuery());
-			ResultSet requestComputers = db.query(preparedStatement);
+		try {
+			return namedParameterJdbcTemplate.query(EnumQuery.ALLCOMPUTER.getQuery(), computerMapper);
 
-			while (requestComputers.next()) {
-				computers.add(ComputerMapper.getComputer(requestComputers));
-			}
-		} catch (SQLException e) {
+		} catch (DataAccessException e) {
 			LOGGER.error("Cannot get all Computers, probleme in the Query");
-		}
-		LOGGER.info("All Computers are here");
 
-		return computers;
+			return new ArrayList<>();
+		}
 	}
 
-	public ArrayList<Computer> getComputersRows(int page, int lines, String search) throws SQLException {
+	public List<Computer> getComputersRows(int page, int lines, String search) throws SQLException {
 
-		ArrayList<Computer> computers = new ArrayList<>();
+		search = prepareSearch(search);
 
-		search = checkSearch(search);
+		try {
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
+					.addValue("search", search)
+					.addValue("limit", lines)
+					.addValue("offset", lines * (page - 1));
 
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			PreparedStatement preparedStatement = setGetRows(page, lines, search, db);
-			ResultSet requestComputers = db.query(preparedStatement);
-
-			while (requestComputers.next()) {
-				computers.add(ComputerMapper.getComputer(requestComputers));
-			}
-		} catch (SQLException e) {
+			return namedParameterJdbcTemplate.query(EnumQuery.PAGECOMPUTER.getQuery(), parameterMap, computerMapper);
+		} catch (DataAccessException e) {
 			LOGGER.error("Cannot get Computers at {} page and with {} lines, probleme in the Query maybe search -> {}",
 					page, lines, search);
+
+			return new ArrayList<>();
 		}
-		LOGGER.info("Computer at {} page and with {} lines fetched (search -> {})", page, lines, search);
-
-		return computers;
-	}
-
-	private PreparedStatement setGetRows(int page, int lines, String search, MysqlConnect db) throws SQLException {
-
-		PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.PAGECOMPUTER.getQuery());
-		preparedStatement.setString(1, search);
-		preparedStatement.setLong(2, lines);
-		preparedStatement.setLong(3, lines * (page - 1));
-
-		return preparedStatement;
 	}
 
 	public Optional<Computer> getComputerById(long id) throws SQLException {
 
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.IDCOMPUTER.getQuery());
-			preparedStatement.setLong(1, id);
-			ResultSet requestComputer = db.query(preparedStatement);
-
-			if (requestComputer.next()) {
+		try {
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", id);
+			List<Computer> computer = namedParameterJdbcTemplate.query(EnumQuery.IDCOMPUTER.getQuery(), parameterMap, computerMapper);
+			
+			if (computer != null) {
 				LOGGER.info("Computer with id = {} : Found", id);
 
-				return Optional.of(ComputerMapper.getComputer(requestComputer));
+				return Optional.of(computer.get(0));
 			}
-		} catch (SQLException e) {
+		} catch (DataAccessException e) {
 			LOGGER.error("Computer with id = {} : Probleme in Query", id);
 		}
 		LOGGER.info("Computer with id = {} : NOT Found", id);
@@ -93,77 +78,56 @@ public final class DAOComputer {
 	}
 
 	public int insertComputer(Computer computer) throws SQLException {
+		
+		try {
+			MapSqlParameterSource parameterMap;
+			if (computer.getCompany().getId() == 0) {
+				parameterMap = new MapSqlParameterSource()
+						.addValue("name", computer.getName())
+						.addValue("introduced", computer.getIntroduced())
+						.addValue("discontinued", computer.getDiscontinued())
+						.addValue("id_company", null);
+			} else {
+				parameterMap = new MapSqlParameterSource()
+						.addValue("name", computer.getName())
+						.addValue("introduced", computer.getIntroduced())
+						.addValue("discontinued", computer.getDiscontinued())
+						.addValue("id_company", computer.getCompany().getId());
+			}
 
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			PreparedStatement preparedStatement = setInsert(computer.getName(), computer.getIntroduced(),
-					computer.getDiscontinued(), computer.getCompany().getId(), db);
-
-			return preparedStatement.executeUpdate();
-		} catch (SQLException e) {
+			return namedParameterJdbcTemplate.update(EnumQuery.INSERTCOMPUTER.getQuery(), parameterMap);
+		} catch (DataAccessException e) {
 			LOGGER.error("Computer NOT added, probleme in query : Check fields");
 
 			return 0;
 		}
 	}
 
-	private PreparedStatement setInsert(String name, Timestamp introduced, Timestamp discontinued, long company_id,
-			MysqlConnect db) throws SQLException {
-
-		PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.INSERTCOMPUTER.getQuery());
-		preparedStatement.setString(1, name);
-		preparedStatement.setTimestamp(2, introduced);
-		preparedStatement.setTimestamp(3, discontinued);
-
-		if (company_id == 0) {
-			preparedStatement.setNString(4, null);
-		} else {
-			preparedStatement.setLong(4, company_id);
-		}
-
-		return preparedStatement;
-	}
-
 	public int updateComputer(Computer computer) throws SQLException {
 
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			PreparedStatement preparedStatement = setUpdate(computer.getId(), computer.getName(),
-					computer.getIntroduced(), computer.getDiscontinued(), computer.getCompany().getId(), db);
+		try {
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
+					.addValue("name", computer.getName())
+					.addValue("introduced", computer.getIntroduced())
+					.addValue("discontinued", computer.getDiscontinued())
+					.addValue("id_company", computer.getCompany().getId());
 
-			return preparedStatement.executeUpdate();
-		} catch (SQLException e) {
+			return namedParameterJdbcTemplate.update(EnumQuery.UPDATECOMPUTER.getQuery(), parameterMap);
+		} catch (DataAccessException e) {
 			LOGGER.error("Computer NOT updated, probleme in query : Check fields");
 
 			return 0;
 		}
 	}
 
-	private PreparedStatement setUpdate(long id, String name, Timestamp introduced, Timestamp discontinued,
-			long company_id, MysqlConnect db) throws SQLException {
-
-		PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.UPDATECOMPUTER.getQuery());
-		preparedStatement.setString(1, name);
-		preparedStatement.setTimestamp(2, introduced);
-		preparedStatement.setTimestamp(3, discontinued);
-
-		if (company_id < 1) {
-			preparedStatement.setNull(4, Types.BIGINT);
-		} else {
-			preparedStatement.setLong(4, company_id);
-		}
-
-		preparedStatement.setLong(5, id);
-
-		return preparedStatement;
-	}
-
 	public int deleteComputer(long id) throws SQLException {
 
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.DELETECOMPUTER.getQuery());
-			preparedStatement.setLong(1, id);
+		try {
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
+					.addValue("id_computer", id);
 
-			return preparedStatement.executeUpdate();
-		} catch (SQLException e) {
+			return namedParameterJdbcTemplate.update(EnumQuery.DELETECOMPUTER.getQuery(), parameterMap);
+		} catch (DataAccessException e) {
 			LOGGER.error("Computer NOT deleted, probleme in query");
 
 			return 0;
@@ -172,77 +136,58 @@ public final class DAOComputer {
 
 	public int countComputer(String search) throws SQLException {
 
-		search = checkSearch(search);
+		search = prepareSearch(search);
 
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.COUNTCOMPUTER.getQuery());
-			preparedStatement.setString(1, search);
-			ResultSet resultSet = db.query(preparedStatement);
+		try {
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search);
 
-			if (resultSet.next()) {
-
-				return resultSet.getInt("number");
-			}
+			return namedParameterJdbcTemplate.queryForObject(EnumQuery.COUNTCOMPUTER.getQuery(), parameterMap, Integer.class);
+		} catch (DataAccessException e) {
 			LOGGER.info("ResultSet Empty");
 
 			return -1;
-		} catch (SQLException e) {
-			LOGGER.error("Probleme in Query with search = {}", search);
-
-			return -1;
 		}
 	}
 
-	public ArrayList<Computer> getComputersSort(int page, int lines, String search, String order, int direct)
+	public List<Computer> getComputersSort(int page, int lines, String search, String order, int direct)
 			throws SQLException {
-		ArrayList<Computer> computers = new ArrayList<>();
+		search = prepareSearch(search);
 
-		search = checkSearch(search);
-
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			PreparedStatement preparedStatement = setSortRow(page, lines, search, order, direct, db);
-			ResultSet requestComputers = db.query(preparedStatement);
-
-			while (requestComputers.next()) {
-				computers.add(ComputerMapper.getComputer(requestComputers));
-			}
-			LOGGER.info("Computer Sort Done");
-		} catch (SQLException e) {
+		try {
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
+					.addValue("search", search)
+					.addValue("limit", lines)
+					.addValue("offset", lines * (page - 1));
+			String query = getOrderQuery(order, direct);
+			
+			return namedParameterJdbcTemplate.query(query, parameterMap, computerMapper);
+		} catch (DataAccessException e) {
 			LOGGER.error(
 					"Probleme in query, check fields : page = {}, lines = {}, search = {}, order = {}, direct = {}",
 					page, lines, search, order, direct);
-		}
 
-		return computers;
+			return new ArrayList<>();
+		}
 	}
 
-	private PreparedStatement setSortRow(int page, int lines, String search, String order, int direct, MysqlConnect db)
-			throws SQLException {
-
-		PreparedStatement preparedStatement;
+	private String getOrderQuery(String order, int direct) {
 
 		if (order.equals("computer")) {
 			if (direct == ASC) {
-				preparedStatement = db.getConn().prepareStatement(EnumQuery.SORTPAGECOMPUTERASC.getQuery());
+				return EnumQuery.SORTPAGECOMPUTERASC.getQuery();
 			} else {
-				preparedStatement = db.getConn().prepareStatement(EnumQuery.SORTPAGECOMPUTERDESC.getQuery());
+				return EnumQuery.SORTPAGECOMPUTERDESC.getQuery();
 			}
 		} else {
 			if (direct == ASC) {
-				preparedStatement = db.getConn().prepareStatement(EnumQuery.SORTPAGECOMPANYASC.getQuery());
+				return EnumQuery.SORTPAGECOMPANYASC.getQuery();
 			} else {
-				preparedStatement = db.getConn().prepareStatement(EnumQuery.SORTPAGECOMPANYDESC.getQuery());
+				return EnumQuery.SORTPAGECOMPANYDESC.getQuery();
 			}
 		}
-
-		preparedStatement.setString(1, search);
-		preparedStatement.setLong(2, lines);
-		preparedStatement.setLong(3, lines * (page - 1));
-
-		return preparedStatement;
 	}
 
-	private String checkSearch(String search) {
+	private String prepareSearch(String search) {
 
 		if (search == null) {
 			search = "%";

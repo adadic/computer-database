@@ -17,9 +17,6 @@ public class EditService {
 	@Autowired
 	private DAOComputer daoComputer;
 
-	public EditService() {
-	}
-
 	public Optional<Computer> getComputerById(String id_computer) {
 
 		DAOComputer daoComputer = new DAOComputer();

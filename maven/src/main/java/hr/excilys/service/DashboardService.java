@@ -23,10 +23,7 @@ public class DashboardService {
 	@Autowired
 	private DAOComputer daoComputer;
 
-	public DashboardService() {
-	}
-
-	public ArrayList<Computer> getComputersRows(Pagination page) {
+	public List<Computer> getComputersRows(Pagination page) {
 		if (page.getOrder() != null && !page.getOrder().isEmpty()) {
 			if (page.getDirection() == 1) {
 				try {

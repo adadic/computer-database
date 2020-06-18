@@ -15,9 +15,6 @@ public class CommunService {
 	@Autowired
 	private DAOCompany daoCompany;
 
-	public CommunService() {
-	}
-
 	public ArrayList<Company> getCompanies() {
 
 		try {

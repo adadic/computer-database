@@ -17,9 +17,6 @@ public class AddService {
 	@Autowired
 	private DAOComputer daoComputer;
 
-	public AddService() {
-	}
-
 	public boolean addComputer(DTOComputer dtoComputer) {
 
 		Optional<Computer> computer = ComputerMapper.fromDTO(dtoComputer);
