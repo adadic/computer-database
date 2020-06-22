@@ -28,6 +28,15 @@
 >  Maven is a build automation tool, used to **build** and **manage** projects.
 >
 > Allows the User to handle the dependencies, making JAR useless.
+>
+> Commands : 
+> - clean
+> - site
+> - install
+> - test
+> - build
+> - generate-sources
+> - package
 
 ## HikariCP
 
@@ -41,9 +50,19 @@
 >
 > It is particularly useful in handling structured data.
 
-## Spring
+## Spring (FrameWork)
 
 > **Build** and **define** the infrastructure of an application
+>
+> Spring uses IoC: providing means of configuring and managing Java object using reflection. Manages lifecycle, initialisation.
+>
+> JavaBeans are classes that encapsulate many object into one (bean). Serialized and have a 0 argument constructor. Default Scope -> singleton (5 useble but only 3 for web app).
+>
+> Annotations : 
+> - @Component, @Service, @Repository, @Controller
+> - @Autowired
+> - @RequestMapping
+
 
 ## JDBC
 

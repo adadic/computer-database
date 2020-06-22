@@ -2,13 +2,15 @@ package hr.excilys.servlet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import hr.excilys.dto.DTOPagination;
+import hr.excilys.main.SpringConfiguration;
 import hr.excilys.mapper.ArrayMapper;
 import hr.excilys.model.Pagination;
 import hr.excilys.service.DashboardService;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +27,10 @@ public class DashboardServlet extends HttpServlet {
 	private static final String DELETEERROR = "-3";
 	private static final String DELETESUCCESS = "1";
 	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
-	
+
+	static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+	private DashboardService dashboardService = applicationContext.getBean(DashboardService.class);
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -33,51 +38,35 @@ public class DashboardServlet extends HttpServlet {
 				request.getParameter("page"), request.getParameter("search")).order(request.getParameter("order"))
 						.direction(request.getParameter("direction")).build();
 
-		ServletContext servletContext = getServletContext();
-		Object obj = servletContext.getAttribute("DashboardService");
-		if (obj instanceof DashboardService) {
-			DashboardService dashboardService = (DashboardService) obj;
-			Pagination page = dashboardService.paginate(dtoPagination);
-	
-			request.setAttribute("ok", request.getParameter("ok"));
-			request.setAttribute("msg", request.getParameter("msg"));
-	
-			request.setAttribute("page", page.getPage());
-			request.setAttribute("search", page.getSearch());
-			request.setAttribute("max", page.getMaxPage());
-			request.setAttribute("lines", page.getLines());
-			request.setAttribute("size", page.getCount());
-			request.setAttribute("order", page.getOrder());
-			request.setAttribute("direction", page.getDirection());
-	
-			request.setAttribute("computers", dashboardService.getComputersRows(page));
-			this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request, response);
-		} else {
-			throw new ServletException("dashboardService unavailable");
-		}
+		Pagination page = dashboardService.paginate(dtoPagination);
+
+		request.setAttribute("ok", request.getParameter("ok"));
+		request.setAttribute("msg", request.getParameter("msg"));
+
+		request.setAttribute("page", page.getPage());
+		request.setAttribute("search", page.getSearch());
+		request.setAttribute("max", page.getMaxPage());
+		request.setAttribute("lines", page.getLines());
+		request.setAttribute("size", page.getCount());
+		request.setAttribute("order", page.getOrder());
+		request.setAttribute("direction", page.getDirection());
+
+		request.setAttribute("computers", dashboardService.getComputersRows(page));
+		this.getServletContext().getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ServletContext servletContext = getServletContext();
-		Object obj = servletContext.getAttribute("DashboardService");
-		if (obj instanceof DashboardService) {
-			DashboardService dashboardService = (DashboardService) obj;
-			try {
-				if (!dashboardService.deleteComputer(ArrayMapper.stringTransform(request.getParameter("selection")))) {
-					request.setAttribute("msg", ARRAYEMPTY);
-					doGet(request, response);
-				}
-			} catch (NumberFormatException | SQLException e) {
-				request.setAttribute("msg", DELETEERROR);
-				doGet(request, response);
+		try {
+			if (!dashboardService.deleteComputer(ArrayMapper.stringTransform(request.getParameter("selection")))) {
+				request.setAttribute("msg", ARRAYEMPTY);
+			} else {
+				request.setAttribute("msg", DELETESUCCESS);
 			}
-			request.setAttribute("msg", DELETESUCCESS);
-			doGet(request, response);
-		} else {
-			throw new ServletException("dashboardService unavailable");
+		} catch (NumberFormatException | SQLException e) {
+			request.setAttribute("msg", DELETEERROR);
 		}
-
+		doGet(request, response);
 	}
 }

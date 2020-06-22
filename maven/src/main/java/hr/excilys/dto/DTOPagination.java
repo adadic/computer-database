@@ -1,12 +1,20 @@
 package hr.excilys.dto;
 
-public class DTOPagination {
+import org.springframework.stereotype.Component;
+
+@Component
+public final class DTOPagination {
 
 	private String lines;
 	private String page;
 	private String search;
 	private String order;
 	private String direction;
+
+	public DTOPagination() {
+		
+		super();
+	}
 
 	public DTOPagination(DTOPaginationBuilder builder) {
 

@@ -1,9 +1,17 @@
 package hr.excilys.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Company {
 
 	private long id;
 	private String name;
+
+	public Company() {
+		
+		super();
+	}
 
 	public Company(long id, String name) {
 

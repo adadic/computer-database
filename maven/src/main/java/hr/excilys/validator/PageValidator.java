@@ -2,10 +2,12 @@ package hr.excilys.validator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import hr.excilys.dto.DTOPagination;
 import hr.excilys.model.Pagination;
 
+@Component
 public class PageValidator {
 
 	public static final int MINPAGE = 1;
@@ -27,7 +29,8 @@ public class PageValidator {
 
 			return true;
 		} catch (NumberFormatException nfe) {
-			LOGGER.error("A String was given instead of number, page : {} and lines : {}", dtoPage.getPage(), dtoPage.getLines());
+			LOGGER.error("A String was given instead of number, page : {} and lines : {}", dtoPage.getPage(),
+					dtoPage.getLines());
 
 			return false;
 		} catch (ArithmeticException arite) {

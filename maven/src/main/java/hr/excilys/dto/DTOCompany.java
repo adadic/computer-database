@@ -1,12 +1,21 @@
 package hr.excilys.dto;
 
-public class DTOCompany {
+import org.springframework.stereotype.Service;
+
+@Service
+public final class DTOCompany {
 
 	private String id;
 	private String name;
 
+	public DTOCompany() {
+		
+		super();
+	}
+
 	public DTOCompany(String id, String name) {
 
+		super();
 		this.id = id;
 		this.name = name;
 	}

@@ -1,83 +1,78 @@
 package hr.excilys.persistence;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import hr.excilys.mapper.CompanyMapper;
 import hr.excilys.model.Company;
 
-public class DAOCompany {
+@Repository
+public final class DAOCompany {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(DAOCompany.class);
 
-	public ArrayList<Company> getCompanies() throws SQLException {
+	@Autowired
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	@Autowired
+	private CompanyMapper companyMapper;
 
-		ArrayList<Company> companies = new ArrayList<>();
+	public List<Company> getCompanies() throws SQLException {
 
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
+		try {
 
-			PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.ALLCOMPANY.getQuery());
-			ResultSet requestCompanies = db.query(preparedStatement);
+			return namedParameterJdbcTemplate.query(EnumQuery.ALLCOMPANY.getQuery(), companyMapper);
+		} catch (DataAccessException e) {
+			LOGGER.error("Cannot get all Copanies, probleme in the Query");
 
-			while (requestCompanies.next()) {
-				companies.add(CompanyMapper.getCompany(requestCompanies));
-			}
-			LOGGER.info("Companies Fetched");
-		} catch (SQLException e) {
-			LOGGER.error("Cannot get all Copanies, probleme with the database");
-
+			return new ArrayList<>();
 		}
-
-		return companies;
 	}
 
 	public Optional<Company> getCompanyById(long id) throws SQLException {
 
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-			PreparedStatement preparedStatement = db.getConn().prepareStatement(EnumQuery.IDCOMPANY.getQuery());
-			preparedStatement.setLong(1, id);
-			ResultSet company = db.query(preparedStatement);
+		try {
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_company", id);
+			List<Company> company = namedParameterJdbcTemplate.query(EnumQuery.IDCOMPANY.getQuery(), parameterMap,
+					companyMapper);
 
-			if (company.next()) {
-				LOGGER.info("Company(id : {}) fetched", id);
+			if (company != null) {
+				LOGGER.info("Company with id = {} : Found", id);
 
-				return Optional.of(new Company(company.getLong("id"), company.getString("name")));
+				return Optional.of(company.get(0));
 			}
 			LOGGER.info("No company by id = {}", id);
-		} catch (SQLException e) {
-			LOGGER.error("Cannot get Company by id = {}", id);
+		} catch (DataAccessException e) {
+			LOGGER.info("Company with id = {} : NOT Found", id);
 
+			return Optional.empty();
 		}
 
 		return Optional.empty();
 	}
 
+	@Transactional
 	public int deleteCompany(long id) throws SQLException {
 
-		try (MysqlConnect db = MysqlConnect.getDbCon()) {
-
-			Connection conn = db.getConn();
-			conn.setAutoCommit(false);
-			PreparedStatement preparedStatement = conn.prepareStatement(EnumQuery.DELETECOMPUTERCOMPANY.getQuery());
-			preparedStatement.setLong(1, id);
-			preparedStatement.executeUpdate();
-			preparedStatement = conn.prepareStatement(EnumQuery.DELETECOMPANY.getQuery());
-			preparedStatement.setLong(1, id);
-			preparedStatement.executeUpdate();
-			conn.commit();
-			conn.setAutoCommit(true);
-			LOGGER.info("Computer Sort Done");
+		try {
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_company", id);
+			namedParameterJdbcTemplate.update(EnumQuery.DELETECOMPUTERCOMPANY.getQuery(), parameterMap);
+			namedParameterJdbcTemplate.update(EnumQuery.DELETECOMPANY.getQuery(), parameterMap);
+			LOGGER.info("Computer with id_company : {} DELETED", id);
 
 			return 1;
-		} catch (SQLException e) {
-			LOGGER.error("Probleme in query with id : {}", id);
+		} catch (DataAccessException e) {
+			LOGGER.error("Probleme in query with id_company : {}", id);
 
 			return 0;
 		}

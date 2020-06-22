@@ -5,12 +5,16 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Optional;
 
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+
 import hr.excilys.dto.DTOComputer;
 import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
 import hr.excilys.validator.ComputerValidator;
 
-public class ComputerMapper {
+@Component
+public final class ComputerMapper implements RowMapper<Computer> {
 
 	private static final long IDNULL = 0L;
 
@@ -60,5 +64,17 @@ public class ComputerMapper {
 
 			return Optional.empty();
 		}
+	}
+
+	@Override
+	public Computer mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+		
+		return new Computer.ComputerBuilder(resultSet.getString("computer.name")).id(resultSet.getLong("computer.id"))
+				.introduced(resultSet.getTimestamp("computer.introduced"))
+				.discontinued(resultSet.getTimestamp("computer.discontinued"))
+				.company(
+						new Company.CompanyBuilder(resultSet.getLong("company.id"), resultSet.getString("company.name"))
+								.build())
+				.build();
 	}
 }

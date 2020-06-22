@@ -1,18 +1,21 @@
 package hr.excilys.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
+import hr.excilys.main.SpringConfiguration;
 import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
 import hr.excilys.service.CommunService;
@@ -25,34 +28,23 @@ public class EditComputerServlet extends HttpServlet {
 	private static final String UPDATEERROR = "-1";
 	private static final String UPDATESUCCESS = "3";
 
+	static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+	private CommunService communService = applicationContext.getBean(CommunService.class);
+	private EditService editService = applicationContext.getBean(EditService.class);
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ServletContext servletContext = getServletContext();
-		Object obj = servletContext.getAttribute("CommunService");
-		if (obj instanceof CommunService) {
-			CommunService communService = (CommunService) obj;
-			ArrayList<Company> companies = communService.getCompanies();
-			request.setAttribute("companies", companies);
+		List<Company> companies = communService.getCompanies();
+		request.setAttribute("companies", companies);
 
-		} else {
-			throw new ServletException("communService unavailable");
+		String id_computer = request.getParameter("id");
+		Optional<Computer> computer = editService.getComputerById(id_computer);
+
+		if (computer.isPresent()) {
+			request.setAttribute("computer", computer.get());
 		}
-		
-		obj = servletContext.getAttribute("EditService");
-		if (obj instanceof EditService) {
-			EditService editService = (EditService) obj;
-			String id_computer = request.getParameter("id");
-			Optional<Computer> computer = editService.getComputerById(id_computer);
-
-			if (computer.isPresent()) {
-				request.setAttribute("computer", computer.get());
-			}
-			this.getServletContext().getRequestDispatcher("/WEB-INF/editComputer.jsp").forward(request, response);
-		} else {
-			throw new ServletException("editService unavailable");
-		}
-
+		this.getServletContext().getRequestDispatcher("/WEB-INF/editComputer.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -63,19 +55,11 @@ public class EditComputerServlet extends HttpServlet {
 				.discontinued(request.getParameter("discontinued"))
 				.company(new DTOCompany.DTOCompanyBuilder(request.getParameter("companyId"), "none").build()).build();
 
-		ServletContext servletContext = getServletContext();
-		Object obj = servletContext.getAttribute("EditService");
-		if (obj instanceof EditService) {
-			EditService editService = (EditService) obj;
-			if (!editService.editComputer(computer)) {
-				request.setAttribute("msg", UPDATEERROR);
-				doGet(request, response);
-			} else {
-				response.sendRedirect("dashboard?msg=" + UPDATESUCCESS);
-			}
+		if (!editService.editComputer(computer)) {
+			request.setAttribute("msg", UPDATEERROR);
+			doGet(request, response);
 		} else {
-			throw new ServletException("editService unavailable");
+			response.sendRedirect("dashboard?msg=" + UPDATESUCCESS);
 		}
-
 	}
 }

@@ -2,7 +2,10 @@ package hr.excilys.mapper;
 
 import java.sql.Timestamp;
 
-public class DateMapper {
+import org.springframework.stereotype.Component;
+
+@Component
+public final class DateMapper {
 
 	public static long getDate(String givenDate) {
 

@@ -1,10 +1,13 @@
 package hr.excilys.mapper;
 
+import org.springframework.stereotype.Component;
+
 import hr.excilys.dto.DTOPagination;
 import hr.excilys.model.Pagination;
 import hr.excilys.validator.PageValidator;
 
-public class PaginationMapper {
+@Component
+public final class PaginationMapper {
 
 	private static final int INITPAGE = 1;
 	private static final int INITLINES = 10;

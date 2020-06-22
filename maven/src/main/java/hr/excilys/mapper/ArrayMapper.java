@@ -3,7 +3,10 @@ package hr.excilys.mapper;
 import java.util.Arrays;
 import java.util.List;
 
-public class ArrayMapper {
+import org.springframework.stereotype.Component;
+
+@Component
+public final class ArrayMapper {
 
 	public static List<String> stringTransform(String selected) {
 

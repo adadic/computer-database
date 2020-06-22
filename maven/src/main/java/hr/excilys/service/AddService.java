@@ -3,6 +3,7 @@ package hr.excilys.service;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hr.excilys.dto.DTOComputer;
@@ -10,16 +11,11 @@ import hr.excilys.mapper.ComputerMapper;
 import hr.excilys.model.Computer;
 import hr.excilys.persistence.DAOComputer;
 
-@Service("addService")
+@Service
 public class AddService {
 
+	@Autowired
 	private DAOComputer daoComputer;
-
-	public AddService() {
-
-		super();
-		this.daoComputer = new DAOComputer();
-	}
 
 	public boolean addComputer(DTOComputer dtoComputer) {
 
