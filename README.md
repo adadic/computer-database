@@ -56,6 +56,8 @@
 >
 > Spring uses IoC: providing means of configuring and managing Java object using reflection. Manages lifecycle, initialisation.
 >
+> JavaBeans are classes that encapsulate many object into one (bean). Serialized and have a 0 argument constructor. Default Scope -> singleton (5 useble but only 3 for web app).
+>
 > Annotations : 
 > - @Component, @Service, @Repository, @Controller
 > - @Autowired
