@@ -1,7 +1,7 @@
 package hr.excilys.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.ServletException;
@@ -35,7 +35,7 @@ public class EditComputerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ArrayList<Company> companies = communService.getCompanies();
+		List<Company> companies = communService.getCompanies();
 		request.setAttribute("companies", companies);
 
 		String id_computer = request.getParameter("id");

@@ -19,7 +19,6 @@ public class EditService {
 
 	public Optional<Computer> getComputerById(String id_computer) {
 
-		DAOComputer daoComputer = new DAOComputer();
 		try {
 
 			return daoComputer.getComputerById(Long.valueOf(id_computer));

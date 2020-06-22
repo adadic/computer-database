@@ -14,7 +14,7 @@ import hr.excilys.model.Computer;
 import hr.excilys.validator.ComputerValidator;
 
 @Component
-public final class ComputerMapper implements RowMapper<Computer>{
+public final class ComputerMapper implements RowMapper<Computer> {
 
 	private static final long IDNULL = 0L;
 
