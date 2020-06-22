@@ -1,30 +1,17 @@
 package hr.excilys.servlet;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/error403")
-@WebServlet("/error403")
-public class Error403 extends HttpServlet {
+public class Error403 {
 
-	private static final long serialVersionUID = 1L;
-
-	final Logger logger = LoggerFactory.getLogger(DashboardServlet.class);
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		this.getServletContext().getRequestDispatcher("/WEB-INF/403.jsp").forward(request, response);
+	@GetMapping
+	public ModelAndView error403() {
+		
+		return new ModelAndView("error403");
 	}
 }
