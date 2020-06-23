@@ -13,6 +13,7 @@ public final class DataSource {
 
 	private static HikariConfig config = new HikariConfig("/hikari.properties");
 	private static HikariDataSource ds = new HikariDataSource(config);
+
 	private DataSource() {
 	}
 

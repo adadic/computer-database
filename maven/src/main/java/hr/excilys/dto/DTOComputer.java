@@ -10,15 +10,15 @@ public final class DTOComputer {
 	private String name;
 	private String introduced;
 	private String discontinued;
-	
+
 	@Autowired
 	private DTOCompany company;
 
 	public DTOComputer() {
-		
+
 		super();
 	}
-	
+
 	public DTOComputer(String id, String name, String introduced, String discontinued, DTOCompany company) {
 		super();
 		this.id = id;

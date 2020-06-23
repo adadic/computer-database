@@ -12,7 +12,7 @@ public final class DTOPagination {
 	private String direction;
 
 	public DTOPagination() {
-		
+
 		super();
 	}
 

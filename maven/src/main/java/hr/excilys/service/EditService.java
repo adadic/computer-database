@@ -16,6 +16,8 @@ public class EditService {
 
 	@Autowired
 	private DAOComputer daoComputer;
+	@Autowired
+	private ComputerMapper computerMapper;
 
 	public Optional<Computer> getComputerById(String id_computer) {
 
@@ -30,7 +32,7 @@ public class EditService {
 
 	public boolean editComputer(DTOComputer dtoComputer) {
 
-		Optional<Computer> computer = ComputerMapper.fromDTO(dtoComputer);
+		Optional<Computer> computer = computerMapper.fromDTO(dtoComputer);
 		if (computer.isPresent()) {
 			try {
 				daoComputer.updateComputer(computer.get());

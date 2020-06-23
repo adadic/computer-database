@@ -2,6 +2,8 @@ package hr.excilys.model;
 
 import java.sql.Timestamp;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -72,15 +74,7 @@ public class Computer {
 
 	@Override
 	public String toString() {
-
-		if (company != null) {
-
-			return id + "\t|\t" + name + "\t|\t" + introduced + "\t|\t" + discontinued + "\t|\t" + company.getId()
-					+ "\t|\t" + company.getName();
-		}
-
-		return id + "\t|\t" + name + "\t|\t" + introduced + "\t|\t" + discontinued + "\t|\tnull\t|\tnull";
-
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 
 	public Company getCompany() {

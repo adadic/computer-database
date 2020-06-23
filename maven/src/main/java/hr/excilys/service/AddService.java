@@ -16,10 +16,12 @@ public class AddService {
 
 	@Autowired
 	private DAOComputer daoComputer;
+	@Autowired
+	private ComputerMapper computerMapper;
 
 	public boolean addComputer(DTOComputer dtoComputer) {
 
-		Optional<Computer> computer = ComputerMapper.fromDTO(dtoComputer);
+		Optional<Computer> computer = computerMapper.fromDTO(dtoComputer);
 		if (computer.isPresent()) {
 			try {
 				daoComputer.insertComputer(computer.get());

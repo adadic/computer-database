@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/dashboard")
@@ -31,9 +32,23 @@ public class DashboardServlet {
 	private DashboardService dashboardService;
 
 	@GetMapping
-    public ModelAndView dashboard() {
-        return new ModelAndView("dashboard");
-    }
+	public ModelAndView dashboard() {
+
+		ModelAndView model = new ModelAndView("dashboard");
+
+		Pagination page = new Pagination.PaginationBuilder(10, 1, null).count(dashboardService.getCountComputer(""))
+				.build();
+		model.addObject("computers", dashboardService.getComputersRows(page));
+		model.addObject("page", page.getPage());
+		model.addObject("search", page.getSearch());
+		model.addObject("max", page.getMaxPage());
+		model.addObject("lines", page.getLines());
+		model.addObject("size", page.getCount());
+		model.addObject("order", page.getOrder());
+		model.addObject("direction", page.getDirection());
+
+		return model;
+	}
 //	
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 //			throws ServletException, IOException {

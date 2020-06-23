@@ -9,7 +9,7 @@ public final class DTOCompany {
 	private String name;
 
 	public DTOCompany() {
-		
+
 		super();
 	}
 

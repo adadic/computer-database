@@ -44,10 +44,8 @@ public final class DAOComputer {
 		search = prepareSearch(search);
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
-					.addValue("search", search)
-					.addValue("limit", lines)
-					.addValue("offset", lines * (page - 1));
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search)
+					.addValue("limit", lines).addValue("offset", lines * (page - 1));
 
 			return namedParameterJdbcTemplate.query(EnumQuery.PAGECOMPUTER.getQuery(), parameterMap, computerMapper);
 		} catch (DataAccessException e) {
@@ -62,8 +60,9 @@ public final class DAOComputer {
 
 		try {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", id);
-			List<Computer> computer = namedParameterJdbcTemplate.query(EnumQuery.IDCOMPUTER.getQuery(), parameterMap, computerMapper);
-			
+			List<Computer> computer = namedParameterJdbcTemplate.query(EnumQuery.IDCOMPUTER.getQuery(), parameterMap,
+					computerMapper);
+
 			if (computer != null) {
 				LOGGER.info("Computer with id = {} : Found", id);
 
@@ -78,18 +77,15 @@ public final class DAOComputer {
 	}
 
 	public int insertComputer(Computer computer) throws SQLException {
-		
+
 		try {
 			MapSqlParameterSource parameterMap;
 			if (computer.getCompany().getId() == 0) {
-				parameterMap = new MapSqlParameterSource()
-						.addValue("name", computer.getName())
+				parameterMap = new MapSqlParameterSource().addValue("name", computer.getName())
 						.addValue("introduced", computer.getIntroduced())
-						.addValue("discontinued", computer.getDiscontinued())
-						.addValue("id_company", null);
+						.addValue("discontinued", computer.getDiscontinued()).addValue("id_company", null);
 			} else {
-				parameterMap = new MapSqlParameterSource()
-						.addValue("name", computer.getName())
+				parameterMap = new MapSqlParameterSource().addValue("name", computer.getName())
 						.addValue("introduced", computer.getIntroduced())
 						.addValue("discontinued", computer.getDiscontinued())
 						.addValue("id_company", computer.getCompany().getId());
@@ -106,8 +102,7 @@ public final class DAOComputer {
 	public int updateComputer(Computer computer) throws SQLException {
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
-					.addValue("name", computer.getName())
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("name", computer.getName())
 					.addValue("introduced", computer.getIntroduced())
 					.addValue("discontinued", computer.getDiscontinued())
 					.addValue("id_company", computer.getCompany().getId());
@@ -123,8 +118,7 @@ public final class DAOComputer {
 	public int deleteComputer(long id) throws SQLException {
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
-					.addValue("id_computer", id);
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", id);
 
 			return namedParameterJdbcTemplate.update(EnumQuery.DELETECOMPUTER.getQuery(), parameterMap);
 		} catch (DataAccessException e) {
@@ -141,7 +135,8 @@ public final class DAOComputer {
 		try {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search);
 
-			return namedParameterJdbcTemplate.queryForObject(EnumQuery.COUNTCOMPUTER.getQuery(), parameterMap, Integer.class);
+			return namedParameterJdbcTemplate.queryForObject(EnumQuery.COUNTCOMPUTER.getQuery(), parameterMap,
+					Integer.class);
 		} catch (DataAccessException e) {
 			LOGGER.info("ResultSet Empty");
 
@@ -154,12 +149,10 @@ public final class DAOComputer {
 		search = prepareSearch(search);
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
-					.addValue("search", search)
-					.addValue("limit", lines)
-					.addValue("offset", lines * (page - 1));
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search)
+					.addValue("limit", lines).addValue("offset", lines * (page - 1));
 			String query = getOrderQuery(order, direct);
-			
+
 			return namedParameterJdbcTemplate.query(query, parameterMap, computerMapper);
 		} catch (DataAccessException e) {
 			LOGGER.error(

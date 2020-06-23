@@ -19,7 +19,7 @@ public class CommunService {
 	public List<Company> getCompanies() {
 
 		try {
-			
+
 			return daoCompany.getCompanies();
 		} catch (SQLException e) {
 

@@ -39,9 +39,9 @@ public class EditComputerServlet {
 	private EditService editService;
 
 	@GetMapping
-    public ModelAndView dashboard() {
-        return new ModelAndView("editComputer");
-    }
+	public ModelAndView dashboard() {
+		return new ModelAndView("editComputer");
+	}
 //	
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 //			throws ServletException, IOException {

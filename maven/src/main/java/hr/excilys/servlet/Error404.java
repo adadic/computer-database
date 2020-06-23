@@ -11,7 +11,7 @@ public class Error404 {
 
 	@GetMapping
 	public ModelAndView error404() {
-		
+
 		return new ModelAndView("error404");
 	}
 }

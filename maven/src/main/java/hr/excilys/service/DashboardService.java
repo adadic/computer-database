@@ -22,6 +22,10 @@ public class DashboardService {
 
 	@Autowired
 	private DAOComputer daoComputer;
+	@Autowired
+	private PaginationMapper paginationMapper;
+	@Autowired
+	private PageValidator pageValidator;
 
 	public List<Computer> getComputersRows(Pagination page) {
 		if (page.getOrder() != null && !page.getOrder().isEmpty()) {
@@ -90,8 +94,8 @@ public class DashboardService {
 
 	public Pagination paginate(DTOPagination dtoPagination) {
 
-		Pagination page = PaginationMapper.getPage(dtoPagination, getCountComputer(dtoPagination.getSearch()));
-		PageValidator.checkPage(page);
+		Pagination page = paginationMapper.getPage(dtoPagination, getCountComputer(dtoPagination.getSearch()));
+		pageValidator.checkPage(page);
 
 		return page;
 	}

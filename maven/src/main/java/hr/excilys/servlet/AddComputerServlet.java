@@ -37,9 +37,9 @@ public class AddComputerServlet {
 	private AddService addService;
 
 	@GetMapping
-    public ModelAndView dashboard() {
-        return new ModelAndView("addComputer");
-    }
+	public ModelAndView dashboard() {
+		return new ModelAndView("addComputer");
+	}
 //	
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 //			throws ServletException, IOException {
