@@ -16,7 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
 
@@ -51,7 +50,7 @@ public class DashboardServlet {
 	}
 //	
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
+//			throws ServletException {
 //
 //		DTOPagination dtoPagination = new DTOPagination.DTOPaginationBuilder(request.getParameter("lines"),
 //				request.getParameter("page"), request.getParameter("search")).order(request.getParameter("order"))
@@ -75,7 +74,7 @@ public class DashboardServlet {
 //	}
 //
 //	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
+//			throws ServletException {
 //
 //		try {
 //			if (!dashboardService.deleteComputer(ArrayMapper.stringTransform(request.getParameter("selection")))) {

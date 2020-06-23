@@ -1,6 +1,5 @@
 package hr.excilys.servlet;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +43,7 @@ public class EditComputerServlet {
 	}
 //	
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
+//			throws ServletException {
 //
 //		List<Company> companies = communService.getCompanies();
 //		request.setAttribute("companies", companies);
@@ -59,7 +58,7 @@ public class EditComputerServlet {
 //	}
 //
 //	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
+//			throws ServletException {
 //
 //		DTOComputer computer = new DTOComputer.DTOComputerBuilder(request.getParameter("computerName"))
 //				.id(request.getParameter("id")).introduced(request.getParameter("introduced"))

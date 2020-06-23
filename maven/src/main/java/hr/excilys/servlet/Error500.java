@@ -12,6 +12,6 @@ public class Error500 {
 	@GetMapping
 	public ModelAndView eror500() {
 
-		return new ModelAndView("error500");
+		return new ModelAndView("500");
 	}
 }

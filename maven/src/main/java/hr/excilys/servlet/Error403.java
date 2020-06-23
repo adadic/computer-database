@@ -12,6 +12,6 @@ public class Error403 {
 	@GetMapping
 	public ModelAndView error403() {
 
-		return new ModelAndView("error403");
+		return new ModelAndView("403");
 	}
 }
