@@ -14,7 +14,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
@@ -36,18 +38,23 @@ public class AddComputerServlet {
 	private AddService addService;
 
 	@GetMapping
-	public ModelAndView dashboard() {
-		return new ModelAndView("addComputer");
+	public ModelAndView add() {
+
+		ModelAndView model = new ModelAndView("addComputer");
+		model.addObject("companies", communService.getCompanies());
+
+		return model;
 	}
-//	
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException {
-//
-//		List<Company> companies = communService.getCompanies();
-//		request.setAttribute("companies", companies);
-//		this.getServletContext().getRequestDispatcher("/WEB-INF/addComputer.jsp").forward(request, response);
-//	}
-//
+
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public ModelAndView addComputer(HttpServletRequest req, HttpServletResponse res) {
+		
+		ModelAndView view = new ModelAndView();
+		view.setViewName("redirect:dashboard");
+
+        return view;
+	}
+
 //	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 //			throws ServletException {
 //

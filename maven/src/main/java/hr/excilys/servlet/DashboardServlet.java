@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import hr.excilys.dto.DTOPagination;
 import hr.excilys.mapper.ArrayMapper;
@@ -29,14 +30,23 @@ public class DashboardServlet {
 
 	@Autowired
 	private DashboardService dashboardService;
+	@Autowired
+	private Pagination page;
 
 	@GetMapping
 	public ModelAndView dashboard() {
 
 		ModelAndView model = new ModelAndView("dashboard");
 
-		Pagination page = new Pagination.PaginationBuilder(10, 1, null).count(dashboardService.getCountComputer(""))
+		page = new Pagination.PaginationBuilder(10, 1, null).count(dashboardService.getCountComputer(""))
 				.build();
+		setModelView(model);
+
+		return model;
+	}
+	
+	private void setModelView(ModelAndView model) {
+		
 		model.addObject("computers", dashboardService.getComputersRows(page));
 		model.addObject("page", page.getPage());
 		model.addObject("search", page.getSearch());
@@ -45,8 +55,14 @@ public class DashboardServlet {
 		model.addObject("size", page.getCount());
 		model.addObject("order", page.getOrder());
 		model.addObject("direction", page.getDirection());
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public ModelAndView addComputer(HttpServletRequest req, HttpServletResponse res) {
+		
+		ModelAndView view = new ModelAndView("dashboard");
 
-		return model;
+        return view;
 	}
 //	
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -87,4 +103,5 @@ public class DashboardServlet {
 //		}
 //		doGet(request, response);
 //	}
+
 }

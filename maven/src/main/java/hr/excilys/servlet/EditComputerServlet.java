@@ -15,7 +15,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
@@ -38,8 +40,20 @@ public class EditComputerServlet {
 	private EditService editService;
 
 	@GetMapping
-	public ModelAndView dashboard() {
-		return new ModelAndView("editComputer");
+	public ModelAndView edit() {
+
+		ModelAndView model = new ModelAndView("editService");
+		model.addObject("companies", communService.getCompanies());
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public ModelAndView addComputer(HttpServletRequest req, HttpServletResponse res) {
+		
+		ModelAndView view = new ModelAndView("dashboard");
+
+        return view;
 	}
 //	
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response)
