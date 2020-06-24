@@ -42,7 +42,7 @@ public class EditComputerServlet {
 	@GetMapping
 	public ModelAndView edit() {
 
-		ModelAndView model = new ModelAndView("editService");
+		ModelAndView model = new ModelAndView("editComputer");
 		model.addObject("companies", communService.getCompanies());
 		
 		return model;
