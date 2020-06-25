@@ -1,4 +1,4 @@
-package hr.excilys.servlet;
+package hr.excilys.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/error404")
-public class Error404 {
+@RequestMapping(value = "/error500")
+public class Error500 {
 
 	@GetMapping
-	public ModelAndView error404() {
+	public ModelAndView eror500() {
 
-		return new ModelAndView("404");
+		return new ModelAndView("500");
 	}
 }

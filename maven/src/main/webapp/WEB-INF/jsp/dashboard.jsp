@@ -65,7 +65,7 @@
 				<c:when test="${msg == -3}">
 					<div class="container">
 						<div class="alert alert-danger">
-							Probleme in response format from Web page to Server. Try again !
+							Probleme in fetching Computer that doesn't exist. Try again !
 							<br />
 						</div>
 					</div>

@@ -26,31 +26,34 @@ public final class ComputerMapper implements RowMapper<Computer> {
 
 	public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
 
+		System.out.println();
+		System.out.println(dtoComputer.toString());
+		System.out.println();
 		long id = IDNULL;
 		if (computerValidator.checkString(dtoComputer)) {
 			if (!dtoComputer.getId().equals("0")) {
 				id = Long.valueOf(dtoComputer.getId());
 			}
-			if (dtoComputer.getIntroduced() != "") {
-				if (dtoComputer.getDiscontinued() != "") {
+			if (!dtoComputer.getIntroduced().isEmpty()) {
+				if (!dtoComputer.getDiscontinued().isEmpty()) {
 
-					return Optional.of(new Computer.ComputerBuilder(dtoComputer.getName()).id(id)
+					return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
 							.introduced(new Timestamp(dateMapper.getDate(dtoComputer.getIntroduced())))
 							.discontinued(new Timestamp(dateMapper.getDate(dtoComputer.getDiscontinued())))
-							.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getId()),
+							.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
 									dtoComputer.getCompany().getName()).build())
 							.build());
 				}
 
-				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getName()).id(id)
+				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
 						.introduced(new Timestamp(dateMapper.getDate(dtoComputer.getIntroduced())))
-						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getId()),
+						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
 								dtoComputer.getCompany().getName()).build())
 						.build());
 			} else {
 
-				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getName()).id(id)
-						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getId()),
+				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
+						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
 								dtoComputer.getCompany().getName()).build())
 						.build());
 			}

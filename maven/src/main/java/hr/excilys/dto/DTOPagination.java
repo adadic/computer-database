@@ -10,78 +10,70 @@ public final class DTOPagination {
 	private String search;
 	private String order;
 	private String direction;
+	private String msg = "";
 
 	public DTOPagination() {
 
 		super();
 	}
-
-	public DTOPagination(DTOPaginationBuilder builder) {
-
-		this.page = builder.page;
-		this.lines = builder.lines;
-		this.search = builder.search;
-		this.order = builder.order;
-		this.direction = builder.direction;
-	}
-
+	
 	public String getLines() {
-
+		
 		return lines;
 	}
 
-	public String getPage() {
+	public void setLines(String lines) {
+		
+		this.lines = lines;
+	}
 
+	public String getPage() {
+		
 		return page;
 	}
 
-	public String getSearch() {
+	public void setPage(String page) {
+		
+		this.page = page;
+	}
 
+	public String getSearch() {
+		
 		return search;
 	}
 
-	public String getOrder() {
+	public void setSearch(String search) {
+		
+		this.search = search;
+	}
 
+	public String getOrder() {
+		
 		return order;
+	}
+
+	public void setOrder(String order) {
+		
+		this.order = order;
+	}
+
+	public String getMsg() {
+		
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		
+		this.msg = msg;
+	}
+
+	public void setDirection(String direction) {
+		
+		this.direction = direction;
 	}
 
 	public String getDirection() {
 
 		return direction;
-	}
-
-	public static class DTOPaginationBuilder {
-
-		private String lines;
-		private String page;
-		private String search;
-		private String order;
-		private String direction;
-
-		public DTOPaginationBuilder(String lines, String page, String search) {
-
-			this.page = page;
-			this.lines = lines;
-			this.search = search;
-		}
-
-		public DTOPagination build() {
-
-			return new DTOPagination(this);
-		}
-
-		public DTOPaginationBuilder order(String order) {
-
-			this.order = order;
-
-			return this;
-		}
-
-		public DTOPaginationBuilder direction(String direction) {
-
-			this.direction = direction;
-
-			return this;
-		}
 	}
 }

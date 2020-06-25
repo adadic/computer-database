@@ -1,66 +1,41 @@
 package hr.excilys.dto;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.stereotype.Service;
 
 @Service
 public final class DTOCompany {
 
-	private String id;
-	private String name;
+	private String companyId;
+	private String name = "none";
 
 	public DTOCompany() {
 
 		super();
 	}
 
-	public DTOCompany(String id, String name) {
-
-		super();
-		this.id = id;
-		this.name = name;
+	public String getCompanyId() {
+		return companyId;
 	}
 
-	public DTOCompany(DTOCompanyBuilder builder) {
 
-		this.id = builder.id;
-		this.name = builder.name;
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
+
 
 	public String getName() {
-
 		return name;
 	}
 
-	public void setName(String name) {
 
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getId() {
-
-		return id;
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
-
-	public void setId(String id) {
-
-		this.id = id;
-	}
-
-	public static class DTOCompanyBuilder {
-
-		private String id;
-		private String name;
-
-		public DTOCompanyBuilder(String id, String name) {
-
-			this.id = id;
-			this.name = name;
-		}
-
-		public DTOCompany build() {
-
-			return new DTOCompany(this);
-		}
-	}
-
 }

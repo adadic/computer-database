@@ -1,7 +1,5 @@
 package hr.excilys.service;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,47 +28,26 @@ public class DashboardService {
 	public List<Computer> getComputersRows(Pagination page) {
 		if (page.getOrder() != null && !page.getOrder().isEmpty()) {
 			if (page.getDirection() == 1) {
-				try {
 
 					return daoComputer.getComputersSort(page.getPage(), page.getLines(), page.getSearch(),
 							page.getOrder(), ASC);
-				} catch (SQLException e) {
-
-					return new ArrayList<Computer>();
-				}
 			} else {
-				try {
 
 					return daoComputer.getComputersSort(page.getPage(), page.getLines(), page.getSearch(),
 							page.getOrder(), DESC);
-				} catch (SQLException e) {
-
-					return new ArrayList<Computer>();
-				}
 			}
 		} else {
-			try {
 
 				return daoComputer.getComputersRows(page.getPage(), page.getLines(), page.getSearch());
-			} catch (SQLException e) {
-
-				return new ArrayList<Computer>();
-			}
 		}
 	}
 
 	public int getCountComputer(String search) {
 
-		try {
-
 			return daoComputer.countComputer(search);
-		} catch (SQLException e) {
-
-			return -1;
-		}
 	}
 
-	public boolean deleteComputer(List<String> selected) throws NumberFormatException, SQLException {
+	public boolean deleteComputer(List<String> selected) {
 
 		if (selected.isEmpty()) {
 
@@ -78,15 +55,7 @@ public class DashboardService {
 		}
 
 		selected.stream().forEach(e -> {
-			try {
-				daoComputer.deleteComputer(Long.valueOf(e));
-			} catch (NumberFormatException nfe) {
-
-				nfe.printStackTrace();
-			} catch (SQLException sqle) {
-
-				sqle.printStackTrace();
-			}
+			daoComputer.deleteComputer(Long.valueOf(e));
 		});
 
 		return true;

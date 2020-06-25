@@ -12,8 +12,8 @@ public class Computer {
 
 	private long id;
 	private String name;
-	private Timestamp introduced;
-	private Timestamp discontinued;
+	private Timestamp introduced = null;
+	private Timestamp discontinued = null;
 	
 	@Autowired
 	private Company company = null;

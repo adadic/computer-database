@@ -21,7 +21,7 @@ public class ComputerValidator {
 	public boolean checkString(DTOComputer dtoComputer) {
 
 		try {
-			if (dtoComputer.getName().isEmpty()) {
+			if (dtoComputer.getComputerName().isEmpty()) {
 
 				LOGGER.info("Computer has no name!");
 				return false;

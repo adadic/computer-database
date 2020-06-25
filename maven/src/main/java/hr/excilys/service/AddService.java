@@ -1,6 +1,5 @@
 package hr.excilys.service;
 
-import java.sql.SQLException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +22,10 @@ public class AddService {
 
 		Optional<Computer> computer = computerMapper.fromDTO(dtoComputer);
 		if (computer.isPresent()) {
-			try {
-				daoComputer.insertComputer(computer.get());
 
-				return true;
-			} catch (SQLException e) {
-
-				return false;
-			}
+			return daoComputer.insertComputer(computer.get());
 		}
+		
 		return false;
 	}
 }
