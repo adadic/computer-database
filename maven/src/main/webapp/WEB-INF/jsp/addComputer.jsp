@@ -1,5 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
 <title>Computer Database</title>
@@ -16,8 +17,8 @@
 <body>
 	<header class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="dashboard"> Application - Computer
-				Database </a>
+			<a class="navbar-brand" href="dashboard"><spring:message
+					code="main.title" text="default" /></a>
 		</div>
 	</header>
 
@@ -25,34 +26,43 @@
 		<c:if test="${msg == -1}">
 			<div class="container">
 				<div class="alert alert-danger">
-					Couldn't add computer, check your fields<br />
+					<spring:message code="error.fieldAdd" text="default" />
+					<br />
 				</div>
 			</div>
 		</c:if>
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-8 col-xs-offset-2 box">
-					<h1>Add Computer</h1>
+					<h1>
+						<spring:message code="form.titleAdd" text="default" />
+					</h1>
 					<form action="addComputer" method="POST">
 						<fieldset>
 							<div class="form-group">
-								<label for="computerName">Computer name</label> <input
-									type="text" class="form-control" id="computerName"
-									name="computerName" placeholder="Computer name" required>
+								<label for="computerName"><spring:message
+										code="form.computer" text="default" /></label> <input type="text"
+									class="form-control" id="computerName" name="computerName"
+									placeholder="<spring:message code="form.computer" text="default"/>"
+									required>
 							</div>
 							<div class="form-group">
-								<label for="introduced">Introduced date</label> <input
-									type="date" min="1970-01-01" onchange="setDate();"
-									class="form-control" id="introduced" name="introduced"
-									placeholder="Introduced date">
+								<label for="introduced"><spring:message
+										code="form.introduced" text="default" /></label> <input type="date"
+									min="1970-01-01" onchange="setDate();" class="form-control"
+									id="introduced" name="introduced"
+									placeholder="<spring:message code="form.introduced" text="default"/>">
 							</div>
 							<div class="form-group">
-								<label for="discontinued">Discontinued date</label> <input
-									type="date" class="form-control" id="discontinued"
-									name="discontinued" placeholder="Discontinued date" disabled>
+								<label for="discontinued"><spring:message
+										code="form.discontinued" text="default" /></label> <input type="date"
+									class="form-control" id="discontinued" name="discontinued"
+									placeholder="<spring:message code="form.discontinued" text="default"/>"
+									disabled>
 							</div>
 							<div class="form-group">
-								<label for="companyId">Company</label> <select
+								<label for="companyId"><spring:message
+										code="form.company" text="default" /></label> <select
 									class="form-control" id="companyId" name="companyId">
 									<option value="0">--</option>
 
@@ -64,8 +74,11 @@
 							</div>
 						</fieldset>
 						<div class="actions pull-right">
-							<input type="submit" value="Add" class="btn btn-primary">
-							or <a href="dashboard" class="btn btn-default">Cancel</a>
+							<input type="submit"
+								value="<spring:message code="form.add" text="default"/>"
+								class="btn btn-primary"> or <a href="dashboard"
+								class="btn btn-default"><spring:message code="form.cancel"
+									text="default" /></a>
 						</div>
 					</form>
 				</div>
