@@ -1,7 +1,9 @@
-<%@ page pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <html>
 <head>
 <title>Computer Database</title>
@@ -20,8 +22,12 @@
 	<header class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="dashboard"> <spring:message
-					code="main.title" text="default" />
+					code="main.title" />
 			</a>
+			<button class="langButton flagEN" id="english"
+				onclick="window.location.replace('?lang=en')"></button>
+			<button class="langButton flagFR" id="french"
+				onclick="window.location.replace('?lang=fr')"></button>
 		</div>
 	</header>
 
@@ -31,7 +37,7 @@
 				<c:when test="${msg == 1}">
 					<div class="container">
 						<div class="success">
-							<spring:message code="success.delete" text="default" />
+							<spring:message code="success.delete" />
 							<br />
 						</div>
 					</div>
@@ -39,7 +45,7 @@
 				<c:when test="${msg == 2}">
 					<div class="container">
 						<div class="success">
-							<spring:message code="success.add" text="default" />
+							<spring:message code="success.add" />
 							<br />
 						</div>
 					</div>
@@ -47,7 +53,7 @@
 				<c:when test="${msg == 3}">
 					<div class="container">
 						<div class="success">
-							<spring:message code="success.update" text="default" />
+							<spring:message code="success.update" />
 							<br />
 						</div>
 					</div>
@@ -55,7 +61,7 @@
 				<c:when test="${msg == -1}">
 					<div class="container">
 						<div class="alert alert-danger">
-							<spring:message code="error.uri" text="default" />
+							<spring:message code="error.uri" />
 							<br />
 						</div>
 					</div>
@@ -63,7 +69,7 @@
 				<c:when test="${msg == -2}">
 					<div class="container">
 						<div class="alert alert-danger">
-							<spring:message code="error.delete" text="default" />
+							<spring:message code="error.delete" />
 							<br />
 						</div>
 					</div>
@@ -71,7 +77,7 @@
 				<c:when test="${msg == -3}">
 					<div class="container">
 						<div class="alert alert-danger">
-							<spring:message code="error.exist" text="default" />
+							<spring:message code="error.exist" />
 							<br />
 						</div>
 					</div>
@@ -83,7 +89,7 @@
 		</c:if>
 		<div class="container">
 			<h1 id="homeTitle">${size}
-				<spring:message code="dashboard.title" text="default" />
+				<spring:message code="dashboard.title" />
 			</h1>
 			<div id="actions" class="form-horizontal">
 				<div class="pull-left">
@@ -92,18 +98,18 @@
 						<input type="search" id="searchbox" name="search"
 							class="form-control"
 							placeholder="<spring:message
-							code="search.label" text="default"/>" />
-						<input type="submit" id="searchsubmit"
+							code="search.label"/>" /> <input
+							type="submit" id="searchsubmit"
 							value="<spring:message
-							code="search.button" text="default"/>"
+							code="search.button"/>"
 							class="btn btn-primary" />
 					</form>
 				</div>
 				<div class="pull-right">
 					<a class="btn btn-success" id="addComputer" href="addComputer"><spring:message
-							code="add.button" text="default" /></a> <a class="btn btn-default"
+							code="add.button" /></a> <a class="btn btn-default"
 						id="editComputer" href="#" onclick="$.fn.toggleEditMode();"><spring:message
-							code="edit.button" text="default" /></a>
+							code="edit.button" /></a>
 				</div>
 			</div>
 		</div>
@@ -130,25 +136,25 @@
 							<c:when
 								test="${fn:contains(order,'computer') and direction == 1}">
 								<th onclick="sortTable('computer', 0, ${lines}, '${search}');"><spring:message
-										code="table.computer" text="default" /></th>
+										code="table.computer" /></th>
 							</c:when>
 							<c:otherwise>
 								<th onclick="sortTable('computer', 1, ${lines}, '${search}');"><spring:message
-										code="table.computer" text="default" /></th>
+										code="table.computer" /></th>
 							</c:otherwise>
 						</c:choose>
-						<th><spring:message code="table.introduced" text="default" /></th>
+						<th><spring:message code="table.introduced" /></th>
 						<!-- Table header for Discontinued Date -->
-						<th><spring:message code="table.discontinued" text="default" /></th>
+						<th><spring:message code="table.discontinued" /></th>
 						<!-- Table header for Company -->
 						<c:choose>
 							<c:when test="${fn:contains(order,'company') and direction == 1}">
 								<th onclick="sortTable('company', 0, ${lines}, '${search}');"><spring:message
-										code="table.company" text="default" /></th>
+										code="table.company" /></th>
 							</c:when>
 							<c:otherwise>
 								<th onclick="sortTable('company', 1, ${lines}, '${search}');"><spring:message
-										code="table.company" text="default" /></th>
+										code="table.company" /></th>
 							</c:otherwise>
 						</c:choose>
 

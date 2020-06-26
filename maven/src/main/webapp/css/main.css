@@ -37,3 +37,22 @@ input[type='checkbox'] {
 	border: 1px solid transparent;
 	border-radius: 4px;
 }
+
+.langButton {
+    position: relative;
+    float: right;
+    height: 15px;
+    width: 25px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.flagEN {
+	background: url(../img/flag-en.png);
+	background-size: 20px 11px;
+}
+
+.flagFR {
+	background: url(../img/flag-fr.png);
+	background-size: 20px;
+}

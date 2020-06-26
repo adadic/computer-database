@@ -1,6 +1,8 @@
-<%@ page pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <html>
 <head>
 <title>Computer Database</title>
@@ -18,14 +20,18 @@
 	<header class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="dashboard"><spring:message
-					code="main.title" text="default" /></a>
+					code="main.title" /></a>
+			<button class="langButton flagEN" id="english"
+				onclick="window.location.replace('?lang=en')"></button>
+			<button class="langButton flagFR" id="french"
+				onclick="window.location.replace('?lang=fr')"></button>
 		</div>
 	</header>
 	<section id="main">
 		<c:if test="${msg == -1}">
 			<div class="container">
 				<div class="alert alert-danger">
-					<spring:message code="error.fieldEdit" text="default" />
+					<spring:message code="error.fieldEdit" />
 					<br />
 				</div>
 			</div>
@@ -36,7 +42,7 @@
 					<div class="label label-default pull-right">id:
 						${computer.id}</div>
 					<h1>
-						<spring:message code="form.titleEdit" text="default" />
+						<spring:message code="form.titleEdit" />
 					</h1>
 
 					<form action="editComputer" method="POST">
@@ -44,28 +50,27 @@
 						<fieldset>
 							<div class="form-group">
 								<label for="computerName"><spring:message
-										code="form.computer" text="default" /></label> <input type="text"
+										code="form.computer" /></label> <input type="text"
 									class="form-control" id="computerName" name="computerName"
-									placeholder="<spring:message code="form.computer" text="default"/>"
-									required>
+									placeholder="<spring:message code="form.computer"/>" required>
 							</div>
 							<div class="form-group">
 								<label for="introduced"><spring:message
-										code="form.introduced" text="default" /></label> <input type="date"
+										code="form.introduced" /></label> <input type="date"
 									class="form-control" min="1970-01-01" onchange="setDate();"
 									id="introduced" name="introduced"
-									placeholder="<spring:message code="form.introduced" text="default"/>">
+									placeholder="<spring:message code="form.introduced"/>">
 							</div>
 							<div class="form-group">
 								<label for="discontinued"><spring:message
-										code="form.discontinued" text="default" /></label> <input type="date"
+										code="form.discontinued" /></label> <input type="date"
 									class="form-control" id="discontinued" name="discontinued"
-									placeholder="<spring:message code="form.discontinued" text="default"/>">
+									placeholder="<spring:message code="form.discontinued"/>">
 							</div>
 							<div class="form-group">
 								<label for="companyId"><spring:message
-										code="form.company" text="default" /></label> <select
-									class="form-control" id="companyId" name="companyId">
+										code="form.company" /></label> <select class="form-control"
+									id="companyId" name="companyId">
 									<option value="0">--</option>
 									<c:forEach items="${companies}" var="company">
 										<option value="${company.id}">${company.name}</option>
@@ -74,8 +79,7 @@
 							</div>
 						</fieldset>
 						<div class="actions pull-right">
-							<input type="submit"
-								value="<spring:message code="form.edit" text="default"/>"
+							<input type="submit" value="<spring:message code="form.edit"/>"
 								class="btn btn-primary"> or <a href="dashboard"
 								class="btn btn-default"><spring:message code="form.cancel"
 									text="default" /></a>
