@@ -20,12 +20,17 @@ public class DashboardController {
 	private static final String ARRAYEMPTY = "-2";
 	private static final String DELETESUCCESS = "1";
 
-	@Autowired
-	private DashboardService dashboardService;
-	@Autowired
+	private final DashboardService dashboardService;
 	private Pagination dashboard;
+	private final ArrayMapper arrayMapper;
+	
 	@Autowired
-	private ArrayMapper arrayMapper;
+	public DashboardController(DashboardService dashboardService, Pagination dashboard, ArrayMapper arrayMapper) {
+
+		this.dashboardService = dashboardService;
+		this.dashboard = dashboard;
+		this.arrayMapper = arrayMapper;
+	}
 
 	@GetMapping
 	public ModelAndView dashboard(DTOPagination dtoPagination) {

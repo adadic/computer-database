@@ -9,10 +9,15 @@ import hr.excilys.model.Company;
 import hr.excilys.persistence.DAOCompany;
 
 @Service
-public class CommunService {
+public class CompanyService {
+
+	private DAOCompany daoCompany;
 
 	@Autowired
-	private DAOCompany daoCompany;
+	public CompanyService(DAOCompany daoCompany) {
+
+		this.daoCompany = daoCompany;
+	}
 
 	public List<Company> getCompanies() {
 

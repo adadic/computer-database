@@ -18,7 +18,7 @@ public class ComputerValidator {
 	@Autowired
 	private DateMapper dateMapper;
 
-	public boolean checkString(DTOComputer dtoComputer) {
+	public boolean checkDate(DTOComputer dtoComputer) {
 
 		try {
 			if (dtoComputer.getComputerName().isEmpty()) {

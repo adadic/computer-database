@@ -1,4 +1,4 @@
-package hr.excilys.config;
+package hr.excilys.controller;
 
 import java.util.Locale;
 
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-public class MvcConfiguration implements WebMvcConfigurer {
+public class ControllerConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

@@ -1,36 +1,36 @@
-package hr.excilys.mapper;
+package hr.excilys.dto.mapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import hr.excilys.dto.DTOComputer;
+import hr.excilys.mapper.DateMapper;
 import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
 import hr.excilys.validator.ComputerValidator;
 
 @Component
-public final class ComputerMapper implements RowMapper<Computer> {
+public class ComputerDTOMapper {
 
 	private static final long IDNULL = 0L;
 
+	private final ComputerValidator computerValidator;
+	private final DateMapper dateMapper;
+
 	@Autowired
-	private ComputerValidator computerValidator;
-	@Autowired
-	private DateMapper dateMapper;
+	public ComputerDTOMapper(ComputerValidator computerValidator, DateMapper dateMapper) {
+
+		this.computerValidator = computerValidator;
+		this.dateMapper = dateMapper;
+	}
 
 	public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
 
-		System.out.println();
-		System.out.println(dtoComputer.toString());
-		System.out.println();
 		long id = IDNULL;
-		if (computerValidator.checkString(dtoComputer)) {
+		if (computerValidator.checkDate(dtoComputer)) {
 			if (!dtoComputer.getId().equals("0")) {
 				id = Long.valueOf(dtoComputer.getId());
 			}
@@ -62,17 +62,5 @@ public final class ComputerMapper implements RowMapper<Computer> {
 
 			return Optional.empty();
 		}
-	}
-
-	@Override
-	public Computer mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-
-		return new Computer.ComputerBuilder(resultSet.getString("computer.name")).id(resultSet.getLong("computer.id"))
-				.introduced(resultSet.getTimestamp("computer.introduced"))
-				.discontinued(resultSet.getTimestamp("computer.discontinued"))
-				.company(
-						new Company.CompanyBuilder(resultSet.getLong("company.id"), resultSet.getString("company.name"))
-								.build())
-				.build();
 	}
 }

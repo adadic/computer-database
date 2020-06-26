@@ -18,7 +18,7 @@ public class PageValidator {
 	public static final boolean ERROR = true;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PageValidator.class);
 
-	public boolean checkString(DTOPagination dtoPage) {
+	public boolean checkPage(DTOPagination dtoPage) {
 
 		try {
 			Integer.valueOf(dtoPage.getPage());
@@ -40,7 +40,7 @@ public class PageValidator {
 		}
 	}
 
-	public void checkPage(Pagination page) {
+	public void checkPageFields(Pagination page) {
 
 		if (page.getLines() < MINLINE) {
 			page.setLines(MINLINE);
