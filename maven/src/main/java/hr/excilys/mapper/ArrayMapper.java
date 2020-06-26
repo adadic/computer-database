@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public final class ArrayMapper {
 
-	public static List<String> stringTransform(String selected) {
+	public List<String> stringTransform(String selected) {
 
 		return Arrays.asList(selected.split(","));
 	}

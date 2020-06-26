@@ -1,5 +1,7 @@
 package hr.excilys.model;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,7 +11,7 @@ public class Company {
 	private String name;
 
 	public Company() {
-		
+
 		super();
 	}
 
@@ -47,8 +49,7 @@ public class Company {
 
 	@Override
 	public String toString() {
-
-		return id + "\t|\t" + name;
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 
 	public static class CompanyBuilder {

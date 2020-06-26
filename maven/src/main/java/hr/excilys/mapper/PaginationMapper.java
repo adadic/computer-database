@@ -1,5 +1,6 @@
 package hr.excilys.mapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import hr.excilys.dto.DTOPagination;
@@ -13,9 +14,12 @@ public final class PaginationMapper {
 	private static final int INITLINES = 10;
 	private static final int INITZERO = 0;
 
-	public static Pagination getPage(DTOPagination dtoPagination, int count) {
+	@Autowired
+	private PageValidator pageValidator;
 
-		if (PageValidator.checkString(dtoPagination)) {
+	public Pagination getPage(DTOPagination dtoPagination, int count) {
+
+		if (pageValidator.checkString(dtoPagination)) {
 
 			return new Pagination.PaginationBuilder(Integer.valueOf(dtoPagination.getLines()),
 					Integer.valueOf(dtoPagination.getPage()), dtoPagination.getSearch()).count(count)

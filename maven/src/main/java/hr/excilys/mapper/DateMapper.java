@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public final class DateMapper {
 
-	public static long getDate(String givenDate) {
+	public long getDate(String givenDate) {
 
 		try {
 			Timestamp ts = Timestamp.valueOf(givenDate + " 00:00:00");

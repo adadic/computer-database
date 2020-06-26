@@ -7,6 +7,7 @@ function setDate(){
 		$('#discontinued').attr("min", $('#introduced').val());
 	}
 	else{
+		$('#discontinued').val("");
 		$('#discontinued').prop("disabled", true);
 	}
 }

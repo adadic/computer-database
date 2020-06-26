@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -18,44 +19,41 @@ public final class ComputerMapper implements RowMapper<Computer> {
 
 	private static final long IDNULL = 0L;
 
-	public static Computer getComputer(ResultSet resultSet) throws SQLException {
+	@Autowired
+	private ComputerValidator computerValidator;
+	@Autowired
+	private DateMapper dateMapper;
 
-		return new Computer.ComputerBuilder(resultSet.getString("computer.name")).id(resultSet.getLong("computer.id"))
-				.introduced(resultSet.getTimestamp("computer.introduced"))
-				.discontinued(resultSet.getTimestamp("computer.discontinued"))
-				.company(
-						new Company.CompanyBuilder(resultSet.getLong("company.id"), resultSet.getString("company.name"))
-								.build())
-				.build();
-	}
+	public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
 
-	public static Optional<Computer> fromDTO(DTOComputer dtoComputer) {
-
+		System.out.println();
+		System.out.println(dtoComputer.toString());
+		System.out.println();
 		long id = IDNULL;
-		if (ComputerValidator.checkString(dtoComputer)) {
+		if (computerValidator.checkString(dtoComputer)) {
 			if (!dtoComputer.getId().equals("0")) {
 				id = Long.valueOf(dtoComputer.getId());
 			}
-			if (dtoComputer.getIntroduced() != "") {
-				if (dtoComputer.getDiscontinued() != "") {
+			if (!dtoComputer.getIntroduced().isEmpty()) {
+				if (!dtoComputer.getDiscontinued().isEmpty()) {
 
-					return Optional.of(new Computer.ComputerBuilder(dtoComputer.getName()).id(id)
-							.introduced(new Timestamp(DateMapper.getDate(dtoComputer.getIntroduced())))
-							.discontinued(new Timestamp(DateMapper.getDate(dtoComputer.getDiscontinued())))
-							.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getId()),
+					return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
+							.introduced(new Timestamp(dateMapper.getDate(dtoComputer.getIntroduced())))
+							.discontinued(new Timestamp(dateMapper.getDate(dtoComputer.getDiscontinued())))
+							.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
 									dtoComputer.getCompany().getName()).build())
 							.build());
 				}
 
-				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getName()).id(id)
-						.introduced(new Timestamp(DateMapper.getDate(dtoComputer.getIntroduced())))
-						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getId()),
+				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
+						.introduced(new Timestamp(dateMapper.getDate(dtoComputer.getIntroduced())))
+						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
 								dtoComputer.getCompany().getName()).build())
 						.build());
 			} else {
 
-				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getName()).id(id)
-						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getId()),
+				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
+						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
 								dtoComputer.getCompany().getName()).build())
 						.build());
 			}
@@ -68,7 +66,7 @@ public final class ComputerMapper implements RowMapper<Computer> {
 
 	@Override
 	public Computer mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-		
+
 		return new Computer.ComputerBuilder(resultSet.getString("computer.name")).id(resultSet.getLong("computer.id"))
 				.introduced(resultSet.getTimestamp("computer.introduced"))
 				.discontinued(resultSet.getTimestamp("computer.discontinued"))

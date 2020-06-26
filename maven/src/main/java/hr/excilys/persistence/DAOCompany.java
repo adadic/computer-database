@@ -1,6 +1,5 @@
 package hr.excilys.persistence;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,19 +26,19 @@ public final class DAOCompany {
 	@Autowired
 	private CompanyMapper companyMapper;
 
-	public List<Company> getCompanies() throws SQLException {
+	public List<Company> getCompanies() {
 
 		try {
 
 			return namedParameterJdbcTemplate.query(EnumQuery.ALLCOMPANY.getQuery(), companyMapper);
-		} catch (DataAccessException e) {
+		} catch (DataAccessException dae) {
 			LOGGER.error("Cannot get all Copanies, probleme in the Query");
 
 			return new ArrayList<>();
 		}
 	}
 
-	public Optional<Company> getCompanyById(long id) throws SQLException {
+	public Optional<Company> getCompanyById(long id) {
 
 		try {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_company", id);
@@ -52,7 +51,7 @@ public final class DAOCompany {
 				return Optional.of(company.get(0));
 			}
 			LOGGER.info("No company by id = {}", id);
-		} catch (DataAccessException e) {
+		} catch (DataAccessException dae) {
 			LOGGER.info("Company with id = {} : NOT Found", id);
 
 			return Optional.empty();
@@ -62,7 +61,7 @@ public final class DAOCompany {
 	}
 
 	@Transactional
-	public int deleteCompany(long id) throws SQLException {
+	public int deleteCompany(long id) {
 
 		try {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_company", id);
@@ -71,7 +70,7 @@ public final class DAOCompany {
 			LOGGER.info("Computer with id_company : {} DELETED", id);
 
 			return 1;
-		} catch (DataAccessException e) {
+		} catch (DataAccessException dae) {
 			LOGGER.error("Probleme in query with id_company : {}", id);
 
 			return 0;

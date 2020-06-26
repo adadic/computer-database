@@ -5,7 +5,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,30 +26,28 @@ public final class DAOComputer {
 	@Autowired
 	private ComputerMapper computerMapper;
 
-	public List<Computer> getComputers() throws SQLException {
+	public List<Computer> getComputers() {
 
 		try {
 			return namedParameterJdbcTemplate.query(EnumQuery.ALLCOMPUTER.getQuery(), computerMapper);
 
-		} catch (DataAccessException e) {
+		} catch (DataAccessException dae) {
 			LOGGER.error("Cannot get all Computers, probleme in the Query");
 
 			return new ArrayList<>();
 		}
 	}
 
-	public List<Computer> getComputersRows(int page, int lines, String search) throws SQLException {
+	public List<Computer> getComputersRows(int page, int lines, String search) {
 
 		search = prepareSearch(search);
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
-					.addValue("search", search)
-					.addValue("limit", lines)
-					.addValue("offset", lines * (page - 1));
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search)
+					.addValue("limit", lines).addValue("offset", lines * (page - 1));
 
 			return namedParameterJdbcTemplate.query(EnumQuery.PAGECOMPUTER.getQuery(), parameterMap, computerMapper);
-		} catch (DataAccessException e) {
+		} catch (DataAccessException dae) {
 			LOGGER.error("Cannot get Computers at {} page and with {} lines, probleme in the Query maybe search -> {}",
 					page, lines, search);
 
@@ -58,18 +55,19 @@ public final class DAOComputer {
 		}
 	}
 
-	public Optional<Computer> getComputerById(long id) throws SQLException {
+	public Optional<Computer> getComputerById(long id) {
 
 		try {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", id);
-			List<Computer> computer = namedParameterJdbcTemplate.query(EnumQuery.IDCOMPUTER.getQuery(), parameterMap, computerMapper);
-			
-			if (computer != null) {
+			List<Computer> computer = namedParameterJdbcTemplate.query(EnumQuery.IDCOMPUTER.getQuery(), parameterMap,
+					computerMapper);
+			System.out.println(computer.toString());
+			if (!computer.isEmpty()) {
 				LOGGER.info("Computer with id = {} : Found", id);
 
 				return Optional.of(computer.get(0));
 			}
-		} catch (DataAccessException e) {
+		} catch (DataAccessException dae) {
 			LOGGER.error("Computer with id = {} : Probleme in Query", id);
 		}
 		LOGGER.info("Computer with id = {} : NOT Found", id);
@@ -77,72 +75,72 @@ public final class DAOComputer {
 		return Optional.empty();
 	}
 
-	public int insertComputer(Computer computer) throws SQLException {
-		
+	public boolean insertComputer(Computer computer) {
+
 		try {
 			MapSqlParameterSource parameterMap;
 			if (computer.getCompany().getId() == 0) {
-				parameterMap = new MapSqlParameterSource()
-						.addValue("name", computer.getName())
+				parameterMap = new MapSqlParameterSource().addValue("name", computer.getName())
 						.addValue("introduced", computer.getIntroduced())
-						.addValue("discontinued", computer.getDiscontinued())
-						.addValue("id_company", null);
+						.addValue("discontinued", computer.getDiscontinued()).addValue("id_company", null);
 			} else {
-				parameterMap = new MapSqlParameterSource()
-						.addValue("name", computer.getName())
+				parameterMap = new MapSqlParameterSource().addValue("name", computer.getName())
 						.addValue("introduced", computer.getIntroduced())
 						.addValue("discontinued", computer.getDiscontinued())
 						.addValue("id_company", computer.getCompany().getId());
 			}
-
-			return namedParameterJdbcTemplate.update(EnumQuery.INSERTCOMPUTER.getQuery(), parameterMap);
-		} catch (DataAccessException e) {
+			namedParameterJdbcTemplate.update(EnumQuery.INSERTCOMPUTER.getQuery(), parameterMap);
+			
+			return true;
+		} catch (DataAccessException dae) {
 			LOGGER.error("Computer NOT added, probleme in query : Check fields");
 
-			return 0;
+			return false;
 		}
 	}
 
-	public int updateComputer(Computer computer) throws SQLException {
+	public boolean updateComputer(Computer computer) {
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", computer.getId())
 					.addValue("name", computer.getName())
 					.addValue("introduced", computer.getIntroduced())
 					.addValue("discontinued", computer.getDiscontinued())
 					.addValue("id_company", computer.getCompany().getId());
-
-			return namedParameterJdbcTemplate.update(EnumQuery.UPDATECOMPUTER.getQuery(), parameterMap);
-		} catch (DataAccessException e) {
+			namedParameterJdbcTemplate.update(EnumQuery.UPDATECOMPUTER.getQuery(), parameterMap);
+			
+			return true;
+		} catch (DataAccessException dae) {
 			LOGGER.error("Computer NOT updated, probleme in query : Check fields");
 
-			return 0;
+			return false;
 		}
 	}
 
-	public int deleteComputer(long id) throws SQLException {
+	public boolean deleteComputer(long id) {
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
-					.addValue("id_computer", id);
-
-			return namedParameterJdbcTemplate.update(EnumQuery.DELETECOMPUTER.getQuery(), parameterMap);
-		} catch (DataAccessException e) {
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", id);
+			namedParameterJdbcTemplate.update(EnumQuery.DELETECOMPUTER.getQuery(), parameterMap);
+		
+			return true;
+		} catch (DataAccessException dae) {
 			LOGGER.error("Computer NOT deleted, probleme in query");
 
-			return 0;
+			return false;
 		}
 	}
 
-	public int countComputer(String search) throws SQLException {
+	public int countComputer(String search) {
 
 		search = prepareSearch(search);
 
 		try {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search);
 
-			return namedParameterJdbcTemplate.queryForObject(EnumQuery.COUNTCOMPUTER.getQuery(), parameterMap, Integer.class);
-		} catch (DataAccessException e) {
+			return namedParameterJdbcTemplate.queryForObject(EnumQuery.COUNTCOMPUTER.getQuery(), parameterMap,
+					Integer.class);
+		} catch (DataAccessException dae) {
 			LOGGER.info("ResultSet Empty");
 
 			return -1;
@@ -150,18 +148,16 @@ public final class DAOComputer {
 	}
 
 	public List<Computer> getComputersSort(int page, int lines, String search, String order, int direct)
-			throws SQLException {
+			throws DataAccessException {
 		search = prepareSearch(search);
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource()
-					.addValue("search", search)
-					.addValue("limit", lines)
-					.addValue("offset", lines * (page - 1));
+			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search)
+					.addValue("limit", lines).addValue("offset", lines * (page - 1));
 			String query = getOrderQuery(order, direct);
-			
+
 			return namedParameterJdbcTemplate.query(query, parameterMap, computerMapper);
-		} catch (DataAccessException e) {
+		} catch (DataAccessException dae) {
 			LOGGER.error(
 					"Probleme in query, check fields : page = {}, lines = {}, search = {}, order = {}, direct = {}",
 					page, lines, search, order, direct);

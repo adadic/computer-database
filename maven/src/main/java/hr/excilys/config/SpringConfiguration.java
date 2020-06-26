@@ -1,6 +1,4 @@
-package hr.excilys.main;
-
-import javax.sql.DataSource;
+package hr.excilys.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,12 +11,12 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @ComponentScan(basePackages = { "hr.excilys.dto", "hr.excilys.mapper", "hr.excilys.model", "hr.excilys.persistence",
-		"hr.excilys.service", "hr.excilys.servlet", "hr.excilys.validator" })
+		"hr.excilys.service", "hr.excilys.controller", "hr.excilys.validator" })
 @ImportResource("classpath:/applicationContext.xml")
 public class SpringConfiguration {
 
 	@Bean(destroyMethod = "close")
-	public DataSource dataSource() {
+	public HikariDataSource dataSource() {
 
 		HikariConfig hikariConfig = new HikariConfig("/hikari.properties");
 		HikariDataSource dataSource = new HikariDataSource(hikariConfig);
@@ -27,7 +25,8 @@ public class SpringConfiguration {
 	}
 
 	@Bean
-	NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource datasource) {
+	public NamedParameterJdbcTemplate namedParameterJdbcTemplate(HikariDataSource datasource) {
+
 		return new NamedParameterJdbcTemplate(datasource);
 	}
 }
