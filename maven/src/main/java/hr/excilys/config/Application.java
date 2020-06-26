@@ -8,6 +8,9 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import hr.excilys.controller.ControllerConfiguration;
+import hr.excilys.persistence.PersistenceConfiguration;
+
 public final class Application implements WebApplicationInitializer {
 
 	@Override
@@ -15,7 +18,7 @@ public final class Application implements WebApplicationInitializer {
 		System.out.println("Starting....");
 
 		AnnotationConfigWebApplicationContext dispatcher = new AnnotationConfigWebApplicationContext();
-		dispatcher.register(SpringConfiguration.class, MvcConfiguration.class);
+		dispatcher.register(PersistenceConfiguration.class, ControllerConfiguration.class);
 		dispatcher.setServletContext(context);
 
 		ServletRegistration.Dynamic servlet = context.addServlet("dispatcher", new DispatcherServlet(dispatcher));

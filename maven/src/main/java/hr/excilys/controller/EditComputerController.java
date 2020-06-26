@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
 import hr.excilys.model.Computer;
-import hr.excilys.service.CommunService;
+import hr.excilys.service.CompanyService;
 import hr.excilys.service.EditService;
 
 @Controller
@@ -24,16 +24,21 @@ public class EditComputerController {
 	private static final String NOEXISTENCE = "-3";
 	private static final String UPDATESUCCESS = "3";
 
-	@Autowired
-	private CommunService communService;
-	@Autowired
+	private CompanyService companyService;
 	private EditService editService;
+
+	@Autowired
+	public EditComputerController(CompanyService companyService, EditService editService) {
+		super();
+		this.companyService = companyService;
+		this.editService = editService;
+	}
 
 	@GetMapping
 	public ModelAndView edit(@RequestParam(defaultValue = "0") String id, @RequestParam(defaultValue = "") String msg) {
 
 		ModelAndView model = new ModelAndView("editComputer");
-		model.addObject("companies", communService.getCompanies());
+		model.addObject("companies", companyService.getCompanies());
 		Optional<Computer> computer = editService.getComputerById(id);
 		setMessage(model, msg);
 

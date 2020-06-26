@@ -24,7 +24,7 @@ public class ComputerValidatorTest extends TestCase{
 		Mockito.when(dtoComputer.getDiscontinued()).thenReturn("");
 		
 		
-		assertEquals(true, computerValidator.checkString(dtoComputer));
+		assertEquals(true, computerValidator.checkDate(dtoComputer));
 		
 	}
 }

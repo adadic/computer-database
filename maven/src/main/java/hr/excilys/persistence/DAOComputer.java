@@ -12,8 +12,8 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import hr.excilys.mapper.ComputerMapper;
 import hr.excilys.model.Computer;
+import hr.excilys.persistence.mapper.ComputerRowMapper;
 
 @Repository
 public final class DAOComputer {
@@ -24,12 +24,12 @@ public final class DAOComputer {
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	@Autowired
-	private ComputerMapper computerMapper;
+	private ComputerRowMapper computerRowMapper;
 
 	public List<Computer> getComputers() {
 
 		try {
-			return namedParameterJdbcTemplate.query(EnumQuery.ALLCOMPUTER.getQuery(), computerMapper);
+			return namedParameterJdbcTemplate.query(EnumQuery.ALLCOMPUTER.getQuery(), computerRowMapper);
 
 		} catch (DataAccessException dae) {
 			LOGGER.error("Cannot get all Computers, probleme in the Query");
@@ -46,7 +46,7 @@ public final class DAOComputer {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search)
 					.addValue("limit", lines).addValue("offset", lines * (page - 1));
 
-			return namedParameterJdbcTemplate.query(EnumQuery.PAGECOMPUTER.getQuery(), parameterMap, computerMapper);
+			return namedParameterJdbcTemplate.query(EnumQuery.PAGECOMPUTER.getQuery(), parameterMap, computerRowMapper);
 		} catch (DataAccessException dae) {
 			LOGGER.error("Cannot get Computers at {} page and with {} lines, probleme in the Query maybe search -> {}",
 					page, lines, search);
@@ -60,7 +60,7 @@ public final class DAOComputer {
 		try {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", id);
 			List<Computer> computer = namedParameterJdbcTemplate.query(EnumQuery.IDCOMPUTER.getQuery(), parameterMap,
-					computerMapper);
+					computerRowMapper);
 			System.out.println(computer.toString());
 			if (!computer.isEmpty()) {
 				LOGGER.info("Computer with id = {} : Found", id);
@@ -156,7 +156,7 @@ public final class DAOComputer {
 					.addValue("limit", lines).addValue("offset", lines * (page - 1));
 			String query = getOrderQuery(order, direct);
 
-			return namedParameterJdbcTemplate.query(query, parameterMap, computerMapper);
+			return namedParameterJdbcTemplate.query(query, parameterMap, computerRowMapper);
 		} catch (DataAccessException dae) {
 			LOGGER.error(
 					"Probleme in query, check fields : page = {}, lines = {}, search = {}, order = {}, direct = {}",

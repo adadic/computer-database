@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hr.excilys.dto.DTOPagination;
-import hr.excilys.mapper.PaginationMapper;
+import hr.excilys.dto.mapper.PaginationDTOMapper;
 import hr.excilys.model.Computer;
 import hr.excilys.model.Pagination;
 import hr.excilys.persistence.DAOComputer;
@@ -18,12 +18,18 @@ public class DashboardService {
 	private final static int ASC = 1;
 	private final static int DESC = 0;
 
-	@Autowired
 	private DAOComputer daoComputer;
-	@Autowired
-	private PaginationMapper paginationMapper;
-	@Autowired
+	private PaginationDTOMapper paginationDTOMapper;
 	private PageValidator pageValidator;
+
+	@Autowired
+	public DashboardService(DAOComputer daoComputer, PaginationDTOMapper paginationDTOMapper,
+			PageValidator pageValidator) {
+
+		this.daoComputer = daoComputer;
+		this.paginationDTOMapper = paginationDTOMapper;
+		this.pageValidator = pageValidator;
+	}
 
 	public List<Computer> getComputersRows(Pagination page) {
 		if (page.getOrder() != null && !page.getOrder().isEmpty()) {
@@ -63,8 +69,8 @@ public class DashboardService {
 
 	public Pagination paginate(DTOPagination dtoPagination) {
 
-		Pagination page = paginationMapper.getPage(dtoPagination, getCountComputer(dtoPagination.getSearch()));
-		pageValidator.checkPage(page);
+		Pagination page = paginationDTOMapper.getPage(dtoPagination, getCountComputer(dtoPagination.getSearch()));
+		pageValidator.checkPageFields(page);
 
 		return page;
 	}

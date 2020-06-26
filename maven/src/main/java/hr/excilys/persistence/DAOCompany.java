@@ -13,24 +13,29 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import hr.excilys.mapper.CompanyMapper;
 import hr.excilys.model.Company;
+import hr.excilys.persistence.mapper.CompanyRowMapper;
 
 @Repository
 public final class DAOCompany {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(DAOCompany.class);
 
+	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	private final CompanyRowMapper companyRowMapper;
+
 	@Autowired
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	@Autowired
-	private CompanyMapper companyMapper;
+	public DAOCompany(NamedParameterJdbcTemplate namedParameterJdbcTemplate, CompanyRowMapper companyRowMapper) {
+
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+		this.companyRowMapper = companyRowMapper;
+	}
 
 	public List<Company> getCompanies() {
 
 		try {
 
-			return namedParameterJdbcTemplate.query(EnumQuery.ALLCOMPANY.getQuery(), companyMapper);
+			return namedParameterJdbcTemplate.query(EnumQuery.ALLCOMPANY.getQuery(), companyRowMapper);
 		} catch (DataAccessException dae) {
 			LOGGER.error("Cannot get all Copanies, probleme in the Query");
 
@@ -43,7 +48,7 @@ public final class DAOCompany {
 		try {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_company", id);
 			List<Company> company = namedParameterJdbcTemplate.query(EnumQuery.IDCOMPANY.getQuery(), parameterMap,
-					companyMapper);
+					companyRowMapper);
 
 			if (company != null) {
 				LOGGER.info("Company with id = {} : Found", id);
