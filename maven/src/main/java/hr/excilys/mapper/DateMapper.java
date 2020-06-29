@@ -7,15 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public final class DateMapper {
 
-	public long getDate(String givenDate) {
+	public long getDate(String givenDate) throws IllegalArgumentException {
 
-		try {
-			Timestamp ts = Timestamp.valueOf(givenDate + " 00:00:00");
-
-			return ts.getTime();
-		} catch (IllegalArgumentException e) {
-
-			return 0;
-		}
+		return Timestamp.valueOf(givenDate + " 00:00:00").getTime();
 	}
 }

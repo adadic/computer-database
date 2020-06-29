@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
-import hr.excilys.service.AddService;
+import hr.excilys.service.AddComputerService;
 import hr.excilys.service.CompanyService;
 
 @Controller
@@ -20,14 +20,14 @@ public class AddComputerController {
 	private static final int ADDERROR = -1;
 
 	private final CompanyService companyService;
-	private final AddService addService;
+	private final AddComputerService addComputerService;
 
 	
 	@Autowired
-	public AddComputerController(CompanyService companyService, AddService addService) {
+	public AddComputerController(CompanyService companyService, AddComputerService addComputerService) {
 
 		this.companyService = companyService;
-		this.addService = addService;
+		this.addComputerService = addComputerService;
 	}
 
 	@GetMapping
@@ -45,7 +45,7 @@ public class AddComputerController {
 		ModelAndView view = new ModelAndView();
 		computer.setCompany(dtoCompany);
 		
-		if (!addService.addComputer(computer)) {
+		if (!addComputerService.addComputer(computer)) {
 			view.addObject("msg", ADDERROR);
 		} else {
 			view.addObject("msg", ADDSUCCESS);

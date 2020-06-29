@@ -2,6 +2,7 @@ package hr.excilys.validator;
 
 import java.sql.Timestamp;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,26 +15,27 @@ import hr.excilys.mapper.DateMapper;
 public class ComputerValidator {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(ComputerValidator.class);
-
 	@Autowired
 	private DateMapper dateMapper;
 
-	public boolean checkDate(DTOComputer dtoComputer) {
+	public boolean checkComputerFields(DTOComputer dtoComputer) {
+		
+		if (StringUtils.isEmpty(dtoComputer.getComputerName())) {
+			LOGGER.info("Computer has no name!");
 
+			return false;
+		}
 		try {
-			if (dtoComputer.getComputerName().isEmpty()) {
 
-				LOGGER.info("Computer has no name!");
-				return false;
-			}
-			if (!dtoComputer.getIntroduced().isEmpty() && dtoComputer.getIntroduced().matches("\\d{4}-\\d{2}-\\d{2}")) {
-				Timestamp timeIntro = new Timestamp(dateMapper.getDate(dtoComputer.getIntroduced()));
-				if (!dtoComputer.getDiscontinued().isEmpty()
-						&& dtoComputer.getDiscontinued().matches("\\d{4}-\\d{2}-\\d{2}")) {
-					Timestamp timeDiscon = new Timestamp(dateMapper.getDate(dtoComputer.getDiscontinued()));
+			if (StringUtils.isNotEmpty(dtoComputer.getIntroduced())) {
+				Timestamp timeIntro = checkDate(dtoComputer.getIntroduced());
+				System.out.println(timeIntro.getTime());
+				if (StringUtils.isNotEmpty(dtoComputer.getDiscontinued())) {
+					Timestamp timeDiscon = checkDate(dtoComputer.getDiscontinued());
+					System.out.println(timeDiscon.getTime());
 					if (timeIntro.getTime() > timeDiscon.getTime()) {
-
 						LOGGER.info("introduced Date after Discontinued Date in this Computer");
+		
 						return false;
 					}
 				}
@@ -41,11 +43,15 @@ public class ComputerValidator {
 			LOGGER.info("Computer can be created");
 
 			return true;
-		} catch (NullPointerException npe) {
-
+		} catch (IllegalArgumentException illae) {
 			LOGGER.error("NullPointerException -> At least one Field was null !!");
+
 			return false;
 		}
 	}
 
+	private Timestamp checkDate(String date) throws IllegalArgumentException {
+
+		return new Timestamp(dateMapper.getDate(date));
+	}
 }

@@ -3,6 +3,7 @@ package hr.excilys.dto.mapper;
 import java.sql.Timestamp;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,12 +31,12 @@ public class ComputerDTOMapper {
 	public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
 
 		long id = IDNULL;
-		if (computerValidator.checkDate(dtoComputer)) {
+		if (computerValidator.checkComputerFields(dtoComputer)) {
 			if (!dtoComputer.getId().equals("0")) {
 				id = Long.valueOf(dtoComputer.getId());
 			}
-			if (!dtoComputer.getIntroduced().isEmpty()) {
-				if (!dtoComputer.getDiscontinued().isEmpty()) {
+			if (StringUtils.isNotEmpty(dtoComputer.getIntroduced())) {
+				if (StringUtils.isNotEmpty(dtoComputer.getDiscontinued())) {
 
 					return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
 							.introduced(new Timestamp(dateMapper.getDate(dtoComputer.getIntroduced())))

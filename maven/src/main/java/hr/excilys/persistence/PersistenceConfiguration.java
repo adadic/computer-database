@@ -10,7 +10,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @ComponentScan(basePackages = { "hr.excilys.dto", "hr.excilys.mapper", "hr.excilys.model", "hr.excilys.persistence",
-		"hr.excilys.service", "hr.excilys.controller", "hr.excilys.validator" })
+		"hr.excilys.service", "hr.excilys.validator" })
 public class PersistenceConfiguration {
 
 	@Bean(destroyMethod = "close")

@@ -2,6 +2,7 @@ package hr.excilys.controller;
 
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
 import hr.excilys.model.Computer;
 import hr.excilys.service.CompanyService;
-import hr.excilys.service.EditService;
+import hr.excilys.service.EditComputerService;
 
 @Controller
 @RequestMapping(value = "/editComputer")
@@ -25,13 +26,13 @@ public class EditComputerController {
 	private static final String UPDATESUCCESS = "3";
 
 	private CompanyService companyService;
-	private EditService editService;
+	private EditComputerService editComputerService;
 
 	@Autowired
-	public EditComputerController(CompanyService companyService, EditService editService) {
+	public EditComputerController(CompanyService companyService, EditComputerService editComputerService) {
 		super();
 		this.companyService = companyService;
-		this.editService = editService;
+		this.editComputerService = editComputerService;
 	}
 
 	@GetMapping
@@ -39,7 +40,7 @@ public class EditComputerController {
 
 		ModelAndView model = new ModelAndView("editComputer");
 		model.addObject("companies", companyService.getCompanies());
-		Optional<Computer> computer = editService.getComputerById(id);
+		Optional<Computer> computer = editComputerService.getComputerById(id);
 		setMessage(model, msg);
 
 		if (computer.isPresent()) {
@@ -54,7 +55,7 @@ public class EditComputerController {
 
 	private void setMessage(ModelAndView model, String msg) {
 
-		if (!msg.isEmpty()) {
+		if (StringUtils.isNotEmpty(msg)) {
 			model.addObject("msg", msg);
 		}
 	}
@@ -65,7 +66,7 @@ public class EditComputerController {
 		ModelAndView view = new ModelAndView("redirect:editComputer");
 		computer.setCompany(dtoCompany);
 
-		if (!editService.editComputer(computer)) {
+		if (!editComputerService.editComputer(computer)) {
 			view.addObject("id", computer.getId());
 			view.addObject("msg", UPDATEERROR);
 			System.out.println(computer.getId());

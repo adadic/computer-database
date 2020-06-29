@@ -2,6 +2,7 @@ package hr.excilys.service;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class DashboardService {
 	}
 
 	public List<Computer> getComputersRows(Pagination page) {
-		if (page.getOrder() != null && !page.getOrder().isEmpty()) {
+		if (StringUtils.isNotEmpty(page.getOrder())) {
 			if (page.getDirection() == 1) {
 
 					return daoComputer.getComputersSort(page.getPage(), page.getLines(), page.getSearch(),

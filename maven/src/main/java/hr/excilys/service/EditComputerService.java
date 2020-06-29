@@ -11,24 +11,29 @@ import hr.excilys.model.Computer;
 import hr.excilys.persistence.DAOComputer;
 
 @Service
-public class AddService {
+public class EditComputerService {
 
 	private DAOComputer daoComputer;
 	private ComputerDTOMapper computerDTOMapper;
-
+	
 	@Autowired
-	public AddService(DAOComputer daoComputer, ComputerDTOMapper computerDTOMapper) {
+	public EditComputerService(DAOComputer daoComputer, ComputerDTOMapper computerDTOMapper) {
 
 		this.daoComputer = daoComputer;
 		this.computerDTOMapper = computerDTOMapper;
 	}
 
-	public boolean addComputer(DTOComputer dtoComputer) {
+	public Optional<Computer> getComputerById(String id_computer) {
+
+		return daoComputer.getComputerById(Long.valueOf(id_computer));
+	}
+
+	public boolean editComputer(DTOComputer dtoComputer) {
 
 		Optional<Computer> computer = computerDTOMapper.fromDTO(dtoComputer);
 		if (computer.isPresent()) {
 
-			return daoComputer.insertComputer(computer.get());
+			return daoComputer.updateComputer(computer.get());
 		}
 		
 		return false;
