@@ -1,4 +1,4 @@
-package hr.excilys.model;
+package hr.excilys.persistence.model;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

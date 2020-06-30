@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import hr.excilys.dto.DTOPagination;
-import hr.excilys.model.Pagination;
+import hr.excilys.persistence.model.Pagination;
 import hr.excilys.validator.PageValidator;
 
 @Component

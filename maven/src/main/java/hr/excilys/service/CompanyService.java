@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hr.excilys.model.Company;
 import hr.excilys.persistence.DAOCompany;
+import hr.excilys.persistence.model.Company;
 
 @Service
 public class CompanyService {

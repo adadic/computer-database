@@ -9,26 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import hr.excilys.model.Computer;
 import hr.excilys.persistence.mapper.ComputerRowMapper;
+import hr.excilys.persistence.model.Computer;
 
 @Repository
-public final class DAOComputer {
+public class DAOComputer {
 
 	private static final int ASC = 1;
 	private final static Logger LOGGER = LoggerFactory.getLogger(DAOComputer.class);
 
 	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	private final ComputerRowMapper computerRowMapper;
+	private final SessionFactory sessionFactory;
 
 	@Autowired
-	public DAOComputer(NamedParameterJdbcTemplate namedParameterJdbcTemplate, ComputerRowMapper computerRowMapper) {
+	public DAOComputer(NamedParameterJdbcTemplate namedParameterJdbcTemplate, ComputerRowMapper computerRowMapper, SessionFactory sessionFactory) {
 
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 		this.computerRowMapper = computerRowMapper;
+		this.sessionFactory = sessionFactory;
 	}
 
 	public List<Computer> getComputers() {

@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import hr.excilys.dto.DTOPagination;
 import hr.excilys.dto.mapper.PaginationDTOMapper;
-import hr.excilys.model.Computer;
-import hr.excilys.model.Pagination;
 import hr.excilys.persistence.DAOComputer;
+import hr.excilys.persistence.model.Computer;
+import hr.excilys.persistence.model.Pagination;
 import hr.excilys.validator.PageValidator;
 
 @Service

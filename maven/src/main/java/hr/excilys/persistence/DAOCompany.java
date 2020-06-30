@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +14,24 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import hr.excilys.model.Company;
 import hr.excilys.persistence.mapper.CompanyRowMapper;
+import hr.excilys.persistence.model.Company;
 
 @Repository
-public final class DAOCompany {
+public class DAOCompany {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(DAOCompany.class);
 
 	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	private final CompanyRowMapper companyRowMapper;
+	private final SessionFactory sessionFactory;
 
 	@Autowired
-	public DAOCompany(NamedParameterJdbcTemplate namedParameterJdbcTemplate, CompanyRowMapper companyRowMapper) {
+	public DAOCompany(NamedParameterJdbcTemplate namedParameterJdbcTemplate, CompanyRowMapper companyRowMapper, SessionFactory sessionFactory) {
 
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 		this.companyRowMapper = companyRowMapper;
+		this.sessionFactory = sessionFactory;
 	}
 
 	public List<Company> getCompanies() {

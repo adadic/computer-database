@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
-import hr.excilys.model.Computer;
+import hr.excilys.persistence.model.Computer;
 import hr.excilys.service.CompanyService;
 import hr.excilys.service.EditComputerService;
 

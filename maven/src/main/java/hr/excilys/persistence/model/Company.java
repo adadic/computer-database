@@ -1,4 +1,4 @@
-package hr.excilys.model;
+package hr.excilys.persistence.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import hr.excilys.model.Company;
-import hr.excilys.model.Computer;
+import hr.excilys.persistence.model.Company;
+import hr.excilys.persistence.model.Computer;
 
 @Component
 public final class ComputerRowMapper implements RowMapper<Computer> {

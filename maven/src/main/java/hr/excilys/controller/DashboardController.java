@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import hr.excilys.dto.DTOPagination;
 import hr.excilys.mapper.ArrayMapper;
-import hr.excilys.model.Pagination;
+import hr.excilys.persistence.model.Pagination;
 import hr.excilys.service.DashboardService;
 
 @Controller
@@ -26,10 +26,9 @@ public class DashboardController {
 	private final ArrayMapper arrayMapper;
 
 	@Autowired
-	public DashboardController(DashboardService dashboardService, Pagination dashboard, ArrayMapper arrayMapper) {
+	public DashboardController(DashboardService dashboardService, ArrayMapper arrayMapper) {
 
 		this.dashboardService = dashboardService;
-		this.dashboard = dashboard;
 		this.arrayMapper = arrayMapper;
 	}
 

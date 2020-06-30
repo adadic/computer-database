@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import hr.excilys.dto.DTOComputer;
 import hr.excilys.mapper.DateMapper;
-import hr.excilys.model.Company;
-import hr.excilys.model.Computer;
+import hr.excilys.persistence.model.Company;
+import hr.excilys.persistence.model.Computer;
 import hr.excilys.validator.ComputerValidator;
 
 @Component

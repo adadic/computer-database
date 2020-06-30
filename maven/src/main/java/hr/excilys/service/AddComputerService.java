@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import hr.excilys.dto.DTOComputer;
 import hr.excilys.dto.mapper.ComputerDTOMapper;
-import hr.excilys.model.Computer;
 import hr.excilys.persistence.DAOComputer;
+import hr.excilys.persistence.model.Computer;
 
 @Service
 public class AddComputerService {
