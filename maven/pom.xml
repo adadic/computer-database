@@ -7,7 +7,7 @@
 
 	<groupId>excilys.CBD</groupId>
 	<artifactId>maven</artifactId>
-	<version>5.0.1-SNAPSHOT</version>
+	<version>6.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>Maven Webapp</name>
@@ -29,6 +29,7 @@
 		<h2.version>1.4.200</h2.version>
 		<apache.common.version>3.9</apache.common.version>
 		<spring.version>5.2.5.RELEASE</spring.version>
+		<hibernate.version>5.4.10.Final</hibernate.version>
 	</properties>
 
 	<dependencies>
@@ -134,6 +135,12 @@
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 	</dependencies>

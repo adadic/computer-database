@@ -25,12 +25,12 @@ public class EditComputerController {
 	private static final String NOEXISTENCE = "-3";
 	private static final String UPDATESUCCESS = "3";
 
-	private CompanyService companyService;
-	private EditComputerService editComputerService;
+	private final CompanyService companyService;
+	private final EditComputerService editComputerService;
 
 	@Autowired
 	public EditComputerController(CompanyService companyService, EditComputerService editComputerService) {
-		super();
+
 		this.companyService = companyService;
 		this.editComputerService = editComputerService;
 	}

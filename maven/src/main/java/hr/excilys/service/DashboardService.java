@@ -19,9 +19,9 @@ public class DashboardService {
 	private final static int ASC = 1;
 	private final static int DESC = 0;
 
-	private DAOComputer daoComputer;
-	private PaginationDTOMapper paginationDTOMapper;
-	private PageValidator pageValidator;
+	private final DAOComputer daoComputer;
+	private final PaginationDTOMapper paginationDTOMapper;
+	private final PageValidator pageValidator;
 
 	@Autowired
 	public DashboardService(DAOComputer daoComputer, PaginationDTOMapper paginationDTOMapper,

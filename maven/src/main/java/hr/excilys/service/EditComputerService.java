@@ -13,9 +13,9 @@ import hr.excilys.persistence.DAOComputer;
 @Service
 public class EditComputerService {
 
-	private DAOComputer daoComputer;
-	private ComputerDTOMapper computerDTOMapper;
-	
+	private final DAOComputer daoComputer;
+	private final ComputerDTOMapper computerDTOMapper;
+
 	@Autowired
 	public EditComputerService(DAOComputer daoComputer, ComputerDTOMapper computerDTOMapper) {
 

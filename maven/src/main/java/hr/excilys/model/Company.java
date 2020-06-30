@@ -1,25 +1,25 @@
 package hr.excilys.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.stereotype.Component;
 
-@Component
+@Entity
+@Table( name = "COMPANY" )
 public class Company {
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private long id;
+	@Column(name ="name")
 	private String name;
-
-	public Company() {
-
-		super();
-	}
-
-	public Company(long id, String name) {
-
-		this.id = id;
-		this.name = name;
-	}
 
 	public Company(CompanyBuilder builder) {
 

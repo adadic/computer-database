@@ -11,7 +11,7 @@ import hr.excilys.persistence.DAOCompany;
 @Service
 public class CompanyService {
 
-	private DAOCompany daoCompany;
+	private final DAOCompany daoCompany;
 
 	@Autowired
 	public CompanyService(DAOCompany daoCompany) {

@@ -2,26 +2,37 @@ package hr.excilys.model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+@Entity
+@Table( name = "COMPUTER" )
 public class Computer {
-
-	private long id;
-	private String name;
-	private Timestamp introduced = null;
-	private Timestamp discontinued = null;
 	
-	@Autowired
-	private Company company = null;
-
-	public Computer() {
-		
-		super();
-	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private long id;
+	@Column(name ="name")
+	private String name;
+	@Column(name = "introduced")
+	private Timestamp introduced;
+	@Column(name = "discontinued")
+	private Timestamp discontinued;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Company.class)
+	@JoinColumn(name = "company_id", referencedColumnName = "id")
+	private Company company;
 
 	public Computer(ComputerBuilder builder) {
 

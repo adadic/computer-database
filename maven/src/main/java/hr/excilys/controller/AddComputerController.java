@@ -22,7 +22,6 @@ public class AddComputerController {
 	private final CompanyService companyService;
 	private final AddComputerService addComputerService;
 
-	
 	@Autowired
 	public AddComputerController(CompanyService companyService, AddComputerService addComputerService) {
 

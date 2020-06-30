@@ -15,8 +15,7 @@ public final class Application implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext context) throws ServletException {
-		System.out.println("Starting....");
-
+		
 		AnnotationConfigWebApplicationContext dispatcher = new AnnotationConfigWebApplicationContext();
 		dispatcher.register(PersistenceConfiguration.class, ControllerConfiguration.class);
 		dispatcher.setServletContext(context);

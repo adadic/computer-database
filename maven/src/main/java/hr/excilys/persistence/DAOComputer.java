@@ -21,10 +21,15 @@ public final class DAOComputer {
 	private static final int ASC = 1;
 	private final static Logger LOGGER = LoggerFactory.getLogger(DAOComputer.class);
 
+	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	private final ComputerRowMapper computerRowMapper;
+
 	@Autowired
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	@Autowired
-	private ComputerRowMapper computerRowMapper;
+	public DAOComputer(NamedParameterJdbcTemplate namedParameterJdbcTemplate, ComputerRowMapper computerRowMapper) {
+
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+		this.computerRowMapper = computerRowMapper;
+	}
 
 	public List<Computer> getComputers() {
 
@@ -90,7 +95,7 @@ public final class DAOComputer {
 						.addValue("id_company", computer.getCompany().getId());
 			}
 			namedParameterJdbcTemplate.update(EnumQuery.INSERTCOMPUTER.getQuery(), parameterMap);
-			
+
 			return true;
 		} catch (DataAccessException dae) {
 			LOGGER.error("Computer NOT added, probleme in query : Check fields");
@@ -103,12 +108,11 @@ public final class DAOComputer {
 
 		try {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", computer.getId())
-					.addValue("name", computer.getName())
-					.addValue("introduced", computer.getIntroduced())
+					.addValue("name", computer.getName()).addValue("introduced", computer.getIntroduced())
 					.addValue("discontinued", computer.getDiscontinued())
 					.addValue("id_company", computer.getCompany().getId());
 			namedParameterJdbcTemplate.update(EnumQuery.UPDATECOMPUTER.getQuery(), parameterMap);
-			
+
 			return true;
 		} catch (DataAccessException dae) {
 			LOGGER.error("Computer NOT updated, probleme in query : Check fields");
@@ -122,7 +126,7 @@ public final class DAOComputer {
 		try {
 			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", id);
 			namedParameterJdbcTemplate.update(EnumQuery.DELETECOMPUTER.getQuery(), parameterMap);
-		
+
 			return true;
 		} catch (DataAccessException dae) {
 			LOGGER.error("Computer NOT deleted, probleme in query");

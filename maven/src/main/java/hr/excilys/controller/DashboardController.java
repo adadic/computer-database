@@ -24,7 +24,7 @@ public class DashboardController {
 	private final DashboardService dashboardService;
 	private Pagination dashboard;
 	private final ArrayMapper arrayMapper;
-	
+
 	@Autowired
 	public DashboardController(DashboardService dashboardService, Pagination dashboard, ArrayMapper arrayMapper) {
 

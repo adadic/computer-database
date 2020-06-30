@@ -2,9 +2,7 @@ package hr.excilys.model;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.stereotype.Component;
 
-@Component
 public class Pagination {
 
 	private static final int NBLINESTART = 10;
@@ -103,6 +101,7 @@ public class Pagination {
 
 	@Override
 	public String toString() {
+		
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 

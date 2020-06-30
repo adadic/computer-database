@@ -15,8 +15,13 @@ import hr.excilys.mapper.DateMapper;
 public class ComputerValidator {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(ComputerValidator.class);
+	private final DateMapper dateMapper;
+
 	@Autowired
-	private DateMapper dateMapper;
+	public ComputerValidator(DateMapper dateMapper) {
+
+		this.dateMapper = dateMapper;
+	}
 
 	public boolean checkComputerFields(DTOComputer dtoComputer) {
 		
