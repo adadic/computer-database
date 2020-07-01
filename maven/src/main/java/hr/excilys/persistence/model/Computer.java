@@ -34,6 +34,9 @@ public class Computer {
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	private Company company;
 
+	public Computer() {
+	}
+
 	public Computer(ComputerBuilder builder) {
 
 		this.id = builder.id;

@@ -21,6 +21,9 @@ public class Company {
 	@Column(name ="name")
 	private String name;
 
+	public Company() {
+	}
+	
 	public Company(CompanyBuilder builder) {
 
 		this.id = builder.id;

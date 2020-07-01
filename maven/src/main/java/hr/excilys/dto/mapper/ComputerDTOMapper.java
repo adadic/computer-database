@@ -42,20 +42,20 @@ public class ComputerDTOMapper {
 							.introduced(new Timestamp(dateMapper.getDate(dtoComputer.getIntroduced())))
 							.discontinued(new Timestamp(dateMapper.getDate(dtoComputer.getDiscontinued())))
 							.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
-									dtoComputer.getCompany().getName()).build())
+									dtoComputer.getCompany().getCompanyName()).build())
 							.build());
 				}
 
 				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
 						.introduced(new Timestamp(dateMapper.getDate(dtoComputer.getIntroduced())))
 						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
-								dtoComputer.getCompany().getName()).build())
+								dtoComputer.getCompany().getCompanyName()).build())
 						.build());
 			} else {
 
 				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
 						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
-								dtoComputer.getCompany().getName()).build())
+								dtoComputer.getCompany().getCompanyName()).build())
 						.build());
 			}
 

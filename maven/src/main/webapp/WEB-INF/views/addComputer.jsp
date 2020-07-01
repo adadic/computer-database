@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <html>
 <head>
 <title>Computer Database</title>
@@ -68,6 +69,7 @@
 							<div class="form-group">
 								<label for="companyId"><spring:message
 										code="form.company" /></label> <select class="form-control"
+									onchange="$('#companyName').val($('#companyId [value = ' + $('#companyId').val() + ']').text())"
 									id="companyId" name="companyId">
 									<option value="0">--</option>
 
@@ -78,6 +80,7 @@
 								</select>
 							</div>
 						</fieldset>
+						<input type="hidden" value="" name="companyName" id="companyName" />
 						<div class="actions pull-right">
 							<input type="submit" value="<spring:message code="form.add"/>"
 								class="btn btn-primary"> or <a href="dashboard"

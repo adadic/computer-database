@@ -7,7 +7,7 @@
 
 	<groupId>excilys.CBD</groupId>
 	<artifactId>maven</artifactId>
-	<version>6.0.0-SNAPSHOT</version>
+	<version>6.2.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>Maven Webapp</name>

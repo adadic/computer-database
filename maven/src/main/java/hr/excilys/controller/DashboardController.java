@@ -37,7 +37,6 @@ public class DashboardController {
 
 		ModelAndView view = new ModelAndView("dashboard");
 		dashboard = dashboardService.paginate(dtoPagination);
-		
 		setMessage(view, dtoPagination.getMsg());
 		setModelView(view);
 

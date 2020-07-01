@@ -2,59 +2,53 @@ package hr.excilys.persistence;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import hr.excilys.persistence.mapper.ComputerRowMapper;
 import hr.excilys.persistence.model.Computer;
 
 @Repository
+@Transactional
 public class DAOComputer {
 
 	private static final int ASC = 1;
 	private final static Logger LOGGER = LoggerFactory.getLogger(DAOComputer.class);
-
-	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	private final ComputerRowMapper computerRowMapper;
 	private final SessionFactory sessionFactory;
+	private Session session;
 
 	@Autowired
-	public DAOComputer(NamedParameterJdbcTemplate namedParameterJdbcTemplate, ComputerRowMapper computerRowMapper, SessionFactory sessionFactory) {
+	public DAOComputer(SessionFactory sessionFactory) {
 
-		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-		this.computerRowMapper = computerRowMapper;
 		this.sessionFactory = sessionFactory;
-	}
-
-	public List<Computer> getComputers() {
-
-		try {
-			return namedParameterJdbcTemplate.query(EnumQuery.ALLCOMPUTER.getQuery(), computerRowMapper);
-
-		} catch (DataAccessException dae) {
-			LOGGER.error("Cannot get all Computers, probleme in the Query");
-
-			return new ArrayList<>();
-		}
 	}
 
 	public List<Computer> getComputersRows(int page, int lines, String search) {
 
 		search = prepareSearch(search);
-
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search)
-					.addValue("limit", lines).addValue("offset", lines * (page - 1));
+			session = sessionFactory.getCurrentSession();
+			TypedQuery<Computer> query = session.createQuery(EnumQuery.ALLCOMPUTER.getQuery(), Computer.class)
+					.setParameter("search", search);
+			query.setFirstResult(lines * (page - 1));
+			query.setMaxResults(lines);
 
-			return namedParameterJdbcTemplate.query(EnumQuery.PAGECOMPUTER.getQuery(), parameterMap, computerRowMapper);
+			return query.getResultList();
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return new ArrayList<>();
 		} catch (DataAccessException dae) {
 			LOGGER.error("Cannot get Computers at {} page and with {} lines, probleme in the Query maybe search -> {}",
 					page, lines, search);
@@ -66,15 +60,20 @@ public class DAOComputer {
 	public Optional<Computer> getComputerById(long id) {
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", id);
-			List<Computer> computer = namedParameterJdbcTemplate.query(EnumQuery.IDCOMPUTER.getQuery(), parameterMap,
-					computerRowMapper);
-			System.out.println(computer.toString());
+			session = sessionFactory.getCurrentSession();
+			TypedQuery<Computer> query = session.createQuery(EnumQuery.IDCOMPUTER.getQuery(), Computer.class)
+					.setParameter("id_computer", id);
+			List<Computer> computer = query.getResultList();
+
 			if (!computer.isEmpty()) {
 				LOGGER.info("Computer with id = {} : Found", id);
 
 				return Optional.of(computer.get(0));
 			}
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return Optional.empty();
 		} catch (DataAccessException dae) {
 			LOGGER.error("Computer with id = {} : Probleme in Query", id);
 		}
@@ -86,20 +85,17 @@ public class DAOComputer {
 	public boolean insertComputer(Computer computer) {
 
 		try {
-			MapSqlParameterSource parameterMap;
-			if (computer.getCompany().getId() == 0) {
-				parameterMap = new MapSqlParameterSource().addValue("name", computer.getName())
-						.addValue("introduced", computer.getIntroduced())
-						.addValue("discontinued", computer.getDiscontinued()).addValue("id_company", null);
-			} else {
-				parameterMap = new MapSqlParameterSource().addValue("name", computer.getName())
-						.addValue("introduced", computer.getIntroduced())
-						.addValue("discontinued", computer.getDiscontinued())
-						.addValue("id_company", computer.getCompany().getId());
+			session = sessionFactory.getCurrentSession();
+			if(computer.getCompany().getId() == 0) {
+				computer.setCompany(null);
 			}
-			namedParameterJdbcTemplate.update(EnumQuery.INSERTCOMPUTER.getQuery(), parameterMap);
+			session.save(computer);
 
 			return true;
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return false;
 		} catch (DataAccessException dae) {
 			LOGGER.error("Computer NOT added, probleme in query : Check fields");
 
@@ -110,13 +106,18 @@ public class DAOComputer {
 	public boolean updateComputer(Computer computer) {
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", computer.getId())
-					.addValue("name", computer.getName()).addValue("introduced", computer.getIntroduced())
-					.addValue("discontinued", computer.getDiscontinued())
-					.addValue("id_company", computer.getCompany().getId());
-			namedParameterJdbcTemplate.update(EnumQuery.UPDATECOMPUTER.getQuery(), parameterMap);
+			session = sessionFactory.getCurrentSession();
+			Query query = session.createQuery(EnumQuery.UPDATECOMPUTER.getQuery(), Computer.class)
+					.setParameter("name", computer.getName()).setParameter("introduced", computer.getIntroduced())
+					.setParameter("discontinued", computer.getDiscontinued())
+					.setParameter("id_company", computer.getCompany().getId());
+			query.executeUpdate();
 
 			return true;
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return false;
 		} catch (DataAccessException dae) {
 			LOGGER.error("Computer NOT updated, probleme in query : Check fields");
 
@@ -127,10 +128,16 @@ public class DAOComputer {
 	public boolean deleteComputer(long id) {
 
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("id_computer", id);
-			namedParameterJdbcTemplate.update(EnumQuery.DELETECOMPUTER.getQuery(), parameterMap);
+			session = sessionFactory.getCurrentSession();
+			Query query = session.createQuery(EnumQuery.DELETECOMPUTER.getQuery())
+					.setParameter("id_computer", id);
+			query.executeUpdate();
 
 			return true;
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return false;
 		} catch (DataAccessException dae) {
 			LOGGER.error("Computer NOT deleted, probleme in query");
 
@@ -141,12 +148,15 @@ public class DAOComputer {
 	public int countComputer(String search) {
 
 		search = prepareSearch(search);
-
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search);
+			session = sessionFactory.getCurrentSession();
+			Query query = session.createQuery(EnumQuery.ALLCOMPUTER.getQuery()).setParameter("search", search);
 
-			return namedParameterJdbcTemplate.queryForObject(EnumQuery.COUNTCOMPUTER.getQuery(), parameterMap,
-					Integer.class);
+			return query.getResultList().size();
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return -1;
 		} catch (DataAccessException dae) {
 			LOGGER.info("ResultSet Empty");
 
@@ -156,14 +166,21 @@ public class DAOComputer {
 
 	public List<Computer> getComputersSort(int page, int lines, String search, String order, int direct)
 			throws DataAccessException {
+
 		search = prepareSearch(search);
-
 		try {
-			MapSqlParameterSource parameterMap = new MapSqlParameterSource().addValue("search", search)
-					.addValue("limit", lines).addValue("offset", lines * (page - 1));
-			String query = getOrderQuery(order, direct);
+			session = sessionFactory.getCurrentSession();
+			String queryString = getOrderQuery(order, direct);
+			TypedQuery<Computer> query = session.createQuery(queryString, Computer.class).setParameter("search",
+					search);
+			query.setFirstResult(lines * (page - 1));
+			query.setMaxResults(lines);
 
-			return namedParameterJdbcTemplate.query(query, parameterMap, computerRowMapper);
+			return query.getResultList();
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return new ArrayList<>();
 		} catch (DataAccessException dae) {
 			LOGGER.error(
 					"Probleme in query, check fields : page = {}, lines = {}, search = {}, order = {}, direct = {}",

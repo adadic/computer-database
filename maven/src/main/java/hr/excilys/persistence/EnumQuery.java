@@ -1,42 +1,25 @@
 package hr.excilys.persistence;
 
-import java.util.Arrays;
-import java.util.StringJoiner;
-
 public enum EnumQuery {
 
-	ALLCOMPUTER(
-			"SELECT computer.id, computer.name, computer.introduced, computer.discontinued, company.id, company.name"
-					+ " FROM computer LEFT JOIN company ON computer.company_id = company.id"),
-	PAGECOMPUTER(ALLCOMPUTER.getQuery(), " WHERE computer.name LIKE :search LIMIT :limit OFFSET :offset"),
-	IDCOMPUTER(ALLCOMPUTER.getQuery(), " WHERE computer.id = :id_computer"),
+	ALLCOMPUTER("FROM Computer WHERE name LIKE :search"), IDCOMPUTER("FROM Computer WHERE id = :id_computer"),
 	INSERTCOMPUTER(
-			"INSERT INTO computer (name, introduced, discontinued, company_id) VALUES (:name, :introduced, :discontinued, :id_company)"),
-	DELETECOMPUTER("DELETE FROM computer WHERE id = :id_computer"),
+			"INSERT INTO Computer (name, introduced, discontinued, company_id) VALUES (:name, :introduced, :discontinued, :id_company)"),
+	DELETECOMPUTER("DELETE FROM Computer WHERE id = :id_computer"),
 	UPDATECOMPUTER(
-			"UPDATE computer SET name = :name , introduced = :introduced , discontinued = :discontinued , company_id = :id_company WHERE id = :id_computer "),
-	COUNTCOMPUTER("SELECT COUNT(*) as number FROM computer WHERE computer.name LIKE :search"),
-	DELETECOMPUTERCOMPANY("DELETE FROM computer WHERE company_id = :id_company"),
-	ALLCOMPANY("SELECT id, name FROM company"), IDCOMPANY("SELECT id, name FROM company WHERE id = :id_company"),
-	DELETECOMPANY("DELETE FROM company WHERE id = :id_company"),
-	SORTPAGECOMPUTERASC(ALLCOMPUTER.getQuery(),
-			" WHERE computer.name LIKE :search ORDER BY computer.name ASC LIMIT :limit OFFSET :offset"),
-	SORTPAGECOMPANYASC(ALLCOMPUTER.getQuery(),
-			" WHERE computer.name LIKE :search ORDER BY company.name ASC LIMIT :limit OFFSET :offset"),
-	SORTPAGECOMPUTERDESC(ALLCOMPUTER.getQuery(),
-			" WHERE computer.name LIKE :search ORDER BY computer.name DESC LIMIT :limit OFFSET :offset"),
-	SORTPAGECOMPANYDESC(ALLCOMPUTER.getQuery(),
-			" WHERE computer.name LIKE :search ORDER BY company.name DESC LIMIT :limit OFFSET :offset");
+			"UPDATE Computer SET name = :name , introduced = :introduced , discontinued = :discontinued , company_id = :id_company WHERE id = :id_computer "),
+	DELETECOMPUTERCOMPANY("DELETE FROM computer WHERE company_id = :id_company"), ALLCOMPANY("FROM Company"),
+	IDCOMPANY("FROM Company WHERE id = :id_company"), DELETECOMPANY("DELETE FROM Company WHERE id = :id_company"),
+	SORTPAGECOMPUTERASC("FROM Computer WHERE name LIKE :search ORDER BY name ASC"),
+	SORTPAGECOMPANYASC("FROM Computer WHERE name LIKE :search ORDER BY company.name ASC"),
+	SORTPAGECOMPUTERDESC("FROM Computer WHERE name LIKE :search ORDER BY name DESC"),
+	SORTPAGECOMPANYDESC("FROM Computer WHERE name LIKE :search ORDER BY company.name DESC");
 
 	private String message;
 
-	EnumQuery(String... message) {
+	EnumQuery(String message) {
 
-		StringJoiner joiner = new StringJoiner("");
-		Arrays.asList(message).stream().forEach(e -> {
-			joiner.add(e);
-		});
-		this.message = joiner.toString();
+		this.message = message;
 	}
 
 	public String getQuery() {

@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public final class DTOCompany {
 
 	private String companyId;
-	private String name = "none";
+	private String companyName;
 
 	public DTOCompany() {
 
@@ -25,15 +25,15 @@ public final class DTOCompany {
 	}
 
 
-	public String getName() {
+	public String getCompanyName() {
 		
-		return name;
+		return companyName;
 	}
 
 
-	public void setName(String name) {
+	public void setCompanyName(String companyName) {
 		
-		this.name = name;
+		this.companyName = companyName;
 	}
 
 	@Override
