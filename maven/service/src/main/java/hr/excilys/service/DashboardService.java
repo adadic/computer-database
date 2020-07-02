@@ -1,4 +1,4 @@
-package service;
+package hr.excilys.service;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dto.DTOPagination;
-import dto.mapper.PaginationDTOMapper;
-import model.Pagination;
-import model.Computer;
-import persistence.DAOComputer;
-import validator.PageValidator;
+import hr.excilys.dto.DTOPagination;
+import hr.excilys.dto.mapper.PaginationDTOMapper;
+import hr.excilys.model.Pagination;
+import hr.excilys.model.Computer;
+import hr.excilys.persistence.DAOComputer;
+import hr.excilys.validator.PageValidator;
 
 @Service
 public class DashboardService {

@@ -1,11 +1,11 @@
-package persistence;
+package hr.excilys.persistence;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import model.Computer;
+import hr.excilys.model.Computer;
 
 import java.util.ArrayList;
 import java.util.List;

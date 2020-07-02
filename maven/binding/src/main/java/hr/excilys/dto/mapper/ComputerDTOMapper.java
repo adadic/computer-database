@@ -1,4 +1,4 @@
-package dto.mapper;
+package hr.excilys.dto.mapper;
 
 import java.sql.Timestamp;
 import java.util.Optional;
@@ -7,11 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import dto.DTOComputer;
-import model.Company;
-import model.Computer;
-import mapper.DateMapper;
-import validator.ComputerValidator;
+import hr.excilys.dto.DTOComputer;
+import hr.excilys.model.Company;
+import hr.excilys.model.Computer;
+import hr.excilys.mapper.DateMapper;
+import hr.excilys.validator.ComputerValidator;
 
 @Component
 public class ComputerDTOMapper {

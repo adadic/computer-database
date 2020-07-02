@@ -1,4 +1,4 @@
-package validator;
+package hr.excilys.validator;
 
 import java.sql.Timestamp;
 
@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import dto.DTOComputer;
-import mapper.DateMapper;
+import hr.excilys.dto.DTOComputer;
+import hr.excilys.mapper.DateMapper;
 
 @Component
 public class ComputerValidator {

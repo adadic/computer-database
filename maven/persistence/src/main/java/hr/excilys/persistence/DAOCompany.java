@@ -1,4 +1,4 @@
-package persistence;
+package hr.excilys.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import model.Company;
+import hr.excilys.model.Company;
 
 @Repository
 @Transactional

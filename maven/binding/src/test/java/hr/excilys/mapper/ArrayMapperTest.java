@@ -1,4 +1,4 @@
-package mapper;
+package hr.excilys.mapper;
 
 import static org.junit.Assert.*;
 
@@ -15,10 +15,11 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import config.SpringTestConfiguration;
+import hr.excilys.config.BindingConfig;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { SpringTestConfiguration.class })
+@ContextConfiguration(classes = { BindingConfig.class })
 @TestExecutionListeners(DependencyInjectionTestExecutionListener.class)
 public class ArrayMapperTest {
 

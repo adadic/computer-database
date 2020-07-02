@@ -1,4 +1,4 @@
-package mapper;
+package hr.excilys.mapper;
 
 import java.sql.Timestamp;
 

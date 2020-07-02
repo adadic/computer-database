@@ -1,4 +1,4 @@
-package persistence;
+package hr.excilys.config;
 
 import java.util.Properties;
 
@@ -22,7 +22,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @EnableTransactionManagement
 @PropertySource({ "classpath:hibernate.properties" })
 @ComponentScan(basePackages = { "hr.excilys" })
-public class PersistenceConfiguration {
+public class PersistenceConfig {
 
 	@Autowired
 	private Environment env;

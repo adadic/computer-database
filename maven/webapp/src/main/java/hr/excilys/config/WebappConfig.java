@@ -1,4 +1,4 @@
-package controller;
+package hr.excilys.config;
 
 import java.util.Locale;
 
@@ -19,9 +19,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-@ComponentScan(basePackages = { "hr.excilys" })
+@ComponentScan(basePackages = { "hr.excilys.controller" })
 @EnableWebMvc
-public class ControllerConfiguration implements WebMvcConfigurer {
+public class WebappConfig implements WebMvcConfigurer {
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

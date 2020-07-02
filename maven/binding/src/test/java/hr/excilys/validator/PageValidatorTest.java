@@ -1,4 +1,4 @@
-package validator;
+package hr.excilys.validator;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,11 +13,11 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import config.SpringTestConfiguration;
-import dto.DTOPagination;
+import hr.excilys.dto.DTOPagination;
+import hr.excilys.config.BindingConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { SpringTestConfiguration.class })
+@ContextConfiguration(classes = { BindingConfig.class })
 @TestExecutionListeners(DependencyInjectionTestExecutionListener.class)
 public class PageValidatorTest {
 

@@ -1,4 +1,4 @@
-package controller;
+package hr.excilys.controller;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import dto.DTOPagination;
-import mapper.ArrayMapper;
-import model.Pagination;
-import service.DashboardService;
+import hr.excilys.dto.DTOPagination;
+import hr.excilys.mapper.ArrayMapper;
+import hr.excilys.model.Pagination;
+import hr.excilys.service.DashboardService;
 
 @Controller
 @RequestMapping(value = "/dashboard")

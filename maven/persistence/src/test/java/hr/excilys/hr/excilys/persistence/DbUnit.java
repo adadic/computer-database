@@ -1,4 +1,4 @@
-package hr.excilys.persistence;
+package hr.excilys.hr.excilys.persistence;
 
 import static org.hamcrest.CoreMatchers.is;
 

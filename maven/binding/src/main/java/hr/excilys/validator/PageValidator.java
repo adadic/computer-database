@@ -1,11 +1,11 @@
-package validator;
+package hr.excilys.validator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import dto.DTOPagination;
-import model.Pagination;
+import hr.excilys.dto.DTOPagination;
+import hr.excilys.model.Pagination;
 
 @Component
 public class PageValidator {

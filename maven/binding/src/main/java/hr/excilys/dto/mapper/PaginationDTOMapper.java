@@ -1,11 +1,11 @@
-package dto.mapper;
+package hr.excilys.dto.mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import dto.DTOPagination;
-import model.Pagination;
-import validator.PageValidator;
+import hr.excilys.dto.DTOPagination;
+import hr.excilys.model.Pagination;
+import hr.excilys.validator.PageValidator;
 
 @Component
 public final class PaginationDTOMapper {

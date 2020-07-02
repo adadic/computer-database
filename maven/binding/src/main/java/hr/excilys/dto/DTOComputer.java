@@ -1,4 +1,4 @@
-package dto;
+package hr.excilys.dto;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

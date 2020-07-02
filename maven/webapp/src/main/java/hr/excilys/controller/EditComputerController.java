@@ -1,4 +1,4 @@
-package controller;
+package hr.excilys.controller;
 
 import java.util.Optional;
 
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import dto.DTOCompany;
-import dto.DTOComputer;
-import model.Computer;
-import service.CompanyService;
-import service.EditComputerService;
+import hr.excilys.dto.DTOCompany;
+import hr.excilys.dto.DTOComputer;
+import hr.excilys.model.Computer;
+import hr.excilys.service.CompanyService;
+import hr.excilys.service.EditComputerService;
 
 @Controller
 @RequestMapping(value = "/editComputer")

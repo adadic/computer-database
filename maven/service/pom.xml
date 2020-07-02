@@ -33,8 +33,6 @@
 
 	<build>
 		<finalName>service</finalName>
-		<sourceDirectory>src/main/java/hr/excilys</sourceDirectory>
-		<testSourceDirectory>src/test/java/hr/excilys</testSourceDirectory>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>

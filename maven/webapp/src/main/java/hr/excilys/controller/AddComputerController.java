@@ -1,4 +1,4 @@
-package controller;
+package hr.excilys.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import dto.DTOCompany;
-import dto.DTOComputer;
-import service.AddComputerService;
-import service.CompanyService;
+import hr.excilys.dto.DTOCompany;
+import hr.excilys.dto.DTOComputer;
+import hr.excilys.service.AddComputerService;
+import hr.excilys.service.CompanyService;
 
 @Controller
 @RequestMapping(value = "/addComputer")

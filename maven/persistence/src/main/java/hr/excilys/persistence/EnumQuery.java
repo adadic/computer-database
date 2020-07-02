@@ -1,4 +1,4 @@
-package persistence;
+package hr.excilys.persistence;
 
 public enum EnumQuery {
 

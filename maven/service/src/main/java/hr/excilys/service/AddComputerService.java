@@ -1,14 +1,14 @@
-package service;
+package hr.excilys.service;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dto.DTOComputer;
-import dto.mapper.ComputerDTOMapper;
-import model.Computer;
-import persistence.DAOComputer;
+import hr.excilys.dto.DTOComputer;
+import hr.excilys.dto.mapper.ComputerDTOMapper;
+import hr.excilys.model.Computer;
+import hr.excilys.persistence.DAOComputer;
 
 @Service
 public class AddComputerService {

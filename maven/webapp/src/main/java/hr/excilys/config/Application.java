@@ -1,4 +1,4 @@
-package app;
+package hr.excilys.config;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -8,16 +8,13 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import controller.ControllerConfiguration;
-import persistence.PersistenceConfiguration;
-
 public final class Application implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext context) throws ServletException {
-		
+
 		AnnotationConfigWebApplicationContext dispatcher = new AnnotationConfigWebApplicationContext();
-		dispatcher.register(PersistenceConfiguration.class, ControllerConfiguration.class);
+		dispatcher.register(PersistenceConfig.class, WebappConfig.class, ServiceConfig.class, BindingConfig.class);
 		dispatcher.setServletContext(context);
 
 		ServletRegistration.Dynamic servlet = context.addServlet("dispatcher", new DispatcherServlet(dispatcher));
