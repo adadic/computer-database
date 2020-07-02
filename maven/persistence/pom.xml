@@ -10,16 +10,10 @@
 	</parent>
 
 	<artifactId>persistence</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>persistence Maven Webapp</name>
 	<url>http://http://localhost:8083/maven/dashboard</url>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
-	</properties>
 
 	<build>
 		<finalName>persistence</finalName>
