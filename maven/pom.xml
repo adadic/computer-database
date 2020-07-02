@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>excilys.CBD</groupId>
 	<artifactId>maven</artifactId>
+	<groupId>hr.excilys</groupId>
+	<modelVersion>4.0.0</modelVersion>
+	<name>maven</name>
+	<packaging>pom</packaging>
 	<version>6.2.0-SNAPSHOT</version>
-	<packaging>war</packaging>
 
-	<name>Maven Webapp</name>
 	<url>http://http://localhost:8083/maven/dashboard</url>
 
 	<properties>
@@ -30,6 +29,8 @@
 		<apache.common.version>3.9</apache.common.version>
 		<spring.version>5.2.5.RELEASE</spring.version>
 		<hibernate.version>5.4.10.Final</hibernate.version>
+		<module.version>6.0</module.version>
+		<parent.version>6.2.0-SNAPSHOT</parent.version>
 	</properties>
 
 	<dependencies>
@@ -147,6 +148,18 @@
 
 	<build>
 		<finalName>maven</finalName>
+		<sourceDirectory>src/main/java/hr/excilys</sourceDirectory>
+		<testSourceDirectory>src/test/java/hr/excilys</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -250,4 +263,13 @@
 			</plugin>
 		</plugins>
 	</reporting>
+
+	<modules>
+		<module>core</module>
+		<module>console</module>
+		<module>binding</module>
+		<module>persistence</module>
+		<module>service</module>
+		<module>webapp</module>
+	</modules>
 </project>

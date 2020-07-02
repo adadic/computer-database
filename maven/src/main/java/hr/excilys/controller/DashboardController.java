@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import hr.excilys.dto.DTOPagination;
 import hr.excilys.mapper.ArrayMapper;
-import hr.excilys.persistence.model.Pagination;
+import hr.excilys.model.Pagination;
 import hr.excilys.service.DashboardService;
 
 @Controller
