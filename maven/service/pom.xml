@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>service</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>service Maven Webapp</name>
 	<url>http://http://localhost:8083/maven/dashboard</url>
@@ -26,13 +26,6 @@
 		<dependency>
 			<groupId>hr.excilys</groupId>
 			<artifactId>binding</artifactId>
-			<version>6.2</version>
-			<scope>compile</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>hr.excilys</groupId>
-			<artifactId>core</artifactId>
 			<version>6.2</version>
 			<scope>compile</scope>
 		</dependency>

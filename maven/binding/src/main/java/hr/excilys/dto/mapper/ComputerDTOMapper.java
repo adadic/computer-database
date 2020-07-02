@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import dto.DTOComputer;
-import hr.excilys.model.Company;
-import hr.excilys.model.Computer;
+import model.Company;
+import model.Computer;
 import mapper.DateMapper;
 import validator.ComputerValidator;
 

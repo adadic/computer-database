@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import dto.DTOPagination;
-import hr.excilys.model.Pagination;
+import model.Pagination;
 
 @Component
 public class PageValidator {

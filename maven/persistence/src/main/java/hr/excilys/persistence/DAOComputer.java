@@ -5,7 +5,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import hr.excilys.model.Computer;
+import model.Computer;
 
 import java.util.ArrayList;
 import java.util.List;

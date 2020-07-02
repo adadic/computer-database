@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>core</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>core Maven Webapp</name>
 	<url>http://http://localhost:8083/maven/dashboard</url>

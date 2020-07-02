@@ -8,8 +8,8 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import hr.excilys.controller.ControllerConfiguration;
-import hr.excilys.persistence.PersistenceConfiguration;
+import controller.ControllerConfiguration;
+import persistence.PersistenceConfiguration;
 
 public final class Application implements WebApplicationInitializer {
 

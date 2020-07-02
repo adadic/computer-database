@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>persistence</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>persistence Maven Webapp</name>
 	<url>http://http://localhost:8083/maven/dashboard</url>

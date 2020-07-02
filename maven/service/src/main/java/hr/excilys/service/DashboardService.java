@@ -6,10 +6,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hr.excilys.dto.DTOPagination;
-import hr.excilys.dto.mapper.PaginationDTOMapper;
-import hr.excilys.model.Pagination;
-import hr.excilys.model.Computer;
+import dto.DTOPagination;
+import dto.mapper.PaginationDTOMapper;
+import model.Pagination;
+import model.Computer;
 import persistence.DAOComputer;
 import validator.PageValidator;
 

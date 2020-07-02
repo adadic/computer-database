@@ -18,12 +18,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>hr.excilys</groupId>
-			<artifactId>core</artifactId>
-			<version>6.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>hr.excilys</groupId>
 			<artifactId>service</artifactId>
 			<version>6.2</version>
 		</dependency>

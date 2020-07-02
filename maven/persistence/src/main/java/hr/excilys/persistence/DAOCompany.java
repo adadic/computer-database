@@ -16,7 +16,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import hr.excilys.model.Company;
+import model.Company;
 
 @Repository
 @Transactional
