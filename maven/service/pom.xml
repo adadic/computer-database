@@ -6,11 +6,11 @@
 	<parent>
 		<artifactId>maven</artifactId>
 		<groupId>hr.excilys</groupId>
-		<version>6.2.0-SNAPSHOT</version>
+		<version>6.2</version>
 	</parent>
 
 	<artifactId>service</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>service Maven Webapp</name>
 	<url>http://http://localhost:8083/maven/dashboard</url>
@@ -19,14 +19,21 @@
 		<dependency>
 			<groupId>hr.excilys</groupId>
 			<artifactId>persistence</artifactId>
-			<version>6.2.0-SNAPSHOT</version>
+			<version>6.2</version>
 			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>hr.excilys</groupId>
 			<artifactId>binding</artifactId>
-			<version>6.2.0-SNAPSHOT</version>
+			<version>6.2</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>hr.excilys</groupId>
+			<artifactId>core</artifactId>
+			<version>6.2</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
