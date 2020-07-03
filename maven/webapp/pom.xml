@@ -12,7 +12,7 @@
 	<artifactId>webapp</artifactId>
 	<packaging>war</packaging>
 
-	<name>webapp Maven Webapp</name>
+	<name>webapp</name>
 	<url>http://localhost:8083/webapp/dashboard</url>
 
 	<dependencies>
@@ -25,15 +25,5 @@
 
 	<build>
 		<finalName>webapp</finalName>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-			</testResource>
-		</testResources>
 	</build>
 </project>

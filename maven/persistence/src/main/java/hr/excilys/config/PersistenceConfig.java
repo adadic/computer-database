@@ -3,6 +3,7 @@ package hr.excilys.config;
 import java.util.Properties;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @ComponentScan(basePackages = { "hr.excilys.persistence" })
 public class PersistenceConfig {
 
+	@Autowired
 	private Environment env;
 
 	@Bean(destroyMethod = "close")
@@ -45,7 +47,7 @@ public class PersistenceConfig {
 		
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(new String[] { "hr.excilys.persistence.model" });
+		sessionFactory.setPackagesToScan(new String[] { "hr.excilys.model" });
 		sessionFactory.setHibernateProperties(hibernateProperties());
 
 		return sessionFactory;
