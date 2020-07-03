@@ -13,7 +13,7 @@
 	<packaging>war</packaging>
 
 	<name>webapp Maven Webapp</name>
-	<url>http://http://localhost:8083/maven/dashboard</url>
+	<url>http://localhost:8083/webapp/dashboard</url>
 
 	<dependencies>
 		<dependency>

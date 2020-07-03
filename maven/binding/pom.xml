@@ -12,8 +12,7 @@
 	<artifactId>binding</artifactId>
 	<packaging>jar</packaging>
 
-	<name>binding Maven Webapp</name>
-	<url>http://http://localhost:8083/maven/dashboard</url>
+	<name>binding</name>
 
 	<dependencies>
 		<dependency>

@@ -3,7 +3,6 @@ package hr.excilys.config;
 import java.util.Properties;
 
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,10 +20,9 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:hibernate.properties" })
-@ComponentScan(basePackages = { "hr.excilys" })
+@ComponentScan(basePackages = { "hr.excilys.persistence" })
 public class PersistenceConfig {
 
-	@Autowired
 	private Environment env;
 
 	@Bean(destroyMethod = "close")
@@ -54,7 +52,6 @@ public class PersistenceConfig {
 	}
 
 	@Bean
-	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 
 		HibernateTransactionManager txManager = new HibernateTransactionManager();

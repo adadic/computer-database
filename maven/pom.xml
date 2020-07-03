@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<artifactId>maven</artifactId>
 	<groupId>hr.excilys</groupId>
@@ -9,8 +7,6 @@
 	<name>maven</name>
 	<packaging>pom</packaging>
 	<version>6.2</version>
-
-	<url>http://http://localhost:8083/maven/dashboard</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -267,5 +263,5 @@
 		<module>persistence</module>
 		<module>service</module>
 		<module>webapp</module>
-	</modules>
+  </modules>
 </project>

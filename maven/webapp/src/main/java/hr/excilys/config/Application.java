@@ -14,7 +14,7 @@ public final class Application implements WebApplicationInitializer {
 	public void onStartup(ServletContext context) throws ServletException {
 
 		AnnotationConfigWebApplicationContext dispatcher = new AnnotationConfigWebApplicationContext();
-		dispatcher.register(PersistenceConfig.class, WebappConfig.class, ServiceConfig.class, BindingConfig.class);
+		dispatcher.register(WebappConfig.class, ServiceConfig.class, BindingConfig.class, PersistenceConfig.class);
 		dispatcher.setServletContext(context);
 
 		ServletRegistration.Dynamic servlet = context.addServlet("dispatcher", new DispatcherServlet(dispatcher));

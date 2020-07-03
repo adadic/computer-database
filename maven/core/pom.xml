@@ -12,8 +12,7 @@
 	<artifactId>core</artifactId>
 	<packaging>jar</packaging>
 
-	<name>core Maven Webapp</name>
-	<url>http://http://localhost:8083/maven/dashboard</url>
+	<name>core</name>
 
 	<build>
 		<finalName>core</finalName>

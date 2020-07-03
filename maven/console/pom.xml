@@ -12,8 +12,7 @@
 	<artifactId>console</artifactId>
 	<packaging>jar</packaging>
 
-	<name>console Maven Webapp</name>
-	<url>http://http://localhost:8083/maven/dashboard</url>
+	<name>console</name>
 
 	<dependencies>
 		<dependency>
