@@ -13,7 +13,8 @@ public enum EnumQuery {
 	SORTPAGECOMPUTERASC("FROM Computer WHERE name LIKE :search ORDER BY name ASC"),
 	SORTPAGECOMPANYASC("FROM Computer WHERE name LIKE :search ORDER BY company.name ASC"),
 	SORTPAGECOMPUTERDESC("FROM Computer WHERE name LIKE :search ORDER BY name DESC"),
-	SORTPAGECOMPANYDESC("FROM Computer WHERE name LIKE :search ORDER BY company.name DESC");
+	SORTPAGECOMPANYDESC("FROM Computer WHERE name LIKE :search ORDER BY company.name DESC"),
+	GETUSER("FROM User WHERE ( username = :username OR email = :email ) AND password = :password");
 
 	private String message;
 
