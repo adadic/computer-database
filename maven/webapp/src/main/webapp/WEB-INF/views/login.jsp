@@ -48,14 +48,16 @@
 			</div>
 		</c:if>
 		<div class="container">
-			<form action="" method="POST">
+			<form name='f' action="j_spring_security_check" method="POST">
 				<div>
 					<label><spring:message code="login.user" /><input
-						type="text" class="form-control" name="username" /> </label>
+						type="text" class="form-control" name="username"
+						placeholder="<spring:message code="login.user"/>" /> </label>
 				</div>
 				<div>
 					<label><spring:message code="login.pwd" /><input
-						type="password" class="form-control" name="password" /> </label>
+						type="password" class="form-control" name="password"
+						placeholder="<spring:message code="login.pwd"/>" /> </label>
 				</div>
 				<div>
 					<input type="submit" value="<spring:message code="login.signin" />"
