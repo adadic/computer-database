@@ -5,20 +5,64 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <html>
-    <head>
-        <title>Spring Security Example </title>
-    </head>
-    <body>
-        <div c:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div c:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <form action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-    </body>
+<head>
+<title>Computer Database</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
+<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="./css/font-awesome.css" rel="stylesheet" media="screen">
+<link href="./css/main.css" rel="stylesheet" media="screen">
+<link rel="shortcut icon" href="#">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./js/function.js"></script>
+</head>
+<body>
+	<header class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="dashboard"><spring:message
+					code="main.title" /></a>
+			<button class="langButton flagEN" id="english"
+				onclick="window.location.replace('?lang=en')"></button>
+			<button class="langButton flagFR" id="french"
+				onclick="window.location.replace('?lang=fr')"></button>
+		</div>
+	</header>
+
+	<section id="main">
+		<c:if test="${error == true}">
+			<div class="container">
+				<div class="success">
+					<spring:message code="error.login" />
+					<br />
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${logout == true}">
+			<div class="container">
+				<div class="success">
+					<spring:message code="success.logout" />
+					<br />
+				</div>
+			</div>
+		</c:if>
+		<div class="container">
+			<form action="" method="POST">
+				<div>
+					<label><spring:message code="login.user" /><input
+						type="text" class="form-control" name="username" /> </label>
+				</div>
+				<div>
+					<label><spring:message code="login.pwd" /><input
+						type="password" class="form-control" name="password" /> </label>
+				</div>
+				<div>
+					<input type="submit" value="<spring:message code="login.signin" />"
+						class="btn btn-primary" />
+				</div>
+			</form>
+		</div>
+	</section>
+</body>
 </html>
