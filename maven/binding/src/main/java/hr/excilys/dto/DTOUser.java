@@ -2,18 +2,18 @@ package hr.excilys.dto;
 
 public class DTOUser {
 
-	private String emailORname;
+	private String username;
 	private String password;
 
-	public DTOUser(String emailORname, String password) {
+	public DTOUser(String username, String password) {
 
-		this.emailORname = emailORname;
+		this.username = username;
 		this.password = password;
 	}
 
 	public String getEmailORname() {
 
-		return emailORname;
+		return username;
 	}
 
 	public String getPassword() {

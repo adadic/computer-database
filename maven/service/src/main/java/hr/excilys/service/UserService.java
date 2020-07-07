@@ -1,13 +1,23 @@
 package hr.excilys.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import hr.excilys.dto.DTOUser;
+import hr.excilys.model.Role;
+import hr.excilys.model.User;
 import hr.excilys.persistence.DAOUser;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
 	private final DAOUser daoUser;
 
@@ -17,8 +27,27 @@ public class UserService {
 		this.daoUser = daoUser;
 	}
 
-	public boolean searchUser(DTOUser dtoUser) {
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		return daoUser.getUser(dtoUser.getEmailORname(), dtoUser.getPassword());
+		Optional<User> opt = daoUser.getUser(username);
+
+		if (opt.isPresent()) {
+			User user = opt.get();
+			List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+			GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole().getRoleName());
+			grantList.add(authority);
+			UserDetails userDetails = (UserDetails) new User.UserBuilder(user.getUsername(), user.getPassword(),
+					new Role.RoleBuilder(authority.toString()).build()).build();
+
+			return userDetails;
+		}
+		
+		throw new UsernameNotFoundException("No user by this username");
+	}
+
+	public boolean addUser(User user) {
+
+		return daoUser.create(user);
 	}
 }

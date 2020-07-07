@@ -1,6 +1,7 @@
 package hr.excilys.persistence;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.TypedQuery;
 
@@ -30,29 +31,47 @@ public class DAOUser {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public boolean getUser(String emailORusername, String password) {
+	public Optional<User> getUser(String username) {
 
 		try {
 			session = sessionFactory.getCurrentSession();
 			TypedQuery<User> query = session.createQuery(EnumQuery.GETUSER.getQuery(), User.class)
-					.setParameter("username", emailORusername).setParameter("email", emailORusername)
-					.setParameter("password", password);
+					.setParameter("username", username);
 			List<User> user = query.getResultList();
 
 			if (!user.isEmpty()) {
-				LOGGER.info("User with email or name = {} : Found", emailORusername);
+				LOGGER.info("User with email or name = {} : Found", username);
 
-				return true;
+				return Optional.of(user.get(0));
 			}
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return Optional.empty();
+		} catch (DataAccessException dae) {
+			LOGGER.error("User with email or name = {} : Probleme in Query", username);
+		}
+		LOGGER.info("User with email or name = {} : NOT Found", username);
+
+		return Optional.empty();
+	}
+
+	public boolean create(User user) {
+
+		try {
+			session = sessionFactory.getCurrentSession();
+
+			session.save(user);
+
+			return true;
 		} catch (HibernateException hex) {
 			LOGGER.error("Cannot get the session");
 
 			return false;
 		} catch (DataAccessException dae) {
-			LOGGER.error("User with email or name = {} : Probleme in Query", emailORusername);
-		}
-		LOGGER.info("User with email or name = {} : NOT Found", emailORusername);
+			LOGGER.error("User NOT added, probleme in query : Check fields");
 
-		return false;
+			return false;
+		}
 	}
 }

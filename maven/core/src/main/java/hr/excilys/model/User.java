@@ -23,16 +23,16 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
-	@Column(name ="firstname")
-	private String firstname;
-	@Column(name ="lastname")
-	private String lastname;
-	@Column(name ="username")
+	
+	@Column(name ="username", unique = true)
 	private String username;
+	
 	@Column(name ="password")
 	private String password;
-	@Column(name ="email", unique = true)
-	private String email;
+	
+	@Column(name = "enabled", nullable = false)
+    private boolean enabled;
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Role.class)
 	@JoinColumn(name = "role_id", referencedColumnName = "id")
 	private Role role;
@@ -43,11 +43,8 @@ public class User {
 	public User(UserBuilder builder) {
 
 		this.id = builder.id;
-		this.firstname = builder.firstname;
-		this.lastname = builder.lastname;
 		this.username = builder.username;
 		this.password = builder.password;
-		this.email = builder.email;
 		this.role = builder.role;
 	}
 
@@ -59,26 +56,6 @@ public class User {
 	public void setId(long id) {
 
 		this.id = id;
-	}
-
-	public String getFirstname() {
-		
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		
-		this.lastname = lastname;
 	}
 
 	public String getUsername() {
@@ -101,16 +78,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getEmail() {
-		
-		return email;
-	}
-
-	public void setEmail(String email) {
-		
-		this.email = email;
-	}
-
 	public Role getRole() {
 		
 		return role;
@@ -130,35 +97,15 @@ public class User {
 	public static class UserBuilder {
 
 		private long id;
-		private String firstname;
-		private String lastname;
 		private String username;
 		private String password;
-		private String email;
 		private Role role;
 
-		public UserBuilder firstname(String username, String email, String password, Role role) {
+		public UserBuilder (String username, String password, Role role) {
 
 			this.username = username;
-			this.email = email;
 			this.password = password;
 			this.role = role;
-
-			return this;
-		}
-		
-		public UserBuilder firstname(String firstname) {
-
-			this.firstname = firstname;
-
-			return this;
-		}
-		
-		public UserBuilder lastname(String lastname) {
-
-			this.lastname = lastname;
-
-			return this;
 		}
 
 		public User build() {
