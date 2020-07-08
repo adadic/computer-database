@@ -15,7 +15,7 @@ import hr.excilys.model.Pagination;
 import hr.excilys.service.DashboardService;
 
 @Controller
-@RequestMapping(value = "/dashboard")
+@RequestMapping(value = {"/", "/dashboard"})
 public class DashboardController {
 
 	private static final String ARRAYEMPTY = "-2";
@@ -62,10 +62,10 @@ public class DashboardController {
 		view.addObject("direction", dashboard.getDirection());
 	}
 
-	@PostMapping
+	@PostMapping(value = "/delete")
 	public ModelAndView deleteComputer(@RequestParam(defaultValue = "") String selection) {
 
-		ModelAndView view = new ModelAndView("redirect:dashboard");
+		ModelAndView view = new ModelAndView("redirect:/dashboard");
 
 			if (!dashboardService.deleteComputer(arrayMapper.stringTransform(selection))) {
 				view.addObject("msg", ARRAYEMPTY);

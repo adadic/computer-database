@@ -26,30 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/*", "/login").hasRole("ADMIN").and().httpBasic();
+		http.authorizeRequests().antMatchers("/addComputer", "/editComputer", "/dashboard/delete").hasRole("ADMIN")
+				.and().formLogin().loginPage("/login").failureUrl("/login?error=true").and().logout()
+				.logoutUrl("logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID").clearAuthentication(true);
 
-//		http.cors().and().csrf().disable();
-//
-//		http.formLogin().loginPage("/login").permitAll().and().logout().logoutUrl("redirect:/login")
-//				.logoutSuccessUrl("/").invalidateHttpSession(true).deleteCookies("JSESSIONID").clearAuthentication(true)
-//				.permitAll();
-//
-//		http.csrf().disable();
-//
-//		http.authorizeRequests().antMatchers("/", "/login").permitAll();
-//
-//		http.authorizeRequests().antMatchers("/*").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
-//
-//		http.authorizeRequests().antMatchers("/editComputer", "/deleteComputer", "/addComputer")
-//				.access("hasRole('ROLE_ADMIN')");
-//
-//		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
-//
-//		http.authorizeRequests().and().formLogin().loginProcessingUrl("/j_spring_security_check").loginPage("/login")
-//				.defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").usernameParameter("username")
-//				.passwordParameter("password").and().logout().logoutUrl("/logout")
-//				.logoutSuccessUrl("/logoutSuccessful");
-
+		http.cors().and().csrf().disable();
 	}
 
 	@Autowired

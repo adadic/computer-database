@@ -31,24 +31,16 @@
 	</header>
 
 	<section id="main">
-		<c:if test="${error == true}">
+		<c:if test="${not empty error}">
 			<div class="container">
-				<div class="success">
+				<div class="alert alert-danger">
 					<spring:message code="error.login" />
 					<br />
 				</div>
 			</div>
 		</c:if>
-		<c:if test="${logout == true}">
-			<div class="container">
-				<div class="success">
-					<spring:message code="success.logout" />
-					<br />
-				</div>
-			</div>
-		</c:if>
 		<div class="container">
-			<form name='f' action="j_spring_security_check" method="POST">
+			<form name='f' action="login" method="POST">
 				<div>
 					<label><spring:message code="login.user" /><input
 						type="text" class="form-control" name="username"
