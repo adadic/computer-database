@@ -35,8 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Autowired
-	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+	public void userConfigurationGlobal(AuthenticationManagerBuilder authentificationManagerBuilder) throws Exception {
+
+		authentificationManagerBuilder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
 	}
 
 	@Bean
