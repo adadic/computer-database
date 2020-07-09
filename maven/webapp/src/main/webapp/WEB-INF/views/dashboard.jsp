@@ -136,9 +136,12 @@
 								code="add.button.user" /></a>
 					</sec:authorize>
 					<a class="btn btn-success" id="addComputer" href="addComputer"><spring:message
-							code="add.button" /></a> <a class="btn btn-default"
-						id="editComputer" href="#" onclick="$.fn.toggleEditMode();"><spring:message
-							code="edit.button" /></a>
+							code="add.button" /></a>
+					<sec:authorize access="hasRole('ADMIN')">
+						<a class="btn btn-default" id="editComputer" href="#"
+							onclick="$.fn.toggleEditMode();"><spring:message
+								code="edit.button" /></a>
+					</sec:authorize>
 				</div>
 			</div>
 		</div>
