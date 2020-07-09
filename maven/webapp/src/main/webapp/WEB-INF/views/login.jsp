@@ -23,6 +23,8 @@
 		<div class="container">
 			<a class="navbar-brand" href="dashboard"><spring:message
 					code="main.title" /></a>
+			<button class="connexionButton" id="login"
+				onclick="window.location.replace('login')">Connect</button>
 			<button class="langButton flagEN" id="english"
 				onclick="window.location.replace('?lang=en')"></button>
 			<button class="langButton flagFR" id="french"

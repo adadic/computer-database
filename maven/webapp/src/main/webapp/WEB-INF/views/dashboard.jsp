@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <html>
 <head>
@@ -21,19 +23,17 @@
 
 	<header class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
-			<c:choose>
-				<c:when test="">
-					<button class="connexionButton" id="logout"
-						onclick="$('#logoutPage').click()">Disconnect</button>
-					<form style="display: none;" action="logout" method="POST">
-						<input type="submit" id="logoutPage">
-					</form>
-				</c:when>
-				<c:otherwise>
-					<button class="connexionButton" id="login"
-						onclick="window.location.replace('login')">Connect</button>
-				</c:otherwise>
-			</c:choose>
+			<sec:authorize access="isAuthenticated()">
+				<button class="connexionButton" id="logout"
+					onclick="$('#logoutPage').click()">Disconnect</button>
+				<form style="display: none;" action="logout" method="POST">
+					<input type="submit" id="logoutPage">
+				</form>
+			</sec:authorize>
+			<sec:authorize access="!isAuthenticated()">
+				<button class="connexionButton" id="login"
+					onclick="window.location.replace('login')">Connect</button>
+			</sec:authorize>
 			<a class="navbar-brand" href="dashboard"> <spring:message
 					code="main.title" />
 			</a>

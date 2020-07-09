@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <html>
 <head>
@@ -18,19 +20,17 @@
 		<div class="container">
 			<a class="navbar-brand" href="dashboard"> Application - Computer
 				Database </a>
-			<c:choose>
-				<c:when test="">
-					<button class="connexionButton" id="logout"
-						onclick="$('#logoutPage').click()">Disconnect</button>
-					<form style="display: none;" action="logout" method="POST">
-						<input type="submit" id="logoutPage">
-					</form>
-				</c:when>
-				<c:otherwise>
-					<button class="connexionButton" id="login"
-						onclick="window.location.replace('login')">Connect</button>
-				</c:otherwise>
-			</c:choose>
+			<sec:authorize access="isAuthenticated()">
+				<button class="connexionButton" id="logout"
+					onclick="$('#logoutPage').click()">Disconnect</button>
+				<form style="display: none;" action="logout" method="POST">
+					<input type="submit" id="logoutPage">
+				</form>
+			</sec:authorize>
+			<sec:authorize access="!isAuthenticated()">
+				<button class="connexionButton" id="login"
+					onclick="window.location.replace('login')">Connect</button>
+			</sec:authorize>
 			<button class="langButton flagEN" id="english"
 				onclick="window.location.replace('?lang=en')"></button>
 			<button class="langButton flagFR" id="french"
