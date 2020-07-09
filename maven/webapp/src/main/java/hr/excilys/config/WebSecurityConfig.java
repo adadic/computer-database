@@ -7,7 +7,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
 
 import hr.excilys.service.UserService;
 
@@ -26,11 +29,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/addComputer", "/editComputer")
-				.hasAnyRole("ADMIN", "USER").and().authorizeRequests().antMatchers("/delete").hasRole("ADMIN")
-				.and().formLogin().loginPage("/login").failureUrl("/login?error=true").and().logout()
-				.logoutUrl("logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
-				.deleteCookies("JSESSIONID").clearAuthentication(true);
+		http.authorizeRequests().antMatchers("/addComputer", "/editComputer").hasAnyRole("ADMIN", "USER").and()
+				.authorizeRequests().antMatchers("/delete").hasRole("ADMIN").and().formLogin().loginPage("/login")
+				.failureUrl("/login?error=true").and().logout().logoutUrl("logout").logoutSuccessUrl("/dashboard")
+				.invalidateHttpSession(true).deleteCookies("JSESSIONID").clearAuthentication(true);
 
 		http.cors().and().csrf().disable();
 	}
@@ -45,5 +47,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 
 		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public DigestAuthenticationEntryPoint digestEntryPoint() {
+		
+		DigestAuthenticationEntryPoint entryPoint = new DigestAuthenticationEntryPoint();
+		entryPoint.setRealmName("ENTRYPOINT CDB");
+		entryPoint.setKey("keyCDB++");
+		entryPoint.setNonceValiditySeconds(1);
+		
+		return entryPoint;
+	}
+
+	@Bean
+	public DigestAuthenticationFilter digestAuthFilter(DigestAuthenticationEntryPoint entryPoint,
+			UserDetailsService userDetailsService) {
+		
+		DigestAuthenticationFilter filter = new DigestAuthenticationFilter();
+		filter.setUserDetailsService(userDetailsService);
+		filter.setAuthenticationEntryPoint(entryPoint);
+		
+		return filter;
 	}
 }
