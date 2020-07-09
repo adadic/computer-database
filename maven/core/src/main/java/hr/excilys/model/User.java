@@ -98,7 +98,6 @@ public class User{
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 
-
 	public static class UserBuilder {
 
 		private long id;
