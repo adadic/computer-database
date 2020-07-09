@@ -46,6 +46,7 @@ public class AddComputerController {
 		
 		if (!addComputerService.addComputer(computer)) {
 			view.addObject("msg", ADDERROR);
+			view.addObject("companies", companyService.getCompanies());
 		} else {
 			view.addObject("msg", ADDSUCCESS);
 			view.setViewName("redirect:dashboard");

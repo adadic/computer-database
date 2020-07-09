@@ -1,5 +1,6 @@
 package hr.excilys.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import hr.excilys.model.Role;
 import hr.excilys.model.User;
 
 @Repository
@@ -72,6 +74,24 @@ public class DAOUser {
 			LOGGER.error("User NOT added, probleme in query : Check fields");
 
 			return false;
+		}
+	}
+
+	public List<Role> getRoles() {
+
+		try {
+			session = sessionFactory.getCurrentSession();
+			TypedQuery<Role> query = session.createQuery(EnumQuery.ALLROLE.getQuery(), Role.class);
+
+			return query.getResultList();
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return new ArrayList<>();
+		} catch (DataAccessException dae) {
+			LOGGER.error("Cannot get all Copanies, probleme in the Query");
+
+			return new ArrayList<>();
 		}
 	}
 }

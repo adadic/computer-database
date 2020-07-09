@@ -14,7 +14,7 @@ public enum EnumQuery {
 	SORTPAGECOMPANYASC("FROM Computer WHERE name LIKE :search ORDER BY company.name ASC"),
 	SORTPAGECOMPUTERDESC("FROM Computer WHERE name LIKE :search ORDER BY name DESC"),
 	SORTPAGECOMPANYDESC("FROM Computer WHERE name LIKE :search ORDER BY company.name DESC"),
-	GETUSER("FROM User WHERE username = :username");
+	GETUSER("FROM User WHERE username = :username"), ALLROLE("FROM Role");
 
 	private String message;
 

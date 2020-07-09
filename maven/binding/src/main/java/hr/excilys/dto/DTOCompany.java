@@ -9,8 +9,6 @@ public final class DTOCompany {
 	private String companyName;
 
 	public DTOCompany() {
-
-		super();
 	}
 
 	public String getCompanyId() {

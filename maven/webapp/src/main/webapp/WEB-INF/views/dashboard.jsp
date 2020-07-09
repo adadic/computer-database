@@ -24,22 +24,26 @@
 	<header class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<sec:authorize access="isAuthenticated()">
-				<button class="connexionButton" id="logout"
-					onclick="$('#logoutPage').click()">Disconnect</button>
+				<button class="btn connexionButton" id="logout"
+					onclick="$('#logoutPage').click()">
+					<spring:message code="conn.logout" />
+				</button>
 				<form style="display: none;" action="logout" method="POST">
 					<input type="submit" id="logoutPage">
 				</form>
 			</sec:authorize>
 			<sec:authorize access="!isAuthenticated()">
-				<button class="connexionButton" id="login"
-					onclick="window.location.replace('login')">Connect</button>
+				<button class="btn connexionButton" id="login"
+					onclick="window.location.replace('login')">
+					<spring:message code="conn.connexion" />
+				</button>
 			</sec:authorize>
 			<a class="navbar-brand" href="dashboard"> <spring:message
 					code="main.title" />
 			</a>
-			<button class="langButton flagEN" id="english"
+			<button class="btn langButton flagEN" id="english"
 				onclick="window.location.replace('?lang=en')"></button>
-			<button class="langButton flagFR" id="french"
+			<button class="btn langButton flagFR" id="french"
 				onclick="window.location.replace('?lang=fr')"></button>
 		</div>
 	</header>
@@ -67,6 +71,14 @@
 					<div class="container">
 						<div class="success">
 							<spring:message code="success.update" />
+							<br />
+						</div>
+					</div>
+				</c:when>
+				<c:when test="${msg == 4}">
+					<div class="container">
+						<div class="success">
+							<spring:message code="success.user" />
 							<br />
 						</div>
 					</div>
@@ -119,6 +131,10 @@
 					</form>
 				</div>
 				<div class="pull-right">
+					<sec:authorize access="hasRole('ADMIN')">
+						<a class="btn btn-primary" id="addUser" href="addUser"><spring:message
+								code="add.button.user" /></a>
+					</sec:authorize>
 					<a class="btn btn-success" id="addComputer" href="addComputer"><spring:message
 							code="add.button" /></a> <a class="btn btn-default"
 						id="editComputer" href="#" onclick="$.fn.toggleEditMode();"><spring:message

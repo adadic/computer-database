@@ -40,7 +40,7 @@
 		<c:if test="${msg == -1}">
 			<div class="container">
 				<div class="alert alert-danger">
-					<spring:message code="error.fieldAdd" />
+					<spring:message code="error.user" />
 					<br />
 				</div>
 			</div>
@@ -49,45 +49,41 @@
 			<div class="row">
 				<div class="col-xs-8 col-xs-offset-2 box">
 					<h1>
-						<spring:message code="form.titleAdd" />
+						<spring:message code="form.titleUser" />
 					</h1>
-					<form action="addComputer" method="POST">
+					<form action="addUser" method="POST">
 						<fieldset>
 							<div class="form-group">
-								<label for="computerName"><spring:message
-										code="form.computer" /></label> <input type="text"
-									class="form-control" id="computerName" name="computerName"
-									placeholder="<spring:message code="form.computer"/>" required>
+								<label for="userName"><spring:message code="form.user" /></label>
+								<input type="text" class="form-control" id="userName"
+									name="userName"
+									placeholder="<spring:message code="form.user"/>" required>
 							</div>
 							<div class="form-group">
-								<label for="introduced"><spring:message
-										code="form.introduced" /></label> <input type="date" min="1970-01-01"
-									onchange="setDate();" class="form-control" id="introduced"
-									name="introduced"
-									placeholder="<spring:message code="form.introduced"/>">
-							</div>
-							<div class="form-group">
-								<label for="discontinued"><spring:message
-										code="form.discontinued" /></label> <input type="date"
-									class="form-control" id="discontinued" name="discontinued"
-									placeholder="<spring:message code="form.discontinued"/>"
-									disabled>
-							</div>
-							<div class="form-group">
-								<label for="companyId"><spring:message
-										code="form.company" /></label> <select class="form-control"
-									onchange="$('#companyName').val($('#companyId [value = ' + $('#companyId').val() + ']').text())"
-									id="companyId" name="companyId">
-									<option value="0">--</option>
-
-									<c:forEach items="${companies}" var="company">
-										<option value="${company.id}">${company.name}</option>
+								<label for="roleId"><spring:message code="form.role" /></label>
+								<select class="form-control"
+									onchange="$('#roleName').val($('#roleId [value = ' + $('#roleId').val() + ']').text())"
+									id="roleId" name="roleId">
+									<c:forEach items="${role}" var="roles">
+										<option value="${roles.id}">${roles.roleName}</option>
 									</c:forEach>
 
 								</select>
 							</div>
+
+							<div class="form-group">
+								<label for="introduced"><spring:message
+										code="form.password" /></label> <input type="password"
+									class="form-control" id="password" name="password"
+									placeholder="<spring:message code="form.password"/>">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" id="passwordCheck"
+									name="passwordCheck"
+									placeholder="<spring:message code="form.password"/>">
+							</div>
 						</fieldset>
-						<input type="hidden" value="" name="companyName" id="companyName" />
+						<input type="hidden" value="" name="roleName" id="roleName" />
 						<div class="actions pull-right">
 							<input type="submit" value="<spring:message code="form.add"/>"
 								class="btn btn-primary"> or <a href="dashboard"

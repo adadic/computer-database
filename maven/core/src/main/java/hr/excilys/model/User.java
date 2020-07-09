@@ -31,7 +31,7 @@ public class User{
 	private String password;
 	
 	@Column(name = "enabled", nullable = false)
-    private boolean enabled;
+    private boolean enabled = true;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Role.class)
 	@JoinColumn(name = "role_id", referencedColumnName = "id")
@@ -116,6 +116,13 @@ public class User{
 		public User build() {
 
 			return new User(this);
+		}
+
+		public UserBuilder id(long id) {
+			
+			this.id = id;
+			
+			return this;
 		}
 	}
 }

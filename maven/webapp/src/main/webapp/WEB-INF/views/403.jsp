@@ -16,16 +16,18 @@
 <body>
 	<header class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="dashboard"> Application - Computer
-				Database </a>
-			<button class="connexionButton" id="logout"
-				onclick="$('#logoutPage').click()">Disconnect</button>
+			<a class="navbar-brand" href="dashboard"><spring:message
+					code="main.title" /></a>
+			<button class="btn connexionButton" id="logout"
+				onclick="$('#logoutPage').click()">
+				<spring:message code="conn.logout" />
+			</button>
 			<form style="display: none;" action="logout" method="POST">
 				<input type="submit" id="logoutPage">
 			</form>
-			<button class="langButton flagEN" id="english"
+			<button class="btn langButton flagEN" id="english"
 				onclick="window.location.replace('?lang=en')"></button>
-			<button class="langButton flagFR" id="french"
+			<button class="btn langButton flagFR" id="french"
 				onclick="window.location.replace('?lang=fr')"></button>
 		</div>
 	</header>

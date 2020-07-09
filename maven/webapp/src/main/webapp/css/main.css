@@ -49,22 +49,22 @@ input[type='checkbox'] {
 
 .flagEN {
 	background: url(../img/flag-en.png);
-	background-size: 20px 11px;
+	background-size: 24px 13px;
 }
 
 .flagFR {
 	background: url(../img/flag-fr.png);
-	background-size: 20px;
+	background-size: 24px;
 }
 
 .connexionButton {
-	position: relative;
-	float: right;
-    width: 90px;
-    height: 26px;
-    margin-top: 10px;
+    position: relative;
+    float: right;
+    min-width: 95px;
+    height: 34px;
+    margin-top: 7px;
     margin-left: 15px;
-    color: white
+    color: white;
 }
 
 #logout {
