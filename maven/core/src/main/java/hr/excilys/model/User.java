@@ -1,9 +1,5 @@
 package hr.excilys.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,17 +13,12 @@ import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 
 @Entity
 @Table( name = "USER" )
-public class User implements UserDetails{
+public class User{
 	
-	private static final long serialVersionUID = 6076716518355255683L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -97,6 +88,11 @@ public class User implements UserDetails{
 		this.role = role;
 	}
 
+	public boolean isEnabled() {
+		
+		return enabled;
+	}
+
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
@@ -121,40 +117,5 @@ public class User implements UserDetails{
 
 			return new User(this);
 		}
-	}
-
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
-		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-		GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + this.getRole().getRoleName());
-		grantList.add(authority);
-		
-		return grantList;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-
-		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-
-		return enabled;
 	}
 }
