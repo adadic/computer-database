@@ -37,8 +37,8 @@ public class UserService implements UserDetailsService {
 			List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
 			GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole().getRoleName());
 			grantList.add(authority);
-			UserDetails userDetails = (UserDetails) new User.UserBuilder(user.getUsername(), user.getPassword(),
-					new Role.RoleBuilder(authority.toString()).build()).build();
+			UserDetails userDetails = new User.UserBuilder(user.getUsername(), user.getPassword(),
+					new Role.RoleBuilder(user.getRole()).build()).build();
 
 			return userDetails;
 		}

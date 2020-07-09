@@ -50,9 +50,10 @@ public class Role {
 		private long id;
 		private String roleName;
 		
-		public RoleBuilder(String rolename) {
+		public RoleBuilder(Role role) {
 			
-			this.roleName = rolename;
+			this.id = role.getId();
+			this.roleName = role.getRoleName();
 		}
 		
 		public Role build() {
