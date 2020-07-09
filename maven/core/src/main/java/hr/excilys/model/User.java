@@ -95,6 +95,7 @@ public class User{
 
 	@Override
 	public String toString() {
+		
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 

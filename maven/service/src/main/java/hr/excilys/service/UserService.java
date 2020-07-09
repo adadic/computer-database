@@ -33,7 +33,7 @@ public class UserService implements UserDetailsService {
 
 			return userDetails;
 		}
-		
+
 		throw new UsernameNotFoundException("No user by this username");
 	}
 

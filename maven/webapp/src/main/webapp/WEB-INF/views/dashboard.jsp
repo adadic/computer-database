@@ -21,6 +21,19 @@
 
 	<header class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
+			<c:choose>
+				<c:when test="">
+					<button class="connexionButton" id="logout"
+						onclick="$('#logoutPage').click()">Disconnect</button>
+					<form style="display: none;" action="logout" method="POST">
+						<input type="submit" id="logoutPage">
+					</form>
+				</c:when>
+				<c:otherwise>
+					<button class="connexionButton" id="login"
+						onclick="window.location.replace('login')">Connect</button>
+				</c:otherwise>
+			</c:choose>
 			<a class="navbar-brand" href="dashboard"> <spring:message
 					code="main.title" />
 			</a>
@@ -114,7 +127,7 @@
 			</div>
 		</div>
 
-		<form id="deleteForm" action="dashboard/delete" method="POST">
+		<form id="deleteForm" action="delete" method="POST">
 			<input type="hidden" name="selection" value="">
 		</form>
 

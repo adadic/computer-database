@@ -39,12 +39,12 @@ input[type='checkbox'] {
 }
 
 .langButton {
-    position: relative;
-    float: right;
-    height: 15px;
-    width: 25px;
-    margin-top: 15px;
-    margin-left: 5px;
+	position: relative;
+	float: right;
+	height: 15px;
+	width: 25px;
+	margin-top: 16px;
+	margin-left: 5px;
 }
 
 .flagEN {
@@ -55,4 +55,22 @@ input[type='checkbox'] {
 .flagFR {
 	background: url(../img/flag-fr.png);
 	background-size: 20px;
+}
+
+.connexionButton {
+	position: relative;
+	float: right;
+    width: 90px;
+    height: 26px;
+    margin-top: 10px;
+    margin-left: 15px;
+    color: white
+}
+
+#logout {
+	background: #ff0404;
+}
+
+#login {
+	background: #0480ff;
 }

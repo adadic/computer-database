@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/logout")
 public class LogoutController {
-
+	
     @PostMapping
     public ModelAndView lougout(HttpServletRequest req, HttpServletResponse resp) {
     	

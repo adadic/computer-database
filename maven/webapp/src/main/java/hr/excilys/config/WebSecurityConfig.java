@@ -26,7 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/addComputer", "/editComputer", "/dashboard/delete").hasRole("ADMIN")
+		http.authorizeRequests().antMatchers("/addComputer", "/editComputer")
+				.hasAnyRole("ADMIN", "USER").and().authorizeRequests().antMatchers("/delete").hasRole("ADMIN")
 				.and().formLogin().loginPage("/login").failureUrl("/login?error=true").and().logout()
 				.logoutUrl("logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID").clearAuthentication(true);

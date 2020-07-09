@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <html>
 <head>
 <title>Computer Database</title>
@@ -13,6 +18,15 @@
 		<div class="container">
 			<a class="navbar-brand" href="dashboard"> Application - Computer
 				Database </a>
+			<button class="connexionButton" id="logout"
+				onclick="$('#logoutPage').click()">Disconnect</button>
+			<form style="display: none;" action="logout" method="POST">
+				<input type="submit" id="logoutPage">
+			</form>
+			<button class="langButton flagEN" id="english"
+				onclick="window.location.replace('?lang=en')"></button>
+			<button class="langButton flagFR" id="french"
+				onclick="window.location.replace('?lang=fr')"></button>
 		</div>
 	</header>
 
@@ -20,7 +34,6 @@
 		<div class="container">
 			<div class="alert alert-danger">
 				Error 403: Access denied! <br />
-				<!-- stacktrace -->
 			</div>
 		</div>
 	</section>

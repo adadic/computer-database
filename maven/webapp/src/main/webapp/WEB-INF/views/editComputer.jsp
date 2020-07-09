@@ -21,6 +21,11 @@
 		<div class="container">
 			<a class="navbar-brand" href="dashboard"><spring:message
 					code="main.title" /></a>
+			<button class="connexionButton" id="logout"
+				onclick="$('#logoutPage').click()">Disconnect</button>
+			<form style="display: none;" action="logout" method="POST">
+				<input type="submit" id="logoutPage">
+			</form>
 			<button class="langButton flagEN" id="english"
 				onclick="window.location.replace('?lang=en')"></button>
 			<button class="langButton flagFR" id="french"
