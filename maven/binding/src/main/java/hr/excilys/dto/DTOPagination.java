@@ -1,5 +1,8 @@
 package hr.excilys.dto;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public final class DTOPagination {
 
 	private String lines;
@@ -67,5 +70,10 @@ public final class DTOPagination {
 	public String getDirection() {
 
 		return direction;
+	}
+
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 }

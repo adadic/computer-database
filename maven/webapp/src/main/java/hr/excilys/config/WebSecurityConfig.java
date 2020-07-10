@@ -31,8 +31,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/addComputer", "/editComputer").hasAnyRole("ADMIN", "USER").and()
 				.authorizeRequests().antMatchers("/delete").hasRole("ADMIN").and().formLogin().loginPage("/login")
-				.failureUrl("/login?error=true").and().logout().logoutUrl("logout").logoutSuccessUrl("/dashboard")
+				.failureUrl("/login?error=true").and().logout().logoutUrl("/logout").logoutSuccessUrl("/dashboard")
 				.invalidateHttpSession(true).deleteCookies("JSESSIONID").clearAuthentication(true);
+
+		http.authorizeRequests().antMatchers("/rest/*").hasAnyRole("ADMIN", "USER").and().authorizeRequests()
+				.antMatchers("/rest/delete").hasRole("ADMIN").and().formLogin().failureUrl("/login?error=true").and()
+				.logout().logoutUrl("/logout").invalidateHttpSession(true).deleteCookies("JSESSIONID")
+				.clearAuthentication(true);
 
 		http.cors().and().csrf().disable();
 	}
@@ -51,23 +56,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public DigestAuthenticationEntryPoint digestEntryPoint() {
-		
+
 		DigestAuthenticationEntryPoint entryPoint = new DigestAuthenticationEntryPoint();
 		entryPoint.setRealmName("ENTRYPOINT CDB");
 		entryPoint.setKey("keyCDB++");
 		entryPoint.setNonceValiditySeconds(1);
-		
+
 		return entryPoint;
 	}
 
 	@Bean
 	public DigestAuthenticationFilter digestAuthFilter(DigestAuthenticationEntryPoint entryPoint,
 			UserDetailsService userDetailsService) {
-		
+
 		DigestAuthenticationFilter filter = new DigestAuthenticationFilter();
 		filter.setUserDetailsService(userDetailsService);
 		filter.setAuthenticationEntryPoint(entryPoint);
-		
+
 		return filter;
 	}
 }
