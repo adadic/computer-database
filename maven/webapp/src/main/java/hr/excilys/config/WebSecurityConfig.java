@@ -19,7 +19,7 @@ import hr.excilys.service.UserService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final UserService userService;
-
+	
 	@Autowired
 	public WebSecurityConfig(UserService userService) {
 
@@ -29,15 +29,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/addComputer", "/editComputer").hasAnyRole("ADMIN", "USER").and()
-				.authorizeRequests().antMatchers("/delete").hasRole("ADMIN").and().formLogin().loginPage("/login")
-				.failureUrl("/login?error=true").and().logout().logoutUrl("/logout").logoutSuccessUrl("/dashboard")
-				.invalidateHttpSession(true).deleteCookies("JSESSIONID").clearAuthentication(true);
-
+		http.authorizeRequests().antMatchers("/addComputer", "/editComputer").hasAnyRole("ADMIN", "USER");
+		http.authorizeRequests().antMatchers("/delete").hasRole("ADMIN");
+		http.formLogin().loginPage("/login").failureUrl("/login?error=true");
+		http.logout().logoutUrl("/logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID").clearAuthentication(true);
+		http.exceptionHandling(e -> e.authenticationEntryPoint(digestEntryPoint())).addFilter(digestAuthFilter(digestEntryPoint(), userService));
 		http.authorizeRequests().antMatchers("/rest/*").hasAnyRole("ADMIN", "USER").and().authorizeRequests()
-				.antMatchers("/rest/delete").hasRole("ADMIN").and().formLogin().failureUrl("/login?error=true").and()
-				.logout().logoutUrl("/logout").invalidateHttpSession(true).deleteCookies("JSESSIONID")
-				.clearAuthentication(true);
+				.antMatchers("/rest/delete").hasRole("ADMIN");
 
 		http.cors().and().csrf().disable();
 	}
