@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ import hr.excilys.service.DashboardService;
 import hr.excilys.service.EditComputerService;
 
 @RestController
-@RequestMapping(value = "/rest")
+@RequestMapping(value = "/api")
 public class OnlyRESTController {
 
 	private final EditComputerService editComputerService;
@@ -44,11 +45,18 @@ public class OnlyRESTController {
 	}
 	
 	@GetMapping(value = "/computers")
-	public String getComputers(@RequestParam(defaultValue = "10") String lines) {
+	public String getComputers(@RequestParam(defaultValue = "10") String lines, @RequestParam(defaultValue = "1") String page) {
 
+		dashboard.setPage(Integer.valueOf(page));
 		dashboard.setLines(Integer.valueOf(lines));
 		List<Computer> list = dashboardService.getComputersRows(dashboard);
 		
 		return list.parallelStream().map(Object::toString).collect(Collectors.joining("</br>"));
+	}
+	
+	@PostMapping(value = "/computers")
+	public boolean deleteComputer(@RequestParam(defaultValue = "") String id) {
+
+		return dashboardService.deleteComputer(id);
 	}
 }

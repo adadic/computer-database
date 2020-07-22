@@ -31,12 +31,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/addComputer", "/editComputer").hasAnyRole("ADMIN", "USER");
 		http.authorizeRequests().antMatchers("/delete").hasRole("ADMIN");
+		http.authorizeRequests().antMatchers("/api/*").hasAnyRole("ADMIN", "USER").and().authorizeRequests()
+				.antMatchers("/api/delete").hasRole("ADMIN");
 		http.formLogin().loginPage("/login").failureUrl("/login?error=true");
 		http.logout().logoutUrl("/logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID").clearAuthentication(true);
 		http.exceptionHandling(e -> e.authenticationEntryPoint(digestEntryPoint())).addFilter(digestAuthFilter(digestEntryPoint(), userService));
-		http.authorizeRequests().antMatchers("/rest/*").hasAnyRole("ADMIN", "USER").and().authorizeRequests()
-				.antMatchers("/rest/delete").hasRole("ADMIN");
 
 		http.cors().and().csrf().disable();
 	}
