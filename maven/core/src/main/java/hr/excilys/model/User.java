@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 
 @Entity
-@Table( name = "USER" )
+@Table( name = "user" )
 public class User{
 	
 	@Id
