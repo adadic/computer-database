@@ -10,6 +10,10 @@ public class DTORole {
 
 	public DTORole() {
 	}
+	public DTORole(String roleId, String roleName) {
+		this.roleId=roleId;
+		this.roleName=roleName;
+	}
 
 	public String getroleId() {
 		

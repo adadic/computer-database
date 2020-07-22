@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import hr.excilys.dto.DTOUser;
@@ -20,14 +21,19 @@ public class UserService implements UserDetailsService {
 
 	private final DAOUser daoUser;
 	private final UserDTOMapper userDTOMapper;
+	
 
 	@Autowired
 	public UserService(DAOUser daoUser, UserDTOMapper userDTOMapper) {
 
 		this.daoUser = daoUser;
 		this.userDTOMapper = userDTOMapper;
+		
 	}
-
+	
+	
+	BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+	
 	@Override
 	public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -45,13 +51,17 @@ public class UserService implements UserDetailsService {
 
 	public boolean addUser(DTOUser dtoUser) {
 		
+		dtoUser.setPassword(bCryptPasswordEncoder.encode(dtoUser.getPassword()));
 		Optional<User> user = userDTOMapper.fromDTO(dtoUser);
 		if(user.isPresent()) {
+			System.out.println("----- "+user.toString());
+			
 			return daoUser.create(user.get());
 		}
 
 		return false;
 	}
+	
 
 	public List<Role> getRoles() {
 

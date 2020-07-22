@@ -26,6 +26,11 @@ public class DTOUser {
 		this.id = id;
 	}
 
+	public void setPassword(String password) {
+		
+		this.password = password;
+	}
+
 	public String getUsername() {
 
 		return userName;

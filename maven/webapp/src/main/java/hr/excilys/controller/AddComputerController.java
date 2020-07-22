@@ -40,6 +40,7 @@ public class AddComputerController {
 
 	@PostMapping
 	public ModelAndView addComputer(DTOComputer computer, DTOCompany dtoCompany) {
+		
 
 		ModelAndView view = new ModelAndView();
 		computer.setCompany(dtoCompany);

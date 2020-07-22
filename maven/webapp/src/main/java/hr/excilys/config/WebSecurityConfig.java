@@ -18,6 +18,7 @@ import hr.excilys.service.UserService;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	
 	private final UserService userService;
 	
 	@Autowired

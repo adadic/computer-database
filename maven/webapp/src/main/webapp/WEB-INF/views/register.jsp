@@ -33,35 +33,34 @@
 				onclick="window.location.replace('?lang=fr')"></button>
 		</div>
 	</header>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<form method="post" action="register" class="form">
+					<div class="form-group">
+						<label for="username">Username</label> <input type="text"
+							class="form-control" id="username" name="username"
+							placeholder="name">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label> <input type="password"
+							class="form-control" id="password" name="password">
+					</div>
+					<!-- 
+					<div class="form-group">
+						<label for="role">Example select</label> <select
+							class="form-control" id="role" name="role">
+							<option>ADMIN</option>
+							<option>USER</option>
+						</select>
+					</div>
+					 -->
+					<button class="btn btn-primary" type="submit">Create user</button>
+				</form>
 
-	<section id="main">
-		<c:if test="${not empty error}">
-			<div class="container">
-				<div class="alert alert-danger">
-					<spring:message code="error.login" />
-					<br />
-				</div>
 			</div>
-		</c:if>
-		<div class="container">
-			<form name='f' action="login" method="POST">
-				<div>
-					<label><spring:message code="login.user" /><input
-						type="text" class="form-control" name="username"
-						placeholder="<spring:message code="login.user"/>" /> </label>
-				</div>
-				<div>
-					<label><spring:message code="login.pwd" /><input
-						type="password" class="form-control" name="password"
-						placeholder="<spring:message code="login.pwd"/>" /> </label>
-				</div>
-				<div>
-					<input type="submit" value="<spring:message code="login.signin" />"
-						class="btn btn-primary" />
-				</div>
-			</form>
-			<a href='register'>click here to register</a>
 		</div>
-	</section>
+	</div>
 </body>
 </html>
