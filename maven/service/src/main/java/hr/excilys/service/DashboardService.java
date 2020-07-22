@@ -67,6 +67,16 @@ public class DashboardService {
 
 		return true;
 	}
+	
+	public boolean deleteComputer(String id) {
+
+		if (id.isEmpty()) {
+
+			return false;
+		}
+
+		return daoComputer.deleteComputer(Long.valueOf(id));
+	}
 
 	public Pagination paginate(DTOPagination dtoPagination) {
 
