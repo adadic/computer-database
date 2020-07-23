@@ -26,85 +26,99 @@ import hr.excilys.service.DashboardService;
 import hr.excilys.service.EditComputerService;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/computers")
 public class ComputerRestController {
+
 	ObjectMapper obj = new ObjectMapper();
 	private final EditComputerService editComputerService;
 	private final AddComputerService addComputerService;
-
 	private Pagination dashboard = new Pagination();
 	private final DashboardService dashboardService;
-	
+
 	@Autowired
-	public ComputerRestController(EditComputerService editComputerService, AddComputerService addComputerService, DashboardService dashboardService) {
+	public ComputerRestController(EditComputerService editComputerService, AddComputerService addComputerService,
+			DashboardService dashboardService) {
+
 		this.addComputerService = addComputerService;
 		this.editComputerService = editComputerService;
 		this.dashboardService = dashboardService;
 	}
-	
-	@GetMapping(value = "/computers")
+
+	@GetMapping
 	public ResponseEntity<String> getComputers() {
+
 		List<Computer> listComputers = dashboardService.getComputers();
 		try {
+
 			return ResponseEntity.ok(obj.writeValueAsString(listComputers));
 		} catch (JsonProcessingException jsonExc) {
 			jsonExc.printStackTrace();
+
 			return new ResponseEntity<String>("Cannot get computers", HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	@GetMapping(value = "/page_computers")
-	public ResponseEntity<String> getComputersPage(@RequestParam(defaultValue = "10") String lines, @RequestParam(defaultValue = "1") String page) {
+
+	@GetMapping(value = "/page_computers") // modify
+	public ResponseEntity<String> getComputersPage(@RequestParam(defaultValue = "10") String lines,
+			@RequestParam(defaultValue = "1") String page) {
 
 		dashboard.setPage(Integer.valueOf(page));
 		dashboard.setLines(Integer.valueOf(lines));
 		List<Computer> list = dashboardService.getComputersRows(dashboard);
-		
 		try {
+
 			return ResponseEntity.ok(obj.writeValueAsString(list));
 		} catch (JsonProcessingException jsonExc) {
 			jsonExc.printStackTrace();
+
 			return new ResponseEntity<String>("Cannot get computers", HttpStatus.BAD_REQUEST);
 		}
 	}
 
-	@GetMapping(value = "/computers/{id}")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<String> getComputer(@PathVariable("id") String id) {
-		
+
 		Optional<Computer> computer = editComputerService.getComputerById(id);
 		if (computer.isPresent()) {
-			
 			try {
+
 				return ResponseEntity.ok(obj.writeValueAsString(computer.get().toString()));
 			} catch (JsonProcessingException jsonExc) {
 				jsonExc.printStackTrace();
+
 				return new ResponseEntity<String>("Id " + id + " not found", HttpStatus.BAD_REQUEST);
 			}
 		}
-		
+
 		return new ResponseEntity<String>("Id " + id + " not found", HttpStatus.BAD_REQUEST);
 	}
-	
-	@PostMapping(value = "/computers/{id}")
+
+	@PostMapping(value = "/{id}")
 	public boolean deleteComputer(@PathVariable("id") String id) {
+
 		return dashboardService.deleteComputer(id);
 	}
-	
-	@PutMapping(value = "/computers")
-	public ResponseEntity<String> editComputer(@RequestBody DTOComputer dtoComputer){
+
+	@PutMapping
+	public ResponseEntity<String> editComputer(@RequestBody DTOComputer dtoComputer) {
 		boolean edit = editComputerService.editComputer(dtoComputer);
-		if(edit) {
+		if (edit) {
+
 			return new ResponseEntity<String>("Computer edited", HttpStatus.OK);
 		}
+
 		return new ResponseEntity<String>("Cannot edit computer", HttpStatus.BAD_REQUEST);
 	}
-	
-	@PostMapping(value = "/computers")
-	public ResponseEntity<String> addComputer(@RequestBody DTOComputer dtoComputer){
+
+	@PostMapping
+	public ResponseEntity<String> addComputer(@RequestBody DTOComputer dtoComputer) {
+
 		boolean add = addComputerService.addComputer(dtoComputer);
-		if(add) {
+		if (add) {
+
 			return new ResponseEntity<String>("Computer added", HttpStatus.OK);
 		}
+
 		return new ResponseEntity<String>("Cannot add computer", HttpStatus.BAD_REQUEST);
 	}
 }
