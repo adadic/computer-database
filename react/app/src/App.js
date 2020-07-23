@@ -2,28 +2,28 @@ import React, {useEffect, useState} from 'react';
 import 'fontsource-roboto';
 import './App.scss';
 import Header from "./Component/Header/Header";
-import TableList, {baseURL} from "./Component/TableList/TableList";
-import {MOCK} from "./Mock";
+import TableList from "./Component/TableList/TableList";
 import useAxios from "axios-hooks";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+export const baseURL = 'http://localhost:8083/webapp/api';
 
 function App() {
 
 
-    const {data} = useAxios(baseURL + "/computers");
+    const [{ data, loading, error }] = useAxios(baseURL + "/computers");
     const [computers, setComputers] = useState(data);
     useEffect(() => setComputers(data),data);
 
     return (
         <div className="App">
             <Header/>
-
-            <div>
-                Console :
-                <br/>
-                {computers === undefined ? "True" : "False"}
-                <br/>
-                {computers}
-            </div>
+            {loading
+                ?
+                <CircularProgress/>
+                :
+                computers && <TableList computers={computers}/>
+            }
         </div>
     );
 }

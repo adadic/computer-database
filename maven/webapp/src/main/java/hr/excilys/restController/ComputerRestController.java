@@ -59,7 +59,8 @@ public class ComputerRestController {
 			return new ResponseEntity<String>("Cannot get computers", HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping(value = "/page_computers") // modify
 	public ResponseEntity<String> getComputersPage(@RequestParam(defaultValue = "10") String lines,
 			@RequestParam(defaultValue = "1") String page) {

@@ -20,9 +20,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import useAxios from 'axios-hooks';
-
-export const baseURL = 'http://localhost:8083/webapp/api';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -197,16 +194,14 @@ const useStyles = makeStyles((theme) => ({
 
 function TableList(props) {
 
-    const {data} = useAxios(baseURL+"/computers");
-    const [computers, setComputers] = useState(data);
     const classes = useStyles();
+    const [computers, setComputers] = useState(props.computers);
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('calories');
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [dense, setDense] = useState(false);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-    useEffect(() => setComputers(data),data);
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -216,8 +211,8 @@ function TableList(props) {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelecteds = computers.map((n) => n.name);
-            setSelected(newSelecteds);
+            const newSelected = computers.map((n) => n.name);
+            setSelected(newSelected);
             return;
         }
         setSelected([]);
@@ -291,7 +286,7 @@ function TableList(props) {
                                             role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
-                                            key={row.name}
+                                            key={row.id}
                                             selected={isItemSelected}
                                         >
                                             <TableCell padding="checkbox">
@@ -303,9 +298,25 @@ function TableList(props) {
                                             <TableCell component="th" id={labelId} scope="row" padding="none">
                                                 {row.name}
                                             </TableCell>
-                                            <TableCell align="right">{row.introduced}</TableCell>
-                                            <TableCell align="right">{row.discontinued}</TableCell>
-                                            <TableCell align="right">{row.company.name}</TableCell>
+                                            {row.introduced
+                                                ?
+                                                <TableCell align="right">{new Date(row.introduced).toISOString().slice(0,10)}</TableCell>
+                                                :
+                                                <TableCell align="right"/>
+                                            }
+                                            {row.discontinued
+                                                ?
+                                                <TableCell align="right">{new Date(row.discontinued).toISOString().slice(0,10)}</TableCell>
+                                                :
+                                                <TableCell align="right"/>
+                                            }
+                                            {row.company
+                                            ?
+                                                <TableCell align="right">{row.company.name}</TableCell>
+                                            :
+                                                <TableCell align="right"/>
+                                            }
+
                                         </TableRow>
                                     );
                                 })}
