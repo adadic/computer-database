@@ -1,6 +1,7 @@
 package hr.excilys.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,14 @@ public class CompanyService {
 	public List<Company> getCompanies() {
 
 			return daoCompany.getCompanies();
+	}
+	
+	public Optional<Company> getCompany(String id) {
+		
+		return daoCompany.getCompanyById(Long.valueOf(id));
+	}
+	
+	public boolean deleteCompany(String id) {
+		return daoCompany.deleteCompany(Long.valueOf(id));
 	}
 }

@@ -27,6 +27,7 @@ import hr.excilys.service.DashboardService;
 import hr.excilys.service.EditComputerService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/api/computers")
 public class ComputerRestController {
 
@@ -45,7 +46,6 @@ public class ComputerRestController {
 		this.dashboardService = dashboardService;
 	}
 
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping
 	public ResponseEntity<String> getComputers() {
 
@@ -59,8 +59,7 @@ public class ComputerRestController {
 			return new ResponseEntity<String>("Cannot get computers", HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 	@GetMapping(value = "/page_computers") // modify
 	public ResponseEntity<String> getComputersPage(@RequestParam(defaultValue = "10") String lines,
 			@RequestParam(defaultValue = "1") String page) {
