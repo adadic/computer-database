@@ -13,11 +13,12 @@ function App() {
 
     const [{ data, loading, error }] = useAxios(baseURL + "/computers");
     const [computers, setComputers] = useState(data);
-    useEffect(() => setComputers(data),data);
+    useEffect(() => setComputers(data),[data]);
 
     return (
         <div className="App">
             <Header/>
+            {error && "Error!!!!"}
             {loading
                 ?
                 <CircularProgress/>
