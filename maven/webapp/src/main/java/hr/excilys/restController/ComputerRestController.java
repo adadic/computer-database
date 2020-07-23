@@ -104,6 +104,7 @@ public class ComputerRestController {
 	@PutMapping
 	public ResponseEntity<String> editComputer(@RequestBody DTOComputer dtoComputer) {
 
+		System.out.println(dtoComputer.toString());
 		if (editComputerService.editComputer(dtoComputer)) {
 
 			return new ResponseEntity<String>("Computer edited", HttpStatus.OK);

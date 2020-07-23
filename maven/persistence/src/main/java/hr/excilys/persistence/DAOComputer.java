@@ -117,15 +117,16 @@ public class DAOComputer {
 	}
 
 	public boolean updateComputer(Computer computer) {
-
+		System.out.println(computer.getName() + " " + computer.getCompany().getId());
 		try {
 			session = sessionFactory.getCurrentSession();
-			Query query = session.createQuery(EnumQuery.UPDATECOMPUTER.getQuery(), Computer.class)
-					.setParameter("name", computer.getName()).setParameter("introduced", computer.getIntroduced())
+			Query query = session.createQuery(EnumQuery.UPDATECOMPUTER.getQuery())
+					.setParameter("name", computer.getName())
+					.setParameter("introduced", computer.getIntroduced())
 					.setParameter("discontinued", computer.getDiscontinued())
-					.setParameter("id_company", computer.getCompany().getId());
+					.setParameter("id_company", computer.getCompany().getId())
+					.setParameter("id_computer", computer.getId());
 			query.executeUpdate();
-
 			return true;
 		} catch (HibernateException hex) {
 			LOGGER.error("Cannot get the session");
