@@ -22,7 +22,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	public WebSecurityConfig(UserService userService) {
-
 		this.userService = userService;
 	}
 
@@ -31,8 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/addComputer", "/editComputer").hasAnyRole("ADMIN", "USER");
 		http.authorizeRequests().antMatchers("/delete").hasRole("ADMIN");
-		http.authorizeRequests().antMatchers("/api/*").hasAnyRole("ADMIN", "USER").and().authorizeRequests()
-				.antMatchers("/api/delete").hasRole("ADMIN");
+		http.authorizeRequests().antMatchers("/api/*").permitAll();
+//		hasAnyRole("ADMIN", "USER").and().authorizeRequests()
+//				.antMatchers("/api/delete").hasRole("ADMIN");
 		http.formLogin().loginPage("/login").failureUrl("/login?error=true");
 		http.logout().logoutUrl("/logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID").clearAuthentication(true);
@@ -43,13 +43,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void userConfigurationGlobal(AuthenticationManagerBuilder authentificationManagerBuilder) throws Exception {
-
 		authentificationManagerBuilder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
 	}
 
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-
 		return new BCryptPasswordEncoder();
 	}
 

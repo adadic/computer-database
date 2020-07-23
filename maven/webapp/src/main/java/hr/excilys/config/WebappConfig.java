@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "hr.excilys.controller" })
+@ComponentScan(basePackages = { "hr.excilys.controller", "hr.excilys.restController" })
 public class WebappConfig implements WebMvcConfigurer {
 
 	@Override
