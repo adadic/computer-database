@@ -3,6 +3,7 @@ package hr.excilys.persistence;
 public enum EnumQuery {
 
 	ALLCOMPUTER("FROM Computer WHERE name LIKE :search"), IDCOMPUTER("FROM Computer WHERE id = :id_computer"),
+	GETCOMPUTERS("FROM Computer"),	
 	INSERTCOMPUTER(
 			"INSERT INTO Computer (name, introduced, discontinued, company_id) VALUES (:name, :introduced, :discontinued, :id_company)"),
 	DELETECOMPUTER("DELETE FROM Computer WHERE id = :id_computer"),

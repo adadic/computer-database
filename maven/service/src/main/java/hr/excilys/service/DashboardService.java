@@ -85,4 +85,8 @@ public class DashboardService {
 
 		return page;
 	}
+	
+	public List<Computer> getComputers(){
+		return daoComputer.getComputers();
+	}
 }

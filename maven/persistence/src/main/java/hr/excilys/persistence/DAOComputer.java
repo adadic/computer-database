@@ -1,12 +1,5 @@
 package hr.excilys.persistence;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import hr.excilys.model.Computer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +12,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import hr.excilys.model.Computer;
 
 @Repository
 @Transactional
@@ -35,6 +34,19 @@ public class DAOComputer {
 		this.sessionFactory = sessionFactory;
 	}
 
+	public List<Computer> getComputers(){
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			TypedQuery<Computer> query = session.createQuery(EnumQuery.GETCOMPUTERS.getQuery(), Computer.class);
+			return query.getResultList();
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+		} catch (DataAccessException dae) {
+			LOGGER.error("Cannot get Computers at {} page and with {} lines, probleme in the Query maybe search -> {}");
+		}
+		return new ArrayList<>();
+	}
+	
 	public List<Computer> getComputersRows(int page, int lines, String search) {
 
 		search = prepareSearch(search);
