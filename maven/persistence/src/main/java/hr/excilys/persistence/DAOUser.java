@@ -68,10 +68,13 @@ public class DAOUser {
 			return true;
 		} catch (HibernateException hex) {
 			LOGGER.error("Cannot get the session");
+			System.out.println("Cannot get the session");
 
 			return false;
 		} catch (DataAccessException dae) {
 			LOGGER.error("User NOT added, probleme in query : Check fields");
+			System.out.println("User NOT added, probleme in query : Check fields");
+			
 
 			return false;
 		}

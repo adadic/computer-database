@@ -52,10 +52,11 @@ public class UserService implements UserDetailsService {
 	public boolean addUser(DTOUser dtoUser) {
 		
 		dtoUser.setPassword(bCryptPasswordEncoder.encode(dtoUser.getPassword()));
+		System.out.println(dtoUser.toString());
 		Optional<User> user = userDTOMapper.fromDTO(dtoUser);
+		System.out.println(user);
+		
 		if(user.isPresent()) {
-			System.out.println("----- "+user.toString());
-			
 			return daoUser.create(user.get());
 		}
 

@@ -43,10 +43,19 @@
 							class="form-control" id="username" name="username"
 							placeholder="name">
 					</div>
+
+					
+
 					<div class="form-group">
 						<label for="password">Password</label> <input type="password"
-							class="form-control" id="password" name="password">
+							class="form-control" id="password" name="password"
+							placeholder="password">
 					</div>
+				<div class="form-group">
+				<label>Matching Password</label>
+				<input type="password" name="matchingPassword" class="form-control" />
+				</div>
+
 					<!-- 
 					<div class="form-group">
 						<label for="role">Example select</label> <select
@@ -56,6 +65,10 @@
 						</select>
 					</div>
 					 -->
+					<div>
+						<input type="checkbox" required="required"> I accept the <a
+							href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>
+					</div>
 					<button class="btn btn-primary" type="submit">Create user</button>
 				</form>
 
