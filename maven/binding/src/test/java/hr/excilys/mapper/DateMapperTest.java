@@ -57,9 +57,9 @@ public class DateMapperTest {
 		mapper.getDate("123456789");
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test
 	public void testGetDateNull() {
 
-		mapper.getDate(null);
+		assertEquals(null, mapper.getDate(null));
 	}
 }
