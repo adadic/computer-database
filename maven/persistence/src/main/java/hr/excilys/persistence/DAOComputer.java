@@ -5,11 +5,14 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -35,6 +38,19 @@ public class DAOComputer {
 		this.sessionFactory = sessionFactory;
 	}
 
+	public List<Computer> getComputers(){
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			TypedQuery<Computer> query = session.createQuery(EnumQuery.GETCOMPUTERS.getQuery(), Computer.class);
+			return query.getResultList();
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+		} catch (DataAccessException dae) {
+			LOGGER.error("Cannot get Computers at {} page and with {} lines, probleme in the Query maybe search -> {}");
+		}
+		return new ArrayList<>();
+	}
+	
 	public List<Computer> getComputersRows(int page, int lines, String search) {
 
 		search = prepareSearch(search);
@@ -51,7 +67,7 @@ public class DAOComputer {
 
 			return new ArrayList<>();
 		} catch (DataAccessException dae) {
-			LOGGER.error("Cannot get Computers at {} page and with {} lines, probleme in the Query maybe search -> {}",
+			LOGGER.error("Cannot get Computers at {} page and with {} lines, problem in the Query maybe search -> {}",
 					page, lines, search);
 
 			return new ArrayList<>();
@@ -76,7 +92,7 @@ public class DAOComputer {
 
 			return Optional.empty();
 		} catch (DataAccessException dae) {
-			LOGGER.error("Computer with id = {} : Probleme in Query", id);
+			LOGGER.error("Computer with id = {} : Problem in Query", id);
 		}
 		LOGGER.info("Computer with id = {} : NOT Found", id);
 
@@ -88,7 +104,12 @@ public class DAOComputer {
 		try {
 			session = sessionFactory.getCurrentSession();
 			if(computer.getCompany().getId() == 0) {
-				computer.setCompany(null);
+				computer = new Computer.ComputerBuilder(computer.getName())
+						.id(computer.getId())
+						.introduced(computer.getIntroduced())
+						.discontinued(computer.getDiscontinued())
+						.company(null)
+						.build();
 			}
 			session.save(computer);
 
@@ -98,29 +119,30 @@ public class DAOComputer {
 
 			return false;
 		} catch (DataAccessException dae) {
-			LOGGER.error("Computer NOT added, probleme in query : Check fields");
+			LOGGER.error("Computer NOT added, problem in query : Check fields");
 
 			return false;
 		}
 	}
 
 	public boolean updateComputer(Computer computer) {
-
+		
 		try {
 			session = sessionFactory.getCurrentSession();
-			Query query = session.createQuery(EnumQuery.UPDATECOMPUTER.getQuery(), Computer.class)
-					.setParameter("name", computer.getName()).setParameter("introduced", computer.getIntroduced())
+			Query query = session.createQuery(EnumQuery.UPDATECOMPUTER.getQuery())
+					.setParameter("name", computer.getName())
+					.setParameter("introduced", computer.getIntroduced())
 					.setParameter("discontinued", computer.getDiscontinued())
-					.setParameter("id_company", computer.getCompany().getId());
+					.setParameter("id_company", computer.getCompany().getId())
+					.setParameter("id_computer", computer.getId());
 			query.executeUpdate();
-
 			return true;
 		} catch (HibernateException hex) {
 			LOGGER.error("Cannot get the session");
 
 			return false;
 		} catch (DataAccessException dae) {
-			LOGGER.error("Computer NOT updated, probleme in query : Check fields");
+			LOGGER.error("Computer NOT updated, problem in query : Check fields");
 
 			return false;
 		}
@@ -140,7 +162,7 @@ public class DAOComputer {
 
 			return false;
 		} catch (DataAccessException dae) {
-			LOGGER.error("Computer NOT deleted, probleme in query");
+			LOGGER.error("Computer NOT deleted, problem in query");
 
 			return false;
 		}
@@ -177,18 +199,36 @@ public class DAOComputer {
 			query.setFirstResult(lines * (page - 1));
 			query.setMaxResults(lines);
 
-			return query.getResultList();
+			return getComputersWithNoNullCompany(query.getResultList());
 		} catch (HibernateException hex) {
 			LOGGER.error("Cannot get the session");
 
 			return new ArrayList<>();
 		} catch (DataAccessException dae) {
 			LOGGER.error(
-					"Probleme in query, check fields : page = {}, lines = {}, search = {}, order = {}, direct = {}",
+					"Problem in query, check fields : page = {}, lines = {}, search = {}, order = {}, direct = {}",
 					page, lines, search, order, direct);
 
 			return new ArrayList<>();
 		}
+	}
+	
+	private List<Computer> getComputersWithNoNullCompany(List<Computer> listComputer){
+		
+		Stream<Computer> listComputerStream = listComputer.stream().map( (computer) -> {
+			if(computer.getCompany()==null) {
+				 return new Computer.ComputerBuilder(computer.getName())
+						.id(computer.getId())
+						.introduced(computer.getIntroduced())
+						.discontinued(computer.getDiscontinued())
+						.company(new Company.CompanyBuilder(0, null).build())
+						.build();
+			}
+			return computer;
+		});
+		
+		return listComputerStream.collect(Collectors.toList());
+		
 	}
 
 	private String getOrderQuery(String order, int direct) {
