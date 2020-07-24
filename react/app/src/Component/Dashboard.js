@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import 'fontsource-roboto';
-import Header from "./Header";
+import './App.scss';
 import ComputerListDelete from "./ComputerListDelete";
 import useAxios from "axios-hooks";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -42,7 +42,7 @@ function Dashboard() {
 
     return (
         <div className="App">
-       {error && <ErrorPage errorMessage=""/>}
+            {error && <ErrorPage errorMessage=""/>}
             {loading
                 ?
                 <CircularProgress/>
@@ -53,6 +53,6 @@ function Dashboard() {
             }
         </div>
     );
-
 }
+
 export default Dashboard;
