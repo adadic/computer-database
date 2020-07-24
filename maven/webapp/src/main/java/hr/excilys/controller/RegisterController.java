@@ -24,11 +24,7 @@ public class RegisterController {
 	private static final int ADDSUCCESS = 2;
 	private static final int ADDERROR = -1;
 	
-		@GetMapping
-		public ModelAndView registerPage() {
-		ModelAndView modelAndView = new ModelAndView("register");
-		return modelAndView;
-		}
+		
 		@PostMapping
 		public ModelAndView createUser(@Valid DTOUser user) {
 			System.out.println(user.toString());
