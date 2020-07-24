@@ -7,11 +7,45 @@ import EnhancedTableToolbar from "./EnhancedTableToolbar";
 
 function descendingComparator(a, b, orderBy) {
 
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
+    const first = a[orderBy];
+    const second = b[orderBy];
+    if(orderBy === "company") {
+        if (!second["name"] && !first["name"]) {
+            return 0;
+        } else if (!second["name"]) {
+            return 1;
+        } else if (!first["name"]) {
+            return -1;
+        } else if (second["name"].toUpperCase() < first["name"].toUpperCase()) {
+            return -1;
+        } else if (second["name"].toUpperCase() > first["name"].toUpperCase()) {
+            return 1;
+        }
+    } else {
+        if (!second && !first) {
+            return 0;
+        }
+        if (!second) {
+            return 1;
+        }
+        if (!first) {
+            return -1;
+        }
+        if (orderBy === "name") {
+            if (second.toUpperCase() < first.toUpperCase()) {
+                return -1;
+            }
+            if (second.toUpperCase() > first.toUpperCase()) {
+                return 1;
+            }
+        } else {
+            if (new Date(second.year, second.monthValue, second.dayOfMonth) < new Date(first.year, first.monthValue, first.dayOfMonth)) {
+                return -1;
+            }
+            if (new Date(second.year, second.monthValue, second.dayOfMonth) > new Date(first.year, first.monthValue, first.dayOfMonth)) {
+                return 1;
+            }
+        }
     }
     return 0;
 }
@@ -68,7 +102,7 @@ function ComputerListDelete(props) {
     const classes = useStyles();
     const [computers, setComputers] = useState(props.computers);
     const [order, setOrder] = useState('asc');
-    const [orderBy, setOrderBy] = useState('calories');
+    const [orderBy, setOrderBy] = useState('computers');
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -193,12 +227,7 @@ function ComputerListDelete(props) {
                                                 :
                                                 <TableCell align="right"/>
                                             }
-                                            {row.company
-                                                ?
-                                                <TableCell align="right" style={{width: '20%'}}> {row.company.name}</TableCell>
-                                                :
-                                                <TableCell align="right" style={{width: '20%'}}/>
-                                            }
+                                            <TableCell align="right" style={{width: '20%'}}> {row.company.name}</TableCell>
 
                                         </TableRow>
                                     );

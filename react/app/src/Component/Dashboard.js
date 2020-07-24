@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import 'fontsource-roboto';
-import './App.scss';
 import ComputerListDelete from "./ComputerListDelete";
 import useAxios from "axios-hooks";
 import CircularProgress from "@material-ui/core/CircularProgress";
