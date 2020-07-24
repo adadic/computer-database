@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ import hr.excilys.service.DashboardService;
 import hr.excilys.service.EditComputerService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(value = "/api/computers")
 public class ComputerRestController {
 
@@ -45,7 +47,6 @@ public class ComputerRestController {
 		this.dashboardService = dashboardService;
 	}
 
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping
 	public ResponseEntity<String> getComputers() {
 
@@ -59,8 +60,7 @@ public class ComputerRestController {
 			return new ResponseEntity<String>("Cannot get computers", HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 	@GetMapping(value = "/page_computers") // modify
 	public ResponseEntity<String> getComputersPage(@RequestParam(defaultValue = "10") String lines,
 			@RequestParam(defaultValue = "1") String page) {
@@ -96,7 +96,7 @@ public class ComputerRestController {
 		return new ResponseEntity<String>("Id " + id + " not found", HttpStatus.BAD_REQUEST);
 	}
 
-	@PostMapping(value = "/{id}")
+	@DeleteMapping(value = "/{id}")
 	public boolean deleteComputer(@PathVariable("id") String id) {
 
 		return dashboardService.deleteComputer(id);

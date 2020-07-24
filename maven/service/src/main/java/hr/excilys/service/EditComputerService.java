@@ -32,7 +32,6 @@ public class EditComputerService {
 
 		Optional<Computer> computer = computerDTOMapper.fromDTO(dtoComputer);
 		if (computer.isPresent()) {
-
 			return daoComputer.updateComputer(computer.get());
 		}
 		
