@@ -132,6 +132,12 @@ function ComputerListDelete(props) {
         console.log(selected[0] === "2")
     }
 
+    function getDate(date) {
+
+        const {year, monthValue, dayOfMonth} = date;
+        return year + "-" + (monthValue<10 ? "0" + monthValue : monthValue) + "-" + (dayOfMonth<10 ? "0" + dayOfMonth : dayOfMonth);
+    }
+
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
@@ -177,13 +183,13 @@ function ComputerListDelete(props) {
                                             </TableCell>
                                             {row.introduced
                                                 ?
-                                                <TableCell align="right">{new Date(row.introduced).toISOString().slice(0,10)}</TableCell>
+                                                <TableCell align="right">{getDate(row.introduced)}</TableCell>
                                                 :
                                                 <TableCell align="right"/>
                                             }
                                             {row.discontinued
                                                 ?
-                                                <TableCell align="right">{new Date(row.discontinued).toISOString().slice(0,10)}</TableCell>
+                                                <TableCell align="right">{getDate(row.discontinued)}</TableCell>
                                                 :
                                                 <TableCell align="right"/>
                                             }
