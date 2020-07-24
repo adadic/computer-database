@@ -22,8 +22,10 @@ public class PageValidator {
 
 		try {
 			Integer.valueOf(dtoPage.getPage());
-			@SuppressWarnings("unused")
-			int x = 1 / Integer.valueOf(dtoPage.getLines());
+			if(Integer.valueOf(dtoPage.getLines())==0) {
+				LOGGER.error("Lines equals 0, can't do that!");
+				return false;
+			};
 			Integer.valueOf(dtoPage.getDirection());
 			LOGGER.info("Page can be created");
 
@@ -31,10 +33,6 @@ public class PageValidator {
 		} catch (NumberFormatException nfe) {
 			LOGGER.error("A String was given instead of number, page : {} and lines : {}", dtoPage.getPage(),
 					dtoPage.getLines());
-
-			return false;
-		} catch (ArithmeticException arite) {
-			LOGGER.error("Lines equals 0, can't do that!");
 
 			return false;
 		}

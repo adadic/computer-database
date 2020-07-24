@@ -1,6 +1,6 @@
 package hr.excilys.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,9 +27,9 @@ public class Computer {
 	@Column(name ="name")
 	private String name;
 	@Column(name = "introduced")
-	private Timestamp introduced;
+	private LocalDate introduced;
 	@Column(name = "discontinued")
-	private Timestamp discontinued;
+	private LocalDate discontinued;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Company.class)
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	private Company company;
@@ -51,39 +51,19 @@ public class Computer {
 		return id;
 	}
 
-	public void setId(long id) {
-
-		this.id = id;
-	}
-
 	public String getName() {
 
 		return name;
 	}
 
-	public void setName(String name) {
-
-		this.name = name;
-	}
-
-	public Timestamp getIntroduced() {
+	public LocalDate getIntroduced() {
 
 		return introduced;
 	}
 
-	public void setIntroduced(Timestamp introduced) {
-
-		this.introduced = introduced;
-	}
-
-	public Timestamp getDiscontinued() {
+	public LocalDate getDiscontinued() {
 
 		return discontinued;
-	}
-
-	public void setDiscontinued(Timestamp discontinued) {
-
-		this.discontinued = discontinued;
 	}
 
 	@Override
@@ -96,17 +76,12 @@ public class Computer {
 		return company;
 	}
 
-	public void setCompany(Company company) {
-
-		this.company = company;
-	}
-
 	public static class ComputerBuilder {
 
 		private long id;
-		private String name;
-		private Timestamp introduced;
-		private Timestamp discontinued;
+		private final String name;
+		private LocalDate introduced;
+		private LocalDate discontinued;
 		private Company company;
 
 		public ComputerBuilder(String name) {
@@ -121,7 +96,7 @@ public class Computer {
 			return this;
 		}
 
-		public ComputerBuilder introduced(Timestamp introduced) {
+		public ComputerBuilder introduced(LocalDate introduced) {
 
 			if (introduced != null) {
 				this.introduced = introduced;
@@ -130,7 +105,7 @@ public class Computer {
 			return this;
 		}
 
-		public ComputerBuilder discontinued(Timestamp discontinued) {
+		public ComputerBuilder discontinued(LocalDate discontinued) {
 
 			if (discontinued != null) {
 				this.discontinued = discontinued;
