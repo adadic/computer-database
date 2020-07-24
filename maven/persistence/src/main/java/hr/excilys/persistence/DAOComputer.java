@@ -117,7 +117,7 @@ public class DAOComputer {
 	}
 
 	public boolean updateComputer(Computer computer) {
-		System.out.println(computer.getName() + " " + computer.getCompany().getId());
+		
 		try {
 			session = sessionFactory.getCurrentSession();
 			Query query = session.createQuery(EnumQuery.UPDATECOMPUTER.getQuery())

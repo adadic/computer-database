@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -95,7 +96,7 @@ public class ComputerRestController {
 		return new ResponseEntity<String>("Id " + id + " not found", HttpStatus.BAD_REQUEST);
 	}
 
-	@PostMapping(value = "/{id}")
+	@DeleteMapping(value = "/{id}")
 	public boolean deleteComputer(@PathVariable("id") String id) {
 
 		return dashboardService.deleteComputer(id);
@@ -104,7 +105,6 @@ public class ComputerRestController {
 	@PutMapping
 	public ResponseEntity<String> editComputer(@RequestBody DTOComputer dtoComputer) {
 
-		System.out.println(dtoComputer.toString());
 		if (editComputerService.editComputer(dtoComputer)) {
 
 			return new ResponseEntity<String>("Computer edited", HttpStatus.OK);
