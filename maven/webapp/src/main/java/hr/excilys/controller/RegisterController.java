@@ -14,7 +14,7 @@ import hr.excilys.dto.DTOUser;
 import hr.excilys.service.UserService;
 
 @Controller 
-@RequestMapping(value="/register")
+@RequestMapping(value="/api/register")
 public class RegisterController {
 
 	@Autowired

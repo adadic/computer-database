@@ -54,10 +54,7 @@
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
 
-<<<<<<< HEAD
-	
 
-=======
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -68,7 +65,7 @@
 			<artifactId>json</artifactId>
 			<version>20190722</version>
 		</dependency>
->>>>>>> develop
+
 	</dependencies>
 
 
