@@ -1,6 +1,7 @@
 package hr.excilys.validator;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -16,11 +17,14 @@ public class ComputerValidator {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(ComputerValidator.class);
 	private final DateMapper dateMapper;
+	private final CompanyValidator companyValidator;
 
 	@Autowired
-	public ComputerValidator(DateMapper dateMapper) {
-
+	public ComputerValidator(DateMapper dateMapper, CompanyValidator companyValidator) {
+		
 		this.dateMapper = dateMapper;
+		this.companyValidator = companyValidator;
+		
 	}
 
 	public boolean checkComputerFields(DTOComputer dtoComputer) {
@@ -31,32 +35,40 @@ public class ComputerValidator {
 			return false;
 		}
 		try {
-
-			if (StringUtils.isNotEmpty(dtoComputer.getIntroduced())) {
-				Timestamp timeIntro = checkDate(dtoComputer.getIntroduced());
-				System.out.println(timeIntro.getTime());
-				if (StringUtils.isNotEmpty(dtoComputer.getDiscontinued())) {
-					Timestamp timeDiscon = checkDate(dtoComputer.getDiscontinued());
-					System.out.println(timeDiscon.getTime());
-					if (timeIntro.getTime() > timeDiscon.getTime()) {
-						LOGGER.info("introduced Date after Discontinued Date in this Computer");
-		
-						return false;
-					}
-				}
+			
+			if (!StringUtils.isEmpty(dtoComputer.getIntroduced())) {
+				return false;
 			}
+			
+			if(!StringUtils.isEmpty(dtoComputer.getDiscontinued())) {
+				return false;
+			}
+			
+			LocalDate timeIntro = checkDate(dtoComputer.getIntroduced());
+			LocalDate timeDiscon = checkDate(dtoComputer.getDiscontinued());
+			
+			if (timeIntro.isAfter(timeDiscon)) {
+				LOGGER.info("introduced Date after Discontinued Date in this Computer");
+				return false;
+			}
+			
+			if(!companyValidator.checkCompanyFields(dtoComputer.getCompany())) {
+				return false;
+			}
+			
 			LOGGER.info("Computer can be created");
-
 			return true;
-		} catch (IllegalArgumentException illae) {
+			
+		} catch (DateTimeParseException dtpe) {
+			
 			LOGGER.error("NullPointerException -> At least one Field was null !!");
-
 			return false;
+			
 		}
 	}
 
-	private Timestamp checkDate(String date) throws IllegalArgumentException {
+	private LocalDate checkDate(String date) throws DateTimeParseException {
 
-		return new Timestamp(dateMapper.getDate(date));
+		return dateMapper.getDate(date);
 	}
 }

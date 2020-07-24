@@ -97,7 +97,7 @@ public class DAOCompany {
 
 			return 0;
 		} catch (DataAccessException dae) {
-			LOGGER.error("Probleme in query with id_company : {}", id);
+			LOGGER.error("Problem in query with id_company : {}", id);
 
 			return 0;
 		}
