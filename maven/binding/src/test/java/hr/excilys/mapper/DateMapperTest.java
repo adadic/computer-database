@@ -2,6 +2,9 @@ package hr.excilys.mapper;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,28 +35,29 @@ public class DateMapperTest {
 	@Test
 	public void testGetDateValidDate() {
 
-		assertEquals(1593468000000L, mapper.getDate("2020-06-30"));
+		assertEquals(LocalDate.of(2020, 06, 30), mapper.getDate("2020-06-30"));
+	
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = DateTimeParseException.class)
 	public void testGetDateInvalidDAte() {
 
 		mapper.getDate("2020-06-32");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = DateTimeParseException.class)
 	public void testGetDateSlashDate() {
 
 		mapper.getDate("2020/02/02");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = DateTimeParseException.class)
 	public void testGetDateIntegerString() {
 
 		mapper.getDate("123456789");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = DateTimeParseException.class)
 	public void testGetDateNull() {
 
 		mapper.getDate(null);
