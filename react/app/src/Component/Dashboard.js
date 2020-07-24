@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import 'fontsource-roboto';
-
-
 import Header from "./Header";
 import ComputerListDelete from "./ComputerListDelete";
 import useAxios from "axios-hooks";
@@ -44,8 +42,7 @@ function Dashboard() {
 
     return (
         <div className="App">
-
-            {error && <ErrorPage errorMessage=""/>}
+       {error && <ErrorPage errorMessage=""/>}
             {loading
                 ?
                 <CircularProgress/>
@@ -58,5 +55,4 @@ function Dashboard() {
     );
 
 }
-
 export default Dashboard;

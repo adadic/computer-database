@@ -36,18 +36,14 @@ public class ComputerValidator {
 		}
 		try {
 			
-			if (!StringUtils.isEmpty(dtoComputer.getIntroduced())) {
-				return false;
-			}
-			
-			if(!StringUtils.isEmpty(dtoComputer.getDiscontinued())) {
+			if (StringUtils.isEmpty(dtoComputer.getIntroduced()) && StringUtils.isNotEmpty(dtoComputer.getIntroduced())) {
 				return false;
 			}
 			
 			LocalDate timeIntro = checkDate(dtoComputer.getIntroduced());
 			LocalDate timeDiscon = checkDate(dtoComputer.getDiscontinued());
 			
-			if (timeIntro.isAfter(timeDiscon)) {
+			if (timeIntro!=null && timeDiscon!=null && timeIntro.isAfter(timeDiscon)) {
 				LOGGER.info("introduced Date after Discontinued Date in this Computer");
 				return false;
 			}
