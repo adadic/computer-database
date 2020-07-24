@@ -1,6 +1,5 @@
 package hr.excilys.dto.mapper;
 
-import java.sql.Timestamp;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,43 +10,43 @@ import hr.excilys.dto.DTOComputer;
 import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
 import hr.excilys.mapper.DateMapper;
+import hr.excilys.mapper.IntMapper;
 import hr.excilys.validator.ComputerValidator;
 
 @Component
 public class ComputerDTOMapper {
 
-	private static final long IDNULL = 0L;
-
 	private final ComputerValidator computerValidator;
 	private final DateMapper dateMapper;
+	private final CompanyDTOMapper companyDTOMapper;
 
 	@Autowired
-	public ComputerDTOMapper(ComputerValidator computerValidator, DateMapper dateMapper) {
+	public ComputerDTOMapper(ComputerValidator computerValidator, DateMapper dateMapper, CompanyDTOMapper companyDTOMapper) {
 
 		this.computerValidator = computerValidator;
 		this.dateMapper = dateMapper;
+		this.companyDTOMapper = companyDTOMapper;
+		
 	}
 
 	public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
 
-		long id = IDNULL;
 		if (computerValidator.checkComputerFields(dtoComputer)) {
-			if (!dtoComputer.getId().equals("0")) {
-				id = Long.valueOf(dtoComputer.getId());
-			}
+			long id = IntMapper.getId(dtoComputer.getId());
 			if (StringUtils.isNotEmpty(dtoComputer.getIntroduced())) {
 				if (StringUtils.isNotEmpty(dtoComputer.getDiscontinued())) {
 
+					Optional<Company> optionalCompany= companyDTOMapper.fromDTO(dtoComputer.getCompany());
+					Company company = optionalCompany.isEmpty() ? null : optionalCompany.get();
 					return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
-							.introduced(new Timestamp(dateMapper.getDate(dtoComputer.getIntroduced())))
-							.discontinued(new Timestamp(dateMapper.getDate(dtoComputer.getDiscontinued())))
-							.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
-									dtoComputer.getCompany().getCompanyName()).build())
+							.introduced(dateMapper.getDate(dtoComputer.getIntroduced()))
+							.discontinued(dateMapper.getDate(dtoComputer.getDiscontinued()))
+							.company(company)
 							.build());
 				}
 
 				return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
-						.introduced(new Timestamp(dateMapper.getDate(dtoComputer.getIntroduced())))
+						.introduced(dateMapper.getDate(dtoComputer.getIntroduced()))
 						.company(new Company.CompanyBuilder(Long.valueOf(dtoComputer.getCompany().getCompanyId()),
 								dtoComputer.getCompany().getCompanyName()).build())
 						.build());
