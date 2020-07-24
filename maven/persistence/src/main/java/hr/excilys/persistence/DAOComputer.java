@@ -22,6 +22,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import hr.excilys.model.Computer;
 
 @Repository
 @Transactional
@@ -38,6 +44,19 @@ public class DAOComputer {
 		this.sessionFactory = sessionFactory;
 	}
 
+	public List<Computer> getComputers(){
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			TypedQuery<Computer> query = session.createQuery(EnumQuery.GETCOMPUTERS.getQuery(), Computer.class);
+			return query.getResultList();
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+		} catch (DataAccessException dae) {
+			LOGGER.error("Cannot get Computers at {} page and with {} lines, probleme in the Query maybe search -> {}");
+		}
+		return new ArrayList<>();
+	}
+	
 	public List<Computer> getComputersRows(int page, int lines, String search) {
 
 		search = prepareSearch(search);
@@ -113,15 +132,16 @@ public class DAOComputer {
 	}
 
 	public boolean updateComputer(Computer computer) {
-
+		
 		try {
 			session = sessionFactory.getCurrentSession();
-			Query query = session.createQuery(EnumQuery.UPDATECOMPUTER.getQuery(), Computer.class)
-					.setParameter("name", computer.getName()).setParameter("introduced", computer.getIntroduced())
+			Query query = session.createQuery(EnumQuery.UPDATECOMPUTER.getQuery())
+					.setParameter("name", computer.getName())
+					.setParameter("introduced", computer.getIntroduced())
 					.setParameter("discontinued", computer.getDiscontinued())
-					.setParameter("id_company", computer.getCompany().getId());
+					.setParameter("id_company", computer.getCompany().getId())
+					.setParameter("id_computer", computer.getId());
 			query.executeUpdate();
-
 			return true;
 		} catch (HibernateException hex) {
 			LOGGER.error("Cannot get the session");

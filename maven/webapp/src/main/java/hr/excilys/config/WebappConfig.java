@@ -18,9 +18,11 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "hr.excilys.controller" })
+@ComponentScan(basePackages = { "hr.excilys.controller", "hr.excilys.restController" })
 public class WebappConfig implements WebMvcConfigurer {
 
 	@Override
