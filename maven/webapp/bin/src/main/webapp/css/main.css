@@ -1,0 +1,76 @@
+body {
+	background: #f2f2f2;
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: #FEFEFE;
+	border-top: 1px solid #CCC;
+	height: 60px;
+}
+
+footer .pagination {
+	margin: 10px 0px;
+}
+
+footer .btn-group {
+	margin: 10px 10px;
+}
+
+input[type='checkbox'] {
+	margin: 0px;
+	padding: 0px;
+	border-radius: 5px;
+	white-space: nowrap;
+}
+
+.success {
+	color: #219812;
+	background-color: #def2e1;
+	border-color: #def2e1;
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.langButton {
+	position: relative;
+	float: right;
+	height: 15px;
+	width: 25px;
+	margin-top: 16px;
+	margin-left: 5px;
+}
+
+.flagEN {
+	background: url(../img/flag-en.png);
+	background-size: 24px 13px;
+}
+
+.flagFR {
+	background: url(../img/flag-fr.png);
+	background-size: 24px;
+}
+
+.connexionButton {
+    position: relative;
+    float: right;
+    min-width: 95px;
+    height: 34px;
+    margin-top: 7px;
+    margin-left: 15px;
+    color: white;
+}
+
+#logout {
+	background: #ff0404;
+}
+
+#login {
+	background: #0480ff;
+}

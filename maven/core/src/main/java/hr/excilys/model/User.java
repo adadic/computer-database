@@ -106,12 +106,12 @@ public class User{
 		private String password;
 		private Role role;
 
-		public UserBuilder (String username, String password, Role role) {
-
-			this.username = username;
-			this.password = password;
-			this.role = role;
-		}
+//		public UserBuilder (String username, String password, Role role) {
+//
+//			this.username = username;
+//			this.password = password;
+//			this.role = role;
+//		}
 
 		public User build() {
 
@@ -124,5 +124,27 @@ public class User{
 			
 			return this;
 		}
+
+		public UserBuilder setId(long id) {
+			this.id = id;
+			return this;
+		}
+
+		public UserBuilder setUsername(String username) {
+			this.username = username;
+			return this;
+		}
+
+		public UserBuilder setPassword(String password) {
+			this.password = password;
+			return this;
+		}
+
+		public UserBuilder setRole(Role role) {
+			this.role = role;
+			return this;
+		}
+		
+		
 	}
 }
