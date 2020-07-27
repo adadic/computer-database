@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const EnhancedTableToolbar = (props) => {
 
     const classes = useStyles();
-    const {numSelected} = props;
+    const {numSelected, mainTitle} = props;
 
     return (
         <Toolbar
@@ -44,7 +44,7 @@ const EnhancedTableToolbar = (props) => {
                 </Typography>
             ) : (
                 <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-                    Computers
+                    {mainTitle}
                 </Typography>
             )}
 

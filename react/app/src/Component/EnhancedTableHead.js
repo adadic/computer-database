@@ -2,16 +2,9 @@ import {Checkbox, TableCell, TableHead, TableRow, TableSortLabel} from "@materia
 import PropTypes from "prop-types";
 import React from "react";
 
-const headCells = [
-    {id: 'name', numeric: false, disablePadding: true, label: 'Name'},
-    {id: 'introduced', numeric: true, disablePadding: false, label: 'Introduced'},
-    {id: 'discontinued', numeric: true, disablePadding: false, label: 'Discontinued'},
-    {id: 'company', numeric: true, disablePadding: false, label: 'Company'},
-];
-
 function EnhancedTableHead(props) {
 
-    const {classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort} = props;
+    const {classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells, mode} = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };
@@ -20,12 +13,15 @@ function EnhancedTableHead(props) {
         <TableHead>
             <TableRow>
                 <TableCell padding="checkbox">
-                    <Checkbox
-                        indeterminate={numSelected > 0 && numSelected < rowCount}
-                        checked={rowCount > 0 && numSelected === rowCount}
-                        onChange={onSelectAllClick}
-                        inputProps={{'aria-label': 'select all desserts'}}
-                    />
+                    {mode &&
+                        <Checkbox
+                            indeterminate={numSelected > 0 && numSelected < rowCount}
+                            checked={rowCount > 0 && numSelected === rowCount}
+                            onChange={onSelectAllClick}
+                            inputProps={{'aria-label': 'select all desserts'}}
+                        />
+                    }
+
                 </TableCell>
                 {headCells.map((headCell) => (
                     <TableCell

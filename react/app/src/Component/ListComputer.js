@@ -1,74 +1,13 @@
 import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {Table, TableBody, TableCell, TableContainer,
-    TablePagination, TableRow, Paper, Checkbox} from '@material-ui/core';
+import {
+    Table, TableBody, TableCell, TableContainer,
+    TablePagination, TableRow, Paper, Checkbox
+} from '@material-ui/core';
 import EnhancedTableHead from "./EnhancedTableHead";
 import EnhancedTableToolbar from "./EnhancedTableToolbar";
-
-function descendingComparator(a, b, orderBy) {
-
-    const first = a[orderBy];
-    const second = b[orderBy];
-    if(orderBy === "company") {
-        if (!second["name"] && !first["name"]) {
-            return 0;
-        } else if (!second["name"]) {
-            return 1;
-        } else if (!first["name"]) {
-            return -1;
-        } else if (second["name"].toUpperCase() < first["name"].toUpperCase()) {
-            return -1;
-        } else if (second["name"].toUpperCase() > first["name"].toUpperCase()) {
-            return 1;
-        }
-    } else {
-        if (!second && !first) {
-            return 0;
-        }
-        if (!second) {
-            return 1;
-        }
-        if (!first) {
-            return -1;
-        }
-        if (orderBy === "name") {
-            if (second.toUpperCase() < first.toUpperCase()) {
-                return -1;
-            }
-            if (second.toUpperCase() > first.toUpperCase()) {
-                return 1;
-            }
-        } else {
-            if (new Date(second.year, second.monthValue, second.dayOfMonth) < new Date(first.year, first.monthValue, first.dayOfMonth)) {
-                return -1;
-            }
-            if (new Date(second.year, second.monthValue, second.dayOfMonth) > new Date(first.year, first.monthValue, first.dayOfMonth)) {
-                return 1;
-            }
-        }
-    }
-    return 0;
-}
-
-function getComparator(order, orderBy) {
-
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort(array, comparator) {
-
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-        const order = comparator(a[0], b[0]);
-        if (order !== 0) return order;
-        return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-}
-
-
+import {useHistory} from "react-router-dom";
+import {stableSort, getComparator} from "../Function/TableFunction";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -97,9 +36,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ComputerListDelete(props) {
+function ListComputer(props) {
 
+    const history = useHistory();
     const classes = useStyles();
+    const [deleteMode, setDeleteMode] = useState(false);
     const [computers, setComputers] = useState(props.computers);
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('computers');
@@ -169,13 +110,13 @@ function ComputerListDelete(props) {
     function getDate(date) {
 
         const {year, monthValue, dayOfMonth} = date;
-        return year + "-" + (monthValue<10 ? "0" + monthValue : monthValue) + "-" + (dayOfMonth<10 ? "0" + dayOfMonth : dayOfMonth);
+        return year + "-" + (monthValue < 10 ? "0" + monthValue : monthValue) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
     }
 
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                <EnhancedTableToolbar numSelected={selected.length} delete={deleteComputers}/>
+                <EnhancedTableToolbar numSelected={selected.length} delete={deleteComputers} mainTitle="Computers"/>
                 <TableContainer className={classes.table}>
                     <Table className={classes.table} aria-labelledby="tableTitle" size="medium"
                            aria-label="enhanced table"
@@ -188,8 +129,10 @@ function ComputerListDelete(props) {
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
                             rowCount={computers.length}
+                            headCells={props.headCells}
+                            mode={deleteMode}
                         />
-                        <TableBody style={{ overflow: "auto" }}>
+                        <TableBody style={{overflow: "auto"}}>
                             {stableSort(computers, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
@@ -199,20 +142,25 @@ function ComputerListDelete(props) {
                                     return (
                                         <TableRow
                                             hover
-                                            onClick={(event) => handleClick(event, row.id)}
+                                            onClick={(event) => deleteMode ? handleClick(event, row.id) : history.push('/computers/' + row.id)}
                                             role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
                                             key={row.id}
                                             selected={isItemSelected}
                                         >
+
                                             <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    checked={isItemSelected}
-                                                    inputProps={{'aria-labelledby': labelId}}
-                                                />
-                                            </TableCell>
-                                            <TableCell component="th" id={labelId} scope="row" padding="none" style={{width: '33%'}}>
+                                                {deleteMode &&
+                                                    <Checkbox
+                                                        checked={isItemSelected}
+                                                        inputProps={{'aria-labelledby': labelId}}
+                                                    />
+                                                }
+                                                </TableCell>
+
+                                            <TableCell component="th" id={labelId} scope="row" padding="none"
+                                                       style={{width: '33%'}}>
                                                 {row.name}
                                             </TableCell>
                                             {row.introduced
@@ -227,7 +175,8 @@ function ComputerListDelete(props) {
                                                 :
                                                 <TableCell align="right"/>
                                             }
-                                            <TableCell align="right" style={{width: '20%'}}> {row.company.name}</TableCell>
+                                            <TableCell align="right"
+                                                       style={{width: '20%'}}> {row.company.name}</TableCell>
 
                                         </TableRow>
                                     );
@@ -254,4 +203,4 @@ function ComputerListDelete(props) {
     );
 }
 
-export default ComputerListDelete;
+export default ListComputer;

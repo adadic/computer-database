@@ -1,14 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import ComputerListDelete from "./ComputerListDelete";
+import ListComputer from "./ListComputer";
 import useAxios from "axios-hooks";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import ErrorPage from "./ErrorPage";
-
-export const baseURL = 'http://localhost:8083/webapp/api';
-
-function Dashboard() {
+import {Backdrop, CircularProgress} from "@material-ui/core";
 
 
+function ComputerDashboard() {
+
+
+    const headCell = [
+        {id: 'name', numeric: false, disablePadding: true, label: 'Name'},
+        {id: 'introduced', numeric: true, disablePadding: false, label: 'Introduced'},
+        {id: 'discontinued', numeric: true, disablePadding: false, label: 'Discontinued'},
+        {id: 'company', numeric: true, disablePadding: false, label: 'Company'},
+    ];
+
+    const baseURL = 'http://localhost:8083/webapp/api';
     const [{ data, loading, error }] = useAxios(baseURL + "/computers");
     const [computerList, setComputerList] = useState(data);
 
@@ -43,14 +50,16 @@ function Dashboard() {
             {error && <ErrorPage errorMessage=""/>}
             {loading
                 ?
-                <CircularProgress/>
+                <Backdrop open>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
                 :
                 <div className="table-size">
-                    {computerList && <ComputerListDelete computers={computerList} edit={executeEdit} add={executeAdd}/>}
+                    {computerList && <ListComputer computers={computerList} edit={executeEdit} add={executeAdd} headCells={headCell}/>}
                 </div>
             }
         </div>
     );
 }
 
-export default Dashboard;
+export default ComputerDashboard;
