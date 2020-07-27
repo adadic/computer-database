@@ -14,29 +14,28 @@ import hr.excilys.validator.CompanyValidator;
 public class CompanyDTOMapper {
 
 	private final CompanyValidator companyValidator;
-	
+
 	@Autowired
 	public CompanyDTOMapper(CompanyValidator companyValidator) {
-		this.companyValidator=companyValidator;
+		this.companyValidator = companyValidator;
 	}
-	
-	public Optional<Company> fromDTO(DTOCompany dtoCompany){
-		
-		if(dtoCompany==null) {
+
+	public Optional<Company> fromDTO(DTOCompany dtoCompany) {
+
+		if (dtoCompany == null) {
 			return Optional.empty();
 		}
-		
-		if(companyValidator.checkCompanyFields(dtoCompany)) {
-			
-			long id= IntMapper.getId(dtoCompany.getCompanyId());
-			Company company= new Company.CompanyBuilder(id, dtoCompany.getCompanyName())
-					.build();
+
+		if (companyValidator.checkCompanyFields(dtoCompany)) {
+
+			long id = IntMapper.getId(dtoCompany.getCompanyId());
+			Company company = new Company.CompanyBuilder(id, dtoCompany.getCompanyName()).build();
+
 			return Optional.of(company);
-			
 		}
-		
+
 		return Optional.empty();
-		
+
 	}
-	
+
 }
