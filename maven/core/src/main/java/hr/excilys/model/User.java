@@ -106,6 +106,8 @@ public class User{
 		private String password;
 		private Role role;
 
+		public UserBuilder() {}
+		
 		public UserBuilder (String username, String password, Role role) {
 
 			this.username = username;
@@ -124,5 +126,21 @@ public class User{
 			
 			return this;
 		}
+		
+		public UserBuilder setUsername(String username) {
+			this.username = username;
+			return this;
+		}
+		
+		public UserBuilder setPassword(String password) {
+			this.password = password;
+			return this;
+		}
+		
+		public UserBuilder setRole(Role role) {
+			this.role = role;
+			return this;
+		}
+		
 	}
 }

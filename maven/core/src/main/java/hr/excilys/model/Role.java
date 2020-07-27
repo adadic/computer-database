@@ -63,6 +63,8 @@ public class Role {
 		private long id;
 		private String roleName;
 
+		public RoleBuilder() {}
+		
 		public RoleBuilder(Role role) {
 
 			this.id = role.getId();
@@ -78,6 +80,11 @@ public class Role {
 		public Role build() {
 
 			return new Role(this);
+		}
+		
+		public RoleBuilder setRoleName(String roleName) {
+			this.roleName = roleName;
+			return this;
 		}
 	}
 
