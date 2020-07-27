@@ -24,6 +24,7 @@ public class UserDTOMapper {
 
 	public Optional<User> fromDTO(DTOUser dtoUser) {
 
+		@SuppressWarnings("unused")
 		long id = IDNULL;
 		if (userValidator.checkUser(dtoUser)) {
 			Role role = new Role.RoleBuilder().setRoleName(dtoUser.getRole().getroleName()).build();

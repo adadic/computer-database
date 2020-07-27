@@ -36,6 +36,7 @@ public class DTOUser {
 		this.password = password;
 	}
 	
+	@SuppressWarnings("unused")
 	private DTOUser() {
 	}
 	

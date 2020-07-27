@@ -1,7 +1,6 @@
 package hr.excilys.mapper;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -10,16 +9,29 @@ public class LongMapperTest {
 	private LongMapper longMapper = new LongMapper();
 	
 	@Test
-	public void getIdTest() {
+	public void testGetIdInt() {
 		
-		try {
-			longMapper.getId("blablou");
-			fail();
-		} catch (NumberFormatException nfe) {
-			assert(true);
-			assertEquals(5L, longMapper.getId("5"));
-		}
+		assertEquals(5L, longMapper.getId("5"));
 		
+	}
+	
+	@Test(expected = NumberFormatException.class)
+	public void testGetIdLong() {
+		
+		assertEquals(5L, longMapper.getId("5L"));
+		
+	}
+	
+	@Test(expected = NumberFormatException.class)
+	public void testGetIdString() {
+		
+		longMapper.getId("blablou");
+	}
+	
+	@Test(expected = NumberFormatException.class)
+	public void testGetIdNull() {
+
+		longMapper.getId(null);
 	}
 	
 }
