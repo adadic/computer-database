@@ -62,9 +62,9 @@ public class Role {
 
 		private long id;
 		private String roleName;
-
-		public RoleBuilder() {}
 		
+		public RoleBuilder() {}
+
 		public RoleBuilder(Role role) {
 
 			this.id = role.getId();

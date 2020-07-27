@@ -12,7 +12,7 @@ import hr.excilys.dto.DTOUser;
 import hr.excilys.service.UserService;
 
 @Controller
-@RequestMapping(value = "/reg0ister")
+@RequestMapping(value = "/register")
 public class AddUserController {
 
 	private static final int ADDSUCCESS = 4;
@@ -39,7 +39,7 @@ public class AddUserController {
 	public ModelAndView addCreateUser(DTOUser dtoUser) {
 
 		ModelAndView view = new ModelAndView();
-		
+		System.out.println(dtoUser);
 		DTORole dtoRole = new DTORole("1","USER");
 		dtoUser.setRole(dtoRole);
 		System.out.println("hey !");

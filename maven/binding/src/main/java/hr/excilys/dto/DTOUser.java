@@ -3,8 +3,8 @@ package hr.excilys.dto;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import hr.excilys.validator.CustomPasswordMatchesAnnotation;
-import hr.excilys.validator.CustomValidEmailAnnotation;
+//import hr.excilys.validator.CustomPasswordMatchesAnnotation;
+//import hr.excilys.validator.CustomValidEmailAnnotation;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -36,9 +36,9 @@ public class DTOUser {
 		this.password = password;
 	}
 	
+	private DTOUser() {
+	}
 	
-	
-
 //	public String getId() {
 //
 //		return id;
