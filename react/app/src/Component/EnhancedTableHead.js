@@ -6,7 +6,7 @@ const headCells = [
     {id: 'name', numeric: false, disablePadding: true, label: 'Name'},
     {id: 'introduced', numeric: true, disablePadding: false, label: 'Introduced'},
     {id: 'discontinued', numeric: true, disablePadding: false, label: 'Discontinued'},
-    {id: 'company.name', numeric: true, disablePadding: false, label: 'Company'},
+    {id: 'company', numeric: true, disablePadding: false, label: 'Company'},
 ];
 
 function EnhancedTableHead(props) {
