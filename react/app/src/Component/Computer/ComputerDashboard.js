@@ -1,24 +1,27 @@
 import React, {useEffect, useState} from 'react';
+import ListComputer from "./ListComputer";
 import useAxios from "axios-hooks";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "../Page/ErrorPage";
 import {Backdrop, CircularProgress} from "@material-ui/core";
-import ListCompany from "./ListCompany";
 
 
-function CompanyDashboard() {
+function ComputerDashboard() {
 
 
     const headCell = [
-        {id: 'name', numeric: false, disablePadding: true, label: 'Name'}
+        {id: 'name', numeric: false, disablePadding: true, label: 'Name'},
+        {id: 'introduced', numeric: true, disablePadding: false, label: 'Introduced'},
+        {id: 'discontinued', numeric: true, disablePadding: false, label: 'Discontinued'},
+        {id: 'company', numeric: true, disablePadding: false, label: 'Company'},
     ];
 
     const baseURL = 'http://localhost:8083/webapp/api';
-    const [{ data, loading, error }] = useAxios(baseURL + "/companies");
-    const [companyList, setCompanyList] = useState(data);
+    const [{ data, loading, error }] = useAxios(baseURL + "/computers");
+    const [computerList, setComputerList] = useState(data);
 
     const [{data: dataAdd}, executeAdd] = useAxios(
         {
-            url: baseURL + "/companies",
+            url: baseURL + "/computers",
             method: 'POST'
         },
         {manual: true}
@@ -26,7 +29,7 @@ function CompanyDashboard() {
 
     const [{data: dataEdit}, executeEdit] = useAxios(
         {
-            url: baseURL + "/companies",
+            url: baseURL + "/computers",
             method: 'PUT'
         },
         {manual: true}
@@ -34,13 +37,13 @@ function CompanyDashboard() {
 
     const [{}, executeDelete] = useAxios(
         {
-            url: baseURL + "/companies",
+            url: baseURL + "/computers",
             method: 'DELETE'
         },
         {manual: true}
     );
 
-    useEffect(() => setCompanyList(data),[data, dataAdd, dataEdit]);
+    useEffect(() => setComputerList(data),[data, dataAdd, dataEdit]);
 
     return (
         <div className="App">
@@ -52,11 +55,11 @@ function CompanyDashboard() {
                 </Backdrop>
                 :
                 <div className="table-size">
-                    {companyList && <ListCompany companies={companyList} edit={executeEdit} add={executeAdd} headCells={headCell}/>}
+                    {computerList && <ListComputer computers={computerList} edit={executeEdit} add={executeAdd} headCells={headCell}/>}
                 </div>
             }
         </div>
     );
 }
 
-export default CompanyDashboard;
+export default ComputerDashboard;

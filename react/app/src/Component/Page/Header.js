@@ -6,7 +6,7 @@ import {
 import {fade, makeStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuBar from "./MenuBar";
-import Login from "./Login";
+import Login from "../User/Login";
 import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({

@@ -4,10 +4,10 @@ import {
     Table, TableBody, TableCell, TableContainer,
     TablePagination, TableRow, Paper, Checkbox
 } from '@material-ui/core';
-import EnhancedTableHead from "./EnhancedTableHead";
-import EnhancedTableToolbar from "./EnhancedTableToolbar";
+import EnhancedTableHead from "../Table/EnhancedTableHead";
+import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import {useHistory} from "react-router-dom";
-import {stableSort, getComparatorCompany} from "../Function/TableFunction";
+import {stableSort, getComparator} from "../../Function/TableFunction";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -15,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
     },
     paper: {
-        width: '28%',
-        margin: "auto",
+        width: '100%',
         marginBottom: theme.spacing(2),
     },
     table: {
+        minWidth: 750,
         minHeight: 600,
         maxHeight: 750
     },
@@ -36,14 +36,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ListCompany(props) {
+function ListComputer(props) {
 
     const history = useHistory();
     const classes = useStyles();
     const [deleteMode, setDeleteMode] = useState(false);
-    const [companies, setCompanies] = useState(props.companies);
+    const [computers, setComputers] = useState(props.computers);
     const [order, setOrder] = useState('asc');
-    const [orderBy, setOrderBy] = useState('name');
+    const [orderBy, setOrderBy] = useState('computers');
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -58,7 +58,7 @@ function ListCompany(props) {
     const handleSelectAllClick = (event) => {
 
         if (event.target.checked) {
-            const newSelected = companies.map((n) => n.id);
+            const newSelected = computers.map((n) => n.id);
             setSelected(newSelected);
             return;
         }
@@ -98,19 +98,25 @@ function ListCompany(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, companies.length - page * rowsPerPage);
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, computers.length - page * rowsPerPage);
 
-    function deleteCompanies() {
+    function deleteComputers() {
 
         console.log({data: selected})
         console.log(selected[0] === 2)
         console.log(selected[0] === "2")
     }
 
+    function getDate(date) {
+
+        const {year, monthValue, dayOfMonth} = date;
+        return year + "-" + (monthValue < 10 ? "0" + monthValue : monthValue) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
+    }
+
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                <EnhancedTableToolbar numSelected={selected.length} delete={deleteCompanies} mainTitle="Companies"/>
+                <EnhancedTableToolbar numSelected={selected.length} delete={deleteComputers} mainTitle="Computers"/>
                 <TableContainer className={classes.table}>
                     <Table className={classes.table} aria-labelledby="tableTitle" size="medium"
                            aria-label="enhanced table"
@@ -122,12 +128,12 @@ function ListCompany(props) {
                             orderBy={orderBy}
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
-                            rowCount={companies.length}
+                            rowCount={computers.length}
                             headCells={props.headCells}
                             mode={deleteMode}
                         />
                         <TableBody style={{overflow: "auto"}}>
-                            {stableSort(companies, getComparatorCompany(order, orderBy))
+                            {stableSort(computers, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
                                     const isItemSelected = isSelected(row.id);
@@ -136,7 +142,7 @@ function ListCompany(props) {
                                     return (
                                         <TableRow
                                             hover
-                                            onClick={(event) => deleteMode ? handleClick(event, row.id) : history.push('/companies/' + row.id)}
+                                            onClick={(event) => deleteMode ? handleClick(event, row.id) : history.push('/computers/' + row.id)}
                                             role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
@@ -146,17 +152,32 @@ function ListCompany(props) {
 
                                             <TableCell padding="checkbox">
                                                 {deleteMode &&
-                                                <Checkbox
-                                                    checked={isItemSelected}
-                                                    inputProps={{'aria-labelledby': labelId}}
-                                                />
+                                                    <Checkbox
+                                                        checked={isItemSelected}
+                                                        inputProps={{'aria-labelledby': labelId}}
+                                                    />
                                                 }
-                                            </TableCell>
+                                                </TableCell>
 
                                             <TableCell component="th" id={labelId} scope="row" padding="none"
-                                                       style={{width: '85%'}}>
+                                                       style={{width: '33%'}}>
                                                 {row.name}
                                             </TableCell>
+                                            {row.introduced
+                                                ?
+                                                <TableCell align="right">{getDate(row.introduced)}</TableCell>
+                                                :
+                                                <TableCell align="right"/>
+                                            }
+                                            {row.discontinued
+                                                ?
+                                                <TableCell align="right">{getDate(row.discontinued)}</TableCell>
+                                                :
+                                                <TableCell align="right"/>
+                                            }
+                                            <TableCell align="right"
+                                                       style={{width: '20%'}}> {row.company.name}</TableCell>
+
                                         </TableRow>
                                     );
                                 })}
@@ -171,7 +192,7 @@ function ListCompany(props) {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 50]}
                     component="div"
-                    count={companies.length}
+                    count={computers.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
@@ -182,4 +203,4 @@ function ListCompany(props) {
     );
 }
 
-export default ListCompany;
+export default ListComputer;
