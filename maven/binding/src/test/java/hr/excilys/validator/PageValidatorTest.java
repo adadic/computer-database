@@ -1,6 +1,7 @@
 package hr.excilys.validator;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import hr.excilys.dto.DTOPagination;
+import hr.excilys.model.Pagination;
 import hr.excilys.config.BindingConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -40,6 +42,15 @@ public class PageValidatorTest {
 		Mockito.when(pageMock.getDirection()).thenReturn("0");
 
 		assertEquals(true, pageValidator.checkPage(pageMock));
+	}
+	
+	@Test
+	public void testCheckPageNoLine() {
+
+		pageMock = Mockito.mock(DTOPagination.class);
+		Mockito.when(pageMock.getLines()).thenReturn("0");
+
+		assertEquals(false, pageValidator.checkPage(pageMock));
 	}
 
 	@Test
@@ -84,5 +95,59 @@ public class PageValidatorTest {
 		Mockito.when(pageMock.getDirection()).thenReturn("");
 
 		assertEquals(false, pageValidator.checkPage(pageMock));
+	}
+	
+	@Test(expected = ArithmeticException.class)
+	public void testCheckPageFieldsZero() {
+		
+		Pagination page = new Pagination.PaginationBuilder(0, 1, "").build();
+		pageValidator.checkPageFields(page);
+		
+		assertEquals(PageValidator.MINLINE, page.getLines());
+	}
+	
+	@Test
+	public void testCheckPageFieldsMINLINE() {
+		
+		Pagination page = new Pagination.PaginationBuilder(-2, 1, "").build();
+		pageValidator.checkPageFields(page);
+		
+		assertEquals(PageValidator.MINLINE, page.getLines());
+	}
+	
+	@Test
+	public void testCheckPageFieldsMAXLINE() {
+		
+		Pagination page = new Pagination.PaginationBuilder(110, 1, "").build();
+		pageValidator.checkPageFields(page);
+		
+		assertEquals(PageValidator.MAXLINE, page.getLines());
+	}
+	
+	@Test
+	public void testCheckPageFieldsMINPAGE() {
+		
+		Pagination page = new Pagination.PaginationBuilder(10, -5, "").build();
+		pageValidator.checkPageFields(page);
+		
+		assertEquals(PageValidator.MINPAGE, page.getPage());
+	}
+	
+	@Test
+	public void testCheckPageFieldsMAXPAGE() {
+		
+		Pagination page = new Pagination.PaginationBuilder(10, 50, "").count(20).build();
+		pageValidator.checkPageFields(page);
+		
+		assertNotEquals(50, page.getMaxPage());
+	}
+	
+	@Test
+	public void testCheckPageFieldsInitDirection() {
+		
+		Pagination page = new Pagination.PaginationBuilder(10, 1, "").direction(-10).build();
+		pageValidator.checkPageFields(page);
+		
+		assertEquals(PageValidator.INITDIRECTION, page.getDirection());
 	}
 }
