@@ -36,9 +36,9 @@ public class DTOUser {
 		this.password = password;
 	}
 	
+	private DTOUser() {
+	}
 	
-	
-
 //	public String getId() {
 //
 //		return id;

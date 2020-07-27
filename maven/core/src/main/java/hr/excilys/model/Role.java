@@ -62,22 +62,28 @@ public class Role {
 
 		private long id;
 		private String roleName;
+		
 
-		public RoleBuilder(Role role) {
+//		public RoleBuilder(Role role) {
+//
+//			this.id = role.getId();
+//			this.roleName = role.getRoleName();
+//		}
 
-			this.id = role.getId();
-			this.roleName = role.getRoleName();
-		}
-
-		public RoleBuilder(long id, String roleName) {
-
-			this.id = id;
-			this.roleName = roleName;
-		}
+//		public RoleBuilder(long id, String roleName) {
+//
+//			this.id = id;
+//			this.roleName = roleName;
+//		}
 
 		public Role build() {
 
 			return new Role(this);
+		}
+		
+		public RoleBuilder setRoleName(String roleName) {
+			this.roleName = roleName;
+			return this;
 		}
 	}
 

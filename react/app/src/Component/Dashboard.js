@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import 'fontsource-roboto';
-import './App.scss';
 import ComputerListDelete from "./ComputerListDelete";
 import useAxios from "axios-hooks";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ErrorPage from "./ErrorPage";
 
-export const baseURL = 'http://localhost:8083/webapp/api';
+export const baseURL = 'http://localhost:8080/webapp/api';
 
 function Dashboard() {
 

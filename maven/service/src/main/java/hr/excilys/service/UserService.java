@@ -21,22 +21,20 @@ public class UserService implements UserDetailsService {
 
 	private final DAOUser daoUser;
 	private final UserDTOMapper userDTOMapper;
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;// = new BCryptPasswordEncoder();
 	
-
 	@Autowired
 	public UserService(DAOUser daoUser, UserDTOMapper userDTOMapper) {
 
 		this.daoUser = daoUser;
 		this.userDTOMapper = userDTOMapper;
-		
 	}
 	
-	
-	BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-	
+
 	@Override
 	public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
+		
 		Optional<User> opt = daoUser.getUser(username);
 
 		if (opt.isPresent()) {
@@ -52,9 +50,7 @@ public class UserService implements UserDetailsService {
 	public boolean addUser(DTOUser dtoUser) {
 		
 		dtoUser.setPassword(bCryptPasswordEncoder.encode(dtoUser.getPassword()));
-		System.out.println(dtoUser.toString());
 		Optional<User> user = userDTOMapper.fromDTO(dtoUser);
-		System.out.println(user);
 		
 		if(user.isPresent()) {
 			return daoUser.create(user.get());
@@ -63,7 +59,6 @@ public class UserService implements UserDetailsService {
 		return false;
 	}
 	
-
 	public List<Role> getRoles() {
 
 		return daoUser.getRoles();
