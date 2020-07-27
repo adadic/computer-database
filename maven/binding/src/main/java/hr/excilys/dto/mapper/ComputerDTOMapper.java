@@ -10,7 +10,7 @@ import hr.excilys.dto.DTOComputer;
 import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
 import hr.excilys.mapper.DateMapper;
-import hr.excilys.mapper.IntMapper;
+import hr.excilys.mapper.LongMapper;
 import hr.excilys.validator.ComputerValidator;
 
 @Component
@@ -18,13 +18,16 @@ public class ComputerDTOMapper {
 
 	private final ComputerValidator computerValidator;
 	private final DateMapper dateMapper;
+	private final LongMapper longMapper;
 	private final CompanyDTOMapper companyDTOMapper;
 
 	@Autowired
-	public ComputerDTOMapper(ComputerValidator computerValidator, DateMapper dateMapper, CompanyDTOMapper companyDTOMapper) {
+	public ComputerDTOMapper(ComputerValidator computerValidator, DateMapper dateMapper, 
+			CompanyDTOMapper companyDTOMapper, LongMapper longMapper) {
 
 		this.computerValidator = computerValidator;
 		this.dateMapper = dateMapper;
+		this.longMapper = longMapper;
 		this.companyDTOMapper = companyDTOMapper;
 		
 	}
@@ -32,7 +35,7 @@ public class ComputerDTOMapper {
 	public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
 
 		if (computerValidator.checkComputerFields(dtoComputer)) {
-			long id = IntMapper.getId(dtoComputer.getId());
+			long id = longMapper.getId(dtoComputer.getId());
 			if (StringUtils.isNotEmpty(dtoComputer.getIntroduced())) {
 				if (StringUtils.isNotEmpty(dtoComputer.getDiscontinued())) {
 
