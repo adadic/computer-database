@@ -26,9 +26,14 @@ public class UserDTOMapper {
 
 		long id = IDNULL;
 		if (userValidator.checkUser(dtoUser)) {
-			return Optional.of(new User.UserBuilder(dtoUser.getUsername(), dtoUser.getPassword(),
-					new Role.RoleBuilder(Long.valueOf(dtoUser.getRole().getroleId()), dtoUser.getRole().getroleName())
-							.build()).id(id).build());
+			Role role = new Role.RoleBuilder().setRoleName(dtoUser.getRole().getroleName()).build();
+			
+			User user  = new User.UserBuilder()
+					.setUsername(dtoUser.getUsername())
+					.setPassword(dtoUser.getPassword())
+					.setRole(role).build();
+			
+			return Optional.of(user);
 		}
 
 		return Optional.empty();
