@@ -41,6 +41,7 @@ public class ComputerDTOMapper {
 
 					Optional<Company> optionalCompany= companyDTOMapper.fromDTO(dtoComputer.getCompany());
 					Company company = optionalCompany.isPresent() ? optionalCompany.get() : null;
+					
 					return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
 							.introduced(dateMapper.getDate(dtoComputer.getIntroduced()))
 							.discontinued(dateMapper.getDate(dtoComputer.getDiscontinued()))
