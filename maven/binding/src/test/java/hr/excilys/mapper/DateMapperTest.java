@@ -17,15 +17,14 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 
 import hr.excilys.config.BindingConfig;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { BindingConfig.class })
 @TestExecutionListeners(DependencyInjectionTestExecutionListener.class)
 public class DateMapperTest {
-	
+
 	@Autowired
 	private DateMapper mapper;
-	
+
 	@Before
 	public void setUp() {
 
@@ -36,9 +35,9 @@ public class DateMapperTest {
 	public void testGetDateValidDate() {
 
 		assertEquals(LocalDate.of(2020, 06, 30), mapper.getDate("2020-06-30"));
-	
+
 	}
-	
+
 	@Test(expected = DateTimeParseException.class)
 	public void testGetDateInvalidDAte() {
 

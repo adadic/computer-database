@@ -10,11 +10,11 @@ public class UserValidator {
 
 	public boolean checkUser(DTOUser dtoUser) {
 
-		if(StringUtils.isNotEmpty(dtoUser.getUsername()) && StringUtils.isNotEmpty(dtoUser.getPassword())) {
-			
+		if (StringUtils.isNotEmpty(dtoUser.getUsername()) && StringUtils.isNotEmpty(dtoUser.getPassword())) {
+
 			return true;
 		}
-		
+
 		return false;
 	}
 

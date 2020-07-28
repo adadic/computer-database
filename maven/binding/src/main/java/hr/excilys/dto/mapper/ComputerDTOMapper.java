@@ -22,31 +22,27 @@ public class ComputerDTOMapper {
 	private final CompanyDTOMapper companyDTOMapper;
 
 	@Autowired
-	public ComputerDTOMapper(ComputerValidator computerValidator, DateMapper dateMapper, 
+	public ComputerDTOMapper(ComputerValidator computerValidator, DateMapper dateMapper,
 			CompanyDTOMapper companyDTOMapper, LongMapper longMapper) {
 
 		this.computerValidator = computerValidator;
 		this.dateMapper = dateMapper;
 		this.longMapper = longMapper;
 		this.companyDTOMapper = companyDTOMapper;
-		
+
 	}
 
 	public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
 
 		if (computerValidator.checkComputerFields(dtoComputer)) {
-			
 			long id = longMapper.getId(dtoComputer.getId());
 			LocalDate introduced = dateMapper.getDate(dtoComputer.getIntroduced());
 			LocalDate discontinued = dateMapper.getDate(dtoComputer.getDiscontinued());
-			Optional<Company> optionalCompany= companyDTOMapper.fromDTO(dtoComputer.getCompany());
+			Optional<Company> optionalCompany = companyDTOMapper.fromDTO(dtoComputer.getCompany());
 			Company company = optionalCompany.isPresent() ? optionalCompany.get() : null;
-			
-			return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id)
-					.introduced(introduced)
-					.discontinued(discontinued)
-					.company(company)
-					.build());
+
+			return Optional.of(new Computer.ComputerBuilder(dtoComputer.getComputerName()).id(id).introduced(introduced)
+					.discontinued(discontinued).company(company).build());
 
 		} else {
 

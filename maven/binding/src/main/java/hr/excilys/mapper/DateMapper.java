@@ -11,10 +11,11 @@ public final class DateMapper {
 
 	public LocalDate getDate(String givenDate) throws DateTimeParseException {
 
-		if(StringUtils.isEmpty(givenDate)) {
+		if (StringUtils.isEmpty(givenDate)) {
+			
 			return null;
 		}
-		return LocalDate.parse(givenDate);
 		
+		return LocalDate.parse(givenDate);
 	}
 }

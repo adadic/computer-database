@@ -22,10 +22,11 @@ public class PageValidator {
 
 		try {
 			Integer.valueOf(dtoPage.getPage());
-			if(Integer.valueOf(dtoPage.getLines())==0) {
+			if (Integer.valueOf(dtoPage.getLines()) == 0) {
 				LOGGER.error("Lines equals 0, can't do that!");
+
 				return false;
-			};
+			}
 			Integer.valueOf(dtoPage.getDirection());
 			LOGGER.info("Page can be created");
 
@@ -48,17 +49,14 @@ public class PageValidator {
 			page.setLines(MAXLINE);
 			page.setMaxPage(page.getCount() / MAXLINE);
 		}
-
 		if (page.getPage() < MINPAGE) {
 			page.setPage(MINPAGE);
 		}
 		if (page.getPage() > page.getMaxPage()) {
 			page.setPage(page.getMaxPage());
 		}
-
 		if (page.getDirection() != INITDIRECTION && page.getDirection() != DIRECTION) {
 			page.setDirection(INITDIRECTION);
 		}
 	}
-
 }

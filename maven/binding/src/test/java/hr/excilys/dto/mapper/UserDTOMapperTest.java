@@ -29,42 +29,38 @@ public class UserDTOMapperTest {
 
 	@Autowired
 	UserDTOMapper userDTOMapper;
+	private UserValidator userValidator;
 
 	@Before
 	public void Setup() {
-		
+
 		MockitoAnnotations.initMocks(this);
 	}
-	
+
 	@Test
 	public void testFromDTOInvalid() {
 
-		UserValidator userValidator = Mockito.mock(UserValidator.class);
-		DTOUser dtoUser = Mockito.mock(DTOUser.class);
+		userValidator = Mockito.mock(UserValidator.class);
+		DTOUser dtoUser = new DTOUser("", "");
 		Mockito.when(userValidator.checkUser(dtoUser)).thenReturn(false);
-		
+
 		assertEquals(Optional.empty(), userDTOMapper.fromDTO(dtoUser));
 	}
 
 	@Test
 	public void testFromDTOValid() {
 
-		UserValidator userValidator = Mockito.mock(UserValidator.class);
-		DTOUser dtoUser = Mockito.mock(DTOUser.class);
-		DTORole dtoRole = Mockito.mock(DTORole.class);
-		Mockito.when(dtoUser.getRole()).thenReturn(dtoRole);
-		Mockito.when(dtoRole.getroleName()).thenReturn("ADMIN");
-		Mockito.when(dtoUser.getUsername()).thenReturn("username");
-		Mockito.when(dtoUser.getPassword()).thenReturn("password");
+		userValidator = Mockito.mock(UserValidator.class);
+		DTOUser dtoUser = new DTOUser("username", "password");
+		DTORole dtoRole = new DTORole("", "ADMIN");
+		dtoUser.setDtoRole(dtoRole);
 		Mockito.when(userValidator.checkUser(dtoUser)).thenReturn(true);
-		
+
 		Role role = new Role.RoleBuilder().setRoleName(dtoUser.getRole().getroleName()).build();
-		
-		User user  = new User.UserBuilder()
-				.setUsername(dtoUser.getUsername())
-				.setPassword(dtoUser.getPassword())
+
+		User user = new User.UserBuilder().setUsername(dtoUser.getUsername()).setPassword(dtoUser.getPassword())
 				.setRole(role).build();
-		
+
 		assertEquals(user, userDTOMapper.fromDTO(dtoUser).get());
 	}
 }

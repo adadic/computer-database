@@ -25,9 +25,10 @@ import hr.excilys.validator.CompanyValidator;
 @TestExecutionListeners(DependencyInjectionTestExecutionListener.class)
 public class CompanyDTOMapperTest {
 
-	private static final long id = 1;
 	@Autowired
 	CompanyDTOMapper companyDTOMapper;
+	private static final long id = 1;
+	private CompanyValidator companyValidator;
 
 	@Before
 	public void Setup() {
@@ -44,10 +45,9 @@ public class CompanyDTOMapperTest {
 	@Test
 	public void testFromDTONumberFormatException() {
 
-		CompanyValidator companyValidator = Mockito.mock(CompanyValidator.class);
-		DTOCompany dtoCompany = Mockito.mock(DTOCompany.class);
+		companyValidator = Mockito.mock(CompanyValidator.class);
+		DTOCompany dtoCompany = new DTOCompany("wqeqwe", "");
 		Mockito.when(companyValidator.checkCompanyFields(dtoCompany)).thenReturn(true);
-		Mockito.when(dtoCompany.getCompanyId()).thenReturn("wqeqwe");
 
 		assertEquals(Optional.empty(), companyDTOMapper.fromDTO(dtoCompany));
 	}
@@ -55,8 +55,8 @@ public class CompanyDTOMapperTest {
 	@Test
 	public void testFromDTOInvalid() {
 
-		CompanyValidator companyValidator = Mockito.mock(CompanyValidator.class);
-		DTOCompany dtoCompany = Mockito.mock(DTOCompany.class);
+		companyValidator = Mockito.mock(CompanyValidator.class);
+		DTOCompany dtoCompany = new DTOCompany();
 		Mockito.when(companyValidator.checkCompanyFields(dtoCompany)).thenReturn(false);
 
 		assertEquals(Optional.empty(), companyDTOMapper.fromDTO(dtoCompany));
@@ -65,15 +65,12 @@ public class CompanyDTOMapperTest {
 	@Test
 	public void testFromDTOValid() {
 
-		CompanyValidator companyValidator = Mockito.mock(CompanyValidator.class);
-		DTOCompany dtoCompany = Mockito.mock(DTOCompany.class);
+		companyValidator = Mockito.mock(CompanyValidator.class);
+		DTOCompany dtoCompany = new DTOCompany("1", "Excilys");
 		Mockito.when(companyValidator.checkCompanyFields(dtoCompany)).thenReturn(false);
-		Mockito.when(dtoCompany.getCompanyId()).thenReturn("1");
-		Mockito.when(dtoCompany.getCompanyName()).thenReturn("Excilys");
 
 		Company company = new Company.CompanyBuilder(id, dtoCompany.getCompanyName()).build();
 
 		assertEquals(company, companyDTOMapper.fromDTO(dtoCompany).get());
 	}
-
 }
