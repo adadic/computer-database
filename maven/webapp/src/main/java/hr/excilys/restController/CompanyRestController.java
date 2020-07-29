@@ -30,6 +30,7 @@ public class CompanyRestController {
 	private final CompanyService companyService;
 	
 	public CompanyRestController(CompanyService companyService) {
+		
 		this.companyService = companyService;
 	}
 
