@@ -7,7 +7,6 @@ import {Backdrop, CircularProgress} from "@material-ui/core";
 
 function ComputerDashboard() {
 
-
     const headCell = [
         {id: 'name', numeric: false, disablePadding: true, label: 'Name'},
         {id: 'introduced', numeric: true, disablePadding: false, label: 'Introduced'},
