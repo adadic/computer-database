@@ -53,7 +53,7 @@ export function Register(props) {
 
     const api = axios.create(
         {
-            baseURL: 'http://localhost:8080/webapp/register'
+            baseURL: 'http://localhost:8083/webapp/api/register'
         }
     )
 
@@ -65,7 +65,7 @@ export function Register(props) {
 
     let addUser = async () => {
 
-        let response = await api.post('/', qs.stringify(user), config)
+        let response = await api.post('', qs.stringify(user), config)
             .then((result) => {
                 console.log("result " + result.statusText);
                 setDisplayAlert(true);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux"
-import { getToken } from '../../Store/Selector/user.selector';
+import { getToken } from '../../Store/Selector/userSelector';
 
 function Logout(props){
     return (

@@ -21,7 +21,6 @@ public class UserService implements UserDetailsService {
 
 	private final DAOUser daoUser;
 	private final UserDTOMapper userDTOMapper;
-	private final static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 
 
 	@Autowired

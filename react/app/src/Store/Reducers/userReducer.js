@@ -1,7 +1,7 @@
-import * as userActions from '../Action/user.action'
+import * as userActions from '../Action/userAction'
 
 const initialState = {
-    token: "fffdf",
+    token: "",
     isConnected: false,
 }
 
