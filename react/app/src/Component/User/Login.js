@@ -12,7 +12,7 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
 
 import clsx from "clsx";
-import { getToken } from '../../Store/Action/user.action';
+import { getToken } from '../../Store/Action/userAction';
 
 const useStyles = makeStyles((theme) => ({
     root: {

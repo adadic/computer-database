@@ -63,7 +63,6 @@ function Register() {
     }
 
     const addUser = async () => {
-
         await api.post('', qs.stringify(user), config)
             .then((result) => {
                 setDisplayAlert(true);

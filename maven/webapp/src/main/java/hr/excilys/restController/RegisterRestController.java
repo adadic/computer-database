@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import hr.excilys.dto.DTORole;
@@ -22,7 +23,7 @@ import hr.excilys.service.UserService;
 public class RegisterRestController {
 
 	UserService userService;
-
+	
 	@Autowired
 	public RegisterRestController(UserService userService) {
 
