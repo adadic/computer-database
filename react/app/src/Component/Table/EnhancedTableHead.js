@@ -4,7 +4,7 @@ import React from "react";
 
 function EnhancedTableHead(props) {
 
-    const {classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells, mode} = props;
+    const {classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells} = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };
@@ -13,16 +13,16 @@ function EnhancedTableHead(props) {
         <TableHead>
             <TableRow>
                 <TableCell padding="checkbox">
-                    {mode &&
-                        <Checkbox
-                            indeterminate={numSelected > 0 && numSelected < rowCount}
-                            checked={rowCount > 0 && numSelected === rowCount}
-                            onChange={onSelectAllClick}
-                            inputProps={{'aria-label': 'select all desserts'}}
-                        />
-                    }
+                    <Checkbox
+                        indeterminate={numSelected > 0 && numSelected < rowCount}
+                        checked={rowCount > 0 && numSelected === rowCount}
+                        onChange={onSelectAllClick}
+                        inputProps={{'aria-label': 'select all desserts'}}
+                    />
 
                 </TableCell>
+                <TableCell padding="checkbox"/>
+
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}

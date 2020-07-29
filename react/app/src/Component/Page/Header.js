@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Button, Typography, Drawer,
     Toolbar, AppBar, InputBase
@@ -8,6 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import MenuBar from "./MenuBar";
 import Login from "../User/Login";
 import {useHistory} from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Header(props) {
     const classes = useStyles();
-    const [state, setState] = React.useState(false);
+    const [state, setState] = useState(false);
     const history = useHistory();
 
     const toggleDrawer = (open) => (event) => {
@@ -85,19 +86,7 @@ function Header(props) {
                         Computer Database
                     </Typography>
 
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon/>
-                        </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{'aria-label': 'search'}}
-                        />
-                    </div>
+                    <SearchBar/>
                     <Button onClick={toggleDrawer(true)} color="inherit">Login</Button>
                     <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
                         <Login/>

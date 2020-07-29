@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {
     Table, TableBody, TableCell, TableContainer,
-    TablePagination, TableRow, Paper, Checkbox
+    TablePagination, TableRow, Paper, Checkbox, Button
 } from '@material-ui/core';
 import EnhancedTableHead from "../Table/EnhancedTableHead";
 import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import {useHistory} from "react-router-dom";
 import {stableSort, getComparator} from "../../Function/TableFunction";
+import CreateIcon from '@material-ui/icons/Create';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         width: '100%',
+        minWidth: 800,
         marginBottom: theme.spacing(2),
     },
     table: {
@@ -113,6 +115,13 @@ function ListComputer(props) {
         return year + "-" + (monthValue < 10 ? "0" + monthValue : monthValue) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
     }
 
+    const edit = (row) => (event) => {
+
+        event.stopPropagation();
+        console.log("I'm FREE");
+        return false;
+    }
+
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
@@ -151,13 +160,16 @@ function ListComputer(props) {
                                         >
 
                                             <TableCell padding="checkbox">
-                                                {deleteMode &&
-                                                    <Checkbox
-                                                        checked={isItemSelected}
-                                                        inputProps={{'aria-labelledby': labelId}}
-                                                    />
-                                                }
-                                                </TableCell>
+                                                <Checkbox
+                                                    checked={isItemSelected}
+                                                    inputProps={{'aria-labelledby': labelId}}
+                                                />
+                                            </TableCell>
+                                            <TableCell padding="checkbox">
+                                                <Button disabled={selected.length} onClick={edit(row)}>
+                                                    <CreateIcon/>
+                                                </Button>
+                                            </TableCell>
 
                                             <TableCell component="th" id={labelId} scope="row" padding="none"
                                                        style={{width: '33%'}}>

@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {
     Table, TableBody, TableCell, TableContainer,
-    TablePagination, TableRow, Paper, Checkbox
+    TablePagination, TableRow, Paper, Checkbox, Button
 } from '@material-ui/core';
 import EnhancedTableHead from "../Table/EnhancedTableHead";
 import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import {useHistory} from "react-router-dom";
 import {stableSort, getComparatorCompany} from "../../Function/TableFunction";
+import CreateIcon from '@material-ui/icons/Create';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         width: '28%',
+        minWidth: 400,
         margin: "auto",
         marginBottom: theme.spacing(2),
     },
@@ -38,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 
 function ListCompany(props) {
 
-    const history = useHistory();
     const classes = useStyles();
     const [deleteMode, setDeleteMode] = useState(false);
     const [companies, setCompanies] = useState(props.companies);
@@ -69,7 +70,6 @@ function ListCompany(props) {
 
         const selectedIndex = selected.indexOf(name);
         let newSelected = [];
-
         if (selectedIndex === -1) {
             newSelected = newSelected.concat(selected, name);
         } else if (selectedIndex === 0) {
@@ -107,6 +107,13 @@ function ListCompany(props) {
         console.log(selected[0] === "2")
     }
 
+    const edit = (row) => (event) => {
+
+        event.stopPropagation();
+        console.log("I'm FREE");
+        return false;
+    }
+
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
@@ -136,7 +143,7 @@ function ListCompany(props) {
                                     return (
                                         <TableRow
                                             hover
-                                            onClick={(event) => deleteMode ? handleClick(event, row.id) : history.push('/companies/' + row.id)}
+                                            onClick={(event) => handleClick(event, row.id)}
                                             role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
@@ -145,12 +152,15 @@ function ListCompany(props) {
                                         >
 
                                             <TableCell padding="checkbox">
-                                                {deleteMode &&
                                                 <Checkbox
                                                     checked={isItemSelected}
                                                     inputProps={{'aria-labelledby': labelId}}
                                                 />
-                                                }
+                                            </TableCell>
+                                            <TableCell padding="checkbox">
+                                                <Button disabled={selected.length} onClick={edit(row)}>
+                                                    <CreateIcon/>
+                                                </Button>
                                             </TableCell>
 
                                             <TableCell component="th" id={labelId} scope="row" padding="none"

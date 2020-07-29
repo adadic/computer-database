@@ -2,7 +2,8 @@ import {lighten, makeStyles} from "@material-ui/core/styles";
 import {IconButton, Toolbar, Tooltip, Typography} from "@material-ui/core";
 import clsx from "clsx";
 import DeleteIcon from "@material-ui/icons/Delete";
-import FilterListIcon from "@material-ui/icons/FilterList";
+import AddIcon from '@material-ui/icons/Add';
+import {useHistory} from "react-router-dom";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -31,6 +32,7 @@ const EnhancedTableToolbar = (props) => {
 
     const classes = useStyles();
     const {numSelected, mainTitle} = props;
+    const history = useHistory();
 
     return (
         <Toolbar
@@ -55,9 +57,9 @@ const EnhancedTableToolbar = (props) => {
                     </IconButton>
                 </Tooltip>
             ) : (
-                <Tooltip title="Filter list">
-                    <IconButton aria-label="filter list">
-                        <FilterListIcon/>
+                <Tooltip title={"Add " + mainTitle} onClick={() => mainTitle === "Computers" ? history.push("/AddComputer") : history.push("/AddCompany")}>
+                    <IconButton aria-label="Add">
+                        <AddIcon/>
                     </IconButton>
                 </Tooltip>
             )}

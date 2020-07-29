@@ -20,7 +20,9 @@ public class RegisterController {
 	UserService userService;
 
 
+	@SuppressWarnings("unused")
 	private static final int ADDSUCCESS = 2;
+	@SuppressWarnings("unused")
 	private static final int ADDERROR = -1;
 	
 		
