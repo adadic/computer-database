@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from "react";
+import { connect } from 'react-redux';
 
 import useAxios from 'axios-hooks';
 import { Input, Button } from "@material-ui/core";
@@ -11,6 +12,7 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
 
 import clsx from "clsx";
+import { getToken } from '../../Store/Action/user.action';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,9 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const baseURL = 'http://localhost:8083/webapp/api/login';
 
-function Login() {
-
-    const [token, setToken] = useState("");
+function Login(props) {
 
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
@@ -70,8 +70,8 @@ function Login() {
         console.log(user)
         login({ data: user })
             .then((res) => {
-                setToken(res.data)
                 console.log(res.data)
+                props.token(res.data)
                 //window.location.href = "/dashboard"
             }).catch((error) => {
                 console.log(error)
@@ -113,6 +113,7 @@ function Login() {
                             }
                         />
                     </FormControl>
+                    
                 </FormControl>
             </form>
             <Button variant="outlined" onClick={connexion} color="primary">Connexion</Button>
@@ -120,5 +121,11 @@ function Login() {
     );
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
 
-export default Login;
+        token: data => dispatch(getToken(data)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Login);
