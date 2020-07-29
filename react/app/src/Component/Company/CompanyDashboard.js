@@ -52,7 +52,7 @@ function CompanyDashboard() {
                 </Backdrop>
                 :
                 <div className="table-size">
-                    {companyList && <ListCompany companies={companyList} edit={executeEdit} add={executeAdd} headCells={headCell}/>}
+                    {companyList && <ListCompany companies={companyList} edit={executeEdit} add={executeAdd} headCells={headCell} delete={executeDelete}/>}
                 </div>
             }
         </div>

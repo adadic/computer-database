@@ -57,6 +57,7 @@ public class DAOComputer {
 	public List<Computer> getComputersRows(int page, int lines, String search) {
 
 		search = prepareSearch(search);
+		
 		try {
 			session = sessionFactory.getCurrentSession();
 			TypedQuery<Computer> query = session.createQuery(EnumQuery.ALLCOMPUTER.getQuery(), Computer.class)
@@ -103,6 +104,7 @@ public class DAOComputer {
 	}
 
 	public boolean insertComputer(Computer computer) {
+		System.out.println("user in hibernate dao computer "+computer.toString());
 
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -114,6 +116,7 @@ public class DAOComputer {
 						.company(null)
 						.build();
 			}
+			System.out.println("user in hibernate dao computer 2"+computer.toString());
 			session.save(computer);
 
 			return true;

@@ -67,6 +67,7 @@ public class DAOUser {
 
 			return true;
 		} catch (HibernateException hex) {
+			System.out.println("user in hibernate "+user.toString());
 			LOGGER.error("Cannot get the session");
 			System.out.println("Cannot get the session");
 

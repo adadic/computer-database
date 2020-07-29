@@ -3,7 +3,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import {InputBase} from "@material-ui/core";
 import {fade, makeStyles} from "@material-ui/core/styles";
 import {connect} from 'react-redux';
-import {newSearch} from "../../Store/ActionCreators";
+import {newSearch} from "../../Store/Action/searchAction";
 
 const useStyles = makeStyles((theme) => ({
     search: {
@@ -63,23 +63,24 @@ function SearchBar(props){
                     input: classes.inputInput,
                 }}
                 inputProps={{'aria-label': 'search'}}
-                onChange={(e) => newSearch(e.target.value)}
+                onChange={(e) => props.changeSearch(e.target.value)}
                 value={props.search}
             />
         </div>
     );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
+
     return {
         search: state.search,
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
 
     return {
-        searchBar: search =>
+        changeSearch: search =>
             dispatch(newSearch(search)),
     }
 }

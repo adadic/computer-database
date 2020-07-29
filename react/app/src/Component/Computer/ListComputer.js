@@ -9,6 +9,7 @@ import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import {useHistory} from "react-router-dom";
 import {stableSort, getComparator} from "../../Function/TableFunction";
 import CreateIcon from '@material-ui/icons/Create';
+import {connect} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -100,7 +101,8 @@ function ListComputer(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, computers.length - page * rowsPerPage);
+    const computerSize = computers.filter(item => item.name.includes(props.search)).length;
+    const emptyRows = computerSize < 10 ? 10 - computerSize % 10 : 0;
 
     function deleteComputers() {
 
@@ -137,12 +139,12 @@ function ListComputer(props) {
                             orderBy={orderBy}
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
-                            rowCount={computers.length}
+                            rowCount={computerSize}
                             headCells={props.headCells}
                             mode={deleteMode}
                         />
                         <TableBody style={{overflow: "auto"}}>
-                            {stableSort(computers, getComparator(order, orderBy))
+                            {stableSort(computers.filter(item => item.name.includes(props.search)), getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
                                     const isItemSelected = isSelected(row.id);
@@ -166,7 +168,7 @@ function ListComputer(props) {
                                                 />
                                             </TableCell>
                                             <TableCell padding="checkbox">
-                                                <Button disabled={selected.length} onClick={edit(row)}>
+                                                <Button disabled={selected.length !== 0} onClick={edit(row)}>
                                                     <CreateIcon/>
                                                 </Button>
                                             </TableCell>
@@ -204,7 +206,7 @@ function ListComputer(props) {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 50]}
                     component="div"
-                    count={computers.length}
+                    count={computerSize}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
@@ -215,4 +217,11 @@ function ListComputer(props) {
     );
 }
 
-export default ListComputer;
+const mapStateToProps = (state) => {
+
+    return {
+        search: state.search,
+    }
+}
+
+export default connect(mapStateToProps)(ListComputer);
