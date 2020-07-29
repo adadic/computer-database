@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from "react";
-import { connect } from 'react-redux';
 
 import useAxios from 'axios-hooks';
 import { Input, Button } from "@material-ui/core";
@@ -10,7 +9,6 @@ import IconButton from "@material-ui/core/IconButton";
 import InputLabel from "@material-ui/core/InputLabel";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
-import * as userConstants from '../../redux/constants/users_constants'
 
 import clsx from "clsx";
 
@@ -122,19 +120,5 @@ function Login() {
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        token: state.token,
-    }
-}
 
-
-const mapDispatchToProps = dispatch => {
-    return {
-        connexion: data =>
-            dispatch({ type: userConstants.LOGIN_SUCCESS, token: { data } }),
-            
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

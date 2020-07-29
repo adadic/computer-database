@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {createRef, useEffect, useState} from 'react';
 import ListComputer from "./ListComputer";
 import useAxios from "axios-hooks";
 import ErrorPage from "../Page/ErrorPage";
@@ -49,7 +49,7 @@ function ComputerDashboard() {
             {error && <ErrorPage errorMessage=""/>}
             {loading
                 ?
-                <Backdrop open>
+                <Backdrop open ref={createRef()}>
                     <CircularProgress color="inherit" />
                 </Backdrop>
                 :

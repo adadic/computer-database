@@ -8,6 +8,8 @@ import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import InfoIcon from '@material-ui/icons/Info';
 import ComputerIcon from '@material-ui/icons/Computer';
 import BusinessIcon from '@material-ui/icons/Business';
+import {newSearch} from "../../Store/Action/SearchAction";
+import {connect} from "react-redux";
 
 const StyledMenu = withStyles({
     paper: {
@@ -40,7 +42,7 @@ const StyledMenuItem = withStyles((theme) => ({
     },
 }))(MenuItem);
 
-function MenuBar() {
+function MenuBar(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const history = useHistory();
 
@@ -54,6 +56,7 @@ function MenuBar() {
 
     const redirectTo = (path) => () => {
 
+        props.changeSearch("");
         history.push(path)
         setAnchorEl(null);
     }
@@ -105,4 +108,12 @@ function MenuBar() {
     );
 }
 
-export default MenuBar;
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        changeSearch: search =>
+            dispatch(newSearch(search)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(MenuBar);

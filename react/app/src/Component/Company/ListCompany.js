@@ -9,6 +9,7 @@ import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import {useHistory} from "react-router-dom";
 import {stableSort, getComparatorCompany} from "../../Function/TableFunction";
 import CreateIcon from '@material-ui/icons/Create';
+import {connect} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -98,7 +99,8 @@ function ListCompany(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, companies.length - page * rowsPerPage);
+    const companySize = companies.filter(item => item.name.includes(props.search)).length;
+    const emptyRows = companySize < 10 ? 10 - companySize % 10 : 0;
 
     function deleteCompanies() {
 
@@ -110,11 +112,12 @@ function ListCompany(props) {
     const edit = (row) => (event) => {
 
         event.stopPropagation();
-        console.log("I'm FREE");
+        console.log(props.search)
         return false;
     }
 
     return (
+
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 <EnhancedTableToolbar numSelected={selected.length} delete={deleteCompanies} mainTitle="Companies"/>
@@ -129,12 +132,12 @@ function ListCompany(props) {
                             orderBy={orderBy}
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
-                            rowCount={companies.length}
+                            rowCount={companySize}
                             headCells={props.headCells}
                             mode={deleteMode}
                         />
                         <TableBody style={{overflow: "auto"}}>
-                            {stableSort(companies, getComparatorCompany(order, orderBy))
+                            {stableSort(companies.filter(item => item.name.includes(props.search)), getComparatorCompany(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
                                     const isItemSelected = isSelected(row.id);
@@ -158,7 +161,7 @@ function ListCompany(props) {
                                                 />
                                             </TableCell>
                                             <TableCell padding="checkbox">
-                                                <Button disabled={selected.length} onClick={edit(row)}>
+                                                <Button disabled={selected.length !== 0} onClick={edit(row)}>
                                                     <CreateIcon/>
                                                 </Button>
                                             </TableCell>
@@ -181,7 +184,7 @@ function ListCompany(props) {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 50]}
                     component="div"
-                    count={companies.length}
+                    count={companySize}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
@@ -192,4 +195,11 @@ function ListCompany(props) {
     );
 }
 
-export default ListCompany;
+const mapStateToProps = (state) => {
+
+    return {
+        search: state.search,
+    }
+}
+
+export default connect(mapStateToProps)(ListCompany);
