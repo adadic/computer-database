@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 function ListCompany(props) {
 
     const classes = useStyles();
-    const [deleteMode, setDeleteMode] = useState(false);
     const [companies, setCompanies] = useState(props.companies);
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('name');
@@ -134,7 +133,6 @@ function ListCompany(props) {
                             onRequestSort={handleRequestSort}
                             rowCount={companySize}
                             headCells={props.headCells}
-                            mode={deleteMode}
                         />
                         <TableBody style={{overflow: "auto"}}>
                             {stableSort(companies.filter(item => item.name.includes(props.search)), getComparatorCompany(order, orderBy))
