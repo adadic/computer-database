@@ -10,9 +10,8 @@ const reducer = (state = initialState, action) => {
 
     switch (action.type) {
         case actionTypes.SEARCH:
-            const newSearch =  action.search;
 
-            return {...state, search: newSearch}
+            return {...state, search: action}
     }
     return state
 }

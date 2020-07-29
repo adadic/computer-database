@@ -63,6 +63,7 @@ function SearchBar(props){
                     input: classes.inputInput,
                 }}
                 inputProps={{'aria-label': 'search'}}
+                onChange={(e) => newSearch(e.target.value)}
                 value={props.search}
             />
         </div>
@@ -78,7 +79,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 
     return {
-        saveArticle: search =>
+        searchBar: search =>
             dispatch(newSearch(search)),
     }
 }
