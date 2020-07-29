@@ -14,6 +14,7 @@ import About from "./Component/Page/About";
 import Logout from "./Component/User/Logout";
 import Home from "./Component/Page/Home";
 import { Provider } from 'react-redux'
+import AddComputer from './Component/Computer/AddComputer';
 
 function App() {
     return (
@@ -44,6 +45,9 @@ function App() {
                         </Route>
                         <Route path={"/computers"}>
                             <ComputerDashboard />
+                        </Route>
+                        <Route path={"/AddComputer"}>
+                            <AddComputer/>
                         </Route>
                         <Route path={"/home"}>
                             <Home />
