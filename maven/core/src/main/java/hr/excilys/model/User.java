@@ -42,7 +42,7 @@ public class User{
 
 	public User(UserBuilder builder) {
 
-		this.id = builder.id;
+		
 		this.username = builder.username;
 		this.password = builder.password;
 		this.role = builder.role;
@@ -101,10 +101,11 @@ public class User{
 
 	public static class UserBuilder {
 
-		private long id;
+		
 		private String username;
 		private String password;
 		private Role role;
+		private long id;
 
 		public UserBuilder (String username, String password, Role role) {
 

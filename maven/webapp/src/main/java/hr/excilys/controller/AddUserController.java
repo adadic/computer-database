@@ -43,17 +43,17 @@ public class AddUserController {
 		DTORole dtoRole = new DTORole("1","USER");
 		dtoUser.setRole(dtoRole);
 		System.out.println("hey !");
-		System.out.println(userService.addUser(dtoUser));
+		//System.out.println(userService.addUser(dtoUser));
 		
-		if (!userService.addUser(dtoUser)) {
-			view.addObject("msg", ADDERROR);
-			view.addObject("role", userService.getRoles());
-			System.out.println("false !");
-		} else {
-			view.addObject("msg", ADDSUCCESS);
-			view.setViewName("redirect:dashboard");
-			System.out.println("true !");
-		}
+//		if (!userService.addUser(dtoUser)) {
+//			view.addObject("msg", ADDERROR);
+//			view.addObject("role", userService.getRoles());
+//			System.out.println("false !");
+//		} else {
+//			view.addObject("msg", ADDSUCCESS);
+//			view.setViewName("redirect:dashboard");
+//			System.out.println("true !");
+//		}
 
 		return view;
 		

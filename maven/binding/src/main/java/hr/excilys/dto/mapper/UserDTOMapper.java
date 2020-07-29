@@ -23,7 +23,7 @@ public class UserDTOMapper {
 	}
 
 	public Optional<User> fromDTO(DTOUser dtoUser) {
-
+		
 		long id = IDNULL;
 		if (userValidator.checkUser(dtoUser)) {
 			return Optional.of(new User.UserBuilder(dtoUser.getUsername(), dtoUser.getPassword(),

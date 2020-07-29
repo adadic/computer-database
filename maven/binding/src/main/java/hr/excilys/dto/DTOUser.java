@@ -4,8 +4,9 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import hr.excilys.validator.CustomPasswordMatchesAnnotation;
-import hr.excilys.validator.CustomValidEmailAnnotation;
 
+
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -16,24 +17,27 @@ public class DTOUser {
 
 	// private String id = "0";
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message="Username cannot be empty")
 	private String userName;
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message="Password cannot be empty")
 	private String password;
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message="Matching password cannot be empty")
 	private String matchingPassword;
 	private DTORole dtoRole;
 	@NotNull
-    @NotEmpty
- 
+	@NotEmpty(message="Email cannot be empty")
+	@Email(message = "Email should be valid")
     private String email;
 
 	public DTOUser(String username, String password) {
 
 		this.userName = username;
 		this.password = password;
+	}
+	public DTOUser() {
+		
 	}
 	
 	

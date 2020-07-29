@@ -40,7 +40,7 @@
 				<form method="post" action="register" class="form">
 					<div class="form-group">
 						<label for="username">Username</label> <input type="text"
-							class="form-control" id="username" name="username"
+							class="form-control" id="username" name="userName"
 							placeholder="name">
 					</div>
 

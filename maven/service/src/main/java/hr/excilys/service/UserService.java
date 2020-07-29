@@ -3,11 +3,16 @@ package hr.excilys.service;
 import java.util.List;
 import java.util.Optional;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+
 
 import hr.excilys.dto.DTOUser;
 import hr.excilys.dto.mapper.UserDTOMapper;
@@ -21,6 +26,7 @@ public class UserService implements UserDetailsService {
 
 	private final DAOUser daoUser;
 	private final UserDTOMapper userDTOMapper;
+	private final static Logger LOGGER = LoggerFactory.getLogger(UserService.class);
 	
 
 	@Autowired
@@ -49,12 +55,18 @@ public class UserService implements UserDetailsService {
 		throw new UsernameNotFoundException("No user by this username");
 	}
 
-	public boolean addUser(DTOUser dtoUser) {
+	public boolean addUser(DTOUser dtoUser) throws Exception {
+		
+		Optional<User> opt = daoUser.getUser(dtoUser.getUsername());
+		if (opt.isPresent()) {
+			throw new Exception("This username already exists");
+		}
+		
 		
 		dtoUser.setPassword(bCryptPasswordEncoder.encode(dtoUser.getPassword()));
 		System.out.println(dtoUser.toString());
 		Optional<User> user = userDTOMapper.fromDTO(dtoUser);
-		System.out.println(user);
+		System.out.println("user service "+user);
 		
 		if(user.isPresent()) {
 			return daoUser.create(user.get());
