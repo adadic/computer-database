@@ -22,16 +22,18 @@ import hr.excilys.tokenJwt.JwtRequestFilter;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	
 	private final UserService userService;
-	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-	private JwtRequestFilter jwtFilter;
-	
+	private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	private final JwtRequestFilter jwtFilter;
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	@Autowired
-	public WebSecurityConfig(UserService userService, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, JwtRequestFilter jwtFilter) {
+	public WebSecurityConfig(UserService userService, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
+			JwtRequestFilter jwtFilter, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.userService = userService;
 		this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
 		this.jwtFilter = jwtFilter;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
 	@Override
@@ -45,29 +47,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin().loginPage("/login").failureUrl("/login?error=true");
 		http.logout().logoutUrl("/logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID").clearAuthentication(true);
-		http.exceptionHandling(e -> e.authenticationEntryPoint(digestEntryPoint())).addFilter(digestAuthFilter(digestEntryPoint(), userService));
-		
-		http.cors().and().csrf().disable()
-			.authorizeRequests().antMatchers("/api/login").permitAll().and()
-			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().anyRequest()
-			.authenticated();
-			
+		http.exceptionHandling(e -> e.authenticationEntryPoint(digestEntryPoint()))
+				.addFilter(digestAuthFilter(digestEntryPoint(), userService));
+
+		http.cors().and().csrf().disable().authorizeRequests().antMatchers("/api/login").permitAll().and()
+				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().anyRequest()
+				.authenticated();
+
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-		
+
 		http.headers().frameOptions().sameOrigin().cacheControl();
-		
-		
+
 	}
 
 	@Autowired
 	public void userConfigurationGlobal(AuthenticationManagerBuilder authentificationManagerBuilder) throws Exception {
-		authentificationManagerBuilder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
-	}
-
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
+		authentificationManagerBuilder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
 	}
 
 	@Bean
