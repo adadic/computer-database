@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.HibernateException;
@@ -98,6 +99,27 @@ public class DAOCompany {
 			return false;
 		} catch (DataAccessException dae) {
 			LOGGER.error("Problem in query with id_company : {}", id);
+
+			return false;
+		}
+	}
+
+	public boolean updateCompany(Company company) {
+			
+		try {
+			session = sessionFactory.getCurrentSession();
+			Query query = session.createQuery(EnumQuery.UPDATECOMPANY.getQuery())
+					.setParameter("name", company.getName())
+					.setParameter("id", company.getId());
+			query.executeUpdate();
+			
+			return true;
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return false;
+		} catch (DataAccessException dae) {
+			LOGGER.error("Company NOT updated, problem in query : Check fields");
 
 			return false;
 		}

@@ -39,15 +39,18 @@ public class DAOComputer {
 	}
 
 	public List<Computer> getComputers(){
+		
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			TypedQuery<Computer> query = session.createQuery(EnumQuery.GETCOMPUTERS.getQuery(), Computer.class);
-			return query.getResultList();
+			
+			return getComputersWithNoNullCompany(query.getResultList());
 		} catch (HibernateException hex) {
 			LOGGER.error("Cannot get the session");
 		} catch (DataAccessException dae) {
 			LOGGER.error("Cannot get Computers at {} page and with {} lines, probleme in the Query maybe search -> {}");
 		}
+		
 		return new ArrayList<>();
 	}
 	
@@ -62,7 +65,7 @@ public class DAOComputer {
 			query.setFirstResult(lines * (page - 1));
 			query.setMaxResults(lines);
 
-			return query.getResultList();
+			return getComputersWithNoNullCompany(query.getResultList());
 		} catch (HibernateException hex) {
 			LOGGER.error("Cannot get the session");
 
@@ -224,7 +227,7 @@ public class DAOComputer {
 						.id(computer.getId())
 						.introduced(computer.getIntroduced())
 						.discontinued(computer.getDiscontinued())
-						.company(new Company.CompanyBuilder(0, null).build())
+						.company(new Company.CompanyBuilder(0, "").build())
 						.build();
 			}
 			return computer;
