@@ -46,14 +46,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export function Register(props) {
+function Register() {
+
     const classes = useStyles();
-
-
 
     const api = axios.create(
         {
-            baseURL: 'http://localhost:8080/webapp/register'
+            baseURL: 'http://localhost:8083/webapp/api/register'
         }
     )
 
@@ -63,20 +62,18 @@ export function Register(props) {
         }
     }
 
-    let addUser = async () => {
+    const addUser = async () => {
 
-        let response = await api.post('/', qs.stringify(user), config)
+        await api.post('', qs.stringify(user), config)
             .then((result) => {
-                console.log("result " + result.statusText);
                 setDisplayAlert(true);
-                if (result.status == 200) {
+                if (result.status === 200) {
                     setSuccess(true);
                     setMessage(result.data)
 
                 }
             })
             .catch((error) => {
-                console.log(error);
                 if (error.response) {
                     /*
                      * The request was made and the server responded with a
@@ -98,13 +95,10 @@ export function Register(props) {
                     // Something happened in setting up the request and triggered an Error
 
                 }
-
-
             });
 
     }
-    let model = {
-
+    const model = {
         userName: '',
         password: '',
         matchingPassword: '',
@@ -126,7 +120,6 @@ export function Register(props) {
     const [matchingPasswordError, setMatchingPasswordError] = useState(true)
     const [emailError, setEmailError] = useState(true)
     const [usernameError, setUsernameError] = useState(true)
-    const [acceptPolicy, setAcceptPolicy] = useState(true);
     const [usernameAlreadyExistsError, setUsernameAlreadyExistsError] = useState(false);
 
 
@@ -143,7 +136,6 @@ export function Register(props) {
     const number = new RegExp("(?=.*[0-9])");
     const length = new RegExp("(?=.{8,})");
     const special = new RegExp("(?=.*[!@#$%^&*\\+])");
-    //const username = new RegExp("(?=.*[ @#$%^&*\\+])");
 
     const checkNumber = () => {
         if (number.test(user.password)) {
@@ -171,7 +163,6 @@ export function Register(props) {
 
         if (upper.test(user.password)) {
             setPasswordUpper(true);
-            console.log("upper");
         } else {
             setPasswordUpper(false);
             return false;
@@ -204,7 +195,7 @@ export function Register(props) {
 
     function usernameCheck() {
 
-        if (user.userName == '' | user.userName.includes(' ')) {
+        if (user.userName === '' || user.userName.includes(' ')) {
             setUsernameError(true);
             setMessage("The username cannot be empty or include space");
         } else {
@@ -219,7 +210,7 @@ export function Register(props) {
     };
 
     function matchingPasswordCheck() {
-        if (user.matchingPassword != '' && user.password == user.matchingPassword) {
+        if (user.matchingPassword !== '' && user.password === user.matchingPassword) {
             setMatchingPasswordError(false);
         } else {
             setMatchingPasswordError(true);
@@ -241,7 +232,7 @@ export function Register(props) {
     }
 
     const displayAlertError = () => {
-        if (matchingPasswordError | passwordError | emailError | usernameError | usernameAlreadyExistsError) {
+        if (matchingPasswordError || passwordError || emailError || usernameError || usernameAlreadyExistsError) {
             setDisplayAlert(true);
         } else {
             setDisplayAlert(false);
@@ -258,10 +249,9 @@ export function Register(props) {
 
     });
 
-    console.log('bool ' + displayAlert);
     return (
         <div className="Register">
-            <Collapse in={(displayAlert) ? true : false}>
+            <Collapse in={(displayAlert)}>
                 <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
                        severity={success ? "success" : "error"}>{message}</Alert>
             </Collapse>
@@ -356,13 +346,9 @@ export function Register(props) {
             <br/>
             <Button onClick={addUser} variant="outlined" color="primary">Add</Button>{' '}
             <Button onClick={addUser} variant="outlined" color="secondary">Cancel</Button>
-
-
-
-
         </div>
     );
 
 }
 
-export default React;
+export default Register;

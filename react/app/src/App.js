@@ -3,7 +3,7 @@ import 'fontsource-roboto';
 import './App.scss';
 
 import Header from "./Component/Page/Header";
-import {Register} from "./Component/User/Register";
+import Register from "./Component/User/Register";
 import ComputerDashboard from "./Component/Computer/ComputerDashboard";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Login from "./Component/User/Login";
@@ -13,7 +13,6 @@ import Company from "./Component/Company/Company";
 import About from "./Component/Page/About";
 import Logout from "./Component/User/Logout";
 import Home from "./Component/Page/Home";
-import { Provider } from 'react-redux'
 
 function App() {
     return (
