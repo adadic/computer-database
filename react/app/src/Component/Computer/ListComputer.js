@@ -40,7 +40,7 @@ function ListComputer(props) {
 
     const history = useHistory();
     const classes = useStyles();
-    const [deleteMode, setDeleteMode] = useState(false);
+    const [deleteMode, setDeleteMode] = useState(true);
     const [computers, setComputers] = useState(props.computers);
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('computers');

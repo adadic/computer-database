@@ -11,6 +11,18 @@ public final class DTOComputer {
 	private String discontinued;
 	private DTOCompany company;
 
+	public DTOComputer() {
+	}
+
+	public DTOComputer(String id, String computerName, String introduced, String discontinued, DTOCompany company) {
+
+		this.id = id;
+		this.computerName = computerName;
+		this.introduced = introduced;
+		this.discontinued = discontinued;
+		this.company = company;
+	}
+
 	public String getId() {
 
 		return id;

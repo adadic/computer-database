@@ -21,45 +21,44 @@ public class ComputerValidator {
 
 	@Autowired
 	public ComputerValidator(DateMapper dateMapper, CompanyValidator companyValidator) {
-		
+
 		this.dateMapper = dateMapper;
 		this.companyValidator = companyValidator;
-		
+
 	}
 
 	public boolean checkComputerFields(DTOComputer dtoComputer) {
-		
+
 		if (StringUtils.isEmpty(dtoComputer.getComputerName())) {
 			LOGGER.info("Computer has no name!");
 
 			return false;
 		}
 		try {
-			
-			if (StringUtils.isEmpty(dtoComputer.getIntroduced()) && StringUtils.isNotEmpty(dtoComputer.getIntroduced())) {
+			if (StringUtils.isEmpty(dtoComputer.getIntroduced())
+					&& StringUtils.isNotEmpty(dtoComputer.getIntroduced())) {
+				
 				return false;
 			}
-			
 			LocalDate timeIntro = checkDate(dtoComputer.getIntroduced());
 			LocalDate timeDiscon = checkDate(dtoComputer.getDiscontinued());
-			
-			if (timeIntro!=null && timeDiscon!=null && timeIntro.isAfter(timeDiscon)) {
+
+			if (timeIntro != null && timeDiscon != null && timeIntro.isAfter(timeDiscon)) {
 				LOGGER.info("introduced Date after Discontinued Date in this Computer");
+				
 				return false;
 			}
-			
-			if(!companyValidator.checkCompanyFields(dtoComputer.getCompany())) {
+			if (!companyValidator.checkCompanyFields(dtoComputer.getCompany())) {
+				
 				return false;
 			}
-			
 			LOGGER.info("Computer can be created");
+			
 			return true;
-			
 		} catch (DateTimeParseException dtpe) {
-			
 			LOGGER.error("NullPointerException -> At least one Field was null !!");
-			return false;
 			
+			return false;
 		}
 	}
 

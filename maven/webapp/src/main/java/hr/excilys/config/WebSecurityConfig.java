@@ -37,16 +37,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-//		http.authorizeRequests().antMatchers("/addComputer", "/editComputer").hasAnyRole("ADMIN", "USER");
-//		http.authorizeRequests().antMatchers("/delete").hasRole("ADMIN");
-//		http.authorizeRequests().antMatchers("/api/*", "/register").permitAll();
-////		hasAnyRole("ADMIN", "USER").and().authorizeRequests()
-////				.antMatchers("/api/delete").hasRole("ADMIN");
-//		http.formLogin().loginPage("/login").failureUrl("/login?error=true");
-//		http.logout().logoutUrl("/logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
-//				.deleteCookies("JSESSIONID").clearAuthentication(true);
-//		http.exceptionHandling(e -> e.authenticationEntryPoint(digestEntryPoint())).addFilter(digestAuthFilter(digestEntryPoint(), userService));
-//		
+		http.authorizeRequests().antMatchers("/addComputer", "/editComputer").hasAnyRole("ADMIN", "USER");
+		http.authorizeRequests().antMatchers("/delete").hasRole("ADMIN");
+		http.authorizeRequests().antMatchers("/api/*", "/register").permitAll();
+//		hasAnyRole("ADMIN", "USER").and().authorizeRequests()
+//				.antMatchers("/api/delete").hasRole("ADMIN");
+		http.formLogin().loginPage("/login").failureUrl("/login?error=true");
+		http.logout().logoutUrl("/logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID").clearAuthentication(true);
+		http.exceptionHandling(e -> e.authenticationEntryPoint(digestEntryPoint())).addFilter(digestAuthFilter(digestEntryPoint(), userService));
+		
 		http.cors().and().csrf().disable()
 			.authorizeRequests().antMatchers("/api/login").permitAll().and()
 			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()

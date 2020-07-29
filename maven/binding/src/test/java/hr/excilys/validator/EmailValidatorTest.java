@@ -1,6 +1,8 @@
-package hr.excilys.mapper;
+package hr.excilys.validator;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+
+import javax.validation.ConstraintValidatorContext;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,33 +17,21 @@ import hr.excilys.config.BindingConfig;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { BindingConfig.class })
 @TestExecutionListeners(DependencyInjectionTestExecutionListener.class)
-public class LongMapperTest {
+public class EmailValidatorTest {
 
 	@Autowired
-	private LongMapper longMapper;
+	private EmailValidator emailValidator;
+	private ConstraintValidatorContext context;
 
 	@Test
-	public void testGetIdInt() {
-
-		assertEquals(5L, longMapper.getId("5"));
+	public void testIsValidOK() {
+		
+		assertEquals(true, emailValidator.isValid("ysabourin@excilys.com", context));
 	}
 
-	@Test(expected = NumberFormatException.class)
-	public void testGetIdLong() {
-
-		assertEquals(5L, longMapper.getId("5L"));
+	@Test
+	public void testIsValidNotOK() {
+		
+		assertEquals(false, emailValidator.isValid("", context));
 	}
-
-	@Test(expected = NumberFormatException.class)
-	public void testGetIdString() {
-
-		longMapper.getId("blablou");
-	}
-
-	@Test(expected = NumberFormatException.class)
-	public void testGetIdNull() {
-
-		longMapper.getId(null);
-	}
-
 }
