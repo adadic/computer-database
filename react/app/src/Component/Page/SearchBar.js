@@ -3,7 +3,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import {InputBase} from "@material-ui/core";
 import {fade, makeStyles} from "@material-ui/core/styles";
 import {connect} from 'react-redux';
-import {newSearch} from "../../Store/Action/searchAction";
+import {newSearch} from "../../Store/Action/SearchAction";
 
 const useStyles = makeStyles((theme) => ({
     search: {

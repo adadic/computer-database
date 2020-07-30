@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import useAxios from "axios-hooks";
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -29,37 +29,30 @@ const useStyle = makeStyles((theme) => ({
 function AddComputer() {
 
     const classes = useStyle();
-
     const baseURL = 'http://localhost:8083/webapp/api';
     const [{ data, loading, error }] = useAxios(baseURL + "/companies");
-    const [companyList, setCompanyList] = React.useState(data);
-    console.log(companyList);
+    const companyList = useState(data);
 
-    const [introducedDate, setIntroducedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-    const [discontinuedDate, setDiscontinuedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-    const [company, setCompany] = React.useState(companyList && companyList[0]);
-    const handleIntroducedChange = (date) => {
-        setIntroducedDate(date);
-    };
-    const handleDiscontinuedChange = (date) => {
-        setDiscontinuedDate(date);
-    };
-    const handleCompanyChange = (company) => {
-        setCompany(company);
-    };
+    const [name, setName] = useState("");
+    const [introducedDate, setIntroducedDate] = useState(new Date().getDate());
+    const [discontinuedDate, setDiscontinuedDate] = useState(new Date().getDate());
+    const [selectedCompany,setSelectedCompany] = useState("");
+
     return (
 
         <form className={classes.root}>
+            <div margin="auto">
+                <TextField
+                    className={classes.textField}
+                    required
+                    id="text-field-name"
+                    label="Computer Name"
+                    defaultValue="Computer Name"
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                />
+            </div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <div margin="auto">
-                    <TextField
-                        className={classes.textField}
-                        required
-                        id="text-field-name"
-                        label="Computer Name"
-                        defaultValue="Computer Name"
-                    />
-                </div>
                 <div>
                     <KeyboardDatePicker
                         className={classes.picker}
@@ -70,7 +63,7 @@ function AddComputer() {
                         minDate="1970-01-01"
                         maxDate="2038-01-18"
                         value={introducedDate}
-                        onChange={handleIntroducedChange}
+                        onChange={(event) => setIntroducedDate(event.target.value)}
 
                     />
                 </div>
@@ -82,7 +75,7 @@ function AddComputer() {
                         label="Discontinued Date"
                         format="MM/dd/yyyy"
                         value={discontinuedDate}
-                        onChange={handleDiscontinuedChange}
+                        onChange={(event) => setDiscontinuedDate(event.target.value)}
                         minDate="1970-01-01"
                         maxDate="2038-01-18"
                         KeyboardButtonProps={{
@@ -90,17 +83,16 @@ function AddComputer() {
                         }}
                     />
                 </div>
-                <div>
-                    <Select
-                        value={company}
-                        onChange={handleCompanyChange}>
-                        {companyList && companyList.forEach((companie) =>
-                            <MenuItem value={companie}>{companie && companie.name}</MenuItem>
-                        )}
-
-                    </Select>
-                </div>
             </MuiPickersUtilsProvider>
+            <div>
+                <Select
+                    value={selectedCompany}
+                    onChange={(event) => setSelectedCompany(event.target.value)}>
+                    {companyList && companyList.forEach(company => console.log(company)
+                    )}
+
+                </Select>
+            </div>
         </form>
 
     );

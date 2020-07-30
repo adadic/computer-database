@@ -3,10 +3,12 @@ import ListComputer from "./ListComputer";
 import useAxios from "axios-hooks";
 import ErrorPage from "../Page/ErrorPage";
 import {Backdrop, CircularProgress} from "@material-ui/core";
+import AddComputer from "./AddComputer";
 
 
-function ComputerDashboard() {
+function ComputerDashboard(props) {
 
+    const addMode = props.addMode;
     const headCell = [
         {id: 'name', numeric: false, disablePadding: true, label: 'Name'},
         {id: 'introduced', numeric: true, disablePadding: false, label: 'Introduced'},
@@ -53,9 +55,13 @@ function ComputerDashboard() {
                     <CircularProgress color="inherit" />
                 </Backdrop>
                 :
-                <div className="table-size">
-                    {computerList && <ListComputer computers={computerList} edit={executeEdit} add={executeAdd} headCells={headCell}/>}
-                </div>
+                addMode
+                    ?
+                    <AddComputer/>
+                    :
+                    <div className="table-size">
+                        {computerList && <ListComputer computers={computerList} edit={executeEdit} add={executeAdd} headCells={headCell}/>}
+                    </div>
             }
         </div>
     );

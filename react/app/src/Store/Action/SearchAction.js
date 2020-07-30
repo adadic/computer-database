@@ -5,5 +5,5 @@ export const newSearch = (search) => {
     return {
         type: SEARCH,
         payload: search
-    }
+    };
 }

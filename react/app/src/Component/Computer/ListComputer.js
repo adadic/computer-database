@@ -51,6 +51,10 @@ function ListComputer(props) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
+    computers.forEach(item => console.log(item.name));
+    console.log("Filter : " + computers.filter(item => item.name.includes(props.search)));
+    console.log("Search : " + props.search)
+
     const handleRequestSort = (event, property) => {
 
         const isAsc = orderBy === property && order === 'asc';
@@ -221,7 +225,7 @@ const mapStateToProps = (state) => {
 
     return {
         search: state.search,
-    }
+    };
 }
 
 export default connect(mapStateToProps)(ListComputer);

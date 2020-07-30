@@ -1,4 +1,4 @@
-import * as userActions from '../Action/userAction'
+import * as userActions from '../Action/UserAction'
 
 const initialState = {
     token: "",

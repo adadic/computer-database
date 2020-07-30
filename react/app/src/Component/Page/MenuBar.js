@@ -8,7 +8,7 @@ import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import InfoIcon from '@material-ui/icons/Info';
 import ComputerIcon from '@material-ui/icons/Computer';
 import BusinessIcon from '@material-ui/icons/Business';
-import {newSearch} from "../../Store/Action/searchAction";
+import {newSearch} from "../../Store/Action/SearchAction";
 import {connect} from "react-redux";
 
 const StyledMenu = withStyles({
