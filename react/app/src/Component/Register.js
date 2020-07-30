@@ -53,7 +53,7 @@ export function Register(props) {
 
     const api = axios.create(
         {
-            baseURL: 'http://localhost:8080/webapp/register'
+            baseURL: 'http://localhost:8083/webapp/register'
         }
     )
 
@@ -64,24 +64,30 @@ export function Register(props) {
     }
 
     let addUser = async () => {
+        if (displayAlert) {
+            console.log("cannot add");
+        } else {
+
 
         let response = await api.post('/', qs.stringify(user), config)
             .then((result) => {
-                console.log("result " + result.statusText);
-                setDisplayAlert(true);
+
+
                 if (result.status == 200) {
                     setSuccess(true);
-                    setMessage(result.data)
+                    setMessage(result.data);
+                    setDisplayAlert(true);
 
                 }
             })
             .catch((error) => {
-                console.log(error);
+
                 if (error.response) {
                     /*
                      * The request was made and the server responded with a
                      * status code that falls out of the range of 2xx
                      */
+
                     setMessage(error.response.data);
                     setSuccess(false);
                     setUsernameAlreadyExistsError(true);
@@ -93,9 +99,20 @@ export function Register(props) {
                      * is an instance of XMLHttpRequest in the browser and an instance
                      * of http.ClientRequest in Node.js
                      */
+                    setMessage("Internal server error");
+                    setSuccess(false);
+                    setDisplayInternalAlert(true);
+                    console.log(error.request);
+                    console.log(error.message);
+
+
 
                 } else {
                     // Something happened in setting up the request and triggered an Error
+                    setMessage("Internal server error");
+                    setSuccess(false);
+                    setDisplayAlert(true);
+                    console.log('Error', error.message);
 
                 }
 
@@ -103,6 +120,7 @@ export function Register(props) {
             });
 
     }
+}
     let model = {
 
         userName: '',
@@ -171,7 +189,7 @@ export function Register(props) {
 
         if (upper.test(user.password)) {
             setPasswordUpper(true);
-            console.log("upper");
+
         } else {
             setPasswordUpper(false);
             return false;
@@ -258,7 +276,7 @@ export function Register(props) {
 
     });
 
-    console.log('bool ' + displayAlert);
+
     return (
         <div className="Register">
             <Collapse in={(displayAlert) ? true : false}>
