@@ -3,19 +3,12 @@ package hr.excilys.dto;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import hr.excilys.validator.CustomPasswordMatchesAnnotation;
-
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
-
-
 public class DTOUser {
 
-	// private String id = "0";
 	@NotNull
 	@NotEmpty(message="Username cannot be empty")
 	private String userName;
@@ -36,12 +29,10 @@ public class DTOUser {
 		this.userName = username;
 		this.password = password;
 	}
-	public DTOUser() {
-		
+
+	@SuppressWarnings("unused")
+	private DTOUser() {
 	}
-	
-	
-	
 
 //	public String getId() {
 //
@@ -54,60 +45,44 @@ public class DTOUser {
 //	}
 
 	public String getUserName() {
+
 		return userName;
 	}
 
-
-
-
 	public void setUserName(String userName) {
+
 		this.userName = userName;
 	}
 
-
-
-
 	public String getMatchingPassword() {
+
 		return matchingPassword;
 	}
 
-
-
-
 	public void setMatchingPassword(String matchingPassword) {
+
 		this.matchingPassword = matchingPassword;
 	}
 
-
-
-
 	public DTORole getDtoRole() {
+
 		return dtoRole;
 	}
 
-
-
-
 	public void setDtoRole(DTORole dtoRole) {
+
 		this.dtoRole = dtoRole;
 	}
 
-
-
-
 	public String getEmail() {
+
 		return email;
 	}
 
-
-
-
 	public void setEmail(String email) {
+
 		this.email = email;
 	}
-
-
-
 
 	public void setPassword(String password) {
 

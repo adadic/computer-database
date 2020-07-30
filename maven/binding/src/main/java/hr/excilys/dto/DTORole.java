@@ -10,37 +10,36 @@ public class DTORole {
 
 	public DTORole() {
 	}
+
 	public DTORole(String roleId, String roleName) {
-		this.roleId=roleId;
-		this.roleName=roleName;
+
+		this.roleId = roleId;
+		this.roleName = roleName;
 	}
 
 	public String getroleId() {
-		
+
 		return roleId;
 	}
 
-
 	public void setroleId(String roleId) {
-		
+
 		this.roleId = roleId;
 	}
 
-
 	public String getroleName() {
-		
+
 		return roleName;
 	}
 
-
 	public void setroleName(String roleName) {
-		
+
 		this.roleName = roleName;
 	}
 
 	@Override
 	public String toString() {
-		
+
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 }

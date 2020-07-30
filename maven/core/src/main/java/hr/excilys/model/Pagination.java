@@ -105,6 +105,52 @@ public class Pagination {
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + count;
+		result = prime * result + direction;
+		result = prime * result + lines;
+		result = prime * result + maxPage;
+		result = prime * result + ((order == null) ? 0 : order.hashCode());
+		result = prime * result + page;
+		result = prime * result + ((search == null) ? 0 : search.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pagination other = (Pagination) obj;
+		if (count != other.count)
+			return false;
+		if (direction != other.direction)
+			return false;
+		if (lines != other.lines)
+			return false;
+		if (maxPage != other.maxPage)
+			return false;
+		if (order == null) {
+			if (other.order != null)
+				return false;
+		} else if (!order.equals(other.order))
+			return false;
+		if (page != other.page)
+			return false;
+		if (search == null) {
+			if (other.search != null)
+				return false;
+		} else if (!search.equals(other.search))
+			return false;
+		return true;
+	}
+
 	public static class PaginationBuilder {
 
 		private int lines;

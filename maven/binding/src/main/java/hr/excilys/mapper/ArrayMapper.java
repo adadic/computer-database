@@ -11,11 +11,11 @@ public final class ArrayMapper {
 
 	public List<String> stringTransform(String selected) {
 
-		if(StringUtils.isNotEmpty(selected)) {
-			
+		if (StringUtils.isNotEmpty(selected)) {
+
 			return Arrays.asList(selected.split(","));
 		}
-		
+
 		return Arrays.asList();
 	}
 

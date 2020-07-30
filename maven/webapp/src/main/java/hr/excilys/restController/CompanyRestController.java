@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import hr.excilys.dto.DTOCompany;
 import hr.excilys.model.Company;
 import hr.excilys.service.CompanyService;
 
@@ -65,5 +68,16 @@ public class CompanyRestController {
 	public boolean deleteCompany(@PathVariable("id") String id) {
 		
 		return companyService.deleteCompany(id);
+	}
+	
+	@PutMapping
+	public ResponseEntity<String> editCompany(@RequestBody DTOCompany dtoCompany) {
+
+		if (companyService.editCompany(dtoCompany)) {
+
+			return new ResponseEntity<String>("Company edited", HttpStatus.OK);
+		}
+
+		return new ResponseEntity<String>("Cannot edit company", HttpStatus.BAD_REQUEST);
 	}
 }

@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {StrictMode} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {Provider} from "react-redux";
+import searchReducer from "./Store/Reducer/SearchReducer";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk"
+
+const store = createStore(searchReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <StrictMode>
+      <Provider store={store}>
+        <App/>
+      </Provider>
+  </StrictMode>,
   document.getElementById('root')
 );
 
