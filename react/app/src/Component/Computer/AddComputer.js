@@ -5,7 +5,7 @@ import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
-import { TextField, makeStyles, Select, MenuItem } from "@material-ui/core";
+import {TextField, makeStyles, Select, MenuItem, Backdrop, CircularProgress} from "@material-ui/core";
 
 
 const useStyle = makeStyles((theme) => ({
@@ -35,12 +35,32 @@ function AddComputer() {
 
     const [computer, setComputer] = useState({
         name: "",
-        introduced: "",
-        discontinued: "",
+        introduced: null,
+        discontinued: null,
         selectedCompany: "0"
     })
 
     useEffect(() => setCompanies(data),[data]);
+
+    const handleIntroduced = (date) => {
+        try {
+            setComputer({...computer, introduced: date.toISOString().slice(0, 10)})
+        }
+        catch (e) {
+            setComputer({...computer, introduced: date})
+        }
+        console.log(computer.introduced)
+    }
+
+    const handleDiscontinued = (date) => {
+        try {
+            setComputer({...computer, discontinued: date.toISOString().slice(0, 10)})
+        }
+        catch (e) {
+            setComputer({...computer, discontinued: date})
+        }
+    }
+
 
     return (
         <form className={classes.root}>
@@ -51,7 +71,7 @@ function AddComputer() {
                     id="text-field-name"
                     label="Computer Name"
                     value={computer.name}
-                    onChange={(event) => setComputer({...computer, name:event.target.value})}
+                    onChange={(event) => setComputer({...computer, name: event.target.value})}
                 />
             </div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -64,8 +84,8 @@ function AddComputer() {
                         label="Introduced Date"
                         minDate="1970-01-01"
                         maxDate="2038-01-18"
-                        value="2020-12-20"
-                        onChange={(event) => setComputer({...computer, introduced:event.target.value})}
+                        value={computer.introduced}
+                        onChange={handleIntroduced}
 
                     />
                 </div>
@@ -77,9 +97,10 @@ function AddComputer() {
                         label="Discontinued Date"
                         format="yyyy-MM-dd"
                         value={computer.discontinued}
-                        onChange={(event) => setComputer({...computer, discontinued:event.target.value})}
+                        onChange={handleDiscontinued}
                         minDate="1970-01-01"
                         maxDate="2038-01-18"
+                        disabled={!computer.introduced || computer.introduced.toString() === "Invalid Date"}
                         KeyboardButtonProps={{
                             'aria-label': 'change date',
                         }}
@@ -89,18 +110,19 @@ function AddComputer() {
             <div>
                 <Select
                     value={computer.selectedCompany}
-                    onChange={(event) => setComputer({...computer, selectedCompany:event.target.value})}
+                    onChange={(event) => setComputer({...computer, selectedCompany: event.target.value})}
                 >
                     <MenuItem value={0}>None</MenuItem>
-                    {companyList && companyList.forEach(company => { return(
-                        <MenuItem value={company.id}>company.name</MenuItem>
-                    )})
+                    {companyList && companyList.map(company => {
+                        return (
+                            <MenuItem key={company.id} value={company.id}>{company.name}</MenuItem>
+                        )
+                    })
                     }
 
                 </Select>
             </div>
         </form>
-
     );
 
 }
