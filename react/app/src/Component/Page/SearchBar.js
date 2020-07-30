@@ -4,6 +4,7 @@ import {InputBase} from "@material-ui/core";
 import {fade, makeStyles} from "@material-ui/core/styles";
 import {connect} from 'react-redux';
 import {newSearch} from "../../Store/Action/SearchAction";
+import {getSearch} from "../../Store/Selector/SearchSelector";
 
 const useStyles = makeStyles((theme) => ({
     search: {
@@ -73,7 +74,7 @@ function SearchBar(props){
 const mapStateToProps = (state) => {
 
     return {
-        search: state.search,
+        search: getSearch(state),
     }
 }
 

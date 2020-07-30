@@ -10,6 +10,7 @@ import {useHistory} from "react-router-dom";
 import {stableSort, getComparatorCompany} from "../../Function/TableFunction";
 import CreateIcon from '@material-ui/icons/Create';
 import {connect} from "react-redux";
+import {getSearch} from "../../Store/Selector/SearchSelector";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -196,7 +197,7 @@ function ListCompany(props) {
 const mapStateToProps = (state) => {
 
     return {
-        search: state.search,
+        search: getSearch(state),
     }
 }
 

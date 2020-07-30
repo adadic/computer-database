@@ -1,4 +1,6 @@
+import {tokenOption} from "../Reducers/RootReducer";
+
 export function getToken(state){
 
-    return state.token;
+    return state[tokenOption];
 }

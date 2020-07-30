@@ -10,6 +10,7 @@ import {useHistory} from "react-router-dom";
 import {stableSort, getComparator} from "../../Function/TableFunction";
 import CreateIcon from '@material-ui/icons/Create';
 import {connect} from "react-redux";
+import {getSearch} from "../../Store/Selector/SearchSelector";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -50,10 +51,6 @@ function ListComputer(props) {
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-
-    computers.forEach(item => console.log(item.name));
-    console.log("Filter : " + computers.filter(item => item.name.includes(props.search)));
-    console.log("Search : " + props.search)
 
     const handleRequestSort = (event, property) => {
 
@@ -224,7 +221,7 @@ function ListComputer(props) {
 const mapStateToProps = (state) => {
 
     return {
-        search: state.search,
+        search: getSearch(state),
     };
 }
 

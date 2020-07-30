@@ -2,8 +2,14 @@ import { combineReducers } from "redux";
 import userReducer from "./UserReducer";
 import searchReducer from './SearchReducer';
 
-export default combineReducers({
+export const searchOption = 'searchOption';
+export const tokenOption = 'tokenOption';
+
+const search = { [searchOption]: searchReducer };
+const token = { [tokenOption]: userReducer}
+
+export const RootReducer = combineReducers({
     
-    userReducer,
-    searchReducer,
+    ...token,
+    ...search,
 });
