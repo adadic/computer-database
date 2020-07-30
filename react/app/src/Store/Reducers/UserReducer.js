@@ -11,8 +11,9 @@ const userReducer = (state = initialState, action) => {
         case userActions.TOKEN:
             
             return {...state, token: action.payload};
+        default:
+            return state;
     }
-    return state
 }
 
 export default userReducer
