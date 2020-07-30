@@ -5,7 +5,7 @@ import './App.scss';
 import Header from "./Component/Page/Header";
 import Register from "./Component/User/Register";
 import ComputerDashboard from "./Component/Computer/ComputerDashboard";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import Login from "./Component/User/Login";
 import CompanyDashboard from "./Component/Company/CompanyDashboard";
 import Computer from "./Component/Computer/Computer";
@@ -20,35 +20,38 @@ function App() {
                 <div className="App">
                     <Header/>
                     <Switch>
-                        <Route path="/register">
+                        <Route exact path="/register">
                             <Register />
                         </Route>
-                        <Route path={"/about"}>
+                        <Route exact path={"/about"}>
                             <About/>
                         </Route>
-                        <Route path={"/logout"}>
+                        <Route exact path={"/logout"}>
                             <Logout/>
                         </Route>
-                        <Route path="/login">
+                        <Route exact path="/login">
                             <Login/>
                         </Route>
-                        <Route path={"/computers/:id"}>
+                        <Route exact path={"/computers/:id"}>
                             <Computer/>
                         </Route>
-                        <Route path={"/companies/:id"}>
+                        <Route exact path={"/companies/:id"}>
                             <Company/>
                         </Route>
-                        <Route path={"/companies"}>
+                        <Route exact path={"/companies"}>
                             <CompanyDashboard/>
                         </Route>
-                        <Route path={"/computers"}>
+                        <Route exact path={"/computers"}>
                             <ComputerDashboard />
                         </Route>
-                        <Route path={"/AddComputer"}>
+                        <Route exact path={"/AddComputer"}>
                             <ComputerDashboard addMode={true}/>
                         </Route>
-                        <Route path={"/home"}>
+                        <Route exact path={"/home"}>
                             <Home />
+                        </Route>
+                        <Route exact path={"/"}>
+                            <Redirect to="/home"/>
                         </Route>
 
                     </Switch>
