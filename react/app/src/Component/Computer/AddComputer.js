@@ -5,7 +5,8 @@ import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
-import {TextField, makeStyles, Select, MenuItem, Backdrop, CircularProgress} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
+import {TextField, makeStyles, Select, MenuItem, Backdrop, CircularProgress, Button} from "@material-ui/core";
 
 
 const useStyle = makeStyles((theme) => ({
@@ -23,11 +24,22 @@ const useStyle = makeStyles((theme) => ({
         minHeight: 60,
         maxHeight: 75,
         minWidth: 300,
+    },
+    select: {
+        minHeight: 60,
+        maxHeight: 75,
+        minWidth: 300,
+    },
+    button: {
+        marginTop: 10,
+        marginLeft: 5,
+        marginRight: 5,
     }
 }))
 
-function AddComputer() {
+function AddComputer(props) {
 
+    const history= useHistory();
     const classes = useStyle();
     const baseURL = 'http://localhost:8083/webapp/api';
     const [{ data, loading, error }] = useAxios(baseURL + "/companies");
@@ -108,7 +120,7 @@ function AddComputer() {
                 </div>
             </MuiPickersUtilsProvider>
             <div>
-                <Select
+                <Select className={classes.select}
                     value={computer.selectedCompany}
                     onChange={(event) => setComputer({...computer, selectedCompany: event.target.value})}
                 >
@@ -122,6 +134,8 @@ function AddComputer() {
 
                 </Select>
             </div>
+            <Button className={classes.button} onClick={()=>{props.addComputer(computer);history.push("/computers")}} variant="contained" value="Ajouter" color="primary">Ajouter</Button>
+            <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Annuler</Button>
         </form>
     );
 
