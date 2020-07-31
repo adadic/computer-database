@@ -101,11 +101,10 @@ function Register() {
                      * is an instance of XMLHttpRequest in the browser and an instance
                      * of http.ClientRequest in Node.js
                      */
-                    setMessage("Internal server error");
+                    setMessage(error.message);
                     setSuccess(false);
                     setDisplayInternalAlert(true);
-                    console.log(error.request);
-                    console.log(error.message);
+
 
 
 
@@ -147,6 +146,7 @@ function Register() {
     const [emailError, setEmailError] = useState(true)
     const [usernameError, setUsernameError] = useState(true)
     const [usernameAlreadyExistsError, setUsernameAlreadyExistsError] = useState(false);
+    const [displayInternalAlert, setDisplayInternalAlert]=useState(false);
 
 
     const handleClickShowPassword = () => {
@@ -266,6 +266,9 @@ function Register() {
         }
 
     }
+    const reset=()=>{
+
+    }
 
     useEffect(() => {
         usernameCheck(user.userName);
@@ -279,7 +282,7 @@ function Register() {
 
     return (
         <div className="Register">
-            <Collapse in={(displayAlert)}>
+            <Collapse in={(displayAlert | displayInternalAlert)}>
                 <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
                        severity={success ? "success" : "error"}>{message}</Alert>
             </Collapse>
@@ -298,6 +301,7 @@ function Register() {
                     <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)}>
                         <InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
                         <Input
+                            required={true}
                             error={emailError}
                             id="email"
                             type='email'
@@ -311,6 +315,7 @@ function Register() {
 
                         <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                         <Input
+                            require={true}
                             id="standard-adornment-password"
                             error={passwordError}
                             onFocus={() => setChecked(true)}
@@ -372,8 +377,8 @@ function Register() {
             </form>
 
             <br/>
-            <Button onClick={addUser} variant="outlined" color="primary">Add</Button>{' '}
-            <Button onClick={addUser} variant="outlined" color="secondary">Cancel</Button>
+            <Button onClick={addUser} variant="outlined" style={{color:green[500]}}>Add</Button>{' '}
+            <Button onClick={reset} variant="outlined" color="primary">Reset</Button>
         </div>
     );
 
