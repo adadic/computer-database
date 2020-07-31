@@ -10,8 +10,7 @@ import BusinessIcon from '@material-ui/icons/Business';
 import HomeIcon from '@material-ui/icons/Home';
 import {connect} from "react-redux";
 import {getToken, isConnected} from "../../Store/Selector/ConnexionSelector";
-import {newSearch, searchMode} from "../../Store/Action/SearchAction";
-import {getSearchMode} from "../../Store/Selector/SearchSelector";
+import {newSearch} from "../../Store/Action/SearchAction";
 
 const StyledMenu = withStyles({
     paper: {
@@ -59,12 +58,6 @@ function MenuBar(props) {
     const redirectTo = (path) => () => {
 
         props.changeSearch("");
-        if(path === "/computers" || path === "/companies"){
-            props.changeMode(true);
-        }
-        else {
-            props.changeMode(false);
-        }
         history.push(path)
         setAnchorEl(null);
     }
@@ -125,8 +118,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeSearch: search =>
             dispatch(newSearch(search)),
-        changeMode: mode =>
-            dispatch(searchMode(mode))
     }
 }
 
