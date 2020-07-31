@@ -10,9 +10,10 @@ import IconButton from "@material-ui/core/IconButton";
 import InputLabel from "@material-ui/core/InputLabel";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
+import {useHistory} from "react-router-dom";
 
 import clsx from "clsx";
-import { getToken } from '../../Store/Action/UserAction';
+import { setToken } from '../../Store/Action/ConnexionAction';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,6 +44,7 @@ export const baseURL = 'http://localhost:8083/webapp/api/login';
 
 function Login(props) {
 
+    const history = useHistory();
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
 
@@ -70,9 +72,8 @@ function Login(props) {
         console.log(user)
         login({ data: user })
             .then((res) => {
-                console.log(res.data)
-                props.token(res.data)
-                //window.location.href = "/dashboard"
+                props.seToken(res.data)
+                history.push("/computers")
             }).catch((error) => {
                 console.log(error)
             });
@@ -124,7 +125,7 @@ function Login(props) {
 const mapDispatchToProps = dispatch => {
     return {
 
-        token: data => dispatch(getToken(data)),
+        seToken: data => dispatch(setToken(data)),
     }
 }
 

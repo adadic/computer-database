@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
     Button, Typography, Drawer,
     Toolbar, AppBar, InputBase
 } from '@material-ui/core';
-import {fade, makeStyles} from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuBar from "./MenuBar";
 import Login from "../User/Login";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import { getToken, isConnected } from '../../Store/Selector/ConnexionSelector';
+import { connect } from 'react-redux';
+import ShowUser from '../User/ShowUser';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Header() {
+function Header(props) {
     const classes = useStyles();
     const [state, setState] = useState(false);
     const history = useHistory();
@@ -81,16 +84,29 @@ function Header() {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <MenuBar className={classes.menuButton}/>
+                    <MenuBar className={classes.menuButton} />
                     <Typography variant="h6" className={classes.title}>
                         Computer Database
                     </Typography>
 
-                    <SearchBar/>
-                    <Button onClick={toggleDrawer(true)} color="inherit">Login</Button>
-                    <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
-                        <Login/>
-                    </Drawer>
+                    <SearchBar />
+                    {props.token !== "" && props.isConnected
+                        ?
+                        <div>
+                            <Button onClick={toggleDrawer(true)} color="inherit">User</Button>
+                            <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
+                                <ShowUser />
+                            </Drawer>
+                        </div>
+                        :
+                        <div>
+                            <Button onClick={toggleDrawer(true)} color="inherit">Login</Button>
+                            <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
+                                <Login />
+                            </Drawer>
+                        </div>
+                    }
+
 
                 </Toolbar>
             </AppBar>
@@ -98,4 +114,11 @@ function Header() {
     );
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+        token: getToken(state),
+        isConnected: isConnected(state)
+    }
+}
+
+export default connect(mapStateToProps, null)(Header);
