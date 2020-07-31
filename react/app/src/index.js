@@ -10,11 +10,11 @@ import { createStore } from "redux";
 const store = createStore(RootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
-    <React.StrictMode>
+    <StrictMode>
       <Provider store={store}>
         <App/>
       </Provider>
-    </React.StrictMode>,
+    </StrictMode>,
   document.getElementById('root')
 );
 

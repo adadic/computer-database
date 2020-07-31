@@ -44,7 +44,14 @@ function ComputerDashboard(props) {
         {manual: true}
     );
 
+    
+
     useEffect(() => setComputerList(data),[data, dataAdd, dataEdit]);
+
+    function addComputer(computer){
+        setComputerList(computerList.add(computer))
+        executeAdd({data:computer})
+    }
 
     return (
         <div className="App">
@@ -57,7 +64,7 @@ function ComputerDashboard(props) {
                 :
                 addMode
                     ?
-                    <AddComputer/>
+                    <AddComputer addComputer={addComputer}/>
                     :
                     <div className="table-size">
                         {computerList && <ListComputer computers={computerList} edit={executeEdit} add={executeAdd} headCells={headCell}/>}
