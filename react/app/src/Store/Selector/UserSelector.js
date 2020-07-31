@@ -1,6 +1,6 @@
-import {tokenOption} from "../Reducers/RootReducer";
+import {userOption} from "../Reducers/RootReducer";
 
-export function getToken(state){
+export function getUser(state){
 
-    return state[tokenOption];
+    return state[userOption].user;
 }
