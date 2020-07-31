@@ -14,6 +14,7 @@ import {useHistory} from "react-router-dom";
 
 import clsx from "clsx";
 import { setToken } from '../../Store/Action/ConnexionAction';
+import {searchMode} from "../../Store/Action/SearchAction";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -73,6 +74,7 @@ function Login(props) {
         login({ data: user })
             .then((res) => {
                 props.seToken(res.data)
+                props.changeMode(true);
                 history.push("/computers")
             }).catch((error) => {
                 console.log(error)
@@ -126,6 +128,8 @@ const mapDispatchToProps = dispatch => {
     return {
 
         seToken: data => dispatch(setToken(data)),
+        changeMode: mode =>
+            dispatch(searchMode(mode))
     }
 }
 

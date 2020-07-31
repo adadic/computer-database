@@ -4,7 +4,7 @@ import {
     Toolbar, AppBar, InputBase
 } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuBar from "./MenuBar";
 import Login from "../User/Login";
 import { useHistory } from "react-router-dom";
@@ -12,6 +12,7 @@ import SearchBar from "./SearchBar";
 import { getToken, isConnected } from '../../Store/Selector/ConnexionSelector';
 import { connect } from 'react-redux';
 import ShowUser from '../User/ShowUser';
+import {getSearchMode} from "../../Store/Selector/SearchSelector";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -89,11 +90,13 @@ function Header(props) {
                         Computer Database
                     </Typography>
 
-                    <SearchBar />
+                    {props.isSearching && <SearchBar/>}
                     {props.token !== "" && props.isConnected
                         ?
                         <div>
-                            <Button onClick={toggleDrawer(true)} color="inherit">User</Button>
+                            <Button onClick={toggleDrawer(true)} color="inherit">
+                                <AccountCircleIcon/>
+                            </Button>
                             <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
                                 <ShowUser />
                             </Drawer>
@@ -117,7 +120,8 @@ function Header(props) {
 const mapStateToProps = (state) => {
     return {
         token: getToken(state),
-        isConnected: isConnected(state)
+        isConnected: isConnected(state),
+        isSearching: getSearchMode(state)
     }
 }
 

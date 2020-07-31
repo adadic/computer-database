@@ -4,12 +4,14 @@ import {ListItemIcon, ListItemText,
     MenuItem, Menu, IconButton} from '@material-ui/core';
 import MenuIcon from "@material-ui/icons/Menu";
 import { useHistory } from "react-router-dom";
-import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import InfoIcon from '@material-ui/icons/Info';
 import ComputerIcon from '@material-ui/icons/Computer';
 import BusinessIcon from '@material-ui/icons/Business';
-import {newSearch} from "../../Store/Action/SearchAction";
+import HomeIcon from '@material-ui/icons/Home';
 import {connect} from "react-redux";
+import {getToken, isConnected} from "../../Store/Selector/ConnexionSelector";
+import {newSearch, searchMode} from "../../Store/Action/SearchAction";
+import {getSearchMode} from "../../Store/Selector/SearchSelector";
 
 const StyledMenu = withStyles({
     paper: {
@@ -57,6 +59,12 @@ function MenuBar(props) {
     const redirectTo = (path) => () => {
 
         props.changeSearch("");
+        if(path === "/computers" || path === "/companies"){
+            props.changeMode(true);
+        }
+        else {
+            props.changeMode(false);
+        }
         history.push(path)
         setAnchorEl(null);
     }
@@ -79,24 +87,28 @@ function MenuBar(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <StyledMenuItem onClick={redirectTo("/computers")}>
+                <StyledMenuItem onClick={redirectTo("/home")}>
                     <ListItemIcon>
-                        <ComputerIcon fontSize="small" />
+                        <HomeIcon fontSize="small" />
                     </ListItemIcon>
-                    <ListItemText primary="Computers" />
+                    <ListItemText primary="Home" />
                 </StyledMenuItem>
-                <StyledMenuItem onClick={redirectTo("/companies")}>
-                    <ListItemIcon>
-                        <BusinessIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText primary="Companies" />
-                </StyledMenuItem>
-                <StyledMenuItem onClick={redirectTo("/logout")}>
-                    <ListItemIcon>
-                        <PowerSettingsNewIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText primary="Logout" />
-                </StyledMenuItem>
+                {(props.token !== "" && props.isConnected) &&
+                    <StyledMenuItem onClick={redirectTo("/computers")}>
+                        <ListItemIcon>
+                            <ComputerIcon fontSize="small"/>
+                        </ListItemIcon>
+                        <ListItemText primary="Computers"/>
+                    </StyledMenuItem>
+                }
+                {(props.token !== "" && props.isConnected) &&
+                    <StyledMenuItem onClick={redirectTo("/companies")}>
+                        <ListItemIcon>
+                            <BusinessIcon fontSize="small"/>
+                        </ListItemIcon>
+                        <ListItemText primary="Companies"/>
+                    </StyledMenuItem>
+                }
                 <StyledMenuItem onClick={redirectTo("/about")}>
                     <ListItemIcon>
                         <InfoIcon fontSize="small" />
@@ -113,7 +125,16 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeSearch: search =>
             dispatch(newSearch(search)),
+        changeMode: mode =>
+            dispatch(searchMode(mode))
     }
 }
 
-export default connect(null, mapDispatchToProps)(MenuBar);
+const mapStateToProps = (state) => {
+    return {
+        token: getToken(state),
+        isConnected: isConnected(state)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuBar);
