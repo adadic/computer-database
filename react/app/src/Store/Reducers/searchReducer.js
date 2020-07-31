@@ -1,4 +1,4 @@
-import * as actionTypes from "../Action/SearchAction"
+import * as actionTypes from "../Action/searchAction"
 
 const initialState = {
     search: ""

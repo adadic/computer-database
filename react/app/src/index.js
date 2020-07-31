@@ -4,18 +4,16 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
-import searchReducer from "./Store/Reducer/SearchReducer";
+import rootReducer from "./Store/Reducers/rootReducer";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk"
 
-const store = createStore(searchReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
-  <StrictMode>
       <Provider store={store}>
         <App/>
-      </Provider>
-  </StrictMode>,
+      </Provider>,
   document.getElementById('root')
 );
 
