@@ -108,7 +108,7 @@ public class DAOComputer {
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			if(computer.getCompany().getId() == 0) {
+			if(computer.getCompany()==null || computer.getCompany().getId() == 0) {
 				computer = new Computer.ComputerBuilder(computer.getName())
 						.id(computer.getId())
 						.introduced(computer.getIntroduced())

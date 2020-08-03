@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import hr.excilys.dto.DTOComputer;
+import hr.excilys.dto.DTOComputerAdd;
 import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
 import hr.excilys.mapper.DateMapper;
@@ -48,5 +49,24 @@ public class ComputerDTOMapper {
 
 			return Optional.empty();
 		}
+	}
+	
+	public Optional<Computer> fromDTOAdd(DTOComputerAdd dtoComputerAdd){
+		
+		if (computerValidator.checkComputerFieldsAdd(dtoComputerAdd)) {
+			long id = longMapper.getId(dtoComputerAdd.getId());
+			LocalDate introduced = dateMapper.getDate(dtoComputerAdd.getIntroduced());
+			LocalDate discontinued = dateMapper.getDate(dtoComputerAdd.getDiscontinued());
+			Optional<Company> optionalCompany = companyDTOMapper.fromString(dtoComputerAdd.getCompanyId());
+			Company company = optionalCompany.isPresent() ? optionalCompany.get() : null;
+
+			return Optional.of(new Computer.ComputerBuilder(dtoComputerAdd.getComputerName()).id(id).introduced(introduced)
+					.discontinued(discontinued).company(company).build());
+
+		} else {
+
+			return Optional.empty();
+		}
+		
 	}
 }
