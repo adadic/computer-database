@@ -11,6 +11,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
 import {searchMode} from "../../Store/Action/SearchAction";
+import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -215,6 +216,7 @@ function ListComputer(props) {
                     page={page}
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
+                    ActionsComponent={EnhancedTableFooter}
                 />
             </Paper>
         </div>
