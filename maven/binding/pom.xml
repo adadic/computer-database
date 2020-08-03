@@ -15,7 +15,7 @@
 	<name>binding</name>
 	
 	<properties>
-		<hibernate-validator>6.0.10.Final</hibernate-validator>
+		<hibernate-validator>6.1.5.Final</hibernate-validator>
 	</properties>
 
 	<dependencies>
