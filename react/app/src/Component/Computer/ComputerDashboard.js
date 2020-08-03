@@ -49,7 +49,6 @@ function ComputerDashboard(props) {
     useEffect(() => setComputerList(data),[data, dataAdd, dataEdit]);
 
     function addComputer(computer){
-        console.log("method call");
         setComputerList(computerList.concat({computer}));
         executeAdd({data:computer});
     }
