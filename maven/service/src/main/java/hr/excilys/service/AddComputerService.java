@@ -24,10 +24,9 @@ public class AddComputerService {
 	}
 
 	public boolean addComputer(DTOComputer dtoComputer) {
-
+		
 		Optional<Computer> computer = computerDTOMapper.fromDTO(dtoComputer);
 		if (computer.isPresent()) {
-			System.out.println("computer ---- "+computer);
 
 			return daoComputer.insertComputer(computer.get());
 		}

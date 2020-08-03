@@ -27,13 +27,13 @@ public class UserRestController {
 		this.userService = userService;
 	}
 	
-	@GetMapping
+	@GetMapping(value = "/{username}")
 	public ResponseEntity<String> getUsers(@PathVariable("username") String username) {
 		
 		try {
 			CustomUserDetails user = userService.loadUserByUsername(username);
 			//CustomUserDetails user = userService.loadUserByUsername("toto");
-			System.out.println(user);
+			System.out.println("----" + user);
 			return ResponseEntity.ok(obj.writeValueAsString(user));
 		} catch (JsonProcessingException jsonExc) {
 			jsonExc.printStackTrace();

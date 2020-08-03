@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from "react";
 import { connect } from 'react-redux';
 
@@ -11,6 +11,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
 import {useHistory} from "react-router-dom";
+import { setUser } from '../../Store/Action/UserAction';
+import { getUser } from '../../Store/Selector/UserSelector';
+import { getToken } from '../../Store/Selector/ConnexionSelector';
 
 import clsx from "clsx";
 import { setToken } from '../../Store/Action/ConnexionAction';
@@ -40,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const baseURL = 'http://localhost:8083/webapp/api/login';
+export const baseURL = 'http://localhost:8083/webapp/api';
 
 function Login(props) {
 
@@ -57,27 +60,31 @@ function Login(props) {
 
     const [user, setUser] = useState({
         userName: "",
+        email: "",
+        roleName: "",
         password: ""
     });
 
     const [{ }, login] = useAxios(
         {
-            url: `${baseURL}`,
+            url: `${baseURL}/login`,
             method: "POST"
         },
         { manual: true }
     );
 
     function connexion() {
-        console.log(user)
         login({ data: user })
             .then((res) => {
                 props.seToken(res.data)
+                props.setUser(user)
+                props.closeDrawer()
                 history.push("/computers")
             }).catch((error) => {
                 console.log(error)
             });
     }
+
 
     return (
         <div className="Register">
@@ -126,7 +133,15 @@ const mapDispatchToProps = dispatch => {
     return {
 
         seToken: data => dispatch(setToken(data)),
+        setUser: user => dispatch(setUser(user))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapStateToProps = (state) => {
+    return {
+        token: getToken(state),
+        user: getUser(state),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
