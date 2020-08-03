@@ -6,15 +6,15 @@ import {
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuBar from "./MenuBar";
-import Login from "../User/Login";
+import Login from "../../User/Login";
 import SearchBar from "./SearchBar";
-import { getToken, isConnected } from '../../Store/Selector/ConnexionSelector';
+import { getToken, isConnected } from '../../../Store/Selector/ConnexionSelector';
 import { connect } from 'react-redux';
-import ShowUser from '../User/ShowUser';
+import ShowUser from '../../User/ShowUser';
 import useAxios from 'axios-hooks';
-import { getUser } from '../../Store/Selector/UserSelector';
-import { setUser } from '../../Store/Action/UserAction';
-import {getSearchMode} from "../../Store/Selector/SearchSelector";
+import { getUser } from '../../../Store/Selector/UserSelector';
+import { setUser } from '../../../Store/Action/UserAction';
+import {getSearchMode} from "../../../Store/Selector/SearchSelector";
 
 const baseURL = 'http://localhost:8083/webapp/api/users';
 
