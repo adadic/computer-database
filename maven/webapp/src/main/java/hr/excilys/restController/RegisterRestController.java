@@ -18,7 +18,8 @@ import hr.excilys.dto.DTOUser;
 import hr.excilys.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*",  allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/api/register")
 public class RegisterRestController {
 

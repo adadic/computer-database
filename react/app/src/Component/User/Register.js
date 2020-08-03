@@ -58,7 +58,8 @@ function Register() {
 
     const config = {
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+
         }
     }
 

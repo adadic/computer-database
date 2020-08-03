@@ -13,6 +13,8 @@ import Company from "./Component/Company/Company";
 import About from "./Component/Page/About";
 import Logout from "./Component/User/Logout";
 import Home from "./Component/Page/Home";
+import UserManagement from "./Component/User/UserManagement";
+import UserProfile from "./Component/User/UserProfile";
 
 function App() {
     return (
@@ -23,6 +25,13 @@ function App() {
                         <Route exact path="/register">
                             <Register />
                         </Route>
+                        <Route exact path="/users">
+                            <UserManagement />
+                        </Route>
+                        <Route exact path="/user">
+                            <UserProfile />
+                        </Route>
+
                         <Route exact path={"/about"}>
                             <About/>
                         </Route>
