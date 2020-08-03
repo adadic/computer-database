@@ -56,6 +56,7 @@ function ComputerDashboard(props) {
     const deleteComputer = (id) => {
         executeDelete({url: `${baseURL}/computers/${id}`});
         setComputerList(computerList.filter(item => item.id !== id));
+
     }
 
     return (
