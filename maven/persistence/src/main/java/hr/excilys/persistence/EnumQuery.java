@@ -16,7 +16,8 @@ public enum EnumQuery {
 	SORTPAGECOMPUTERDESC("FROM Computer WHERE name LIKE :search ORDER BY name DESC"),
 	SORTPAGECOMPANYDESC("FROM Computer WHERE name LIKE :search ORDER BY company.name DESC"),
 	GETUSER("FROM User WHERE username = :username"), ALLROLE("FROM Role"),
-	UPDATECOMPANY("UPDATE Company SET name = :name  WHERE id = :id ");
+	UPDATECOMPANY("UPDATE Company SET name = :name  WHERE id = :id "),
+	GETUSERS("FROM User");
 
 	private String message;
 

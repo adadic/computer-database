@@ -30,10 +30,13 @@ public class User{
 	@Column(name ="password")
 	private String password;
 	
+	@Column(name="email")
+	private String email;
+	
 	@Column(name = "enabled", nullable = false)
     private boolean enabled = true;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Role.class)
+	@ManyToOne(targetEntity = Role.class)
 	@JoinColumn(name = "role_id", referencedColumnName = "id")
 	private Role role;
 	
@@ -91,6 +94,14 @@ public class User{
 	public boolean isEnabled() {
 		
 		return enabled;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
@@ -174,15 +185,18 @@ public class User{
 		private Role role;
 		@SuppressWarnings("unused")
 		private long id;
+		private String email;
 
 
 		public UserBuilder() {}
 		
-		public UserBuilder (String username, String password, Role role) {
+		public UserBuilder (String username, String password, Role role, String email) {
 
 			this.username = username;
 			this.password = password;
 			this.role = role;
+			
+			
 		}
 
 		public User build() {
@@ -197,13 +211,14 @@ public class User{
 			return this;
 		}
 
-		public UserBuilder setId(long id) {
-			this.id = id;
-			return this;
-		}
+		
 		
 		public UserBuilder setUsername(String username) {
 			this.username = username;
+			return this;
+		}
+		public UserBuilder setEmail(String email) {
+			this.email = email;
 			return this;
 		}
 
@@ -215,6 +230,10 @@ public class User{
 		public UserBuilder setRole(Role role) {
 			this.role = role;
 			return this;
+		}
+
+		public String getEmail() {
+			return email;
 		}
 
 	}

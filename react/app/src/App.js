@@ -67,8 +67,9 @@ function App(props) {
                             <Route exact path={"/home"}>
                                 <Home/>
                             </Route>
-                            <Route path={"/"}>
-                                <Redirect to="/home"/>
+
+                            <Route exact path={"/register"}>
+                                <Register/>
                             </Route>
                         </Switch>
                     }
