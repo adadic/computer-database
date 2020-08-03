@@ -49,14 +49,15 @@ function ComputerDashboard(props) {
     useEffect(() => setComputerList(data),[data, dataAdd, dataEdit]);
 
     function addComputer(computer){
+
         setComputerList(computerList.concat({computer}));
         executeAdd({data:computer});
     }
 
     const deleteComputer = (id) => {
+
         executeDelete({url: `${baseURL}/computers/${id}`});
         setComputerList(computerList.filter(item => item.id !== id));
-
     }
 
     return (

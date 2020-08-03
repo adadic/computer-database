@@ -40,6 +40,12 @@ function CompanyDashboard() {
         {manual: true}
     );
 
+    const deleteCompany = (id) => {
+
+        setCompanyList(companyList.filter(item => item.id !== id));
+        executeDelete({url: `${baseURL}/computers/${id}`});
+    }
+
     useEffect(() => setCompanyList(data),[data, dataAdd, dataEdit]);
 
     return (
@@ -52,7 +58,7 @@ function CompanyDashboard() {
                 </Backdrop>
                 :
                 <div className="table-size">
-                    {companyList && <ListCompany companies={companyList} edit={executeEdit} add={executeAdd} headCells={headCell} delete={executeDelete}/>}
+                    {companyList && <ListCompany companies={companyList} edit={executeEdit} add={executeAdd} headCells={headCell} delete={deleteCompany}/>}
                 </div>
             }
         </div>
