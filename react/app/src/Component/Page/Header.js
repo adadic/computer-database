@@ -15,10 +15,9 @@ import ShowUser from '../User/ShowUser';
 import useAxios from 'axios-hooks';
 import { getUser } from '../../Store/Selector/UserSelector';
 import { setUser } from '../../Store/Action/UserAction';
-
-export const baseURL = 'http://localhost:8083/webapp/api/users';
-
 import {getSearchMode} from "../../Store/Selector/SearchSelector";
+
+const baseURL = 'http://localhost:8083/webapp/api/users';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -176,7 +175,7 @@ const mapDispatchToProps = dispatch => {
     return {
 
         setUser: user => dispatch(setUser(user)),
-        isSearching: getSearchMode(state)
+        isSearching: state => getSearchMode(state)
     }
 }
 

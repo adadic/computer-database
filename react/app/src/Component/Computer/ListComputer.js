@@ -112,9 +112,8 @@ function ListComputer(props) {
 
     function deleteComputers() {
 
-        console.log({data: selected})
-        console.log(selected[0] === 2)
-        console.log(selected[0] === "2")
+        props.delete && selected.forEach(id => props.delete(id));
+        setSelected([]);
     }
 
     function getDate(date) {
