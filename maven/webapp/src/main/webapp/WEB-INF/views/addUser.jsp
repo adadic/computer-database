@@ -56,9 +56,10 @@
 							<div class="form-group">
 								<label for="userName"><spring:message code="form.user" /></label>
 								<input type="text" class="form-control" id="userName"
-									name="userName"
+									name="username"
 									placeholder="<spring:message code="form.user"/>" required>
 							</div>
+							<!-- 
 							<div class="form-group">
 								<label for="roleId"><spring:message code="form.role" /></label>
 								<select class="form-control"
@@ -70,6 +71,7 @@
 
 								</select>
 							</div>
+							 -->
 
 							<div class="form-group">
 								<label for="introduced"><spring:message

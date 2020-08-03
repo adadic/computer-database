@@ -23,6 +23,7 @@ public class ComputerValidatorTest {
 
 	@Autowired
 	private ComputerValidator computerValidator;
+	private DTOComputer dtoComputer;
 	
 	@Before
 	public void Setup() {
@@ -33,7 +34,7 @@ public class ComputerValidatorTest {
 	@Test
 	public void testCheckComputerFieldsValidComputer() {
 		
-		DTOComputer dtoComputer = Mockito.mock(DTOComputer.class);
+		dtoComputer = Mockito.mock(DTOComputer.class);
 		Mockito.when(dtoComputer.getComputerName()).thenReturn("Happy");
 		Mockito.when(dtoComputer.getIntroduced()).thenReturn("2020-01-01");
 		Mockito.when(dtoComputer.getDiscontinued()).thenReturn("2020-01-01");
@@ -44,7 +45,7 @@ public class ComputerValidatorTest {
 	@Test
 	public void testCheckComputerFieldsInvalidName() {
 
-		DTOComputer dtoComputer = Mockito.mock(DTOComputer.class);
+		dtoComputer = Mockito.mock(DTOComputer.class);
 		Mockito.when(dtoComputer.getComputerName()).thenReturn("");
 		Mockito.when(dtoComputer.getIntroduced()).thenReturn("2020-01-01");
 		Mockito.when(dtoComputer.getDiscontinued()).thenReturn("");
@@ -56,7 +57,7 @@ public class ComputerValidatorTest {
 	@Test
 	public void testCheckComputerFieldsNullName() {
 
-		DTOComputer dtoComputer = Mockito.mock(DTOComputer.class);
+		dtoComputer = Mockito.mock(DTOComputer.class);
 		Mockito.when(dtoComputer.getComputerName()).thenReturn(null);
 		Mockito.when(dtoComputer.getIntroduced()).thenReturn("2020-01-01");
 		Mockito.when(dtoComputer.getDiscontinued()).thenReturn("");
@@ -67,7 +68,7 @@ public class ComputerValidatorTest {
 	@Test
 	public void testCheckComputerFieldsInvalidDate() {
 
-		DTOComputer dtoComputer = Mockito.mock(DTOComputer.class);
+		dtoComputer = Mockito.mock(DTOComputer.class);
 		Mockito.when(dtoComputer.getComputerName()).thenReturn("Happy");
 		Mockito.when(dtoComputer.getIntroduced()).thenReturn("2020/01/01");
 		Mockito.when(dtoComputer.getDiscontinued()).thenReturn("");
@@ -78,7 +79,7 @@ public class ComputerValidatorTest {
 	@Test
 	public void testCheckComputerFieldsStringInDate() {
 
-		DTOComputer dtoComputer = Mockito.mock(DTOComputer.class);
+		dtoComputer = Mockito.mock(DTOComputer.class);
 		Mockito.when(dtoComputer.getComputerName()).thenReturn("Happy");
 		Mockito.when(dtoComputer.getIntroduced()).thenReturn("qweqwgwewq");
 		Mockito.when(dtoComputer.getDiscontinued()).thenReturn("");
@@ -89,7 +90,7 @@ public class ComputerValidatorTest {
 	@Test
 	public void testCheckComputerFieldsInvalidDate2() {
 
-		DTOComputer dtoComputer = Mockito.mock(DTOComputer.class);
+		dtoComputer = Mockito.mock(DTOComputer.class);
 		Mockito.when(dtoComputer.getComputerName()).thenReturn("Happy");
 		Mockito.when(dtoComputer.getIntroduced()).thenReturn("2020-13-32");
 		Mockito.when(dtoComputer.getDiscontinued()).thenReturn("");

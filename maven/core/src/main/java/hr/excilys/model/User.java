@@ -42,7 +42,7 @@ public class User{
 
 	public User(UserBuilder builder) {
 
-		this.id = builder.id;
+		
 		this.username = builder.username;
 		this.password = builder.password;
 		this.role = builder.role;
@@ -99,13 +99,85 @@ public class User{
 		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (enabled ? 1231 : 1237);
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (this == obj){
+			
+			return true;
+		}
+		if (obj == null){
+			
+			return false;
+		}
+		if (getClass() != obj.getClass()){
+			
+			return false;
+		}
+		User other = (User) obj;
+		if (enabled != other.enabled){
+			
+			return false;
+		}
+		if (id != other.id){
+			
+			return false;
+		}
+		if (password == null) {
+			if (other.password != null){
+				
+				return false;
+			}
+		} else if (!password.equals(other.password)){
+			
+			return false;
+		}
+		if (role == null) {
+			if (other.role != null){
+				
+				return false;
+			}
+		} else if (!role.equals(other.role)){
+			
+			return false;
+		}
+		if (username == null) {
+			if (other.username != null){
+				
+				return false;
+			}
+		} else if (!username.equals(other.username)){
+			
+			return false;
+		}
+		
+		return true;
+	}
+
 	public static class UserBuilder {
 
-		private long id;
+		
 		private String username;
 		private String password;
 		private Role role;
+		@SuppressWarnings("unused")
+		private long id;
 
+
+		public UserBuilder() {}
+		
 		public UserBuilder (String username, String password, Role role) {
 
 			this.username = username;
@@ -124,5 +196,26 @@ public class User{
 			
 			return this;
 		}
+
+		public UserBuilder setId(long id) {
+			this.id = id;
+			return this;
+		}
+		
+		public UserBuilder setUsername(String username) {
+			this.username = username;
+			return this;
+		}
+
+		public UserBuilder setPassword(String password) {
+			this.password = password;
+			return this;
+		}
+
+		public UserBuilder setRole(Role role) {
+			this.role = role;
+			return this;
+		}
+
 	}
 }

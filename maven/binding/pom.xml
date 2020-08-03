@@ -13,6 +13,10 @@
 	<packaging>jar</packaging>
 
 	<name>binding</name>
+	
+	<properties>
+		<hibernate-validator>6.0.10.Final</hibernate-validator>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -51,6 +55,19 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-validator}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator-annotation-processor</artifactId>
+			<version>${hibernate-validator}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

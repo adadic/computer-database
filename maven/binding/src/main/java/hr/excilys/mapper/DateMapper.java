@@ -1,14 +1,21 @@
 package hr.excilys.mapper;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 @Component
 public final class DateMapper {
 
-	public long getDate(String givenDate) throws IllegalArgumentException {
+	public LocalDate getDate(String givenDate) throws DateTimeParseException {
 
-		return Timestamp.valueOf(givenDate + " 00:00:00").getTime();
+		if (StringUtils.isEmpty(givenDate)) {
+			
+			return null;
+		}
+		
+		return LocalDate.parse(givenDate);
 	}
 }

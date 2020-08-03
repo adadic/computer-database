@@ -1,6 +1,6 @@
 package hr.excilys.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +17,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 @Entity
-@Table( name = "computer" )
+@Table(name = "computer")
 public class Computer {
 	
 	@Id
@@ -27,9 +27,9 @@ public class Computer {
 	@Column(name ="name")
 	private String name;
 	@Column(name = "introduced")
-	private Timestamp introduced;
+	private LocalDate introduced;
 	@Column(name = "discontinued")
-	private Timestamp discontinued;
+	private LocalDate discontinued;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Company.class)
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	private Company company;
@@ -51,44 +51,19 @@ public class Computer {
 		return id;
 	}
 
-	public void setId(long id) {
-
-		this.id = id;
-	}
-
 	public String getName() {
 
 		return name;
 	}
 
-	public void setName(String name) {
-
-		this.name = name;
-	}
-
-	public Timestamp getIntroduced() {
+	public LocalDate getIntroduced() {
 
 		return introduced;
 	}
 
-	public void setIntroduced(Timestamp introduced) {
-
-		this.introduced = introduced;
-	}
-
-	public Timestamp getDiscontinued() {
+	public LocalDate getDiscontinued() {
 
 		return discontinued;
-	}
-
-	public void setDiscontinued(Timestamp discontinued) {
-
-		this.discontinued = discontinued;
-	}
-
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 
 	public Company getCompany() {
@@ -96,17 +71,63 @@ public class Computer {
 		return company;
 	}
 
-	public void setCompany(Company company) {
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
+	}
 
-		this.company = company;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((company == null) ? 0 : company.hashCode());
+		result = prime * result + ((discontinued == null) ? 0 : discontinued.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((introduced == null) ? 0 : introduced.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Computer other = (Computer) obj;
+		if (company == null) {
+			if (other.company != null)
+				return false;
+		} else if (!company.equals(other.company))
+			return false;
+		if (discontinued == null) {
+			if (other.discontinued != null)
+				return false;
+		} else if (!discontinued.equals(other.discontinued))
+			return false;
+		if (id != other.id)
+			return false;
+		if (introduced == null) {
+			if (other.introduced != null)
+				return false;
+		} else if (!introduced.equals(other.introduced))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 
 	public static class ComputerBuilder {
 
 		private long id;
-		private String name;
-		private Timestamp introduced;
-		private Timestamp discontinued;
+		private final String name;
+		private LocalDate introduced;
+		private LocalDate discontinued;
 		private Company company;
 
 		public ComputerBuilder(String name) {
@@ -121,7 +142,7 @@ public class Computer {
 			return this;
 		}
 
-		public ComputerBuilder introduced(Timestamp introduced) {
+		public ComputerBuilder introduced(LocalDate introduced) {
 
 			if (introduced != null) {
 				this.introduced = introduced;
@@ -130,7 +151,7 @@ public class Computer {
 			return this;
 		}
 
-		public ComputerBuilder discontinued(Timestamp discontinued) {
+		public ComputerBuilder discontinued(LocalDate discontinued) {
 
 			if (discontinued != null) {
 				this.discontinued = discontinued;

@@ -60,6 +60,7 @@
 						class="btn btn-primary" />
 				</div>
 			</form>
+			<a href='register'>click here to register</a>
 		</div>
 	</section>
 </body>

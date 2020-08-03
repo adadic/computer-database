@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.HibernateException;
@@ -77,7 +78,7 @@ public class DAOCompany {
 		return Optional.empty();
 	}
 
-	public int deleteCompany(long id) {
+	public boolean deleteCompany(long id) {
 
 		try {
 			session = sessionFactory.getCurrentSession();
@@ -91,15 +92,36 @@ public class DAOCompany {
 			companyQuery.executeUpdate();
 			LOGGER.info("Computer with id_company : {} DELETED", id);
 
-			return 1;
+			return true;
 		} catch (HibernateException hex) {
 			LOGGER.error("Cannot get the session");
 
-			return 0;
+			return false;
 		} catch (DataAccessException dae) {
-			LOGGER.error("Probleme in query with id_company : {}", id);
+			LOGGER.error("Problem in query with id_company : {}", id);
 
-			return 0;
+			return false;
+		}
+	}
+
+	public boolean updateCompany(Company company) {
+			
+		try {
+			session = sessionFactory.getCurrentSession();
+			Query query = session.createQuery(EnumQuery.UPDATECOMPANY.getQuery())
+					.setParameter("name", company.getName())
+					.setParameter("id", company.getId());
+			query.executeUpdate();
+			
+			return true;
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return false;
+		} catch (DataAccessException dae) {
+			LOGGER.error("Company NOT updated, problem in query : Check fields");
+
+			return false;
 		}
 	}
 }

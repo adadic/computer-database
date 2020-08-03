@@ -12,11 +12,8 @@ import hr.excilys.dto.DTOUser;
 import hr.excilys.service.UserService;
 
 @Controller
-@RequestMapping(value = "/addUser")
+@RequestMapping(value = "/register")
 public class AddUserController {
-
-	private static final int ADDSUCCESS = 4;
-	private static final int ADDERROR = -1;
 
 	private final UserService userService;
 
@@ -29,26 +26,27 @@ public class AddUserController {
 	@GetMapping
 	public ModelAndView addUser() {
 
-		ModelAndView model = new ModelAndView("addUser");
+		ModelAndView model = new ModelAndView("register");
 		model.addObject("role", userService.getRoles());
 
 		return model;
 	}
 
 	@PostMapping
-	public ModelAndView addCreateUser(DTOUser dtoUser, DTORole dtoRole) {
+	public ModelAndView addCreateUser(DTOUser dtoUser) {
 
 		ModelAndView view = new ModelAndView();
+		System.out.println(dtoUser);
+		DTORole dtoRole = new DTORole("1","USER");
 		dtoUser.setRole(dtoRole);
-		
-		if (!userService.addUser(dtoUser)) {
-			view.addObject("msg", ADDERROR);
-			view.addObject("role", userService.getRoles());
-		} else {
-			view.addObject("msg", ADDSUCCESS);
-			view.setViewName("redirect:dashboard");
-		}
 
 		return view;
+		
+		
+		
+	
+		
+	
+		
 	}
 }

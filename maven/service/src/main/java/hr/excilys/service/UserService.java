@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import hr.excilys.dto.DTOUser;
@@ -20,19 +21,21 @@ public class UserService implements UserDetailsService {
 
 	private final DAOUser daoUser;
 	private final UserDTOMapper userDTOMapper;
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
 	@Autowired
-	public UserService(DAOUser daoUser, UserDTOMapper userDTOMapper) {
+	public UserService(DAOUser daoUser, UserDTOMapper userDTOMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
 
 		this.daoUser = daoUser;
 		this.userDTOMapper = userDTOMapper;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
-
+	
 	@Override
 	public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		Optional<User> opt = daoUser.getUser(username);
-
 		if (opt.isPresent()) {
 			User user = opt.get();
 			CustomUserDetails userDetails = new CustomUserDetails.CustomBuilder(user).build();
@@ -43,10 +46,18 @@ public class UserService implements UserDetailsService {
 		throw new UsernameNotFoundException("No user by this username");
 	}
 
-	public boolean addUser(DTOUser dtoUser) {
-		
+	public boolean addUser(DTOUser dtoUser) throws Exception {
+
+		Optional<User> opt = daoUser.getUser(dtoUser.getUsername());
+		if (opt.isPresent()) {
+			
+			throw new Exception("This username already exists");
+		}
+		dtoUser.setPassword(bCryptPasswordEncoder.encode(dtoUser.getPassword()));
 		Optional<User> user = userDTOMapper.fromDTO(dtoUser);
+		
 		if(user.isPresent()) {
+			
 			return daoUser.create(user.get());
 		}
 
