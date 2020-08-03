@@ -3,7 +3,7 @@ import * as userActions from '../Action/PageAction';
 const initialState = {
 
     order: 'asc',
-    orderBy: 'computers',
+    orderBy: '',
     selected: [],
     page: 0,
     rowsPerPage: 10

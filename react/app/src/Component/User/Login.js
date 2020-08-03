@@ -114,7 +114,7 @@ function Login(props) {
             console.log(error.config);
             });
     }
-    const [displaySucess, setDisplaySuccess] = useState(false);
+    const [displaySuccess, setDisplaySuccess] = useState(false);
     const [message, setMessage] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -129,7 +129,7 @@ function Login(props) {
 
     return (
         <div className="Register">
-            <Collapse in={displaySucess}>
+            <Collapse in={displaySuccess}>
                 <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
                        severity={success ? "success" : "error"}>{message}</Alert>
 

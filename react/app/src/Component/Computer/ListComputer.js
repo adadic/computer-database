@@ -13,6 +13,7 @@ import {searchMode} from "../../Store/Action/SearchAction";
 import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 import { getOrder, getOrderBy, getSelected, getPage, getRowsPerPage } from '../../Store/Selector/PageSelector';
 import { setOrder, setOrderBy, setSelected, setPage, setRowsPerPage } from "../../Store/Action/PageAction";
+import Computer from "./Computer";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -47,6 +48,11 @@ function ListComputer(props) {
     const classes = useStyles();
     useEffect(() => {
         props.changeMode(true);
+        props.setOrder("asc");
+        props.setOrderBy("computer");
+        props.setSelected([]);
+        props.setPage(0);
+        props.setRowsPerPage(10);
 
         return function cleanup() {
             props.changeMode(false);
