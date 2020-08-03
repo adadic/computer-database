@@ -67,7 +67,7 @@ public class DAOUser {
 
 			return true;
 		} catch (HibernateException hex) {
-			System.out.println("user in hibernate "+user.toString());
+			System.out.println("user in hibernate " + user.toString());
 			LOGGER.error("Cannot get the session");
 			System.out.println("Cannot get the session");
 
@@ -75,7 +75,6 @@ public class DAOUser {
 		} catch (DataAccessException dae) {
 			LOGGER.error("User NOT added, probleme in query : Check fields");
 			System.out.println("User NOT added, probleme in query : Check fields");
-			
 
 			return false;
 		}
@@ -98,4 +97,33 @@ public class DAOUser {
 			return new ArrayList<>();
 		}
 	}
+
+	public List<User> getAllUsers() {
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			TypedQuery<User> query = session.createQuery(EnumQuery.GETUSERS.getQuery(), User.class);
+
+			return query.getResultList();
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+		} catch (DataAccessException dae) {
+			LOGGER.error("Cannot get Users at {} page and with {} lines, probleme in the Query maybe search -> {}");
+		}
+
+		return new ArrayList<>();
+
+	}
+
+//	private List<User> getUsersMapper(List<User> listUsers) {
+//
+//		Stream<User> listUsersStream = listUsers.stream().map((user) -> {
+//			
+//				return new User.UserBuilder().setUsername(user.getUsername()).setRole(user).id(user.getId()).setPassword(user.getPassword()).setEmail(user.getEmail()).build();
+//			
+//			
+//		});
+//
+//		return listUsersStream.collect(Collectors.toList());
+//
+//	}
 }

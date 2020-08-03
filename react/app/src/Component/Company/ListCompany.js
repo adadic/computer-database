@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import EnhancedTableHead from "../Table/EnhancedTableHead";
 import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
-import {stableSort, getComparatorCompany} from "../../Function/TableFunction";
+import {stableSort, getComparatorCompany} from "../Table/TableFunction";
 import CreateIcon from '@material-ui/icons/Create';
 import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";

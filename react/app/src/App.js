@@ -2,7 +2,7 @@ import React from 'react';
 import 'fontsource-roboto';
 import './App.scss';
 
-import Header from "./Component/Page/Header";
+import Header from "./Component/Page/Header/Header";
 import Register from "./Component/User/Register";
 import ComputerDashboard from "./Component/Computer/ComputerDashboard";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
@@ -11,10 +11,10 @@ import CompanyDashboard from "./Component/Company/CompanyDashboard";
 import Computer from "./Component/Computer/Computer";
 import Company from "./Component/Company/Company";
 import About from "./Component/Page/About";
-import Logout from "./Component/User/Logout";
 import Home from "./Component/Page/Home";
 import {getToken, isConnected} from "./Store/Selector/ConnexionSelector";
 import {connect} from "react-redux";
+import Logout from "./Component/User/Logout";
 
 function App(props) {
     return (
@@ -67,8 +67,9 @@ function App(props) {
                             <Route exact path={"/home"}>
                                 <Home/>
                             </Route>
-                            <Route path={"/"}>
-                                <Redirect to="/home"/>
+
+                            <Route exact path={"/register"}>
+                                <Register/>
                             </Route>
                         </Switch>
                     }

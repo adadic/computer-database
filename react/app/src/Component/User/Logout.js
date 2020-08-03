@@ -1,26 +1,24 @@
-import React from 'react';
-import { connect } from "react-redux"
-import { getToken, isConnected } from '../../Store/Selector/ConnexionSelector';
-import { getSearch } from '../../Store/Selector/SearchSelector';
-import { getUser } from '../../Store/Selector/UserSelector';
+import React, {useEffect} from 'react';
+import {Redirect} from "react-router-dom";
+import {connect} from "react-redux";
+import {isConnected, setToken} from "../../Store/Action/ConnexionAction";
 
 function Logout(props){
+
+    useEffect(() => {
+        props.setToken("");
+        props.setConnected(false);
+    })
+
     return (
-        <div>{props.token + "----" + props.isConnected + "----" + props.search}
-        
-        <p>{props.user.username}</p>
-        </div>
-        
+        <Redirect to="/home"/>
     );
 }
-
-const mapStateToProps = (state) => {
+const mapDispatchToProps = dispatch => {
     return {
-        token: getToken(state),
-        search: getSearch(state),
-        isConnected: isConnected(state),
-        user: getUser(state)
-    }  
+        setToken: token => dispatch(setToken(token)),
+        setConnected: conn => dispatch(isConnected(conn))
+    }
 }
 
-export default connect(mapStateToProps, null)(Logout);
+export default connect(null, mapDispatchToProps)(Logout);
