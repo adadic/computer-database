@@ -25,6 +25,13 @@
 			<version>7.0</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>hr.excilys</groupId>
+			<artifactId>persistence</artifactId>
+			<version>7.0</version>
+			<scope>compile</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.mockito</groupId>
