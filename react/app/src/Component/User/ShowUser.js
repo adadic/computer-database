@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { getUser } from '../../Store/Selector/UserSelector'
-import { getToken } from '../../Store/Selector/ConnexionSelector'
-
-
-export const baseURL = 'http://localhost:8083/webapp/api/users';
+import { getUser } from '../../Store/Selector/UserSelector';
+import { getToken } from '../../Store/Selector/ConnexionSelector';
+import { useHistory } from "react-router-dom";
 
 function ShowUser(props) {
 
-    return(
+    const history = useHistory();
+
+    function logout() {
+        history.push("/logout")
+    }
+
+    return (
         <div>
             <p>{props.user.userName}</p>
+            <p>{props.user.email}</p>
             <p>{props.user.roleName}</p>
-            <Button>Logout</Button>
+            <Button variant="outlined" onClick={logout} color="primary">Logout</Button>
         </div>
     );
 }
@@ -22,7 +27,7 @@ const mapStateToProps = (state) => {
     return {
         user: getUser(state),
         token: getToken(state),
-    }  
+    }
 }
 
 export default connect(mapStateToProps, null)(ShowUser);

@@ -31,8 +31,6 @@ public class UserRestController {
 		
 		try {
 			CustomUserDetails user = userService.loadUserByUsername(username);
-			//CustomUserDetails user = userService.loadUserByUsername("toto");
-			System.out.println("----" + user);
 			return ResponseEntity.ok(obj.writeValueAsString(user));
 		} catch (JsonProcessingException jsonExc) {
 			jsonExc.printStackTrace();
