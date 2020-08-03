@@ -3,7 +3,7 @@ import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {isConnected, setToken} from "../../Store/Action/ConnexionAction";
 
-function Logout(){
+function Logout(props){
 
     useEffect(() => {
         props.setToken("");
