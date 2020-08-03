@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from "react";
 import { connect } from 'react-redux';
 
@@ -76,15 +76,18 @@ function Login(props) {
     function connexion() {
         login({ data: user })
             .then((res) => {
-                props.seToken(res.data)
-                props.setUser(user)
-                props.closeDrawer()
-                history.push("/computers")
+                props.seToken(res.data);
+                props.setUser(user);
+                props.closeDrawer();
+                history.push("/computers");
             }).catch((error) => {
                 console.log(error);
             });
     }
 
+    function register(){
+        history.push("/register");
+    }
 
     return (
         <div className="Register">
@@ -125,6 +128,7 @@ function Login(props) {
                 </FormControl>
             </form>
             <Button variant="outlined" onClick={connexion} color="primary">Connexion</Button>
+            <Button variant="outlined" onClick={register} color="primary">Register</Button>
         </div>
     );
 }

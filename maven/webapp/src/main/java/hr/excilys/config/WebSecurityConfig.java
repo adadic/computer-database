@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		hasAnyRole("ADMIN", "USER").and().authorizeRequests()
 //				.antMatchers("/api/delete").hasRole("ADMIN");
 		http.formLogin().loginPage("/login").failureUrl("/login?error=true");
-		http.logout().logoutUrl("/logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
+		http.logout().logoutUrl("/api/logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID").clearAuthentication(true);
 		http.exceptionHandling(e -> e.authenticationEntryPoint(digestEntryPoint()))
 				.addFilter(digestAuthFilter(digestEntryPoint(), userService));
