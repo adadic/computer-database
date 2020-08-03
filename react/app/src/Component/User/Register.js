@@ -61,11 +61,15 @@ function Register() {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     }
+    function displaySuccessAlert(){
+        setDisplaySuccess(true);
+        setTimeout(function(){ setDisplaySuccess(false);}, 2000);
+    }
 
     const addUser = async () => {
         await api.post('', qs.stringify(user), config)
             .then((result) => {
-                setDisplayAlert(true);
+                displaySuccessAlert();
                 if (result.status === 200) {
                     setSuccess(true);
                     setMessage(result.data)
@@ -73,6 +77,7 @@ function Register() {
                 }
             })
             .catch((error) => {
+                displaySuccessAlert();
                 if (error.response) {
                     /*
                      * The request was made and the server responded with a
@@ -120,6 +125,7 @@ function Register() {
     const [emailError, setEmailError] = useState(true)
     const [usernameError, setUsernameError] = useState(true)
     const [usernameAlreadyExistsError, setUsernameAlreadyExistsError] = useState(false);
+    const [displaySucess, setDisplaySuccess]=useState(false);
 
 
     const handleClickShowPassword = () => {
@@ -250,9 +256,11 @@ function Register() {
 
     return (
         <div className="Register">
-            <Collapse in={(displayAlert)}>
+
+            <Collapse in={displaySucess}>
                 <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
                        severity={success ? "success" : "error"}>{message}</Alert>
+
             </Collapse>
             <form className={classes.root} noValidate autoComplete="off">
 

@@ -165,6 +165,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
+
         setUser: user => dispatch(setUser(user))
     }
 }

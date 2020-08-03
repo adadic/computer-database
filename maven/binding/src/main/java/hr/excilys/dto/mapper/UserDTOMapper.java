@@ -24,7 +24,7 @@ public class UserDTOMapper {
 	public Optional<User> fromDTO(DTOUser dtoUser) {
 
 		if (userValidator.checkUser(dtoUser)) {
-			Role role = new Role.RoleBuilder().setRoleName(dtoUser.getRole().getroleName()).build();
+			Role role = new Role.RoleBuilder().setRoleName(dtoUser.getRole().getroleName()).setroleId(Long.parseLong(dtoUser.getRole().getroleId())).build();
 
 			User user = new User.UserBuilder().setUsername(dtoUser.getUsername()).setPassword(dtoUser.getPassword())
 					.setRole(role).build();

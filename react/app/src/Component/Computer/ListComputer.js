@@ -11,7 +11,8 @@ import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
 import {searchMode} from "../../Store/Action/SearchAction";
 import EnhancedTableFooter from "../Table/EnhancedTableFooter";
-import Computer from "./Computer";
+import { getOrder, getOrderBy, getSelected, getPage, getRowsPerPage } from '../../Store/Selector/PageSelector';
+import { setOrder, setOrderBy, setSelected, setPage, setRowsPerPage } from "../../Store/Action/PageAction";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -52,69 +53,64 @@ function ListComputer(props) {
         }
     })
     const [computers, setComputers] = useState(props.computers);
-    const [order, setOrder] = useState('asc');
-    const [orderBy, setOrderBy] = useState('computers');
-    const [selected, setSelected] = useState([]);
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const handleRequestSort = (event, property) => {
 
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
+        const isAsc = props.orderBy === property && props.order === 'asc';
+        props.setOrder(isAsc ? 'desc' : 'asc');
+        props.setOrderBy(property);
     };
 
     const handleSelectAllClick = (event) => {
 
         if (event.target.checked) {
             const newSelected = computers.map((n) => n.id);
-            setSelected(newSelected);
+            props.setSelected(newSelected);
             return;
         }
-        setSelected([]);
+        props.setSelected([]);
     };
 
     const handleClick = (event, name) => {
 
-        const selectedIndex = selected.indexOf(name);
+        const selectedIndex = props.selected.indexOf(name);
         let newSelected = [];
 
         if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name);
+            newSelected = newSelected.concat(props.selected, name);
         } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
+            newSelected = newSelected.concat(props.selected.slice(1));
+        } else if (selectedIndex === props.selected.length - 1) {
+            newSelected = newSelected.concat(props.selected.slice(0, -1));
         } else if (selectedIndex > 0) {
             newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
+                props.selected.slice(0, selectedIndex),
+                props.selected.slice(selectedIndex + 1),
             );
         }
-        setSelected(newSelected);
+        props.setSelected(newSelected);
     };
 
     const handleChangePage = (event, newPage) => {
 
-        setPage(newPage);
+        props.setPage(newPage);
     };
 
     const handleChangeRowsPerPage = (event) => {
 
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
+        props.setRowsPerPage(parseInt(event.target.value, 10));
+        props.setPage(0);
     };
 
-    const isSelected = (id) => selected.indexOf(id) !== -1;
+    const isSelected = (id) => props.selected.indexOf(id) !== -1;
 
     const computerSize = computers.filter(item => item.name && item.name.includes(props.search)).length;
     const emptyRows = computerSize < 10 ? 10 - computerSize % 10 : 0;
 
     function deleteComputers() {
 
-        props.delete && selected.forEach(id => props.delete(id));
-        setSelected([]);
+        props.delete && props.selected.forEach(id => props.delete(id));
+        props.setSelected([]);
     }
 
     const editComputer = (computer) => {
@@ -125,24 +121,24 @@ function ListComputer(props) {
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                <EnhancedTableToolbar numSelected={selected.length} delete={deleteComputers} mainTitle="Computers"/>
+                <EnhancedTableToolbar numSelected={props.selected.length} delete={deleteComputers} mainTitle="Computers"/>
                 <TableContainer className={classes.table}>
                     <Table className={classes.table} aria-labelledby="tableTitle" size="medium"
                            aria-label="enhanced table"
                     >
                         <EnhancedTableHead
                             classes={classes}
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
+                            numSelected={props.selected.length}
+                            order={props.order}
+                            orderBy={props.orderBy}
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
                             rowCount={computerSize}
                             headCells={props.headCells}
                         />
                         <TableBody style={{overflow: "auto"}}>
-                            {stableSort(computers.filter(item => item.name && item.name.includes(props.search)), getComparator(order, orderBy))
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            {stableSort(computers.filter(item => item.name && item.name.includes(props.search)), getComparator(props.order, props.orderBy))
+                                .slice(props.page * props.rowsPerPage, props.page * props.rowsPerPage + props.rowsPerPage)
                                 .map(row => {
                                     const isItemSelected = isSelected(row.id);
                                     const labelId = `enhanced-table-checkbox-${row.id}`;
@@ -153,7 +149,7 @@ function ListComputer(props) {
                                             isItemSelected={isItemSelected}
                                             labelId={labelId}
                                             handleClick={handleClick}
-                                            selected={selected}
+                                            selected={props.selected}
                                             row={row}
                                             edit={editComputer}
                                         />
@@ -172,8 +168,8 @@ function ListComputer(props) {
                     rowsPerPageOptions={[10, 25, 50]}
                     component="div"
                     count={computerSize}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
+                    rowsPerPage={props.rowsPerPage}
+                    page={props.page}
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                     ActionsComponent={EnhancedTableFooter}
@@ -187,14 +183,23 @@ const mapStateToProps = (state) => {
 
     return {
         search: getSearch(state),
+        order: getOrder(state),
+        orderBy: getOrderBy(state),
+        selected: getSelected(state),
+        page: getPage(state),
+        rowsPerPage: getRowsPerPage(state),
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
 
-        changeMode: mode =>
-            dispatch(searchMode(mode))
+        changeMode: mode => dispatch(searchMode(mode)),
+        setOrder: order => dispatch(setOrder(order)),
+        setOrderBy: orderBy => dispatch(setOrderBy(orderBy)),
+        setSelected: selected => dispatch(setSelected(selected)),
+        setPage: page => dispatch(setPage(page)),
+        setRowsPerPage: rowsPerPage => dispatch(setRowsPerPage(rowsPerPage)),
     }
 }
 
