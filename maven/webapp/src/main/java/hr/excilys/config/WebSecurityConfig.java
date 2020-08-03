@@ -47,14 +47,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin().loginPage("/login").failureUrl("/login?error=true");
 		http.logout().logoutUrl("/api/logout").logoutSuccessUrl("/dashboard").invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID").clearAuthentication(true);
+		
 		http.exceptionHandling(e -> e.authenticationEntryPoint(digestEntryPoint()))
 				.addFilter(digestAuthFilter(digestEntryPoint(), userService));
 
 		http.cors().and().csrf().disable().authorizeRequests().antMatchers("/api/login").permitAll().and()
-				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().anyRequest()
-				.authenticated();
-
+		.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().anyRequest()
+		.authenticated();
+		
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 		http.headers().frameOptions().sameOrigin().cacheControl();
