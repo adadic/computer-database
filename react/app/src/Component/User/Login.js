@@ -84,9 +84,10 @@ function Login(props) {
                     setSuccess(true);
                     setMessage(res.data)
                 }
-                props.seToken(res.data)
-                props.setUser(user)
-                props.closeDrawer()
+                props.seToken(res.data);
+                props.setConnected(true);
+                props.setUser(user);
+                props.closeDrawer();
                 history.push("/computers")
 
             }).catch((error) => {
@@ -113,13 +114,13 @@ function Login(props) {
             console.log(error.config);
             });
     }
-    const [displaySucess, setDisplaySuccess]=useState(false);
+    const [displaySucess, setDisplaySuccess] = useState(false);
     const [message, setMessage] = useState('');
     const [success, setSuccess] = useState(false);
 
     function displaySuccessAlert(){
         setDisplaySuccess(true);
-        setTimeout(function(){ setDisplaySuccess(false);}, 2000);
+        setTimeout(function(){ setDisplaySuccess(false);}, 200);
     }
 
     function register(){
