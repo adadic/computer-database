@@ -168,14 +168,13 @@ const mapStateToProps = (state) => {
         token: getToken(state),
         isConnected: isConnected(state),
         user: getUser(state),
+        isSearching: getSearchMode(state)
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-
-        setUser: user => dispatch(setUser(user)),
-        isSearching: state => getSearchMode(state)
+        setUser: user => dispatch(setUser(user))
     }
 }
 
