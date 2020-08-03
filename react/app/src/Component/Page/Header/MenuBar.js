@@ -9,8 +9,8 @@ import ComputerIcon from '@material-ui/icons/Computer';
 import BusinessIcon from '@material-ui/icons/Business';
 import HomeIcon from '@material-ui/icons/Home';
 import {connect} from "react-redux";
-import {getToken, isConnected} from "../../Store/Selector/ConnexionSelector";
-import {newSearch} from "../../Store/Action/SearchAction";
+import {getToken, isConnected} from "../../../Store/Selector/ConnexionSelector";
+import {newSearch} from "../../../Store/Action/SearchAction";
 
 const StyledMenu = withStyles({
     paper: {

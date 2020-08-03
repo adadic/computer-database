@@ -43,8 +43,9 @@ public class RegisterRestController {
 		user.setRole(dtoRole);
 		try {
 			userService.addUser(user);
+			System.out.println(user);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), headers, HttpStatus.METHOD_NOT_ALLOWED);
 		}
 
