@@ -17,7 +17,7 @@ import { getUser } from '../../Store/Selector/UserSelector';
 import { setUser } from '../../Store/Action/UserAction';
 import {getSearchMode} from "../../Store/Selector/SearchSelector";
 
-export const baseURL = 'http://localhost:8083/webapp/api/users';
+const baseURL = 'http://localhost:8083/webapp/api/users';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -168,14 +168,14 @@ const mapStateToProps = (state) => {
         token: getToken(state),
         isConnected: isConnected(state),
         user: getUser(state),
+        isSearching: getSearchMode(state)
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
 
-        setUser: user => dispatch(setUser(user)),
-        isSearching: state => getSearchMode(state)
+        setUser: user => dispatch(setUser(user))
     }
 }
 

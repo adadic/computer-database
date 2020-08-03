@@ -18,7 +18,7 @@ public class CompanyValidator {
 
 //			if (StringUtils.isEmpty(dtoCompany.getCompanyName())) {
 //				LOGGER.info("Company has no name!");
-//				
+//
 //				return false;
 //			}
 

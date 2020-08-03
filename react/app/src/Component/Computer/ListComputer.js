@@ -107,14 +107,13 @@ function ListComputer(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const computerSize = computers.filter(item => item.name.includes(props.search)).length;
+    const computerSize = computers.filter(item => item.name && item.name.includes(props.search)).length;
     const emptyRows = computerSize < 10 ? 10 - computerSize % 10 : 0;
 
     function deleteComputers() {
 
-        console.log({data: selected})
-        console.log(selected[0] === 2)
-        console.log(selected[0] === "2")
+        props.delete && selected.forEach(id => props.delete(id));
+        setSelected([]);
     }
 
     function getDate(date) {
@@ -149,7 +148,7 @@ function ListComputer(props) {
                             headCells={props.headCells}
                         />
                         <TableBody style={{overflow: "auto"}}>
-                            {stableSort(computers.filter(item => item.name.includes(props.search)), getComparator(order, orderBy))
+                            {stableSort(computers.filter(item => item.name && item.name.includes(props.search)), getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
                                     const isItemSelected = isSelected(row.id);
