@@ -17,6 +17,8 @@ import { getToken } from '../../Store/Selector/ConnexionSelector';
 
 import clsx from "clsx";
 import { setToken } from '../../Store/Action/ConnexionAction';
+import Alert from "@material-ui/lab/Alert";
+import Collapse from "@material-ui/core/Collapse";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -76,18 +78,56 @@ function Login(props) {
     function connexion() {
         login({ data: user })
             .then((res) => {
+                displaySuccessAlert();
+                if (res.status === 200) {
+                    setSuccess(true);
+                    setMessage(res.data)
+                }
                 props.seToken(res.data)
                 props.setUser(user)
                 props.closeDrawer()
                 history.push("/computers")
             }).catch((error) => {
-                console.log(error);
+            displaySuccessAlert();
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                if (error.response.status === 401) {
+                    setSuccess(false);
+                    setMessage('Wrong Username or Password')
+                }
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
+            }
+            console.log(error.config);
             });
+    }
+    const [displaySucess, setDisplaySuccess]=useState(false);
+    const [message, setMessage] = useState('');
+    const [success, setSuccess] = useState(false);
+
+    function displaySuccessAlert(){
+        setDisplaySuccess(true);
+        setTimeout(function(){ setDisplaySuccess(false);}, 2000);
     }
 
 
     return (
         <div className="Register">
+            <Collapse in={displaySucess}>
+                <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
+                       severity={success ? "success" : "error"}>{message}</Alert>
+
+            </Collapse>
             <form className={classes.root} noValidate autoComplete="off" method="POST">
 
                 <FormControl>
