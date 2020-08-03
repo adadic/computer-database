@@ -11,10 +11,10 @@ import CompanyDashboard from "./Component/Company/CompanyDashboard";
 import Computer from "./Component/Computer/Computer";
 import Company from "./Component/Company/Company";
 import About from "./Component/Page/About";
-import Logout from "./Component/User/Logout";
 import Home from "./Component/Page/Home";
 import {getToken, isConnected} from "./Store/Selector/ConnexionSelector";
 import {connect} from "react-redux";
+import Logout from "./Component/Page/Logout";
 
 function App(props) {
     return (
