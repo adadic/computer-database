@@ -120,7 +120,7 @@ function Login(props) {
 
     function displaySuccessAlert(){
         setDisplaySuccess(true);
-        setTimeout(function(){ setDisplaySuccess(false);}, 200);
+        setTimeout(function(){ setDisplaySuccess(false);}, 2000);
     }
 
     function register(){

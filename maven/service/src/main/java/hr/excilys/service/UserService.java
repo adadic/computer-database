@@ -67,7 +67,6 @@ public class UserService implements UserDetailsService {
 		}
 		dtoUser.setPassword(bCryptPasswordEncoder.encode(dtoUser.getPassword()));
 		Optional<User> user = userDTOMapper.fromDTO(dtoUser);
-		System.out.println(user);
 		if (user.isPresent()) {
 
 			return daoUser.create(user.get());

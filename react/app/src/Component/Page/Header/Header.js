@@ -106,7 +106,7 @@ function Header(props) {
                 props.setUser({
                     userName: res.data.user.username,
                     roleName: res.data.user.role.roleName,
-                    email: res.data.user.userName
+                    email: res.data.user.email
                 });
                 setState(true)
             }
