@@ -20,6 +20,7 @@ function ShowUser(props) {
     return (
         <div>
             <p>{props.user.userName}</p>
+            <p>{props.user.email}</p>
             <p>{props.user.roleName}</p>
             <Button variant="outlined" onClick={logout} color="primary">Logout</Button>
         </div>
