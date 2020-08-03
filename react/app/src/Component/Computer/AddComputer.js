@@ -114,7 +114,7 @@ function AddComputer(props) {
                         format="yyyy-MM-dd"
                         value={computer.discontinued}
                         onChange={handleDiscontinued}
-                        minDate="1970-01-01"
+                        minDate={computer.introduced}
                         maxDate="2038-01-18"
                         disabled={!computer.introduced || computer.introduced.toString() === "Invalid Date"}
                         KeyboardButtonProps={{
