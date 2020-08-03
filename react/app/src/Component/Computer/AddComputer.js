@@ -6,20 +6,20 @@ import {
     KeyboardDatePicker,
 } from '@material-ui/pickers';
 import {useHistory} from "react-router-dom";
-import {TextField, makeStyles, Select, MenuItem, Backdrop, CircularProgress, Button} from "@material-ui/core";
+import {TextField, makeStyles, Select, MenuItem,
+    FormControl, InputLabel, Button} from "@material-ui/core";
+import "./AddComputer.scss";
 
 
 const useStyle = makeStyles((theme) => ({
     root: {
         width: '100%'
     },
-
     picker: {
         minHeight: 60,
         maxHeight: 75,
         minWidth: 300,
     },
-
     textField: {
         minHeight: 60,
         maxHeight: 75,
@@ -34,6 +34,10 @@ const useStyle = makeStyles((theme) => ({
         marginTop: 10,
         marginLeft: 5,
         marginRight: 5,
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
     }
 }))
 
@@ -120,19 +124,22 @@ function AddComputer(props) {
                 </div>
             </MuiPickersUtilsProvider>
             <div>
-                <Select className={classes.select}
-                    value={computer.selectedCompany}
-                    onChange={(event) => setComputer({...computer, selectedCompany: event.target.value})}
-                >
-                    <MenuItem value={0}>None</MenuItem>
-                    {companyList && companyList.map(company => {
-                        return (
-                            <MenuItem key={company.id} value={company.id}>{company.name}</MenuItem>
-                        )
-                    })
-                    }
+                <FormControl className={classes.formControl}>
+                    <InputLabel>Company</InputLabel>
+                    <Select className={classes.select}
+                        value={computer.selectedCompany}
+                        onChange={(event) => setComputer({...computer, selectedCompany: event.target.value})}
+                    >
+                        <MenuItem value={0}>None</MenuItem>
+                        {companyList && companyList.map(company => {
+                            return (
+                                <MenuItem key={company.id} value={company.id}>{company.name}</MenuItem>
+                            )
+                        })
+                        }
 
-                </Select>
+                    </Select>
+                </FormControl>
             </div>
             <Button className={classes.button} onClick={()=>{props.addComputer(computer);history.push("/computers")}} variant="contained" value="Ajouter" color="primary">Ajouter</Button>
             <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Annuler</Button>

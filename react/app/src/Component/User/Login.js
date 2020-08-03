@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import InputLabel from "@material-ui/core/InputLabel";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { setUser } from '../../Store/Action/UserAction';
 import { getUser } from '../../Store/Selector/UserSelector';
 import { getToken } from '../../Store/Selector/ConnexionSelector';
@@ -81,7 +81,7 @@ function Login(props) {
                 props.closeDrawer()
                 history.push("/computers")
             }).catch((error) => {
-                console.log(error)
+                console.log(error);
             });
     }
 
@@ -121,7 +121,7 @@ function Login(props) {
                             }
                         />
                     </FormControl>
-                    
+
                 </FormControl>
             </form>
             <Button variant="outlined" onClick={connexion} color="primary">Connexion</Button>
@@ -139,6 +139,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state) => {
     return {
+
         token: getToken(state),
         user: getUser(state),
     }
