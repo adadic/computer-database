@@ -59,7 +59,7 @@ public class DAOCompany {
 					.setParameter("id_company", id);
 			List<Company> company = query.getResultList();
 
-			if (company != null) {
+			if (company != null && company.size()!=0) {
 				LOGGER.info("Company with id = {} : Found", id);
 
 				return Optional.of(company.get(0));
