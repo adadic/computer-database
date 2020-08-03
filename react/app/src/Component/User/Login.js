@@ -14,6 +14,7 @@ import { useHistory } from "react-router-dom";
 import { setUser } from '../../Store/Action/UserAction';
 import { getUser } from '../../Store/Selector/UserSelector';
 import { getToken } from '../../Store/Selector/ConnexionSelector';
+import { isConnected } from "../../Store/Action/ConnexionAction";
 
 import clsx from "clsx";
 import { setToken } from '../../Store/Action/ConnexionAction';
@@ -78,6 +79,7 @@ function Login(props) {
             .then((res) => {
                 props.seToken(res.data);
                 props.setUser(user);
+                props.setConnected(true);
                 props.closeDrawer();
                 history.push("/computers");
             }).catch((error) => {
@@ -137,6 +139,7 @@ const mapDispatchToProps = dispatch => {
     return {
 
         seToken: data => dispatch(setToken(data)),
+        setConnected: conn => dispatch(isConnected(conn)),
         setUser: user => dispatch(setUser(user))
     }
 }

@@ -4,32 +4,17 @@ import { connect } from 'react-redux';
 import { getUser } from '../../Store/Selector/UserSelector';
 import { getToken } from '../../Store/Selector/ConnexionSelector';
 import useAxios from 'axios-hooks';
+import { useHistory } from "react-router-dom";
 
 
 const baseURL = 'http://localhost:8083/webapp/logout';
 
 function ShowUser(props) {
 
-    const [{ }, onLogout] = useAxios(
-        {
-            headers: {
-                'Authorization': `Bearer ${props.token}`,
-            },
-            url: `${baseURL}`,
-            method: "POST"
-        },
-        { manual: true }
-    );
-
+    const history = useHistory();
 
     function logout() {
-        onLogout({ })
-            .then((res) => {
-                console.log("logout")
-            }).catch((error) => {
-                console.log(error.status)
-            });
-        console.log("test")
+        history.push("/logout")
     }
 
     return (

@@ -15,7 +15,7 @@ import ShowUser from '../User/ShowUser';
 import useAxios from 'axios-hooks';
 import { getUser } from '../../Store/Selector/UserSelector';
 import { setUser } from '../../Store/Action/UserAction';
-import { getSearchMode } from "../../Store/Selector/SearchSelector";
+import {getSearchMode} from "../../Store/Selector/SearchSelector";
 
 const baseURL = 'http://localhost:8083/webapp/api/users';
 
@@ -143,7 +143,7 @@ function Header(props) {
                                 <AccountCircleIcon/>
                             </Button>
 
-                            <Drawer an isConnectechor='right' open={state} onClose={toggleDrawer(false)}>
+                            <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
                                 <ShowUser />
                             </Drawer>
                         </div>
