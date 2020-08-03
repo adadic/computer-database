@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import hr.excilys.dto.DTOComputer;
+import hr.excilys.dto.DTOComputerAdd;
 import hr.excilys.mapper.DateMapper;
 
 @Component
@@ -61,6 +62,46 @@ public class ComputerValidator {
 			return false;
 		}
 	}
+	
+	public boolean checkComputerFieldsAdd(DTOComputerAdd dtoComputerAdd) {
+		
+		if (StringUtils.isEmpty(dtoComputerAdd.getComputerName())) {
+			LOGGER.info("Computer has no name!");
+
+			return false;
+		}
+		try {
+			if (StringUtils.isEmpty(dtoComputerAdd.getIntroduced())
+					&& StringUtils.isNotEmpty(dtoComputerAdd.getIntroduced())) {
+				
+				return false;
+			}
+			LocalDate timeIntro = checkDate(dtoComputerAdd.getIntroduced());
+			LocalDate timeDiscon = checkDate(dtoComputerAdd.getDiscontinued());
+
+			if (timeIntro != null && timeDiscon != null && timeIntro.isAfter(timeDiscon)) {
+				LOGGER.info("introduced Date after Discontinued Date in this Computer");
+				
+				return false;
+			}
+			if (StringUtils.isEmpty(dtoComputerAdd.getCompanyId())) {	
+				return false;
+			}
+			try {
+				Long.parseLong(dtoComputerAdd.getCompanyId());
+			} catch(NumberFormatException nfe) {
+				return false;
+			}
+			LOGGER.info("Computer can be created");
+			
+			return true;
+		} catch (DateTimeParseException dtpe) {
+			LOGGER.error("NullPointerException -> At least one Field was null !!");
+			
+			return false;
+		}
+	}
+		
 
 	private LocalDate checkDate(String date) throws DateTimeParseException {
 

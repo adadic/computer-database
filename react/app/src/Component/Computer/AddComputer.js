@@ -54,10 +54,7 @@ function AddComputer(props) {
         computerName: "",
         introduced: null,
         discontinued: null,
-        company: {
-            companyId:"0",
-            companyName:"None",
-        },
+        companyId:"0",
     })
 
     useEffect(() => setCompanies(data),[data]);
@@ -131,7 +128,7 @@ function AddComputer(props) {
                 <FormControl className={classes.formControl}>
                     <InputLabel>Company</InputLabel>
                     <Select className={classes.select}
-                        value={computer.company.companyId}
+                        value={computer.companyId}
                         onChange={(event) => setComputer({...computer, companyId: event.target.value})}
                     >
                         <MenuItem value={0}>None</MenuItem>
