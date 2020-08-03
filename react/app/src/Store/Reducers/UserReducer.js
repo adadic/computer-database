@@ -4,8 +4,7 @@ const initialState = {
     user: {
         userName: "",
         email: "",
-        roleName: "",
-        password: ""
+        roleName: ""
     }
 }
 

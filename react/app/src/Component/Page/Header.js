@@ -7,7 +7,6 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuBar from "./MenuBar";
 import Login from "../User/Login";
-import { useHistory } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { getToken, isConnected } from '../../Store/Selector/ConnexionSelector';
 import { connect } from 'react-redux';
@@ -76,7 +75,6 @@ const useStyles = makeStyles((theme) => ({
 function Header(props) {
     const classes = useStyles();
     const [state, setState] = useState(false);
-    const history = useHistory();
 
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -90,13 +88,6 @@ function Header(props) {
         setState(false);
     }
 
-    const [user, setUser] = useState({
-        userName: "",
-        email: "",
-        roleName: "",
-        password: ""
-    });
-
     const [{ }, getUser] = useAxios(
         {
             headers:{
@@ -109,12 +100,14 @@ function Header(props) {
     );
 
     function userGet() {
-        getUser({ data: user })
-            .then((res) => {
-            if(user.roleName === ""){
-                setUser(user.roleName= res.data.user.role.roleName, user.userName= res.data.user.username);
-                console.log(user)
-                props.setUser(user);
+        getUser({ data: props.user })
+            .then(res => {
+            if(props.user.roleName === ""){
+                props.setUser({
+                    userName: res.data.user.username,
+                    roleName: res.data.user.role.roleName,
+                    email: res.data.user.userName
+                });
                 setState(true)
             }
             else {
@@ -155,8 +148,6 @@ function Header(props) {
                             </Drawer>
                         </div>
                     }
-
-
                 </Toolbar>
             </AppBar>
         </div>
