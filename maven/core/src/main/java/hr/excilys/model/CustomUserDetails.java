@@ -14,6 +14,11 @@ public class CustomUserDetails implements UserDetails {
 	private User user;
 	Set<GrantedAuthority> authorities;
 
+	@Override
+	public String toString() {
+		return "CustomUserDetails [user=" + user + ", authorities=" + authorities + "]";
+	}
+
 	public CustomUserDetails(CustomBuilder builder) {
 
 		this.user = builder.user;
@@ -36,6 +41,7 @@ public class CustomUserDetails implements UserDetails {
 	}
 
 	private void setAuthorities() {
+		
 
 		GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole().getRoleName());
 		authorities = new HashSet<>();
