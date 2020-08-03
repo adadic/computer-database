@@ -131,6 +131,11 @@ public class Role {
 			this.roleName = roleName;
 			return this;
 		}
+
+		public RoleBuilder setroleId(long id) {
+			this.id=id;
+			return this;
+		}
 	}
 
 }
