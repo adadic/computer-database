@@ -10,7 +10,7 @@ public final class DTOComputer {
 	private String introduced;
 	private String discontinued;
 	private DTOCompany company;
-
+	
 	public DTOComputer() {
 	}
 

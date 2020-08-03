@@ -12,6 +12,12 @@ import SearchBar from "./SearchBar";
 import { getToken, isConnected } from '../../Store/Selector/ConnexionSelector';
 import { connect } from 'react-redux';
 import ShowUser from '../User/ShowUser';
+import useAxios from 'axios-hooks';
+import { getUser } from '../../Store/Selector/UserSelector';
+import { setUser } from '../../Store/Action/UserAction';
+
+export const baseURL = 'http://localhost:8083/webapp/api/users';
+
 import {getSearchMode} from "../../Store/Selector/SearchSelector";
 
 const useStyles = makeStyles((theme) => ({
@@ -81,6 +87,45 @@ function Header(props) {
         setState(open);
     };
 
+    const closeDrawer = (event) => {
+        setState(false);
+    }
+
+    const [user, setUser] = useState({
+        userName: "",
+        email: "",
+        roleName: "",
+        password: ""
+    });
+
+    const [{ }, getUser] = useAxios(
+        {
+            headers:{
+                'Authorization' : `Bearer ${props.token}`,
+            },
+            url: `${baseURL}/${props.user.userName}`,
+            method: "GET"
+        },
+        { manual: true }
+    );
+
+    function userGet() {
+        getUser({ data: user })
+            .then((res) => {
+            if(user.roleName === ""){
+                setUser(user.roleName= res.data.user.role.roleName, user.userName= res.data.user.username);
+                console.log(user)
+                props.setUser(user);
+                setState(true)
+            }
+            else {
+                setState(true)
+            }
+            }).catch((error) => {
+                console.log(error.status)
+            });
+    }
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -94,9 +139,11 @@ function Header(props) {
                     {props.token !== "" && props.isConnected
                         ?
                         <div>
-                            <Button onClick={toggleDrawer(true)} color="inherit">
+
+                            <Button onClick={() => {userGet()}} color="inherit">
                                 <AccountCircleIcon/>
                             </Button>
+
                             <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
                                 <ShowUser />
                             </Drawer>
@@ -105,7 +152,7 @@ function Header(props) {
                         <div>
                             <Button onClick={toggleDrawer(true)} color="inherit">Login</Button>
                             <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
-                                <Login />
+                                <Login closeDrawer={closeDrawer}/>
                             </Drawer>
                         </div>
                     }
@@ -121,8 +168,16 @@ const mapStateToProps = (state) => {
     return {
         token: getToken(state),
         isConnected: isConnected(state),
+        user: getUser(state),
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+
+        setUser: user => dispatch(setUser(user)),
         isSearching: getSearchMode(state)
     }
 }
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
