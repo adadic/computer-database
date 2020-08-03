@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {
     Table, TableBody, TableCell, TableContainer,
@@ -6,11 +6,11 @@ import {
 } from '@material-ui/core';
 import EnhancedTableHead from "../Table/EnhancedTableHead";
 import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
-import {useHistory} from "react-router-dom";
 import {stableSort, getComparatorCompany} from "../../Function/TableFunction";
 import CreateIcon from '@material-ui/icons/Create';
 import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
+import {searchMode} from "../../Store/Action/SearchAction";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -43,6 +43,13 @@ const useStyles = makeStyles((theme) => ({
 function ListCompany(props) {
 
     const classes = useStyles();
+    useEffect(() => {
+        props.changeMode(true);
+
+        return function cleanup() {
+            props.changeMode(false);
+        }
+    })
     const [companies, setCompanies] = useState(props.companies);
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('name');
@@ -201,4 +208,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ListCompany);
+const mapDispatchToProps = dispatch => {
+    return {
+
+        changeMode: mode =>
+            dispatch(searchMode(mode))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListCompany);

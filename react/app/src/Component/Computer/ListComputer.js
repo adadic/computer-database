@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {
     Table, TableBody, TableCell, TableContainer,
@@ -6,11 +6,11 @@ import {
 } from '@material-ui/core';
 import EnhancedTableHead from "../Table/EnhancedTableHead";
 import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
-import {useHistory} from "react-router-dom";
 import {stableSort, getComparator} from "../../Function/TableFunction";
 import CreateIcon from '@material-ui/icons/Create';
 import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
+import {searchMode} from "../../Store/Action/SearchAction";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -42,9 +42,14 @@ const useStyles = makeStyles((theme) => ({
 
 function ListComputer(props) {
 
-    const history = useHistory();
     const classes = useStyles();
-    const [deleteMode, setDeleteMode] = useState(true);
+    useEffect(() => {
+        props.changeMode(true);
+
+        return function cleanup() {
+            props.changeMode(false);
+        }
+    })
     const [computers, setComputers] = useState(props.computers);
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('computers');
@@ -142,7 +147,6 @@ function ListComputer(props) {
                             onRequestSort={handleRequestSort}
                             rowCount={computerSize}
                             headCells={props.headCells}
-                            mode={deleteMode}
                         />
                         <TableBody style={{overflow: "auto"}}>
                             {stableSort(computers.filter(item => item.name && item.name.includes(props.search)), getComparator(order, orderBy))
@@ -154,7 +158,7 @@ function ListComputer(props) {
                                     return (
                                         <TableRow
                                             hover
-                                            onClick={(event) => deleteMode ? handleClick(event, row.id) : history.push('/computers/' + row.id)}
+                                            onClick={(event) => handleClick(event, row.id)}
                                             role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
@@ -225,4 +229,12 @@ const mapStateToProps = (state) => {
     };
 }
 
-export default connect(mapStateToProps)(ListComputer);
+const mapDispatchToProps = dispatch => {
+    return {
+
+        changeMode: mode =>
+            dispatch(searchMode(mode))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListComputer);

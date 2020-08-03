@@ -6,20 +6,20 @@ import {
     KeyboardDatePicker,
 } from '@material-ui/pickers';
 import {useHistory} from "react-router-dom";
-import {TextField, makeStyles, Select, MenuItem, Backdrop, CircularProgress, Button} from "@material-ui/core";
+import {TextField, makeStyles, Select, MenuItem,
+    FormControl, InputLabel, Button} from "@material-ui/core";
+import "./AddComputer.scss";
 
 
 const useStyle = makeStyles((theme) => ({
     root: {
         width: '100%'
     },
-
     picker: {
         minHeight: 60,
         maxHeight: 75,
         minWidth: 300,
     },
-
     textField: {
         minHeight: 60,
         maxHeight: 75,
@@ -34,6 +34,10 @@ const useStyle = makeStyles((theme) => ({
         marginTop: 10,
         marginLeft: 5,
         marginRight: 5,
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
     }
 }))
 
@@ -46,10 +50,10 @@ function AddComputer(props) {
     const [companyList, setCompanies] = useState(data);
 
     const [computer, setComputer] = useState({
-        computerName: "",
+        name: "",
         introduced: null,
         discontinued: null,
-        companyId:"1",
+        selectedCompany: "0"
     })
 
     useEffect(() => setCompanies(data),[data]);
@@ -82,8 +86,8 @@ function AddComputer(props) {
                     required
                     id="text-field-name"
                     label="Computer Name"
-                    value={computer.computerName}
-                    onChange={(event) => setComputer({...computer, computerName: event.target.value})}
+                    value={computer.name}
+                    onChange={(event) => setComputer({...computer, name: event.target.value})}
                 />
             </div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -110,7 +114,7 @@ function AddComputer(props) {
                         format="yyyy-MM-dd"
                         value={computer.discontinued}
                         onChange={handleDiscontinued}
-                        minDate="1970-01-01"
+                        minDate={computer.introduced}
                         maxDate="2038-01-18"
                         disabled={!computer.introduced || computer.introduced.toString() === "Invalid Date"}
                         KeyboardButtonProps={{
@@ -120,19 +124,22 @@ function AddComputer(props) {
                 </div>
             </MuiPickersUtilsProvider>
             <div>
-                <Select className={classes.select}
-                    value={computer.companyId}
-                    onChange={(event) => setComputer({...computer, companyID: event.target.value})}
-                >
-                    <MenuItem value={0}>None</MenuItem>
-                    {companyList && companyList.map(company => {
-                        return (
-                            <MenuItem key={company.id} value={company.id}>{company.name}</MenuItem>
-                        )
-                    })
-                    }
+                <FormControl className={classes.formControl}>
+                    <InputLabel>Company</InputLabel>
+                    <Select className={classes.select}
+                        value={computer.selectedCompany}
+                        onChange={(event) => setComputer({...computer, selectedCompany: event.target.value})}
+                    >
+                        <MenuItem value={0}>None</MenuItem>
+                        {companyList && companyList.map(company => {
+                            return (
+                                <MenuItem key={company.id} value={company.id}>{company.name}</MenuItem>
+                            )
+                        })
+                        }
 
-                </Select>
+                    </Select>
+                </FormControl>
             </div>
             <Button className={classes.button} onClick={()=>{props.addComputer(computer);history.push("/computers")}} variant="contained" value="Ajouter" color="primary">Ajouter</Button>
             <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Annuler</Button>

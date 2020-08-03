@@ -1,7 +1,8 @@
 import * as actionTypes from "../Action/SearchAction";
 
 const initialState = {
-    search: ""
+    search: "",
+    searchMode: false
 }
 
 const searchReducer = (state = initialState, action) => {
@@ -10,6 +11,9 @@ const searchReducer = (state = initialState, action) => {
         case actionTypes.SEARCH:
 
             return {...state, search: action.payload};
+        case actionTypes.SEARCHMODE:
+
+            return {...state, searchMode: action.payload};
         default:
 
             return state;

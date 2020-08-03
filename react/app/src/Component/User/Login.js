@@ -72,10 +72,10 @@ function Login(props) {
         console.log(user)
         login({ data: user })
             .then((res) => {
-                props.seToken(res.data)
-                history.push("/computers")
+                props.seToken(res.data);
+                history.push("/computers");
             }).catch((error) => {
-                console.log(error)
+                console.log(error);
             });
     }
 
@@ -125,7 +125,7 @@ function Login(props) {
 const mapDispatchToProps = dispatch => {
     return {
 
-        seToken: data => dispatch(setToken(data)),
+        seToken: data => dispatch(setToken(data))
     }
 }
 
