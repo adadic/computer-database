@@ -106,7 +106,7 @@ function ListCompany(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const companySize = companies.filter(item => item.name.includes(props.search)).length;
+    const companySize = companies.filter(item => item.name && item.name.includes(props.search)).length;
     const emptyRows = companySize < 10 ? 10 - companySize % 10 : 0;
 
     function deleteCompanies() {
@@ -143,7 +143,7 @@ function ListCompany(props) {
                             headCells={props.headCells}
                         />
                         <TableBody style={{overflow: "auto"}}>
-                            {stableSort(companies.filter(item => item.name.includes(props.search)), getComparatorCompany(order, orderBy))
+                            {stableSort(companies.filter(item => item.name && item.name.includes(props.search)), getComparatorCompany(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
                                     const isItemSelected = isSelected(row.id);
