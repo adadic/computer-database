@@ -102,7 +102,7 @@ function ListComputer(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const computerSize = computers.filter(item => item.name.includes(props.search)).length;
+    const computerSize = computers.filter(item =>item.name && item.name.includes(props.search)).length;
     const emptyRows = computerSize < 10 ? 10 - computerSize % 10 : 0;
 
     function deleteComputers() {
@@ -145,7 +145,7 @@ function ListComputer(props) {
                             mode={deleteMode}
                         />
                         <TableBody style={{overflow: "auto"}}>
-                            {stableSort(computers.filter(item => item.name.includes(props.search)), getComparator(order, orderBy))
+                            {stableSort(computers.filter(item => item.name && item.name.includes(props.search)), getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
                                     const isItemSelected = isSelected(row.id);

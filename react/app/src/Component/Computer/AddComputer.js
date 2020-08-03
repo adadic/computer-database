@@ -46,10 +46,10 @@ function AddComputer(props) {
     const [companyList, setCompanies] = useState(data);
 
     const [computer, setComputer] = useState({
-        name: "",
+        computerName: "",
         introduced: null,
         discontinued: null,
-        selectedCompany: "0"
+        companyId:"1",
     })
 
     useEffect(() => setCompanies(data),[data]);
@@ -82,8 +82,8 @@ function AddComputer(props) {
                     required
                     id="text-field-name"
                     label="Computer Name"
-                    value={computer.name}
-                    onChange={(event) => setComputer({...computer, name: event.target.value})}
+                    value={computer.computerName}
+                    onChange={(event) => setComputer({...computer, computerName: event.target.value})}
                 />
             </div>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -121,8 +121,8 @@ function AddComputer(props) {
             </MuiPickersUtilsProvider>
             <div>
                 <Select className={classes.select}
-                    value={computer.selectedCompany}
-                    onChange={(event) => setComputer({...computer, selectedCompany: event.target.value})}
+                    value={computer.companyId}
+                    onChange={(event) => setComputer({...computer, companyID: event.target.value})}
                 >
                     <MenuItem value={0}>None</MenuItem>
                     {companyList && companyList.map(company => {
