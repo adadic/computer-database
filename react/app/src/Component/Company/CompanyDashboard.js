@@ -5,7 +5,7 @@ import {Backdrop, CircularProgress} from "@material-ui/core";
 import ListCompany from "./ListCompany";
 
 
-function CompanyDashboard() {
+function CompanyDashboard(props) {
 
 
     const headCell = [
@@ -46,7 +46,9 @@ function CompanyDashboard() {
         executeDelete({url: `${baseURL}/computers/${id}`});
     }
 
-    useEffect(() => setCompanyList(data),[data, dataAdd, dataEdit]);
+    useEffect(() => {
+        setCompanyList(data);
+    }, [data, dataAdd, dataEdit]);
 
     return (
         <div className="App">

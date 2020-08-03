@@ -53,6 +53,9 @@ function Login(props) {
     const history = useHistory();
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
+    const [displaySuccess, setDisplaySuccess] = useState(false);
+    const [message, setMessage] = useState('');
+    const [success, setSuccess] = useState(false);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -114,9 +117,6 @@ function Login(props) {
             console.log(error.config);
             });
     }
-    const [displaySuccess, setDisplaySuccess] = useState(false);
-    const [message, setMessage] = useState('');
-    const [success, setSuccess] = useState(false);
 
     function displaySuccessAlert(){
         setDisplaySuccess(true);

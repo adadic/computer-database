@@ -46,7 +46,9 @@ function ComputerDashboard(props) {
 
     
 
-    useEffect(() => setComputerList(data),[data, dataAdd, dataEdit]);
+    useEffect(() => {
+        setComputerList(data);
+    }, [data, dataAdd, dataEdit]);
 
     function addComputer(computer){
 
