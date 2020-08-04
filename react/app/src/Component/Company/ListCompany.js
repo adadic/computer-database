@@ -9,7 +9,7 @@ import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import {stableSort, getComparatorCompany} from "../Table/TableFunction";
 import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
-import {searchMode} from "../../Store/Action/SearchAction";
+import {newSearch, searchMode} from "../../Store/Action/SearchAction";
 import Company from "./Company";
 import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 
@@ -54,8 +54,9 @@ function ListCompany(props) {
         props.changeMode(true);
         return function cleanup() {
             props.changeMode(false);
+            props.newSearch("");
         }
-    })
+    }, [])
 
     const [companies, setCompanies] = useState(props.companies);
 
@@ -192,7 +193,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        newSearch: search => dispatch(newSearch(search)),
         changeMode: mode => dispatch(searchMode(mode)),
     }
 }

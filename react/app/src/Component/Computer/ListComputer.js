@@ -9,7 +9,7 @@ import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import {stableSort, getComparator} from "../Table/TableFunction";
 import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
-import {searchMode} from "../../Store/Action/SearchAction";
+import {newSearch, searchMode} from "../../Store/Action/SearchAction";
 import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 import Computer from "./Computer";
 
@@ -52,11 +52,11 @@ function ListComputer(props) {
 
     useEffect(() => {
         props.changeMode(true);
-
         return function cleanup() {
             props.changeMode(false);
+            props.newSearch("");
         }
-    })
+    }, [])
     const [computers, setComputers] = useState(props.computers);
 
     const handleRequestSort = (event, property) => {
@@ -120,7 +120,7 @@ function ListComputer(props) {
 
     const editComputer = (computer) => {
 
-        props.edit && props.edit({data: computer});
+        props.edit && props.edit(computer);
     }
 
     return (
@@ -193,7 +193,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        newSearch: search => dispatch(newSearch(search)),
         changeMode: mode => dispatch(searchMode(mode)),
     }
 }

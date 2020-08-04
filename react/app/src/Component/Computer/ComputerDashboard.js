@@ -44,22 +44,24 @@ function ComputerDashboard(props) {
         {manual: true}
     );
 
-    
-
     useEffect(() => {
         setComputerList(data);
-    }, [data, dataAdd, dataEdit]);
+    }, [data, dataAdd, dataEdit, 1]);
 
     function addComputer(computer){
 
-        setComputerList(computerList.concat({computer}));
         executeAdd({data:computer});
+    }
+
+    function editComputer(computer){
+
+        executeEdit({data: computer});
     }
 
     const deleteComputer = (id) => {
 
-        executeDelete({url: `${baseURL}/computers/${id}`});
         setComputerList(computerList.filter(item => item.id !== id));
+        executeDelete({url: `${baseURL}/computers/${id}`});
     }
 
     return (
@@ -76,7 +78,7 @@ function ComputerDashboard(props) {
                     <AddComputer addComputer={addComputer}/>
                     :
                     <div className="table-size">
-                        {computerList && <ListComputer computers={computerList} edit={executeEdit} add={executeAdd} headCells={headCell} delete={deleteComputer}/>}
+                        {computerList && <ListComputer computers={computerList} edit={editComputer} add={executeAdd} headCells={headCell} delete={deleteComputer}/>}
                     </div>
             }
         </div>
