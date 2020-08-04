@@ -15,6 +15,7 @@ import { setUser } from '../../Store/Action/UserAction';
 import { getUser } from '../../Store/Selector/UserSelector';
 import { getToken } from '../../Store/Selector/ConnexionSelector';
 import { isConnected } from "../../Store/Action/ConnexionAction";
+import "./Login.scss";
 
 import clsx from "clsx";
 import { setToken } from '../../Store/Action/ConnexionAction';
@@ -132,13 +133,13 @@ function Login(props) {
     }
 
     return (
-        <div className="Register">
+        <div className="login">
             <Collapse in={displaySuccess}>
                 <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
                        severity={success ? "success" : "error"}>{message}</Alert>
 
             </Collapse>
-            <form className={classes.root} noValidate autoComplete="off" method="POST">
+            <form className={classes.root} class="form" noValidate autoComplete="off" method="POST">
 
                 <FormControl>
                     <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)}>
@@ -174,8 +175,14 @@ function Login(props) {
 
                 </FormControl>
             </form>
+            <div class="buttonco">
             <Button variant="outlined" onClick={connexion} color="primary">Connexion</Button>
+            </div>
+            <div class="buttonre">
             <Button variant="outlined" onClick={register} color="primary">Register</Button>
+            </div>
+           
+            
         </div>
     );
 }

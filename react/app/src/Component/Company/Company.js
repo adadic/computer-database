@@ -10,7 +10,7 @@ function Company(props) {
         companyId: props.row.id,
         companyName: props.row.name
     });
-    const [editMode, setEdit] = useState(false);
+    const [editMode, setEdit] = useState(props.editMode);
     const [addMode, setAdd] = useState(company.id === 0);
 
     const edit = () => (event) => {

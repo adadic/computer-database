@@ -76,6 +76,7 @@ function AddComputer(props) {
                 checkFields()
             }
         }
+
     }
 
     const handleDiscontinued = (date) => {
@@ -185,6 +186,7 @@ function AddComputer(props) {
                     </Select>
                 </FormControl>
             </div>
+
             <Button 
             className={classes.button} 
             disabled={fieldsValid?false:true}
@@ -196,7 +198,6 @@ function AddComputer(props) {
             <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Annuler</Button>
         </form>
     );
-
 }
 
 export default AddComputer;
