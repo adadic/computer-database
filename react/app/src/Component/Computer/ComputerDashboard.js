@@ -14,7 +14,7 @@ import {getComparator, stableSort} from "../Table/TableFunction";
 import Computer from "./Computer";
 import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 import {getSearch} from "../../Store/Selector/SearchSelector";
-import {searchMode} from "../../Store/Action/SearchAction";
+import {newSearch, searchMode} from "../../Store/Action/SearchAction";
 import {connect} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -71,8 +71,9 @@ function ComputerDashboard(props) {
 
         return function cleanup() {
             props.changeMode(false);
+            props.newSearch("");
         }
-    })
+    }, [])
 
     const handleRequestSort = (event, property) => {
 
@@ -260,7 +261,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        newSearch: search => dispatch(newSearch(search)),
         changeMode: mode => dispatch(searchMode(mode)),
     }
 }

@@ -11,7 +11,6 @@ function Company(props) {
         companyName: props.row.name
     });
     const [editMode, setEdit] = useState(props.editMode);
-    const [addMode, setAdd] = useState(company.id === 0);
 
     const edit = () => (event) => {
 
@@ -30,8 +29,43 @@ function Company(props) {
         props.edit && props.edit(company);
         setEdit(false);
     }
+    const removeCompany = () => () => {
+
+        props.delete && props.delete(false);
+        setEdit(false);
+    }
+
+    const addCompany = () => () => {
+
+        props.add && props.add(company);
+    }
 
     return (
+        props.addMode ?
+            <TableRow hover key={company.id}>
+
+                <TableCell padding="checkbox">
+                    <Button onClick={addCompany()}>
+                        <DoneIcon/>
+                    </Button>
+                </TableCell>
+                <TableCell padding="checkbox">
+                    <Button onClick={removeCompany()}>
+                        <CloseIcon/>
+                    </Button>
+                </TableCell>
+
+                <TableCell component="th" id={props.labelId} scope="row" padding="none"
+                           style={{width: '90%'}}>
+                    <TextField
+                        required
+                        label="Company Name"
+                        value={company.companyName}
+                        style={{width: 300}}
+                        onChange={(event) => setCompany({...company, companyName: event.target.value})}
+                    />
+                </TableCell>
+            </TableRow> :
         editMode ?
             <TableRow hover key={company.id}>
 

@@ -18,7 +18,7 @@ import User from "./User";
 import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 import {makeStyles} from "@material-ui/core/styles";
 import {getSearch} from "../../Store/Selector/SearchSelector";
-import {searchMode} from "../../Store/Action/SearchAction";
+import {newSearch, searchMode} from "../../Store/Action/SearchAction";
 import {connect} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -74,8 +74,9 @@ function UserDashboard(props) {
 
         return function cleanup() {
             props.changeMode(false);
+            props.newSearch("");
         }
-    })
+    }, [])
 
     const handleRequestSort = (event, property) => {
 
@@ -207,7 +208,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        newSearch: search => dispatch(newSearch(search)),
         changeMode: mode => dispatch(searchMode(mode)),
     }
 }

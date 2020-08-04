@@ -67,8 +67,8 @@ function CompanyDashboard(props) {
     const emptyRows = companySize < 10 ? 10 - companySize % 10 : 0;
     const [addNew, setAddNew] = useState(false);
     const [newCompany, setNewCompany] = useState({
-        companyId: companySize + 1,
-        companyName: ""
+        id: 0,
+        name: ""
     })
 
 
@@ -119,6 +119,7 @@ function CompanyDashboard(props) {
     const addCompany = (company) => {
 
         executeAdd({data: company});
+        setAddNew(false);
     }
 
     useEffect(() => {
@@ -127,8 +128,8 @@ function CompanyDashboard(props) {
             props.changeMode(false);
             props.newSearch("");
         }
-    });
-    useEffect(() => setCompanyList(data), [data, dataAdd, dataEdit]);
+    }, []);
+    useEffect(() => setCompanyList(data), [data, dataAdd, dataEdit, newCompany]);
 
     const handleRequestSort = (event, property) => {
 
@@ -214,8 +215,10 @@ function CompanyDashboard(props) {
                                         selected={selected}
                                         row={newCompany}
                                         edit={editCompany}
-                                        editMode={true}
-                                        addCompany={addCompany()}
+                                        delete={setAddNew}
+                                        add={addCompany}
+                                        addMode={true}
+                                        addCompany={addCompany}
                                     />}
                                     {companyList && stableSort(companyList.filter(item => item.name && item.name.includes(props.search)), getComparatorCompany(order, orderBy))
                                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
