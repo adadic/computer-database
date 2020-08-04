@@ -49,4 +49,15 @@ public class CompanyService {
 		
 		return false;
 	}
+
+	public boolean addCompany(DTOCompany dtoCompany) {
+		
+		Optional<Company> company = companyDTOMapper.fromDTO(dtoCompany);
+		if (company.isPresent()) {
+
+			return daoCompany.insertCompany(company.get());
+		}
+		
+		return false;
+	}
 }

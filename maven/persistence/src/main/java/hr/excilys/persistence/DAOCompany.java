@@ -124,4 +124,23 @@ public class DAOCompany {
 			return false;
 		}
 	}
+
+	public boolean insertCompany(Company company) {
+		System.out.println("user in hibernate dao computer "+company.toString());
+
+		try {
+			session = sessionFactory.getCurrentSession();
+			session.save(company);
+
+			return true;
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return false;
+		} catch (DataAccessException dae) {
+			LOGGER.error("Company NOT added, problem in query : Check fields");
+
+			return false;
+		}
+	}
 }
