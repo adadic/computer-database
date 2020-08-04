@@ -128,6 +128,7 @@ function Register() {
     const [displaySucess, setDisplaySuccess]=useState(false);
 
 
+
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -252,6 +253,7 @@ function Register() {
         emailCheck(user.email);
         displayAlertError();
 
+
     });
 
     return (
@@ -352,7 +354,7 @@ function Register() {
 
             <br/>
             <Button onClick={addUser} variant="outlined" color="primary">Add</Button>{' '}
-            <Button onClick={addUser} variant="outlined" color="secondary">Cancel</Button>
+            <a style={{textDecoration:'none'}} href={'register'}><Button  variant="outlined" color="secondary">Reset</Button></a>
         </div>
     );
 

@@ -4,6 +4,12 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ProfileUi from 'react-profile-card';
 import saad from './resources/saad.jpeg';
+import andro from './resources/andro.jpg';
+import yves from './resources/yves.jpg';
+import julien from './resources/julien.jpg';
+import imageOne from "./resources/imageOne.png";
+import imageTwo from "./resources/imageTwo.png";
+import BackgroundSlider from "react-background-slider";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,40 +22,67 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
 }));
-function About(){
+const styles={
+    text:{
+        color:'white',
+        fontSize:'300%',
+        backgroundColor:'rgba(0,0,0,0.2)',
+
+
+    },
+
+
+}
+const image1 = 'https://i.pinimg.com/originals/7a/bd/12/7abd1279564c43a005ecddedd9d371fe.jpg'
+const image2 ='https://wallpaperaccess.com/full/1180986.jpg'
+    function About(){
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <Grid container spacing={3}>
-                <Grid item xs={3}>
-                    <ProfileUi
-                        imgUrl={saad}
-                        name='Saad'
-                        designation='Developer'
-                    />
-                </Grid>
-                <Grid item xs={3}>
+        <div className={classes.root} >
+            <BackgroundSlider
+                images={[image1, image2]}
+                duration={100} transition={2} />
+             <p style={styles.text}>The Dev Team</p>
 
-                        <ProfileUi
+            <Grid container style={{flexDirection:"row",justifyContent:'space-between'}}>
+                <Grid item>
+
+                    <ProfileUi
+                        imgUrl={julien}
+                        name='Julien'
+                        designation='Developper'
+                    />
+
+                </Grid>
+                <Grid item>
+
+                        <ProfileUi style={{padding:0}}
                             imgUrl={saad}
                             name='Saad'
-                            designation='Developer'
+                            designation='Developper'
                         />
 
+
                 </Grid>
-                <Grid item xs={3}>
+
+                <Grid item>
+
                     <ProfileUi
-                        imgUrl={saad}
-                        name='Saad'
-                        designation='Developer'
+                        imgUrl={andro}
+                        name='Andro'
+                        designation='Developper'
                     />
+
                 </Grid>
-                <Grid item xs={3}>
+
+                <Grid item>
+
                     <ProfileUi
-                        imgUrl={saad}
-                        name='Saad'
-                        designation='Developer'
+                        imgUrl={yves}
+                        name='Yves'
+                        designation='Developper'
                     />
+
                 </Grid>
             </Grid>
         </div>

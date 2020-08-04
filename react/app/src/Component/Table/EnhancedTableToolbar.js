@@ -51,7 +51,7 @@ const EnhancedTableToolbar = (props) => {
             )}
 
             {!props.user &&(numSelected > 0 ? (
-                <Tooltip title="Delete" onClick={() => props.delete && props.delete()}>
+                <Tooltip title="Delete" onClick={() => props.delete && props.delete()} href="/computers">
                     <IconButton aria-label="delete">
                         <DeleteIcon/>
                     </IconButton>
