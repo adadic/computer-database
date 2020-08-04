@@ -19,7 +19,7 @@ function Computer(props) {
 
     const [computer, setComputer] = useState({
         id: props.row.id,
-        name: props.row.name,
+        computerName: props.row.name,
         introduced: props.row.introduced ? getDate(props.row.introduced) : null,
         discontinued: props.row.discontinued ? getDate(props.row.discontinued) : null,
         companyId: props.row.company.id
@@ -44,7 +44,7 @@ function Computer(props) {
 
         setComputer({
             id: props.row.id,
-            name: props.row.name,
+            computerName: props.row.name,
             introduced: props.row.introduced,
             discontinued: props.row.discontinued,
             companyId: props.row.company.id
@@ -97,8 +97,8 @@ function Computer(props) {
                     <TextField
                         required
                         label="Computer Name"
-                        value={computer.name}
-                        onChange={(event) => setComputer({...computer, name: event.target.value})}
+                        value={computer.computerName}
+                        onChange={(event) => setComputer({...computer, computerName: event.target.value})}
                     />
                 </TableCell>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
