@@ -65,7 +65,6 @@ function Computer(props) {
         catch (e) {
             setComputer({...computer, introduced: date})
         }
-        console.log(computer.introduced)
     }
 
     const handleDiscontinued = (date) => {

@@ -14,7 +14,6 @@ import UsersDashboard from "./Component/User/UserDashboard"
 import About from "./Component/Page/About";
 import Home from "./Component/Page/Home";
 import { isConnected, setToken } from "./Store/Action/ConnexionAction";
-import { setUser } from './Store/Action/UserAction';
 import { connect } from "react-redux";
 import Logout from "./Component/User/Logout";
 
