@@ -50,7 +50,7 @@ const EnhancedTableToolbar = (props) => {
                 </Typography>
             )}
 
-            {numSelected > 0 ? (
+            {!props.user &&(numSelected > 0 ? (
                 <Tooltip title="Delete" onClick={() => props.delete && props.delete()}>
                     <IconButton aria-label="delete">
                         <DeleteIcon/>
@@ -62,7 +62,7 @@ const EnhancedTableToolbar = (props) => {
                         <AddIcon/>
                     </IconButton>
                 </Tooltip>
-            )}
+            ))}
         </Toolbar>
     );
 };

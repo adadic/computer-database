@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import hr.excilys.model.Computer;
 import hr.excilys.model.CustomUserDetails;
 import hr.excilys.model.User;
 import hr.excilys.service.UserService;
