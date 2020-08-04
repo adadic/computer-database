@@ -9,7 +9,7 @@ import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import {stableSort, getComparator} from "../Table/TableFunction";
 import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
-import {newSearch, searchMode} from "../../Store/Action/SearchAction";
+import {searchMode} from "../../Store/Action/SearchAction";
 import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 import Computer from "./Computer";
 
@@ -52,13 +52,12 @@ function ListComputer(props) {
 
     useEffect(() => {
         props.changeMode(true);
+
         return function cleanup() {
             props.changeMode(false);
-            props.newSearch("");
         }
     })
     const [computers, setComputers] = useState(props.computers);
-    useEffect(() => setComputers(props.computers), [props.computers]);
 
     const handleRequestSort = (event, property) => {
 
@@ -110,7 +109,7 @@ function ListComputer(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const computerSize = computers.filter(item => item.username && item.username.includes(props.search)).length;
+    const computerSize = computers.filter(item => item.name && item.name.includes(props.search)).length;
     const emptyRows = computerSize < 10 ? 10 - computerSize % 10 : 0;
 
     function deleteComputers() {
@@ -121,7 +120,7 @@ function ListComputer(props) {
 
     const editComputer = (computer) => {
 
-        props.edit && props.edit(computer);
+        props.edit && props.edit({data: computer});
     }
 
     return (
@@ -143,7 +142,7 @@ function ListComputer(props) {
                             headCells={props.headCells}
                         />
                         <TableBody style={{overflow: "auto"}}>
-                            {stableSort(computers.filter(item => item.username && item.username.includes(props.search)), getComparator(order, orderBy))
+                            {stableSort(computers.filter(item => item.name && item.name.includes(props.search)), getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
                                     const isItemSelected = isSelected(row.id);
@@ -194,7 +193,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        newSearch: search => dispatch(newSearch(search)),
+
         changeMode: mode => dispatch(searchMode(mode)),
     }
 }
