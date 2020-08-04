@@ -43,6 +43,10 @@ const useStyle = makeStyles((theme) => ({
 
 function AddComputer(props) {
 
+    const [nameValid, setNameValid] = useState(false);
+    const [introducedValid, setIntroducedValid] = useState(true);
+    const [discontinuedValid, setDiscontinuedValid] = useState(true);
+    const [fieldsValid, setFieldsValid] = useState(false)
     const history= useHistory();
     const classes = useStyle();
     const baseURL = 'http://localhost:8083/webapp/api';
@@ -60,28 +64,69 @@ function AddComputer(props) {
     useEffect(() => setCompanies(data),[data]);
 
     const handleIntroduced = (date) => {
-        try {
-            setComputer({...computer, introduced: date.toISOString().slice(0, 10)})
+        if(date && date!==""){
+            try {
+                setComputer({...computer, introduced: date.toISOString().slice(0, 10)})
+                setIntroducedValid(true)
+                checkFields()
+            }
+            catch (e) {
+                setComputer({...computer, introduced: date})
+                setIntroducedValid(false)
+                checkFields()
+            }
         }
-        catch (e) {
-            setComputer({...computer, introduced: date})
-        }
+
     }
 
     const handleDiscontinued = (date) => {
-        try {
-            setComputer({...computer, discontinued: date.toISOString().slice(0, 10)})
-        }
-        catch (e) {
-            setComputer({...computer, discontinued: date})
+        if(date && date!==""){
+            try {
+                setComputer({...computer, discontinued: date.toISOString().slice(0, 10)})
+                setDiscontinuedValid(true)
+                checkFields()
+            }
+            catch (e) {
+                setComputer({...computer, discontinued: date})
+                setDiscontinuedValid(false)
+                checkFields()
+            }
         }
     }
+
+    function checkName(name){
+        if(name.length<=0){
+            setNameValid(false)
+        }
+        else if(name.length>255){
+            setNameValid(false)
+        }
+        else{
+            setNameValid(true)
+        }
+    }
+
+    function checkFields(){
+        if(nameValid && introducedValid && discontinuedValid){
+            setFieldsValid(true)
+        }
+        else{
+            setFieldsValid(false)
+        }
+    }
+
+    useEffect(() =>{
+        checkName(computer.computerName)
+        checkFields()
+    }
+    )
 
 
     return (
         <form className={classes.root}>
             <div margin="auto">
                 <TextField
+                    color={nameValid?"primary":"secondary"}
                     className={classes.textField}
                     required
                     id="text-field-name"
@@ -141,8 +186,16 @@ function AddComputer(props) {
                     </Select>
                 </FormControl>
             </div>
-            <Button className={classes.button} href="/computers" onClick={()=>{props.addComputer(computer)}} variant="contained" value="Add" color="primary">Add</Button>
-            <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Cancel</Button>
+
+            <Button 
+            className={classes.button} 
+            disabled={fieldsValid?false:true}
+            href="/computers" 
+            onClick={()=>{props.addComputer(computer)}} 
+            variant="contained" 
+            value="Ajouter" 
+            color="primary">Ajouter</Button>
+            <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Annuler</Button>
         </form>
     );
 }
