@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from "react";
 import { connect } from 'react-redux';
 
@@ -8,12 +8,13 @@ import FormControl from "@material-ui/core/FormControl";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import InputLabel from "@material-ui/core/InputLabel";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { Visibility, VisibilityOff, LocalGasStationRounded } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import { setUser } from '../../Store/Action/UserAction';
 import { getUser } from '../../Store/Selector/UserSelector';
 import { getToken } from '../../Store/Selector/ConnexionSelector';
+import { isConnected } from "../../Store/Action/ConnexionAction";
 
 import clsx from "clsx";
 import { setToken } from '../../Store/Action/ConnexionAction';
@@ -52,6 +53,9 @@ function Login(props) {
     const history = useHistory();
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
+    const [displaySuccess, setDisplaySuccess] = useState(false);
+    const [message, setMessage] = useState('');
+    const [success, setSuccess] = useState(false);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -60,6 +64,7 @@ function Login(props) {
         event.preventDefault();
     };
 
+    
     const [user, setUser] = useState({
         userName: "",
         email: "",
@@ -83,10 +88,15 @@ function Login(props) {
                     setSuccess(true);
                     setMessage(res.data)
                 }
-                props.seToken(res.data)
-                props.setUser(user)
-                props.closeDrawer()
+                props.seToken(res.data);
+                localStorage.setItem('token', res.data);
+                localStorage.setItem('isConnected', true);
+                props.setConnected(true);
+                props.setUser(user);
+                localStorage.setItem('user', user.userName)
+                props.closeDrawer();
                 history.push("/computers")
+
             }).catch((error) => {
             displaySuccessAlert();
             if (error.response) {
@@ -111,19 +121,19 @@ function Login(props) {
             console.log(error.config);
             });
     }
-    const [displaySucess, setDisplaySuccess]=useState(false);
-    const [message, setMessage] = useState('');
-    const [success, setSuccess] = useState(false);
 
     function displaySuccessAlert(){
         setDisplaySuccess(true);
         setTimeout(function(){ setDisplaySuccess(false);}, 2000);
     }
 
+    function register(){
+        history.push("/register");
+    }
 
     return (
         <div className="Register">
-            <Collapse in={displaySucess}>
+            <Collapse in={displaySuccess}>
                 <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
                        severity={success ? "success" : "error"}>{message}</Alert>
 
@@ -165,6 +175,7 @@ function Login(props) {
                 </FormControl>
             </form>
             <Button variant="outlined" onClick={connexion} color="primary">Connexion</Button>
+            <Button variant="outlined" onClick={register} color="primary">Register</Button>
         </div>
     );
 }
@@ -173,6 +184,7 @@ const mapDispatchToProps = dispatch => {
     return {
 
         seToken: data => dispatch(setToken(data)),
+        setConnected: conn => dispatch(isConnected(conn)),
         setUser: user => dispatch(setUser(user))
     }
 }

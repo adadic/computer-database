@@ -5,7 +5,7 @@ import {Backdrop, CircularProgress} from "@material-ui/core";
 import ListCompany from "./ListCompany";
 
 
-function CompanyDashboard() {
+function CompanyDashboard(props) {
 
 
     const headCell = [
@@ -18,6 +18,9 @@ function CompanyDashboard() {
 
     const [{data: dataAdd}, executeAdd] = useAxios(
         {
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
             url: baseURL + "/companies",
             method: 'POST'
         },
@@ -26,6 +29,9 @@ function CompanyDashboard() {
 
     const [{data: dataEdit}, executeEdit] = useAxios(
         {
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
             url: baseURL + "/companies",
             method: 'PUT'
         },
@@ -34,13 +40,24 @@ function CompanyDashboard() {
 
     const [{}, executeDelete] = useAxios(
         {
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
             url: baseURL + "/companies",
             method: 'DELETE'
         },
         {manual: true}
     );
 
-    useEffect(() => setCompanyList(data),[data, dataAdd, dataEdit]);
+    const deleteCompany = (id) => {
+
+        setCompanyList(companyList.filter(item => item.id !== id));
+        executeDelete({url: `${baseURL}/companies/${id}`});
+    }
+
+    useEffect(() => {
+        setCompanyList(data);
+    }, [data, dataAdd, dataEdit]);
 
     return (
         <div className="App">
@@ -52,7 +69,7 @@ function CompanyDashboard() {
                 </Backdrop>
                 :
                 <div className="table-size">
-                    {companyList && <ListCompany companies={companyList} edit={executeEdit} add={executeAdd} headCells={headCell} delete={executeDelete}/>}
+                    {companyList && <ListCompany companies={companyList} edit={executeEdit} add={executeAdd} headCells={headCell} delete={deleteCompany}/>}
                 </div>
             }
         </div>

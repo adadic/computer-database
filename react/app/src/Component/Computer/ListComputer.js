@@ -2,16 +2,16 @@ import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {
     Table, TableBody, TableCell, TableContainer,
-    TablePagination, TableRow, Paper, Checkbox, Button
+    TablePagination, TableRow, Paper
 } from '@material-ui/core';
 import EnhancedTableHead from "../Table/EnhancedTableHead";
 import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import {stableSort, getComparator} from "../Table/TableFunction";
-import CreateIcon from '@material-ui/icons/Create';
 import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
 import {searchMode} from "../../Store/Action/SearchAction";
 import EnhancedTableFooter from "../Table/EnhancedTableFooter";
+import Computer from "./Computer";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -44,6 +44,12 @@ const useStyles = makeStyles((theme) => ({
 function ListComputer(props) {
 
     const classes = useStyles();
+    const [page, setPage] = useState(0);
+    const [order, setOrder] = useState("asc");
+    const [orderBy, setOrderBy] = useState("computers");
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [selected, setSelected] = useState([]);
+
     useEffect(() => {
         props.changeMode(true);
 
@@ -52,11 +58,6 @@ function ListComputer(props) {
         }
     })
     const [computers, setComputers] = useState(props.computers);
-    const [order, setOrder] = useState('asc');
-    const [orderBy, setOrderBy] = useState('computers');
-    const [selected, setSelected] = useState([]);
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const handleRequestSort = (event, property) => {
 
@@ -117,17 +118,9 @@ function ListComputer(props) {
         setSelected([]);
     }
 
-    function getDate(date) {
+    const editComputer = (computer) => {
 
-        const {year, monthValue, dayOfMonth} = date;
-        return year + "-" + (monthValue < 10 ? "0" + monthValue : monthValue) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
-    }
-
-    const edit = (row) => (event) => {
-
-        event.stopPropagation();
-        console.log("I'm FREE");
-        return false;
+        props.edit && props.edit({data: computer});
     }
 
     return (
@@ -156,50 +149,18 @@ function ListComputer(props) {
                                     const labelId = `enhanced-table-checkbox-${row.id}`;
 
                                     return (
-                                        <TableRow
-                                            hover
-                                            onClick={(event) => handleClick(event, row.id)}
-                                            role="checkbox"
-                                            aria-checked={isItemSelected}
-                                            tabIndex={-1}
+                                        <Computer
                                             key={row.id}
-                                            selected={isItemSelected}
-                                        >
-
-                                            <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    checked={isItemSelected}
-                                                    inputProps={{'aria-labelledby': labelId}}
-                                                />
-                                            </TableCell>
-                                            <TableCell padding="checkbox">
-                                                <Button disabled={selected.length !== 0} onClick={edit(row)}>
-                                                    <CreateIcon/>
-                                                </Button>
-                                            </TableCell>
-
-                                            <TableCell component="th" id={labelId} scope="row" padding="none"
-                                                       style={{width: '33%'}}>
-                                                {row.name}
-                                            </TableCell>
-                                            {row.introduced
-                                                ?
-                                                <TableCell align="right">{getDate(row.introduced)}</TableCell>
-                                                :
-                                                <TableCell align="right"/>
-                                            }
-                                            {row.discontinued
-                                                ?
-                                                <TableCell align="right">{getDate(row.discontinued)}</TableCell>
-                                                :
-                                                <TableCell align="right"/>
-                                            }
-                                            <TableCell align="right"
-                                                       style={{width: '20%'}}> {row.company.name}</TableCell>
-
-                                        </TableRow>
+                                            isItemSelected={isItemSelected}
+                                            labelId={labelId}
+                                            handleClick={handleClick}
+                                            selected={selected}
+                                            row={row}
+                                            edit={editComputer}
+                                        />
                                     );
-                                })}
+                                })
+                            }
                             {emptyRows > 0 && (
                                 <TableRow style={{height: 53 * emptyRows}}>
                                     <TableCell colSpan={6}/>
@@ -233,8 +194,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
 
-        changeMode: mode =>
-            dispatch(searchMode(mode))
+        changeMode: mode => dispatch(searchMode(mode)),
     }
 }
 
