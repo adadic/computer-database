@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import hr.excilys.dto.DTOComputer;
-import hr.excilys.dto.DTOComputerAdd;
 import hr.excilys.mapper.DateMapper;
 
 @Component
@@ -18,17 +17,15 @@ public class ComputerValidator {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(ComputerValidator.class);
 	private final DateMapper dateMapper;
-	private final CompanyValidator companyValidator;
 
 	@Autowired
-	public ComputerValidator(DateMapper dateMapper, CompanyValidator companyValidator) {
+	public ComputerValidator(DateMapper dateMapper) {
 
 		this.dateMapper = dateMapper;
-		this.companyValidator = companyValidator;
 
 	}
 
-	public boolean checkComputerFields(DTOComputer dtoComputer) {
+	/*public boolean checkComputerFields(DTOComputer dtoComputer) {
 
 		if (StringUtils.isEmpty(dtoComputer.getComputerName())) {
 			LOGGER.info("Computer has no name!");
@@ -61,9 +58,9 @@ public class ComputerValidator {
 			
 			return false;
 		}
-	}
+	}*/
 	
-	public boolean checkComputerFieldsAdd(DTOComputerAdd dtoComputerAdd) {
+	public boolean checkComputerFields(DTOComputer dtoComputerAdd) {
 		
 		if (StringUtils.isEmpty(dtoComputerAdd.getComputerName())) {
 			LOGGER.info("Computer has no name!");
