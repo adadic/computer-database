@@ -10,10 +10,10 @@ import Login from "./Component/User/Login";
 import CompanyDashboard from "./Component/Company/CompanyDashboard";
 import Computer from "./Component/Computer/Computer";
 import Company from "./Component/Company/Company";
+import UsersDashboard from "./Component/User/UserDashboard"
 import About from "./Component/Page/About";
 import Home from "./Component/Page/Home";
 import { isConnected, setToken } from "./Store/Action/ConnexionAction";
-import { setUser } from './Store/Action/UserAction';
 import { connect } from "react-redux";
 import Logout from "./Component/User/Logout";
 
@@ -49,6 +49,9 @@ function App(props) {
                         </Route>
                         <Route exact path={"/computers"}>
                             <ComputerDashboard />
+                        </Route>
+                        <Route exact path={"/users"}>
+                            <UsersDashboard />
                         </Route>
                         <Route exact path={"/AddComputer"}>
                             <ComputerDashboard addMode={true} />

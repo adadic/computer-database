@@ -4,14 +4,15 @@ import CreateIcon from "@material-ui/icons/Create";
 import DoneIcon from '@material-ui/icons/Done';
 import CloseIcon from '@material-ui/icons/Close';
 
-function Company(props) {
+function User(props) {
 
-    const [company, setCompany] = useState({
-        companyId: props.row.id,
-        companyName: props.row.name
+    const [user, setUser] = useState({
+        id: props.row.id,
+        username: props.row.username,
+        email: props.row.email,
+        roleName: props.row.role.roleName,
     });
-    const [editMode, setEdit] = useState(props.editMode);
-    const [addMode, setAdd] = useState(company.id === 0);
+    const [editMode, setEdit] = useState(false);
 
     const edit = () => (event) => {
 
@@ -21,22 +22,22 @@ function Company(props) {
 
     const cancelEdit = () => () =>{
 
-        setCompany({...company, companyName: props.row.name});
+        setUser({...user, username: props.row.username});
         setEdit(false);
     };
 
-    const editCompany = () => () => {
+    const editUser = () => () => {
 
-        props.edit && props.edit(company);
+        props.edit && props.edit(user);
         setEdit(false);
     }
 
     return (
         editMode ?
-            <TableRow hover key={company.id}>
+            <TableRow hover key={user.id}>
 
                 <TableCell padding="checkbox">
-                    <Button onClick={editCompany()}>
+                    <Button onClick={editUser()}>
                         <DoneIcon/>
                     </Button>
                 </TableCell>
@@ -50,10 +51,10 @@ function Company(props) {
                            style={{width: '90%'}}>
                     <TextField
                         required
-                        label="Company Name"
-                        value={company.companyName}
-                        style={{width: 300}}
-                        onChange={(event) => setCompany({...company, companyName: event.target.value})}
+                        label="Username"
+                        value={user.username}
+                        style={{width: 200}}
+                        onChange={(event) => setUser({...user, username: event.target.value})}
                     />
                 </TableCell>
             </TableRow>
@@ -66,7 +67,7 @@ function Company(props) {
                 role="checkbox"
                 aria-checked={props.isItemSelected}
                 tabIndex={-1}
-                key={company.companyId}
+                key={user.id}
                 selected={props.isItemSelected}
             >
 
@@ -83,11 +84,21 @@ function Company(props) {
                 </TableCell>
 
                 <TableCell component="th" id={props.labelId} scope="row" padding="none"
+                           style={{width: '35%', marginLeft: 10}}>
+                    {user.username}
+                </TableCell>
+
+                <TableCell component="th" id={props.labelId} scope="row" padding="none"
+                           style={{width: '40%', marginLeft: 10}}>
+                    {user.email}
+                </TableCell>
+
+                <TableCell component="th" id={props.labelId} scope="row" padding="none"
                            style={{width: '75%', marginLeft: 10}}>
-                    {company.companyName}
+                    {user.roleName}
                 </TableCell>
             </TableRow>
     );
 }
 
-export default Company;
+export default User;
