@@ -8,6 +8,7 @@ function Logout(props){
     useEffect(() => {
         props.setToken("");
         props.setConnected(false);
+        localStorage.clear();
     })
 
     return (

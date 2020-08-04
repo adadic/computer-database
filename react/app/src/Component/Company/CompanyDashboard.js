@@ -5,7 +5,7 @@ import {Backdrop, CircularProgress} from "@material-ui/core";
 import ListCompany from "./ListCompany";
 
 
-function CompanyDashboard() {
+function CompanyDashboard(props) {
 
 
     const headCell = [
@@ -40,7 +40,15 @@ function CompanyDashboard() {
         {manual: true}
     );
 
-    useEffect(() => setCompanyList(data),[data, dataAdd, dataEdit]);
+    const deleteCompany = (id) => {
+
+        setCompanyList(companyList.filter(item => item.id !== id));
+        executeDelete({url: `${baseURL}/computers/${id}`});
+    }
+
+    useEffect(() => {
+        setCompanyList(data);
+    }, [data, dataAdd, dataEdit]);
 
     return (
         <div className="App">
@@ -52,7 +60,7 @@ function CompanyDashboard() {
                 </Backdrop>
                 :
                 <div className="table-size">
-                    {companyList && <ListCompany companies={companyList} edit={executeEdit} add={executeAdd} headCells={headCell} delete={executeDelete}/>}
+                    {companyList && <ListCompany companies={companyList} edit={executeEdit} add={executeAdd} headCells={headCell} delete={deleteCompany}/>}
                 </div>
             }
         </div>

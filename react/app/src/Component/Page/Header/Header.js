@@ -91,9 +91,9 @@ function Header(props) {
     const [{ }, getUser] = useAxios(
         {
             headers:{
-                'Authorization' : `Bearer ${props.token}`,
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
             },
-            url: `${baseURL}/${props.user.userName}`,
+            url: `${baseURL}/${localStorage.getItem('user')}`,
             method: "GET"
         },
         { manual: true }
@@ -106,7 +106,7 @@ function Header(props) {
                 props.setUser({
                     userName: res.data.user.username,
                     roleName: res.data.user.role.roleName,
-                    email: res.data.user.userName
+                    email: res.data.user.email
                 });
                 setState(true)
             }
@@ -166,7 +166,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
 
-        setUser: user => dispatch(setUser(user))
+        setUser: user => dispatch(setUser(user)),
+        
     }
 }
 

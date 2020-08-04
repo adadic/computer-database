@@ -115,7 +115,7 @@ function AddComputer(props) {
                         format="yyyy-MM-dd"
                         value={computer.discontinued}
                         onChange={handleDiscontinued}
-                        minDate={computer.introduced}
+                        minDate={computer.introduced ? computer.introduced : "1970-01-01"}
                         maxDate="2038-01-18"
                         disabled={!computer.introduced || computer.introduced.toString() === "Invalid Date"}
                         KeyboardButtonProps={{
@@ -142,7 +142,7 @@ function AddComputer(props) {
                     </Select>
                 </FormControl>
             </div>
-            <Button className={classes.button} onClick={()=>{props.addComputer(computer);history.push("/computers")}} variant="contained" value="Ajouter" color="primary">Ajouter</Button>
+            <Button className={classes.button} href="/computers" onClick={()=>{props.addComputer(computer)}} variant="contained" value="Ajouter" color="primary">Ajouter</Button>
             <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Annuler</Button>
         </form>
     );

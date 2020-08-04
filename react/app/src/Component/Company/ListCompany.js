@@ -2,15 +2,16 @@ import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {
     Table, TableBody, TableCell, TableContainer,
-    TablePagination, TableRow, Paper, Checkbox, Button
+    TablePagination, TableRow, Paper
 } from '@material-ui/core';
 import EnhancedTableHead from "../Table/EnhancedTableHead";
 import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import {stableSort, getComparatorCompany} from "../Table/TableFunction";
-import CreateIcon from '@material-ui/icons/Create';
 import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
 import {searchMode} from "../../Store/Action/SearchAction";
+import Company from "./Company";
+import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         width: '28%',
-        minWidth: 400,
+        minWidth: 500,
         margin: "auto",
         marginBottom: theme.spacing(2),
     },
@@ -43,19 +44,20 @@ const useStyles = makeStyles((theme) => ({
 function ListCompany(props) {
 
     const classes = useStyles();
+    const [page, setPage] = useState(0);
+    const [orderBy, setOrderBy] = useState("name");
+    const [order, setOrder] = useState("asc");
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [selected, setSelected] = useState([]);
+
     useEffect(() => {
         props.changeMode(true);
-
         return function cleanup() {
             props.changeMode(false);
         }
     })
+
     const [companies, setCompanies] = useState(props.companies);
-    const [order, setOrder] = useState('asc');
-    const [orderBy, setOrderBy] = useState('name');
-    const [selected, setSelected] = useState([]);
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const handleRequestSort = (event, property) => {
 
@@ -111,16 +113,13 @@ function ListCompany(props) {
 
     function deleteCompanies() {
 
-        console.log({data: selected})
-        console.log(selected[0] === 2)
-        console.log(selected[0] === "2")
+        props.delete && selected.forEach(id => props.delete(id));
+        setSelected([]);
     }
 
-    const edit = (row) => (event) => {
+    const editCompany = (company) => {
 
-        event.stopPropagation();
-        console.log(props.search)
-        return false;
+        props.edit && props.edit({data: company});
     }
 
     return (
@@ -150,38 +149,20 @@ function ListCompany(props) {
                                     const labelId = `enhanced-table-checkbox-${row.id}`;
 
                                     return (
-                                        <TableRow
-                                            hover
-                                            onClick={(event) => handleClick(event, row.id)}
-                                            role="checkbox"
-                                            aria-checked={isItemSelected}
-                                            tabIndex={-1}
+                                        <Company
                                             key={row.id}
-                                            selected={isItemSelected}
-                                        >
-
-                                            <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    checked={isItemSelected}
-                                                    inputProps={{'aria-labelledby': labelId}}
-                                                />
-                                            </TableCell>
-                                            <TableCell padding="checkbox">
-                                                <Button disabled={selected.length !== 0} onClick={edit(row)}>
-                                                    <CreateIcon/>
-                                                </Button>
-                                            </TableCell>
-
-                                            <TableCell component="th" id={labelId} scope="row" padding="none"
-                                                       style={{width: '85%'}}>
-                                                {row.name}
-                                            </TableCell>
-                                        </TableRow>
+                                            isItemSelected={isItemSelected}
+                                            labelId={labelId}
+                                            handleClick={handleClick}
+                                            selected={selected}
+                                            row={row}
+                                            edit={editCompany}
+                                        />
                                     );
                                 })}
                             {emptyRows > 0 && (
-                                <TableRow style={{height: 53 * emptyRows}}>
-                                    <TableCell colSpan={6}/>
+                                <TableRow style={{height: 80 * emptyRows}}>
+                                    <TableCell colSpan={3}/>
                                 </TableRow>
                             )}
                         </TableBody>
@@ -195,6 +176,7 @@ function ListCompany(props) {
                     page={page}
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
+                    ActionsComponent={EnhancedTableFooter}
                 />
             </Paper>
         </div>
@@ -205,14 +187,13 @@ const mapStateToProps = (state) => {
 
     return {
         search: getSearch(state),
-    }
+    };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
 
-        changeMode: mode =>
-            dispatch(searchMode(mode))
+        changeMode: mode => dispatch(searchMode(mode)),
     }
 }
 
