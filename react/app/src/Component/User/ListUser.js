@@ -11,7 +11,8 @@ import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
 import {searchMode} from "../../Store/Action/SearchAction";
 import EnhancedTableFooter from "../Table/EnhancedTableFooter";
-import Computer from "./Computer";
+import User from "./User"
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -19,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
     },
     paper: {
-        width: '100%',
-        minWidth: 800,
+        width: '50%',
+        minWidth: 500,
+        margin: "auto",
         marginBottom: theme.spacing(2),
     },
     table: {
-        minWidth: 750,
         minHeight: 600,
         maxHeight: 750
     },
@@ -41,23 +42,24 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ListComputer(props) {
+function ListUser(props) {
 
     const classes = useStyles();
     const [page, setPage] = useState(0);
+    const [orderBy, setOrderBy] = useState("name");
     const [order, setOrder] = useState("asc");
-    const [orderBy, setOrderBy] = useState("computers");
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [selected, setSelected] = useState([]);
 
     useEffect(() => {
         props.changeMode(true);
-
+        
         return function cleanup() {
             props.changeMode(false);
         }
     })
-    const [computers, setComputers] = useState(props.computers);
+
+    const [users, setUsers] = useState(props.users);
 
     const handleRequestSort = (event, property) => {
 
@@ -69,7 +71,7 @@ function ListComputer(props) {
     const handleSelectAllClick = (event) => {
 
         if (event.target.checked) {
-            const newSelected = computers.map((n) => n.id);
+            const newSelected = users.map((n) => n.id);
             setSelected(newSelected);
             return;
         }
@@ -80,7 +82,6 @@ function ListComputer(props) {
 
         const selectedIndex = selected.indexOf(name);
         let newSelected = [];
-
         if (selectedIndex === -1) {
             newSelected = newSelected.concat(selected, name);
         } else if (selectedIndex === 0) {
@@ -109,24 +110,20 @@ function ListComputer(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const computerSize = computers.filter(item => item.username && item.username.includes(props.search)).length;
-    const emptyRows = computerSize < 10 ? 10 - computerSize % 10 : 0;
+    const userSize = users.filter(item => item.username && item.username.includes(props.search)).length;
+    const emptyRows = userSize < 10 ? 10 - userSize % 10 : 0;
 
-    function deleteComputers() {
+    const editUser = (user) => {
 
-        props.delete && selected.forEach(id => props.delete(id));
-        setSelected([]);
+        props.edit && props.edit({data: user});
     }
 
-    const editComputer = (computer) => {
-
-        props.edit && props.edit({data: computer});
-    }
 
     return (
+
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                <EnhancedTableToolbar numSelected={selected.length} delete={deleteComputers} mainTitle="Computers"/>
+                <EnhancedTableToolbar numSelected={selected.length} mainTitle="Users"/>
                 <TableContainer className={classes.table}>
                     <Table className={classes.table} aria-labelledby="tableTitle" size="medium"
                            aria-label="enhanced table"
@@ -138,32 +135,31 @@ function ListComputer(props) {
                             orderBy={orderBy}
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
-                            rowCount={computerSize}
+                            rowCount={userSize}
                             headCells={props.headCells}
                         />
                         <TableBody style={{overflow: "auto"}}>
-                            {stableSort(computers.filter(item => item.username && item.username.includes(props.search)), getComparator(order, orderBy))
+                            {stableSort(users.filter(item => item.username && item.username.includes(props.search)), getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
                                     const isItemSelected = isSelected(row.id);
                                     const labelId = `enhanced-table-checkbox-${row.id}`;
 
                                     return (
-                                        <Computer
+                                        <User
                                             key={row.id}
                                             isItemSelected={isItemSelected}
                                             labelId={labelId}
                                             handleClick={handleClick}
                                             selected={selected}
                                             row={row}
-                                            edit={editComputer}
+                                            edit={editUser}
                                         />
                                     );
-                                })
-                            }
+                                })}
                             {emptyRows > 0 && (
-                                <TableRow style={{height: 53 * emptyRows}}>
-                                    <TableCell colSpan={6}/>
+                                <TableRow style={{height: 80 * emptyRows}}>
+                                    <TableCell colSpan={3}/>
                                 </TableRow>
                             )}
                         </TableBody>
@@ -172,7 +168,7 @@ function ListComputer(props) {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 50]}
                     component="div"
-                    count={computerSize}
+                    count={userSize}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
@@ -198,4 +194,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListComputer);
+export default connect(mapStateToProps, mapDispatchToProps)(ListUser);

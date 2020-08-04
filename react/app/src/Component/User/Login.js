@@ -176,7 +176,7 @@ function Login(props) {
                 </FormControl>
             </form>
             <div class="buttonco">
-            <Button variant="outlined" onClick={connexion} color="primary">Connexion</Button>
+            <Button variant="outlined" onClick={connexion} variant="contained" color="primary">Connexion</Button>
             </div>
             <div class="buttonre">
             <Button variant="outlined" onClick={register} color="primary">Register</Button>
