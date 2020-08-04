@@ -6,13 +6,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import hr.excilys.dto.DTOCompany;
-import hr.excilys.dto.DTOComputer;
+//import hr.excilys.dto.DTOCompany;
+//import hr.excilys.dto.DTOComputer;
 import hr.excilys.model.Computer;
 import hr.excilys.service.CompanyService;
 import hr.excilys.service.EditComputerService;
@@ -21,9 +21,9 @@ import hr.excilys.service.EditComputerService;
 @RequestMapping(value = "/editComputer")
 public class EditComputerController {
 
-	private static final String UPDATEERROR = "-1";
+	//private static final String UPDATEERROR = "-1";
 	private static final String NOEXISTENCE = "-3";
-	private static final String UPDATESUCCESS = "3";
+	//private static final String UPDATESUCCESS = "3";
 
 	private final CompanyService companyService;
 	private final EditComputerService editComputerService;
@@ -60,7 +60,7 @@ public class EditComputerController {
 		}
 	}
 
-	@PostMapping
+/*	@PostMapping
 	public ModelAndView updateComputer(DTOComputer computer, DTOCompany dtoCompany) {
 
 		ModelAndView view = new ModelAndView("redirect:editComputer");
@@ -76,5 +76,5 @@ public class EditComputerController {
 		}
 
 		return view;
-	}
+	}*/
 }

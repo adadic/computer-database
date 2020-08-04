@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hr.excilys.dto.DTOComputerAdd;
+import hr.excilys.dto.DTOComputer;
 import hr.excilys.dto.mapper.ComputerDTOMapper;
 import hr.excilys.model.Computer;
 import hr.excilys.persistence.DAOComputer;
@@ -23,9 +23,9 @@ public class AddComputerService {
 		this.computerDTOMapper = computerDTOMapper;
 	}
 
-	public boolean addComputer(DTOComputerAdd dtoComputerAdd) {
+	public boolean addComputer(DTOComputer dtoComputerAdd) {
 		
-		Optional<Computer> computer = computerDTOMapper.fromDTOAdd(dtoComputerAdd);
+		Optional<Computer> computer = computerDTOMapper.fromDTO(dtoComputerAdd);
 		if (computer.isPresent()) {
 
 			return daoComputer.insertComputer(computer.get());

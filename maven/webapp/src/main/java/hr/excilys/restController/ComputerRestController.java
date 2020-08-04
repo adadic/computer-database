@@ -21,7 +21,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import hr.excilys.dto.DTOComputer;
-import hr.excilys.dto.DTOComputerAdd;
 import hr.excilys.model.Computer;
 import hr.excilys.model.Pagination;
 import hr.excilys.service.AddComputerService;
@@ -115,7 +114,7 @@ public class ComputerRestController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> addComputer(@RequestBody DTOComputerAdd dtoComputerAdd) {
+	public ResponseEntity<String> addComputer(@RequestBody DTOComputer dtoComputerAdd) {
 
 		System.out.println("Je suis appelé");
 		

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import hr.excilys.dto.DTOComputer;
-import hr.excilys.dto.DTOComputerAdd;
 import hr.excilys.model.Company;
 import hr.excilys.model.Computer;
 import hr.excilys.mapper.DateMapper;
@@ -33,7 +32,7 @@ public class ComputerDTOMapper {
 
 	}
 
-	public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
+	/*public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
 
 		if (computerValidator.checkComputerFields(dtoComputer)) {
 			long id = longMapper.getId(dtoComputer.getId());
@@ -49,11 +48,11 @@ public class ComputerDTOMapper {
 
 			return Optional.empty();
 		}
-	}
+	}*/
 	
-	public Optional<Computer> fromDTOAdd(DTOComputerAdd dtoComputerAdd){
+	public Optional<Computer> fromDTO(DTOComputer dtoComputerAdd){
 		
-		if (computerValidator.checkComputerFieldsAdd(dtoComputerAdd)) {
+		if (computerValidator.checkComputerFields(dtoComputerAdd)) {
 			long id = longMapper.getId(dtoComputerAdd.getId());
 			LocalDate introduced = dateMapper.getDate(dtoComputerAdd.getIntroduced());
 			LocalDate discontinued = dateMapper.getDate(dtoComputerAdd.getDiscontinued());
