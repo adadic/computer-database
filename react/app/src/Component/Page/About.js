@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ProfileUi from 'react-profile-card';
 import saad from './resources/saad.jpeg';
+import andro from './resources/andro.jpg';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,40 +17,51 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
 }));
+
+
 function About(){
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Grid container spacing={3}>
-                <Grid item xs={3}>
+            <Grid container spacing={10}>
+                <Grid item>
+                    <Paper>
                     <ProfileUi
                         imgUrl={saad}
-                        name='Saad'
+                        name='Julien'
                         designation='Developer'
                     />
+                    </Paper>
                 </Grid>
-                <Grid item xs={3}>
-
-                        <ProfileUi
+                <Grid item>
+                    <Paper >
+                        <ProfileUi style={{padding:0}}
                             imgUrl={saad}
                             name='Saad'
                             designation='Developer'
                         />
+                    </Paper>
 
                 </Grid>
-                <Grid item xs={3}>
+
+                <Grid item>
+                    <Paper>
                     <ProfileUi
-                        imgUrl={saad}
-                        name='Saad'
+                        imgUrl={andro}
+                        name='Andro'
                         designation='Developer'
                     />
+                </Paper>
                 </Grid>
-                <Grid item xs={3}>
+
+                <Grid item>
+                    <Paper>
                     <ProfileUi
                         imgUrl={saad}
-                        name='Saad'
+                        name='Yves'
                         designation='Developer'
                     />
+                        </Paper>
                 </Grid>
             </Grid>
         </div>
