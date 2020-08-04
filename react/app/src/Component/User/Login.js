@@ -8,7 +8,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import InputLabel from "@material-ui/core/InputLabel";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { Visibility, VisibilityOff, LocalGasStationRounded } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import { setUser } from '../../Store/Action/UserAction';
@@ -61,6 +61,7 @@ function Login(props) {
         event.preventDefault();
     };
 
+    
     const [user, setUser] = useState({
         userName: "",
         email: "",
@@ -85,8 +86,11 @@ function Login(props) {
                     setMessage(res.data)
                 }
                 props.seToken(res.data);
+                localStorage.setItem('token', res.data);
+                localStorage.setItem('isConnected', true);
                 props.setConnected(true);
                 props.setUser(user);
+                localStorage.setItem('user', user.userName)
                 props.closeDrawer();
                 history.push("/computers")
 

@@ -142,7 +142,7 @@ function AddComputer(props) {
                     </Select>
                 </FormControl>
             </div>
-            <Button className={classes.button} onClick={()=>{props.addComputer(computer);history.push("/computers")}} variant="contained" value="Ajouter" color="primary">Ajouter</Button>
+            <Button className={classes.button} href="/computers" onClick={()=>{props.addComputer(computer)}} variant="contained" value="Ajouter" color="primary">Ajouter</Button>
             <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Annuler</Button>
         </form>
     );
