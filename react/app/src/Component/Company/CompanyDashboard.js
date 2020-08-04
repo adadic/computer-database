@@ -18,6 +18,9 @@ function CompanyDashboard(props) {
 
     const [{data: dataAdd}, executeAdd] = useAxios(
         {
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
             url: baseURL + "/companies",
             method: 'POST'
         },
@@ -26,6 +29,9 @@ function CompanyDashboard(props) {
 
     const [{data: dataEdit}, executeEdit] = useAxios(
         {
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
             url: baseURL + "/companies",
             method: 'PUT'
         },
@@ -34,6 +40,9 @@ function CompanyDashboard(props) {
 
     const [{}, executeDelete] = useAxios(
         {
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
             url: baseURL + "/companies",
             method: 'DELETE'
         },
@@ -43,7 +52,7 @@ function CompanyDashboard(props) {
     const deleteCompany = (id) => {
 
         setCompanyList(companyList.filter(item => item.id !== id));
-        executeDelete({url: `${baseURL}/computers/${id}`});
+        executeDelete({url: `${baseURL}/companies/${id}`});
     }
 
     useEffect(() => {

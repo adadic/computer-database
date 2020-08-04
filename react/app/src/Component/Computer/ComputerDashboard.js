@@ -22,6 +22,9 @@ function ComputerDashboard(props) {
 
     const [{data: dataAdd}, executeAdd] = useAxios(
         {
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
             url: baseURL + "/computers",
             method: 'POST'
         },
@@ -30,6 +33,9 @@ function ComputerDashboard(props) {
 
     const [{data: dataEdit}, executeEdit] = useAxios(
         {
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
             url: baseURL + "/computers",
             method: 'PUT'
         },
@@ -38,6 +44,9 @@ function ComputerDashboard(props) {
 
     const [{}, executeDelete] = useAxios(
         {
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
             url: baseURL + "/computers",
             method: 'DELETE'
         },
