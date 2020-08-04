@@ -10,7 +10,7 @@ import {stableSort, getComparatorCompany} from "../Table/TableFunction";
 import {connect} from "react-redux";
 import {getSearch} from "../../Store/Selector/SearchSelector";
 import {newSearch, searchMode} from "../../Store/Action/SearchAction";
-import Company from "./Company";
+import User from "./User";
 import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ListCompany(props) {
+function ListUser(props) {
 
     const classes = useStyles();
     const [page, setPage] = useState(0);
@@ -58,8 +58,9 @@ function ListCompany(props) {
         }
     }, [])
 
-    const [companies, setCompanies] = useState(props.companies);
-    useEffect(() => setCompanies(props.companies), [props.companies]);
+    const [users, setUsers] = useState(props.users);
+
+    useEffect(() => setUsers(props.users), [props.users]);
 
     const handleRequestSort = (event, property) => {
 
@@ -71,7 +72,7 @@ function ListCompany(props) {
     const handleSelectAllClick = (event) => {
 
         if (event.target.checked) {
-            const newSelected = companies.map((n) => n.id);
+            const newSelected = users.map((n) => n.id);
             setSelected(newSelected);
             return;
         }
@@ -110,25 +111,25 @@ function ListCompany(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const companySize = companies.filter(item => item.name && item.name.includes(props.search)).length;
-    const emptyRows = companySize < 10 ? 10 - companySize % 10 : 0;
+    const userSize = users.filter(item => item.name && item.name.includes(props.search)).length;
+    const emptyRows = userSize < 10 ? 10 - userSize % 10 : 0;
 
-    function deleteCompanies() {
+    function deleteUsers() {
 
         props.delete && selected.forEach(id => props.delete(id));
         setSelected([]);
     }
 
-    const editCompany = (company) => {
+    const editUser = (user) => {
 
-        props.edit && props.edit({data: company});
+        props.edit && props.edit({data: user});
     }
 
     return (
 
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                <EnhancedTableToolbar numSelected={selected.length} delete={deleteCompanies} mainTitle="Companies"/>
+                <EnhancedTableToolbar numSelected={selected.length} delete={deleteUsers} mainTitle="Companies"/>
                 <TableContainer className={classes.table}>
                     <Table className={classes.table} aria-labelledby="tableTitle" size="medium"
                            aria-label="enhanced table"
@@ -140,25 +141,25 @@ function ListCompany(props) {
                             orderBy={orderBy}
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
-                            rowCount={companySize}
+                            rowCount={userSize}
                             headCells={props.headCells}
                         />
                         <TableBody style={{overflow: "auto"}}>
-                            {stableSort(companies.filter(item => item.name && item.name.includes(props.search)), getComparatorCompany(order, orderBy))
+                            {stableSort(users.filter(item => item.name && item.name.includes(props.search)), getComparatorCompany(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
                                     const isItemSelected = isSelected(row.id);
                                     const labelId = `enhanced-table-checkbox-${row.id}`;
 
                                     return (
-                                        <Company
+                                        <User
                                             key={row.id}
                                             isItemSelected={isItemSelected}
                                             labelId={labelId}
                                             handleClick={handleClick}
                                             selected={selected}
                                             row={row}
-                                            edit={editCompany}
+                                            edit={editUser}
                                         />
                                     );
                                 })}
@@ -173,7 +174,7 @@ function ListCompany(props) {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 50]}
                     component="div"
-                    count={companySize}
+                    count={userSize}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onChangePage={handleChangePage}
@@ -199,4 +200,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListCompany);
+export default connect(mapStateToProps, mapDispatchToProps)(ListUser);

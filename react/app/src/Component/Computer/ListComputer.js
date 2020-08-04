@@ -58,6 +58,7 @@ function ListComputer(props) {
         }
     }, [])
     const [computers, setComputers] = useState(props.computers);
+    useEffect(() => setComputers(props.computers), [props.computers]);
 
     const handleRequestSort = (event, property) => {
 
