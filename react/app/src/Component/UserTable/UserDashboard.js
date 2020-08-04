@@ -189,7 +189,7 @@ function UserDashboard(props) {
                 :
                 <div className="table-size">
                     <Paper className={classes.paper}>
-                        <EnhancedTableToolbar numSelected={selected.length} delete={deleteUser} mainTitle="Companies"/>
+                        <EnhancedTableToolbar numSelected={selected.length} delete={deleteUser} mainTitle="Users"/>
                         <TableContainer className={classes.table}>
                             <Table className={classes.table} aria-labelledby="tableTitle" size="medium"
                                    aria-label="enhanced table"

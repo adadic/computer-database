@@ -57,7 +57,7 @@ const EnhancedTableToolbar = (props) => {
                     </IconButton>
                 </Tooltip>
             ) : (
-                <Tooltip title={"Add " + mainTitle} onClick={() => mainTitle === "Computers" ? history.push("/AddComputer") : props.addNew && props.addNew(true)}>
+                <Tooltip title={"Add " + mainTitle} onClick={() => mainTitle === "Computers" ? history.push("/AddComputer") : mainTitle === "Users" ? history.push("/AddUser") : props.addNew && props.addNew(true)}>
                     <IconButton aria-label="Add">
                         <AddIcon/>
                     </IconButton>
