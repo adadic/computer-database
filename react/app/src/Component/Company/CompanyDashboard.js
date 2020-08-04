@@ -55,6 +55,16 @@ function CompanyDashboard(props) {
         executeDelete({url: `${baseURL}/companies/${id}`});
     }
 
+    const editCompany = (company) => {
+
+        executeEdit({data: company});
+    }
+
+    const addCompany = (company) => {
+
+        executeAdd({data: company});
+    }
+
     useEffect(() => setCompanyList(data), [data, dataAdd, dataEdit]);
 
     return (
@@ -67,7 +77,7 @@ function CompanyDashboard(props) {
                 </Backdrop>
                 :
                 <div className="table-size">
-                    {companyList && <ListCompany companies={companyList} edit={executeEdit} add={executeAdd} headCells={headCell} delete={deleteCompany}/>}
+                    {companyList && <ListCompany companies={companyList} edit={editCompany} addCompany={addCompany} headCells={headCell} delete={deleteCompany}/>}
                 </div>
             }
         </div>

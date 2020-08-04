@@ -49,6 +49,14 @@ function ListCompany(props) {
     const [order, setOrder] = useState("asc");
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [selected, setSelected] = useState([]);
+    const [companies, setCompanies] = useState(props.companies);
+    const companySize = companies.filter(item => item.name && item.name.includes(props.search)).length;
+    const emptyRows = companySize < 10 ? 10 - companySize % 10 : 0;
+    const [addNew, setAddNew] = useState(false);
+    const [newCompany, setNewCompany] = useState({
+        companyId: companySize + 1,
+        companyName: ""
+    })
 
     useEffect(() => {
         props.changeMode(true);
@@ -56,9 +64,7 @@ function ListCompany(props) {
             props.changeMode(false);
             props.newSearch("");
         }
-    }, [])
-
-    const [companies, setCompanies] = useState(props.companies);
+    })
     useEffect(() => setCompanies(props.companies), [props.companies]);
 
     const handleRequestSort = (event, property) => {
@@ -110,8 +116,6 @@ function ListCompany(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const companySize = companies.filter(item => item.name && item.name.includes(props.search)).length;
-    const emptyRows = companySize < 10 ? 10 - companySize % 10 : 0;
 
     function deleteCompanies() {
 
@@ -121,14 +125,23 @@ function ListCompany(props) {
 
     const editCompany = (company) => {
 
-        props.edit && props.edit({data: company});
+        props.edit && props.edit(company);
+    }
+
+    const addCompany = () => {
+        props.addCompany && props.addCompany(newCompany);
+        setNewCompany({
+            companyId: companySize + 2,
+            companyName: ""
+        })
+        setAddNew(false);
     }
 
     return (
 
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                <EnhancedTableToolbar numSelected={selected.length} delete={deleteCompanies} mainTitle="Companies"/>
+                <EnhancedTableToolbar numSelected={selected.length} delete={deleteCompanies} mainTitle="Companies" addNew={setAddNew}/>
                 <TableContainer className={classes.table}>
                     <Table className={classes.table} aria-labelledby="tableTitle" size="medium"
                            aria-label="enhanced table"
@@ -144,6 +157,16 @@ function ListCompany(props) {
                             headCells={props.headCells}
                         />
                         <TableBody style={{overflow: "auto"}}>
+                            {addNew && <Company
+                                key={newCompany.companyId}
+                                labelId={`enhanced-table-checkbox-${newCompany.id}`}
+                                handleClick={handleClick}
+                                selected={selected}
+                                row={newCompany}
+                                edit={editCompany}
+                                editMode={true}
+                                addCompany={addCompany()}
+                            />}
                             {stableSort(companies.filter(item => item.name && item.name.includes(props.search)), getComparatorCompany(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map(row => {
@@ -159,6 +182,7 @@ function ListCompany(props) {
                                             selected={selected}
                                             row={row}
                                             edit={editCompany}
+                                            editMode={false}
                                         />
                                     );
                                 })}

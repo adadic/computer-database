@@ -56,7 +56,7 @@ function ListComputer(props) {
             props.changeMode(false);
             props.newSearch("");
         }
-    }, [])
+    })
     const [computers, setComputers] = useState(props.computers);
     useEffect(() => setComputers(props.computers), [props.computers]);
 
