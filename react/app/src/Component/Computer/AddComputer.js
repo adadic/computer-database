@@ -34,11 +34,15 @@ const useStyle = makeStyles((theme) => ({
         marginTop: 10,
         marginLeft: 5,
         marginRight: 5,
+        minHeight: 30,
+        maxHeight: 37,
+        minWidth: 150,
     },
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
-    }
+    },
+
 }))
 
 function AddComputer(props) {
@@ -194,8 +198,8 @@ function AddComputer(props) {
             onClick={()=>{props.addComputer(computer)}} 
             variant="contained" 
             value="Ajouter" 
-            color="primary">Ajouter</Button>
-            <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Annuler</Button>
+            color="primary">Add</Button>
+            <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Cancel</Button>
         </form>
     );
 }
