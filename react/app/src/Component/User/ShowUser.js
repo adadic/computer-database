@@ -18,15 +18,15 @@ function ShowUser(props) {
     }
 
     return (
-        <div class="user">
+        <div className="user">
              <PersonIcon fontSize="small"/> Username : 
             <p class="text">{props.user.userName}</p>
 
             <MailIcon fontSize="small"/> Email : 
-            <p class="text">{props.user.email}</p>
+            <p className="text">{props.user.email}</p>
 
             <AccessibilityIcon fontSize="small"/> Rôle : 
-            <p class="text">{props.user.roleName}</p>
+            <p className="text">{props.user.roleName}</p>
         
             <Button variant="outlined" onClick={logout} color="secondary">Logout</Button>
         </div>
