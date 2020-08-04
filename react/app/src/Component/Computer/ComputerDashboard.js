@@ -61,8 +61,7 @@ function ComputerDashboard(props) {
     }
 
     function editComputer(computer){
-
-        executeEdit({data: computer});
+        executeEdit(computer);
     }
 
     const deleteComputer = (id) => {

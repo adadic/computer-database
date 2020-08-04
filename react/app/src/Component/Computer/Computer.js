@@ -81,7 +81,7 @@ function Computer(props) {
             <TableRow hover key={computer.id}>
 
                 <TableCell padding="checkbox">
-                    <Button onClick={editComputer()}>
+                    <Button onClick={editComputer()} href="/computers">
                         <DoneIcon/>
                     </Button>
                 </TableCell>
