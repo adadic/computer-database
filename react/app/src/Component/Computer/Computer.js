@@ -20,8 +20,8 @@ function Computer(props) {
     const [computer, setComputer] = useState({
         id: props.row.id,
         name: props.row.name,
-        introduced: props.row.introduced,
-        discontinued: props.row.discontinued,
+        introduced: props.row.introduced ? getDate(props.row.introduced) : null,
+        discontinued: props.row.discontinued ? getDate(props.row.discontinued) : null,
         companyId: props.row.company.id
     });
 
