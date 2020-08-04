@@ -57,7 +57,7 @@ function CompanyDashboard(props) {
 
     useEffect(() => {
         setCompanyList(data);
-    }, [data, dataAdd, dataEdit, setCompanyList]);
+    }, [data, dataAdd, dataEdit]);
 
     return (
         <div className="App">
