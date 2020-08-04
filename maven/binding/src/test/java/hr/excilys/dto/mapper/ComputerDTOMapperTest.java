@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import hr.excilys.config.BindingConfig;
-import hr.excilys.dto.DTOCompany;
 import hr.excilys.dto.DTOComputer;
 import hr.excilys.mapper.DateMapper;
 import hr.excilys.mapper.LongMapper;
@@ -80,8 +79,7 @@ public class ComputerDTOMapperTest {
 
 		Company company = new Company.CompanyBuilder(1, "Excilys").build();
 		Computer computer = new Computer.ComputerBuilder("qwert").id(id).company(company).build();
-		DTOCompany dtoCompany = new DTOCompany("1", "Excilys");
-		DTOComputer dtoComputer = new DTOComputer("1", "qwert", "", "", dtoCompany);
+		DTOComputer dtoComputer = new DTOComputer("1", "qwert", "", "", "1");
 
 		computerValidator = Mockito.mock(ComputerValidator.class);
 		longMapper = Mockito.mock(LongMapper.class);
@@ -89,7 +87,7 @@ public class ComputerDTOMapperTest {
 		companyDTOMapper = Mockito.mock(CompanyDTOMapper.class);
 
 		Mockito.when(computerValidator.checkComputerFields(dtoComputer)).thenReturn(true);
-		Mockito.when(companyDTOMapper.fromDTO(null)).thenReturn(Optional.empty());
+		Mockito.when(companyDTOMapper.fromString("1")).thenReturn(Optional.of(company));
 		Mockito.when(computerValidator.checkComputerFields(dtoComputer)).thenReturn(true);
 		Mockito.when(longMapper.getId(dtoComputer.getId())).thenReturn(1L);
 		Mockito.when(dateMapper.getDate(dtoComputer.getIntroduced())).thenReturn(null);
@@ -105,8 +103,7 @@ public class ComputerDTOMapperTest {
 		Company company = new Company.CompanyBuilder(1, "Excilys").build();
 		Computer computer = new Computer.ComputerBuilder("qwert").id(id).introduced(introduced).company(company)
 				.build();
-		DTOCompany dtoCompany = new DTOCompany("1", "Excilys");
-		DTOComputer dtoComputer = new DTOComputer("1", "qwert", "2012-10-15", "", dtoCompany);
+		DTOComputer dtoComputer = new DTOComputer("1", "qwert", "2012-10-15", "", "1");
 
 		computerValidator = Mockito.mock(ComputerValidator.class);
 		longMapper = Mockito.mock(LongMapper.class);
@@ -114,7 +111,7 @@ public class ComputerDTOMapperTest {
 		companyDTOMapper = Mockito.mock(CompanyDTOMapper.class);
 
 		Mockito.when(computerValidator.checkComputerFields(dtoComputer)).thenReturn(true);
-		Mockito.when(companyDTOMapper.fromDTO(null)).thenReturn(Optional.empty());
+		Mockito.when(companyDTOMapper.fromString("1")).thenReturn(Optional.of(company));
 		Mockito.when(computerValidator.checkComputerFields(dtoComputer)).thenReturn(true);
 		Mockito.when(longMapper.getId(dtoComputer.getId())).thenReturn(1L);
 		Mockito.when(dateMapper.getDate(dtoComputer.getIntroduced())).thenReturn(introduced);
@@ -131,8 +128,7 @@ public class ComputerDTOMapperTest {
 		Company company = new Company.CompanyBuilder(1, "Excilys").build();
 		Computer computer = new Computer.ComputerBuilder("qwert").id(id).introduced(introduced)
 				.discontinued(discontinued).company(company).build();
-		DTOCompany dtoCompany = new DTOCompany("1", "Excilys");
-		DTOComputer dtoComputer = new DTOComputer("1", "qwert", "2012-10-15", "2012-10-17", dtoCompany);
+		DTOComputer dtoComputer = new DTOComputer("1", "qwert", "2012-10-15", "2012-10-17", "1");
 
 		computerValidator = Mockito.mock(ComputerValidator.class);
 		longMapper = Mockito.mock(LongMapper.class);
@@ -140,7 +136,7 @@ public class ComputerDTOMapperTest {
 		companyDTOMapper = Mockito.mock(CompanyDTOMapper.class);
 
 		Mockito.when(computerValidator.checkComputerFields(dtoComputer)).thenReturn(true);
-		Mockito.when(companyDTOMapper.fromDTO(null)).thenReturn(Optional.empty());
+		Mockito.when(companyDTOMapper.fromString("1")).thenReturn(Optional.of(company));
 		Mockito.when(computerValidator.checkComputerFields(dtoComputer)).thenReturn(true);
 		Mockito.when(longMapper.getId(dtoComputer.getId())).thenReturn(1L);
 		Mockito.when(dateMapper.getDate(dtoComputer.getIntroduced())).thenReturn(null);

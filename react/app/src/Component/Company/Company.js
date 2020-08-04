@@ -7,8 +7,8 @@ import CloseIcon from '@material-ui/icons/Close';
 function Company(props) {
 
     const [company, setCompany] = useState({
-        id: props.row.id,
-        name: props.row.name
+        companyId: props.row.id,
+        companyName: props.row.name
     });
     const [editMode, setEdit] = useState(false);
     const [addMode, setAdd] = useState(company.id === 0);
@@ -21,7 +21,7 @@ function Company(props) {
 
     const cancelEdit = () => () =>{
 
-        setCompany({...company, name: props.row.name});
+        setCompany({...company, companyName: props.row.name});
         setEdit(false);
     };
 
@@ -51,9 +51,9 @@ function Company(props) {
                     <TextField
                         required
                         label="Company Name"
-                        value={company.name}
+                        value={company.companyName}
                         style={{width: 300}}
-                        onChange={(event) => setCompany({...company, name: event.target.value})}
+                        onChange={(event) => setCompany({...company, companyName: event.target.value})}
                     />
                 </TableCell>
             </TableRow>
@@ -66,7 +66,7 @@ function Company(props) {
                 role="checkbox"
                 aria-checked={props.isItemSelected}
                 tabIndex={-1}
-                key={company.id}
+                key={company.companyId}
                 selected={props.isItemSelected}
             >
 
@@ -84,7 +84,7 @@ function Company(props) {
 
                 <TableCell component="th" id={props.labelId} scope="row" padding="none"
                            style={{width: '75%', marginLeft: 10}}>
-                    {company.name}
+                    {company.companyName}
                 </TableCell>
             </TableRow>
     );
