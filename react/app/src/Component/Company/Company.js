@@ -46,7 +46,7 @@ function Company(props) {
             <TableRow hover key={company.id}>
 
                 <TableCell padding="checkbox">
-                    <Button onClick={addCompany()}>
+                    <Button onClick={addCompany()} href="/companies">
                         <DoneIcon/>
                     </Button>
                 </TableCell>
