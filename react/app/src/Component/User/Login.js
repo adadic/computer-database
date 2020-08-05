@@ -60,6 +60,7 @@ function Login(props) {
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
+
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
@@ -86,7 +87,7 @@ function Login(props) {
         { manual: true }
     );
 
-    function connexion() {
+    const connexion = () => {
         login({ data: user })
             .then((res) => {
                 displaySuccessAlert();
@@ -150,13 +151,14 @@ function Login(props) {
             });
     }
 
+    const displaySuccessAlert = () => {
 
-    function displaySuccessAlert() {
         setDisplaySuccess(true);
         setTimeout(function () { setDisplaySuccess(false); }, 2000);
     }
 
-    function register() {
+    const register = () => {
+
         history.push("/register");
     }
 
@@ -215,8 +217,8 @@ function Login(props) {
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
 
+    return {
         seToken: data => dispatch(setToken(data)),
         setConnected: conn => dispatch(isConnected(conn)),
         setUser: user => dispatch(setUser(user))
@@ -224,8 +226,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = (state) => {
-    return {
 
+    return {
         token: getToken(state),
         user: getUser(state),
     }

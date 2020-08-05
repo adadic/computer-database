@@ -70,7 +70,7 @@ function AddComputer(props) {
         introduced: null,
         discontinued: null,
         companyId:"0",
-    })
+    });
 
     useEffect(() => setCompanies(data),[data]);
 
@@ -87,8 +87,7 @@ function AddComputer(props) {
                 checkFields()
             }
         }
-
-    }
+    };
 
     const handleDiscontinued = (date) => {
         if(date && date!==""){
@@ -103,7 +102,7 @@ function AddComputer(props) {
                 checkFields()
             }
         }
-    }
+    };
 
     const checkName = (name) => {
         if(name.length<=0){
@@ -115,7 +114,7 @@ function AddComputer(props) {
         else{
             setNameValid(true)
         }
-    }
+    };
 
     const  checkFields = () => {
         if(nameValid && introducedValid && discontinuedValid){
@@ -124,7 +123,7 @@ function AddComputer(props) {
         else{
             setFieldsValid(false)
         }
-    }
+    };
 
     useEffect(() =>{
         checkName(computer.computerName)

@@ -9,13 +9,14 @@ function Logout(props){
         props.setToken("");
         props.setConnected(false);
         localStorage.clear();
-    })
+    });
 
     return (
         <Redirect to="/home"/>
     );
 }
 const mapDispatchToProps = dispatch => {
+
     return {
         setToken: token => dispatch(setToken(token)),
         setConnected: conn => dispatch(isConnected(conn))
