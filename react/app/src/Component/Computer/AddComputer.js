@@ -9,9 +9,16 @@ import {useHistory} from "react-router-dom";
 import {TextField, makeStyles, Select, MenuItem,
     FormControl, InputLabel, Button} from "@material-ui/core";
 import "./AddComputer.scss";
+import Paper from "@material-ui/core/Paper";
 
 
 const useStyle = makeStyles((theme) => ({
+    paper: {
+        width: '25%',
+        margin : "auto",
+        padding: 10,
+        minWidth: 350
+    },
     root: {
         width: '100%'
     },
@@ -98,7 +105,7 @@ function AddComputer(props) {
         }
     }
 
-    function checkName(name){
+    const checkName = (name) => {
         if(name.length<=0){
             setNameValid(false)
         }
@@ -110,7 +117,7 @@ function AddComputer(props) {
         }
     }
 
-    function checkFields(){
+    const  checkFields = () => {
         if(nameValid && introducedValid && discontinuedValid){
             setFieldsValid(true)
         }
@@ -122,85 +129,85 @@ function AddComputer(props) {
     useEffect(() =>{
         checkName(computer.computerName)
         checkFields()
-    }
-    )
-
+    });
 
     return (
-        <form className={classes.root}>
-            <div margin="auto">
-                <TextField
-                    color={nameValid?"primary":"secondary"}
-                    className={classes.textField}
-                    required
-                    id="text-field-name"
-                    label="Computer Name"
-                    value={computer.computerName}
-                    onChange={(event) => setComputer({...computer, computerName: event.target.value})}
-                />
-            </div>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <div>
-                    <KeyboardDatePicker
-                        className={classes.picker}
-                        format="yyyy-MM-dd"
-                        margin="normal"
-                        id="date-picker-introduced"
-                        label="Introduced Date"
-                        minDate="1970-01-01"
-                        maxDate="2038-01-18"
-                        value={computer.introduced}
-                        onChange={handleIntroduced}
-
+        <Paper className={classes.paper}>
+            <form className={classes.root}>
+                <div margin="auto">
+                    <TextField
+                        color={nameValid?"primary":"secondary"}
+                        className={classes.textField}
+                        required
+                        id="text-field-name"
+                        label="Computer Name"
+                        value={computer.computerName}
+                        onChange={(event) => setComputer({...computer, computerName: event.target.value})}
                     />
                 </div>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <div>
+                        <KeyboardDatePicker
+                            className={classes.picker}
+                            format="yyyy-MM-dd"
+                            margin="normal"
+                            id="date-picker-introduced"
+                            label="Introduced Date"
+                            minDate="1970-01-01"
+                            maxDate="2038-01-18"
+                            value={computer.introduced}
+                            onChange={handleIntroduced}
+
+                        />
+                    </div>
+                    <div>
+                        <KeyboardDatePicker
+                            className={classes.picker}
+                            margin="normal"
+                            id="date-picker-discontinued"
+                            label="Discontinued Date"
+                            format="yyyy-MM-dd"
+                            value={computer.discontinued}
+                            onChange={handleDiscontinued}
+                            minDate={computer.introduced ? computer.introduced : "1970-01-01"}
+                            maxDate="2038-01-18"
+                            disabled={!computer.introduced || computer.introduced.toString() === "Invalid Date"}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date',
+                            }}
+                        />
+                    </div>
+                </MuiPickersUtilsProvider>
                 <div>
-                    <KeyboardDatePicker
-                        className={classes.picker}
-                        margin="normal"
-                        id="date-picker-discontinued"
-                        label="Discontinued Date"
-                        format="yyyy-MM-dd"
-                        value={computer.discontinued}
-                        onChange={handleDiscontinued}
-                        minDate={computer.introduced ? computer.introduced : "1970-01-01"}
-                        maxDate="2038-01-18"
-                        disabled={!computer.introduced || computer.introduced.toString() === "Invalid Date"}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change date',
-                        }}
-                    />
+                    <FormControl className={classes.formControl}>
+                        <InputLabel>Company</InputLabel>
+                        <Select className={classes.select}
+                            value={computer.companyId}
+                            onChange={(event) => setComputer({...computer, companyId: event.target.value})}
+                        >
+                            <MenuItem value={0}>None</MenuItem>
+                            {companyList && companyList.map(company => {
+                                return (
+                                    <MenuItem key={company.id} value={company.id}>{company.name}</MenuItem>
+                                );
+                            })
+                            }
+
+                        </Select>
+                    </FormControl>
                 </div>
-            </MuiPickersUtilsProvider>
-            <div>
-                <FormControl className={classes.formControl}>
-                    <InputLabel>Company</InputLabel>
-                    <Select className={classes.select}
-                        value={computer.companyId}
-                        onChange={(event) => setComputer({...computer, companyId: event.target.value})}
-                    >
-                        <MenuItem value={0}>None</MenuItem>
-                        {companyList && companyList.map(company => {
-                            return (
-                                <MenuItem key={company.id} value={company.id}>{company.name}</MenuItem>
-                            )
-                        })
-                        }
 
-                    </Select>
-                </FormControl>
-            </div>
-
-            <Button 
-            className={classes.button} 
-            disabled={fieldsValid?false:true}
-            href="/computers" 
-            onClick={()=>{props.addComputer(computer)}} 
-            variant="contained" 
-            value="Ajouter" 
-            color="primary">Add</Button>
-            <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Cancel</Button>
-        </form>
+                <Button
+                className={classes.button}
+                disabled={!fieldsValid}
+                href="/computers"
+                onClick={()=>{props.addComputer(computer)}}
+                variant="contained"
+                value="Ajouter"
+                color="primary">Add</Button>
+                <Button className={classes.button} onClick={()=> history.push("/computers")} variant="outlined" color="secondary">Cancel</Button>
+            </form>
+        </Paper>
     );
 }
 
