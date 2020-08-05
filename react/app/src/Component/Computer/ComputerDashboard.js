@@ -170,9 +170,17 @@ function ComputerDashboard(props) {
         executeEdit({data: computer});
     }
 
-    const deleteComputer = (id) => {
+    const deleteComputer = () => {
 
-        setComputerList(computerList.filter(item => item.id !== id));
+        selected.forEach(element => {
+            setComputerList(computerList.filter(item => item.id !== element));
+            return safeDelete(element);
+        })
+        setSelected([]);
+    }
+
+    const safeDelete = (id) => {
+
         executeDelete({url: `${baseURL}/computers/${id}`});
     }
 
