@@ -21,7 +21,8 @@ const baseURL = 'http://localhost:8083/webapp/api/users';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        marginBottom: theme.spacing(2)
+        marginBottom: theme.spacing(2),
+        minWidth: 700
     },
     menuButton: {
         marginRight: theme.spacing(2)
@@ -30,29 +31,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         textAlign: "left"
     },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        marginLeft: 0,
-        marginRight: 50,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
-        },
-    },
-    searchIcon: {
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+    searchBar: {
+        minWidth: 250
     },
     inputRoot: {
         color: 'inherit',
@@ -127,7 +107,7 @@ function Header(props) {
                         Computer Database
                     </Typography>
 
-                    {props.isSearching && <SearchBar/>}
+                    {props.isSearching && <SearchBar className={classes.searchBar}/>}
                     {props.token !== "" && props.isConnected
                         ?
                         <div>

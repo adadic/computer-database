@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         width: '70%',
-        margin: "auto"
+        margin: "auto",
+        minWidth: 580
     },
 }));
 

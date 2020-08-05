@@ -16,7 +16,8 @@ const useStyle = makeStyles((theme) => ({
     paper: {
         width: '25%',
         margin : "auto",
-        padding: 10
+        padding: 10,
+        minWidth: 350
     },
     root: {
         width: '100%'
