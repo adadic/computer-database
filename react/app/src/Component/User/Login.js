@@ -15,7 +15,7 @@ import { setUser } from '../../Store/Action/UserAction';
 import { getUser } from '../../Store/Selector/UserSelector';
 import { getToken } from '../../Store/Selector/ConnexionSelector';
 import { isConnected } from "../../Store/Action/ConnexionAction";
-
+import "./Login.scss";
 import clsx from "clsx";
 import { setToken } from '../../Store/Action/ConnexionAction';
 import Alert from "@material-ui/lab/Alert";
@@ -203,13 +203,12 @@ function Login(props) {
 
                 </FormControl>
             </form>
-            <div className="buttonco">
-            <Button onClick={connexion} variant="contained" color="primary">Connexion</Button>
+            <div className="divButton">
+                <div className="buttonco">
+                    <Button onClick={connexion} variant="contained" color="primary">Connexion</Button>
+                </div>
+                <Button variant="outlined" onClick={register} color="primary">Register</Button>
             </div>
-            <div className="buttonre">
-            <Button variant="outlined" onClick={register} color="primary">Register</Button>
-            </div>
-
 
         </div>
     );
