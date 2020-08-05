@@ -42,9 +42,10 @@ public class RegisterRestController {
 		DTORole dtoRole = new DTORole("1", "USER");
 		user.setRole(dtoRole);
 		try {
+			System.out.println("REST" + user);
 			userService.addUser(user);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), headers, HttpStatus.METHOD_NOT_ALLOWED);
 		}
 

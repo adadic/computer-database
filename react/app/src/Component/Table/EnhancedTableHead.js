@@ -12,15 +12,15 @@ function EnhancedTableHead(props) {
     return (
         <TableHead>
             <TableRow>
-                <TableCell padding="checkbox">
+                {!props.user && <TableCell padding="checkbox">
                     <Checkbox
                         indeterminate={numSelected > 0 && numSelected < rowCount}
                         checked={rowCount > 0 && numSelected === rowCount}
                         onChange={onSelectAllClick}
                         inputProps={{'aria-label': 'select all desserts'}}
                     />
-
                 </TableCell>
+                }
                 <TableCell padding="checkbox"/>
 
                 {headCells.map((headCell) => (

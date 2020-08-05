@@ -7,6 +7,7 @@ export const searchOption = 'searchOption';
 export const tokenOption = 'tokenOption';
 export const userOption = 'userOption';
 
+
 const search = { [searchOption]: searchReducer };
 const token = { [tokenOption]: connexionReducer };
 const user = { [userOption]: userReducer };

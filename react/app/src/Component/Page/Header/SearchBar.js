@@ -3,8 +3,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import {InputBase} from "@material-ui/core";
 import {fade, makeStyles} from "@material-ui/core/styles";
 import {connect} from 'react-redux';
-import {newSearch} from "../../Store/Action/SearchAction";
-import {getSearch} from "../../Store/Selector/SearchSelector";
+import {newSearch} from "../../../Store/Action/SearchAction";
+import {getSearch} from "../../../Store/Selector/SearchSelector";
 
 const useStyles = makeStyles((theme) => ({
     search: {
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
         },
         marginLeft: 0,
         marginRight: 50,
-        width: '100%',
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(1),
             width: 'auto',

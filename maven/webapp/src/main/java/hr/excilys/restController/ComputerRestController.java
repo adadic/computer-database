@@ -114,9 +114,11 @@ public class ComputerRestController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> addComputer(@RequestBody DTOComputer dtoComputer) {
+	public ResponseEntity<String> addComputer(@RequestBody DTOComputer dtoComputerAdd) {
 
-		if (addComputerService.addComputer(dtoComputer)) {
+		System.out.println("Je suis appelé");
+		
+		if (addComputerService.addComputer(dtoComputerAdd)) {
 
 			return new ResponseEntity<String>("Computer added", HttpStatus.OK);
 		}

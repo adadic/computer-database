@@ -17,17 +17,15 @@ public class ComputerValidator {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(ComputerValidator.class);
 	private final DateMapper dateMapper;
-	private final CompanyValidator companyValidator;
 
 	@Autowired
-	public ComputerValidator(DateMapper dateMapper, CompanyValidator companyValidator) {
+	public ComputerValidator(DateMapper dateMapper) {
 
 		this.dateMapper = dateMapper;
-		this.companyValidator = companyValidator;
 
 	}
 
-	public boolean checkComputerFields(DTOComputer dtoComputer) {
+	/*public boolean checkComputerFields(DTOComputer dtoComputer) {
 
 		if (StringUtils.isEmpty(dtoComputer.getComputerName())) {
 			LOGGER.info("Computer has no name!");
@@ -60,7 +58,47 @@ public class ComputerValidator {
 			
 			return false;
 		}
+	}*/
+	
+	public boolean checkComputerFields(DTOComputer dtoComputerAdd) {
+		
+		if (StringUtils.isEmpty(dtoComputerAdd.getComputerName())) {
+			LOGGER.info("Computer has no name!");
+
+			return false;
+		}
+		try {
+			if (StringUtils.isEmpty(dtoComputerAdd.getIntroduced())
+					&& StringUtils.isNotEmpty(dtoComputerAdd.getIntroduced())) {
+				
+				return false;
+			}
+			LocalDate timeIntro = checkDate(dtoComputerAdd.getIntroduced());
+			LocalDate timeDiscon = checkDate(dtoComputerAdd.getDiscontinued());
+
+			if (timeIntro != null && timeDiscon != null && timeIntro.isAfter(timeDiscon)) {
+				LOGGER.info("introduced Date after Discontinued Date in this Computer");
+				
+				return false;
+			}
+			if (StringUtils.isEmpty(dtoComputerAdd.getCompanyId())) {	
+				return false;
+			}
+			try {
+				Long.parseLong(dtoComputerAdd.getCompanyId());
+			} catch(NumberFormatException nfe) {
+				return false;
+			}
+			LOGGER.info("Computer can be created");
+			
+			return true;
+		} catch (DateTimeParseException dtpe) {
+			LOGGER.error("NullPointerException -> At least one Field was null !!");
+			
+			return false;
+		}
 	}
+		
 
 	private LocalDate checkDate(String date) throws DateTimeParseException {
 

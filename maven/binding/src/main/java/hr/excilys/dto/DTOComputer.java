@@ -9,18 +9,18 @@ public final class DTOComputer {
 	private String computerName;
 	private String introduced;
 	private String discontinued;
-	private DTOCompany company;
-
+	private String companyId;
+	
 	public DTOComputer() {
 	}
 
-	public DTOComputer(String id, String computerName, String introduced, String discontinued, DTOCompany company) {
+	public DTOComputer(String id, String computerName, String introduced, String discontinued, String companyId) {
 
 		this.id = id;
 		this.computerName = computerName;
 		this.introduced = introduced;
 		this.discontinued = discontinued;
-		this.company = company;
+		this.companyId = companyId;
 	}
 
 	public String getId() {
@@ -63,14 +63,14 @@ public final class DTOComputer {
 		this.discontinued = discontinued;
 	}
 
-	public DTOCompany getCompany() {
+	public String getCompanyId() {
 
-		return company;
+		return companyId;
 	}
 
-	public void setCompany(DTOCompany company) {
+	public void setCompanyId(String companyId) {
 
-		this.company = company;
+		this.companyId = companyId;
 	}
 
 	@Override

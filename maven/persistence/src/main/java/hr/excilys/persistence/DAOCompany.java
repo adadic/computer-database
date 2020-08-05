@@ -59,7 +59,7 @@ public class DAOCompany {
 					.setParameter("id_company", id);
 			List<Company> company = query.getResultList();
 
-			if (company != null) {
+			if (company != null && company.size()!=0) {
 				LOGGER.info("Company with id = {} : Found", id);
 
 				return Optional.of(company.get(0));
@@ -78,16 +78,16 @@ public class DAOCompany {
 		return Optional.empty();
 	}
 
+	@Transactional
 	public boolean deleteCompany(long id) {
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			TypedQuery<Company> computerQuery = session
-					.createQuery(EnumQuery.DELETECOMPUTERCOMPANY.getQuery(), Company.class)
+			Query computerQuery = session
+					.createQuery(EnumQuery.DELETECOMPUTERCOMPANY.getQuery())
 					.setParameter("id_company", id);
-			TypedQuery<Company> companyQuery = session.createQuery(EnumQuery.DELETECOMPANY.getQuery(), Company.class)
+			Query companyQuery = session.createQuery(EnumQuery.DELETECOMPANY.getQuery())
 					.setParameter("id_company", id);
-
 			computerQuery.executeUpdate();
 			companyQuery.executeUpdate();
 			LOGGER.info("Computer with id_company : {} DELETED", id);
@@ -120,6 +120,25 @@ public class DAOCompany {
 			return false;
 		} catch (DataAccessException dae) {
 			LOGGER.error("Company NOT updated, problem in query : Check fields");
+
+			return false;
+		}
+	}
+
+	public boolean insertCompany(Company company) {
+		System.out.println("user in hibernate dao computer "+company.toString());
+
+		try {
+			session = sessionFactory.getCurrentSession();
+			session.save(company);
+
+			return true;
+		} catch (HibernateException hex) {
+			LOGGER.error("Cannot get the session");
+
+			return false;
+		} catch (DataAccessException dae) {
+			LOGGER.error("Company NOT added, problem in query : Check fields");
 
 			return false;
 		}

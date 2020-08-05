@@ -50,19 +50,19 @@ const EnhancedTableToolbar = (props) => {
                 </Typography>
             )}
 
-            {numSelected > 0 ? (
-                <Tooltip title="Delete" onClick={() => props.delete && props.delete()}>
+            {!props.user &&(numSelected > 0 ? (
+                <Tooltip title="Delete" onClick={() => props.delete && props.delete()} >
                     <IconButton aria-label="delete">
                         <DeleteIcon/>
                     </IconButton>
                 </Tooltip>
             ) : (
-                <Tooltip title={"Add " + mainTitle} onClick={() => mainTitle === "Computers" ? history.push("/AddComputer") : history.push("/AddCompany")}>
+                <Tooltip title={"Add " + mainTitle} onClick={() => mainTitle === "Computers" ? history.push("/AddComputer") : props.addNew && props.addNew(true)}>
                     <IconButton aria-label="Add">
                         <AddIcon/>
                     </IconButton>
                 </Tooltip>
-            )}
+            ))}
         </Toolbar>
     );
 };

@@ -19,13 +19,14 @@ import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import green from "@material-ui/core/colors/green";
 import red from "@material-ui/core/colors/red";
+import Paper from "@material-ui/core/Paper";
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         '& .MuiTextField-root': {
             margin: theme.spacing(1),
-            width: 200,
+            width: '80%',
             display: 'flex',
             flexWrap: 'wrap',
         },
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
             marginTop: theme.spacing(3),
         },
         textField: {
-            width: '25ch',
+            width: '75px',
         },
         alert: {
             width: '100%',
@@ -54,18 +55,23 @@ function Register() {
         {
             baseURL: 'http://localhost:8083/webapp/api/register'
         }
-    )
+    );
 
     const config = {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
-    }
+    };
+
+    function displaySuccessAlert(){
+        setDisplaySuccess(true);
+        setTimeout(function(){ setDisplaySuccess(false);}, 2000);
+    };
 
     const addUser = async () => {
         await api.post('', qs.stringify(user), config)
             .then((result) => {
-                setDisplayAlert(true);
+                displaySuccessAlert();
                 if (result.status === 200) {
                     setSuccess(true);
                     setMessage(result.data)
@@ -73,6 +79,7 @@ function Register() {
                 }
             })
             .catch((error) => {
+                displaySuccessAlert();
                 if (error.response) {
                     /*
                      * The request was made and the server responded with a
@@ -96,14 +103,14 @@ function Register() {
                 }
             });
 
-    }
+    };
+
     const model = {
         userName: '',
         password: '',
         matchingPassword: '',
         email: ''
     };
-
 
     const [showPassword, setShowPassword] = useState(false);
     const [user, setUser] = useState(model);
@@ -120,7 +127,7 @@ function Register() {
     const [emailError, setEmailError] = useState(true)
     const [usernameError, setUsernameError] = useState(true)
     const [usernameAlreadyExistsError, setUsernameAlreadyExistsError] = useState(false);
-
+    const [displaySucess, setDisplaySuccess]=useState(false);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -129,7 +136,6 @@ function Register() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
 
     const upper = new RegExp("(?=.*[A-Z])");
     const number = new RegExp("(?=.*[0-9])");
@@ -182,7 +188,7 @@ function Register() {
     };
 
 
-    function passwordCheck() {
+    const passwordCheck = () => {
 
         if (checkUpper() & checkNumber() & checkLength() & checkSpecial()) {
             setPasswordError(false);
@@ -190,9 +196,9 @@ function Register() {
             setPasswordError(true);
             setMessage("The password is invalid");
         }
-    }
+    };
 
-    function usernameCheck() {
+    const usernameCheck = () => {
 
         if (user.userName === '' || user.userName.includes(' ')) {
             setUsernameError(true);
@@ -200,63 +206,75 @@ function Register() {
         } else {
             setUsernameError(false);
         }
-    }
+    };
 
 
     const em2 = (e) => {
-        setUser({...user, password: e.target.value});
 
+        setUser({...user, password: e.target.value});
     };
 
-    function matchingPasswordCheck() {
+    const matchingPasswordCheck = () => {
+
         if (user.matchingPassword !== '' && user.password === user.matchingPassword) {
             setMatchingPasswordError(false);
         } else {
             setMatchingPasswordError(true);
             setMessage('The matching password is invalid');
-
         }
-    }
+    };
 
-    function emailCheck() {
+    const emailCheck = () => {
 
-        {
-            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.email)) {
-                setEmailError(false);
-            } else {
-                setEmailError(true);
-                setMessage('The email is invalid');
-            }
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.email)) {
+            setEmailError(false);
+        } else {
+            setEmailError(true);
+            setMessage('The email is invalid');
         }
-    }
+    };
 
     const displayAlertError = () => {
+
         if (matchingPasswordError || passwordError || emailError || usernameError || usernameAlreadyExistsError) {
             setDisplayAlert(true);
         } else {
             setDisplayAlert(false);
         }
-
-    }
+    };
 
     useEffect(() => {
+
         usernameCheck(user.userName);
         passwordCheck(user.password);
         matchingPasswordCheck(user.matchingPassword);
         emailCheck(user.email);
         displayAlertError();
-
     });
 
     return (
-        <div className="Register">
-            <Collapse in={(displayAlert)}>
+        <div className="Register" style={{width: '515px', margin:'auto'}}>
+            <img
+                style={{
+                    position:'absolute',
+                    height:'100%',
+                    width:'100%',
+                    left:'0',
+                    top: '0',
+                    zIndex:'-1',
+                    opacity:'0.2'
+                }}
+                src='https://wallpaperaccess.com/full/1180986.jpg'
+            />
+            <Paper style={{padding:'10px', width:'auto'}}>
+            <Collapse in={displaySucess}>
                 <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
                        severity={success ? "success" : "error"}>{message}</Alert>
-            </Collapse>
-            <form className={classes.root} noValidate autoComplete="off">
 
-                <FormControl>
+            </Collapse>
+            <form style={{width:'auto'}} >
+
+                <FormControl style={{ display:'flex', flexDirection:'column'}} >
                     <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)}>
                         <InputLabel htmlFor="standard-adornment-username">Username</InputLabel>
                         <Input
@@ -301,29 +319,39 @@ function Register() {
                             }
                         />
 
-                        <Collapse in={checked}>
-                            <ListItem>
+                        <Collapse in={checked} >
+                            <ListItem style={{display:'flex', flexWrap:'wrap', margin:'auto', flexDirection:'space-between'}}>
+
+                                <div style={{display:'flex', flexDirection:'row', justifyContent:'center',}}>
                                 <ListItemText primary="Upper Case"/>
                                 <ListItemIcon>
 
                                     {passwordUpper ? <CheckIcon style={{color: green[500]}}/> :
                                         <ClearIcon style={{color: red[500]}}/>}
                                 </ListItemIcon>
+                                </div>
+                                <div style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>
                                 <ListItemText primary="Number"/>
                                 <ListItemIcon>
                                     {passwordNumber ? <CheckIcon style={{color: green[500]}}/> :
                                         <ClearIcon style={{color: red[500]}}/>}
                                 </ListItemIcon>
-                                <ListItemText primary="Eight characters or longer"/>
+                                </div>
+                                <div style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>
+                                <ListItemText primary="Min eight characters"/>
                                 <ListItemIcon>
                                     {passwordLength ? <CheckIcon style={{color: green[500]}}/> :
                                         <ClearIcon style={{color: red[500]}}/>}
                                 </ListItemIcon>
-                                <ListItemText primary="One special character or more (!@#$%^&*+)"/>
+                                </div>
+
+                                <div style={{display:'flex', flexDirection:'row', justifyContent:'center', margin:'auto'}}>
+                                <ListItemText primary="One special character (!@#$%^&*+)"/>
                                 <ListItemIcon>
                                     {passwordSpecial ? <CheckIcon style={{color: green[500]}}/> :
                                         <ClearIcon style={{color: red[500]}}/>}
                                 </ListItemIcon>
+                                </div>
 
                             </ListItem>
                         </Collapse>
@@ -344,10 +372,10 @@ function Register() {
 
             <br/>
             <Button onClick={addUser} variant="outlined" color="primary">Add</Button>{' '}
-            <Button onClick={addUser} variant="outlined" color="secondary">Cancel</Button>
+            <a style={{textDecoration:'none'}} href={'register'}><Button  variant="outlined" color="secondary">Reset</Button></a>
+        </Paper>
         </div>
     );
-
 }
 
 export default Register;

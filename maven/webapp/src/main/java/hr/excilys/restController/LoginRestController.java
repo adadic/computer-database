@@ -40,7 +40,7 @@ public class LoginRestController {
 
 	@PostMapping(value = "/login")
 	public ResponseEntity<?> login(@RequestBody DTOUser authentificationRequest) throws AuthenticationException {
-		System.out.println(authentificationRequest);
+		
 		authenticate(authentificationRequest.getUsername(), authentificationRequest.getPassword());
 		final UserDetails userDetails = userService.loadUserByUsername(authentificationRequest.getUsername());
 		final String token = jwtTokenUtil.generateToken(userDetails);

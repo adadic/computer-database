@@ -16,11 +16,11 @@ public class CompanyValidator {
 
 		if (dtoCompany != null) {
 
-			if (StringUtils.isEmpty(dtoCompany.getCompanyName())) {
-				LOGGER.info("Company has no name!");
-				
-				return false;
-			}
+//			if (StringUtils.isEmpty(dtoCompany.getCompanyName())) {
+//				LOGGER.info("Company has no name!");
+//
+//				return false;
+//			}
 
 			if (StringUtils.isEmpty(dtoCompany.getCompanyId())) {
 				LOGGER.info("Company has no id!");

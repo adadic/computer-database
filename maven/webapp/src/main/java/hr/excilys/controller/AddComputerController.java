@@ -3,12 +3,12 @@ package hr.excilys.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import hr.excilys.dto.DTOCompany;
-import hr.excilys.dto.DTOComputer;
+//import hr.excilys.dto.DTOCompany;
+//import hr.excilys.dto.DTOComputer;
 import hr.excilys.service.AddComputerService;
 import hr.excilys.service.CompanyService;
 
@@ -16,17 +16,17 @@ import hr.excilys.service.CompanyService;
 @RequestMapping(value = "/addComputer")
 public class AddComputerController {
 
-	private static final int ADDSUCCESS = 2;
-	private static final int ADDERROR = -1;
+	//private static final int ADDSUCCESS = 2;
+	//private static final int ADDERROR = -1;
 
 	private final CompanyService companyService;
-	private final AddComputerService addComputerService;
+	//private final AddComputerService addComputerService;
 
 	@Autowired
 	public AddComputerController(CompanyService companyService, AddComputerService addComputerService) {
 
 		this.companyService = companyService;
-		this.addComputerService = addComputerService;
+		//this.addComputerService = addComputerService;
 	}
 
 	@GetMapping
@@ -38,7 +38,7 @@ public class AddComputerController {
 		return model;
 	}
 
-	@PostMapping
+	/*@PostMapping
 	public ModelAndView addComputer(DTOComputer computer, DTOCompany dtoCompany) {
 		
 
@@ -54,5 +54,5 @@ public class AddComputerController {
 		}
 
 		return view;
-	}
+	}*/
 }

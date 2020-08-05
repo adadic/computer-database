@@ -6,18 +6,24 @@ import {
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuBar from "./MenuBar";
-import Login from "../User/Login";
-import { useHistory } from "react-router-dom";
+import Login from "../../User/Login";
 import SearchBar from "./SearchBar";
-import { getToken, isConnected } from '../../Store/Selector/ConnexionSelector';
+import { getToken, isConnected } from '../../../Store/Selector/ConnexionSelector';
 import { connect } from 'react-redux';
-import ShowUser from '../User/ShowUser';
-import {getSearchMode} from "../../Store/Selector/SearchSelector";
+import ShowUser from '../../User/ShowUser';
+import useAxios from 'axios-hooks';
+import { getUser } from '../../../Store/Selector/UserSelector';
+import { setUser } from '../../../Store/Action/UserAction';
+import {getSearchMode} from "../../../Store/Selector/SearchSelector";
+import { setToken } from '../../../Store/Action/ConnexionAction';
+
+const baseURL = 'http://localhost:8083/webapp/api/users';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        marginBottom: theme.spacing(2)
+        marginBottom: theme.spacing(2),
+        minWidth: 700
     },
     menuButton: {
         marginRight: theme.spacing(2)
@@ -26,29 +32,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         textAlign: "left"
     },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        marginLeft: 0,
-        marginRight: 50,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
-        },
-    },
-    searchIcon: {
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+    searchBar: {
+        minWidth: 250
     },
     inputRoot: {
         color: 'inherit',
@@ -71,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
 function Header(props) {
     const classes = useStyles();
     const [state, setState] = useState(false);
-    const history = useHistory();
 
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -80,6 +64,44 @@ function Header(props) {
 
         setState(open);
     };
+
+    const closeDrawer = (event) => {
+        setState(false);
+    }
+
+    const [{ }, getUser] = useAxios(
+        {
+           method: "GET"
+        },
+        { manual: true }
+    );
+
+    const userGet = () => {
+        getUser({
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            url: `${baseURL}/${localStorage.getItem('user')}`,
+            data: props.user
+        })
+            .then(res => {
+                console.log(res.data)
+                console.log(res.data)
+                props.setUser({
+                    userName: res.data.user.username,
+                    roleName: res.data.user.role.roleName,
+                    email: res.data.user.email
+                });
+                props.state(true)
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
+
+    const onClickUserCircle = () => {
+        userGet();
+        setState(true);
+    }
 
     return (
         <div className={classes.root}>
@@ -90,13 +112,15 @@ function Header(props) {
                         Computer Database
                     </Typography>
 
-                    {props.isSearching && <SearchBar/>}
+                    {props.isSearching && <SearchBar className={classes.searchBar}/>}
                     {props.token !== "" && props.isConnected
                         ?
                         <div>
-                            <Button onClick={toggleDrawer(true)} color="inherit">
+
+                            <Button onClick={onClickUserCircle} color="inherit">
                                 <AccountCircleIcon/>
                             </Button>
+
                             <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
                                 <ShowUser />
                             </Drawer>
@@ -105,12 +129,10 @@ function Header(props) {
                         <div>
                             <Button onClick={toggleDrawer(true)} color="inherit">Login</Button>
                             <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
-                                <Login />
+                                <Login closeDrawer={closeDrawer} state={state} userGet={userGet}/>
                             </Drawer>
                         </div>
                     }
-
-
                 </Toolbar>
             </AppBar>
         </div>
@@ -121,8 +143,19 @@ const mapStateToProps = (state) => {
     return {
         token: getToken(state),
         isConnected: isConnected(state),
+        user: getUser(state),
         isSearching: getSearchMode(state)
     }
 }
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = dispatch => {
+    return {
+
+        seToken: data => dispatch(setToken(data)),
+        setConnected: conn => dispatch(isConnected(conn)),
+        setUser: user => dispatch(setUser(user))
+        
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

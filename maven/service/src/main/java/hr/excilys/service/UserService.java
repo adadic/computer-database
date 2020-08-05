@@ -23,7 +23,6 @@ public class UserService implements UserDetailsService {
 	private final UserDTOMapper userDTOMapper;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
 	@Autowired
 	public UserService(DAOUser daoUser, UserDTOMapper userDTOMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
 
@@ -31,7 +30,7 @@ public class UserService implements UserDetailsService {
 		this.userDTOMapper = userDTOMapper;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
-	
+
 	@Override
 	public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -46,18 +45,30 @@ public class UserService implements UserDetailsService {
 		throw new UsernameNotFoundException("No user by this username");
 	}
 
+	public List<User> getAllUsers() {
+		List<User> allUsers = daoUser.getAllUsers();
+//		Stream<CustomUserDetails> listUsersStream = allUsers.stream().map((user) -> {
+//
+//			return new CustomUserDetails.CustomBuilder(user).build();
+//
+//		});
+//
+//		return listUsersStream.collect(Collectors.toList());
+		return allUsers;
+
+	}
+
 	public boolean addUser(DTOUser dtoUser) throws Exception {
 
 		Optional<User> opt = daoUser.getUser(dtoUser.getUsername());
 		if (opt.isPresent()) {
-			
+
 			throw new Exception("This username already exists");
 		}
 		dtoUser.setPassword(bCryptPasswordEncoder.encode(dtoUser.getPassword()));
 		Optional<User> user = userDTOMapper.fromDTO(dtoUser);
-		
-		if(user.isPresent()) {
-			
+		if (user.isPresent()) {
+
 			return daoUser.create(user.get());
 		}
 

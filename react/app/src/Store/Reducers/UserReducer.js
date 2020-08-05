@@ -2,19 +2,16 @@ import * as userActions from '../Action/UserAction'
 
 const initialState = {
     user: {
-        username: "",
+        userName: "",
         email: "",
-        role: {
-            id: 0,
-            roleName: ""
-        }
+        roleName: ""
     }
 }
 
 const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case userActions.GETUSER:
+        case userActions.SETUSER:
             
             return {...state, user: action.payload};
 

@@ -32,7 +32,7 @@ public class ComputerDTOMapper {
 
 	}
 
-	public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
+	/*public Optional<Computer> fromDTO(DTOComputer dtoComputer) {
 
 		if (computerValidator.checkComputerFields(dtoComputer)) {
 			long id = longMapper.getId(dtoComputer.getId());
@@ -48,5 +48,24 @@ public class ComputerDTOMapper {
 
 			return Optional.empty();
 		}
+	}*/
+	
+	public Optional<Computer> fromDTO(DTOComputer dtoComputerAdd){
+		
+		if (computerValidator.checkComputerFields(dtoComputerAdd)) {
+			long id = longMapper.getId(dtoComputerAdd.getId());
+			LocalDate introduced = dateMapper.getDate(dtoComputerAdd.getIntroduced());
+			LocalDate discontinued = dateMapper.getDate(dtoComputerAdd.getDiscontinued());
+			Optional<Company> optionalCompany = companyDTOMapper.fromString(dtoComputerAdd.getCompanyId());
+			Company company = optionalCompany.isPresent() ? optionalCompany.get() : null;
+
+			return Optional.of(new Computer.ComputerBuilder(dtoComputerAdd.getComputerName()).id(id).introduced(introduced)
+					.discontinued(discontinued).company(company).build());
+
+		} else {
+
+			return Optional.empty();
+		}
+		
 	}
 }

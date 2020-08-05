@@ -8,12 +8,18 @@ import FormControl from "@material-ui/core/FormControl";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import InputLabel from "@material-ui/core/InputLabel";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { Visibility, VisibilityOff, LocalGasStationRounded } from "@material-ui/icons";
 import { makeStyles } from '@material-ui/core/styles';
-import {useHistory} from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
+import { setUser } from '../../Store/Action/UserAction';
+import { getUser } from '../../Store/Selector/UserSelector';
+import { getToken } from '../../Store/Selector/ConnexionSelector';
+import { isConnected } from "../../Store/Action/ConnexionAction";
+import "./Login.scss";
 import clsx from "clsx";
 import { setToken } from '../../Store/Action/ConnexionAction';
+import Alert from "@material-ui/lab/Alert";
+import Collapse from "@material-ui/core/Collapse";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,47 +46,109 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const baseURL = 'http://localhost:8083/webapp/api/login';
+export const baseURL = 'http://localhost:8083/webapp/api';
 
 function Login(props) {
 
     const history = useHistory();
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
+    const [displaySuccess, setDisplaySuccess] = useState(false);
+    const [message, setMessage] = useState('');
+    const [success, setSuccess] = useState(false);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
+
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
 
     const [user, setUser] = useState({
         userName: "",
+        email: "",
+        roleName: "",
         password: ""
     });
 
     const [{ }, login] = useAxios(
         {
-            url: `${baseURL}`,
+            url: `${baseURL}/login`,
             method: "POST"
         },
         { manual: true }
     );
 
     function connexion() {
-        console.log(user)
         login({ data: user })
             .then((res) => {
+                displaySuccessAlert();
+                if (res.status === 200) {
+                    setSuccess(true);
+                    setMessage(res.data)
+                }
                 props.seToken(res.data);
-                history.push("/computers");
+                localStorage.setItem('token', res.data);
+                localStorage.setItem('isConnected', true);
+                props.setConnected(true);
+                props.setUser(user);
+                localStorage.setItem('user', user.userName)
+                props.closeDrawer();
+                props.userGet();
+                history.push("/computers")
+
             }).catch((error) => {
-                console.log(error);
+                displaySuccessAlert();
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    if (error.response.status === 401) {
+                        setSuccess(false);
+                        setMessage('Wrong Username or Password')
+                    }
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                    // http.ClientRequest in node.js
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('Error', error.message);
+                }
+                console.log(error.config);
             });
     }
 
+    function displaySuccessAlert() {
+
+        setDisplaySuccess(true);
+        setTimeout(function () { setDisplaySuccess(false); }, 2000);
+    }
+
+    const register = () => {
+
+        history.push("/register");
+    }
+
+    const submitForm = (e) => {
+
+        if(e.charCode === 13){
+            connexion();
+        }
+    }
+
+
     return (
-        <div className="Register">
+        <div className="login">
+            <Collapse in={displaySuccess}>
+                <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
+                    severity={success ? "success" : "error"}>{message}</Alert>
+
+            </Collapse>
             <form className={classes.root} noValidate autoComplete="off" method="POST">
 
                 <FormControl>
@@ -91,6 +159,7 @@ function Login(props) {
                             name="userName"
                             type='text'
                             onChange={(event) => setUser({ ...user, userName: event.target.value })}
+                            onKeyPress={submitForm}
                         />
                     </FormControl>
 
@@ -112,21 +181,38 @@ function Login(props) {
                                     </IconButton>
                                 </InputAdornment>
                             }
+                            onKeyPress={submitForm}
                         />
                     </FormControl>
-                    
+
                 </FormControl>
             </form>
-            <Button variant="outlined" onClick={connexion} color="primary">Connexion</Button>
+            <div className="divButton">
+                <div className="buttonco">
+                    <Button onClick={connexion} variant="contained" color="primary">Connexion</Button>
+                </div>
+                <Button variant="outlined" onClick={register} color="primary">Register</Button>
+            </div>
+
         </div>
     );
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
 
-        seToken: data => dispatch(setToken(data))
+    return {
+        seToken: data => dispatch(setToken(data)),
+        setConnected: conn => dispatch(isConnected(conn)),
+        setUser: user => dispatch(setUser(user))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapStateToProps = (state) => {
+
+    return {
+        token: getToken(state),
+        user: getUser(state),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
