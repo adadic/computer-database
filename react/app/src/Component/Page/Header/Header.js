@@ -88,36 +88,6 @@ function Header(props) {
         setState(false);
     }
 
-    const [{ }, getUser] = useAxios(
-        {
-            headers:{
-                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
-            },
-            url: `${baseURL}/${localStorage.getItem('user')}`,
-            method: "GET"
-        },
-        { manual: true }
-    );
-
-    function userGet() {
-        getUser({ data: props.user })
-            .then(res => {
-            if(props.user.roleName === ""){
-                props.setUser({
-                    userName: res.data.user.username,
-                    roleName: res.data.user.role.roleName,
-                    email: res.data.user.email
-                });
-                setState(true)
-            }
-            else {
-                setState(true)
-            }
-            }).catch((error) => {
-                console.log(error.status)
-            });
-    }
-
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -132,7 +102,7 @@ function Header(props) {
                         ?
                         <div>
 
-                            <Button onClick={() => {userGet()}} color="inherit">
+                            <Button onClick={toggleDrawer(true)} color="inherit">
                                 <AccountCircleIcon/>
                             </Button>
 
@@ -144,7 +114,7 @@ function Header(props) {
                         <div>
                             <Button onClick={toggleDrawer(true)} color="inherit">Login</Button>
                             <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
-                                <Login closeDrawer={closeDrawer}/>
+                                <Login closeDrawer={closeDrawer} state={state}/>
                             </Drawer>
                         </div>
                     }

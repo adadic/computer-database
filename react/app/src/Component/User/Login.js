@@ -61,7 +61,7 @@ function Login(props) {
         event.preventDefault();
     };
 
-    
+
     const [user, setUser] = useState({
         userName: "",
         email: "",
@@ -73,6 +73,17 @@ function Login(props) {
         {
             url: `${baseURL}/login`,
             method: "POST"
+        },
+        { manual: true }
+    );
+
+    const [{ }, getUser] = useAxios(
+        {
+            // headers:{
+            //     'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            // },
+            //url: `${baseURL}/users/${localStorage.getItem('user')}`,
+            method: "GET"
         },
         { manual: true }
     );
@@ -92,42 +103,67 @@ function Login(props) {
                 props.setUser(user);
                 localStorage.setItem('user', user.userName)
                 props.closeDrawer();
+                console.log(localStorage.getItem('token'))
+                console.log(localStorage.getItem('user'))
+                userGet();
                 history.push("/computers")
 
             }).catch((error) => {
-            displaySuccessAlert();
-            if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
-                console.log(error.response.data);
-                console.log(error.response.status);
-                if (error.response.status === 401) {
-                    setSuccess(false);
-                    setMessage('Wrong Username or Password')
+                displaySuccessAlert();
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    if (error.response.status === 401) {
+                        setSuccess(false);
+                        setMessage('Wrong Username or Password')
+                    }
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                    // http.ClientRequest in node.js
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('Error', error.message);
                 }
-                console.log(error.response.headers);
-            } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                // http.ClientRequest in node.js
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log('Error', error.message);
-            }
-            console.log(error.config);
+                console.log(error.config);
             });
     }
+
+    function userGet() {
+        getUser({
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            url: `${baseURL}/users/${localStorage.getItem('user')}`,
+            data: props.user
+        })
+            .then(res => {
+                console.log(res.data)
+                props.setUser({
+                    userName: res.data.user.username,
+                    roleName: res.data.user.role.roleName,
+                    email: res.data.user.email
+                });
+                props.state(true)
+            }).catch((error) => {
+                console.log(error.status)
+            });
+    }
+
     const [displaySucess, setDisplaySuccess] = useState(false);
     const [message, setMessage] = useState('');
     const [success, setSuccess] = useState(false);
 
-    function displaySuccessAlert(){
+    function displaySuccessAlert() {
         setDisplaySuccess(true);
-        setTimeout(function(){ setDisplaySuccess(false);}, 2000);
+        setTimeout(function () { setDisplaySuccess(false); }, 2000);
     }
 
-    function register(){
+    function register() {
         history.push("/register");
     }
 
@@ -135,7 +171,7 @@ function Login(props) {
         <div className="Register">
             <Collapse in={displaySucess}>
                 <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
-                       severity={success ? "success" : "error"}>{message}</Alert>
+                    severity={success ? "success" : "error"}>{message}</Alert>
 
             </Collapse>
             <form className={classes.root} noValidate autoComplete="off" method="POST">
