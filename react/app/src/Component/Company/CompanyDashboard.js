@@ -105,9 +105,17 @@ function CompanyDashboard(props) {
         {manual: true}
     );
 
-    const deleteCompany = (id) => {
+    const deleteCompany = () => {
 
-        setCompanyList(companyList.filter(item => item.id !== id));
+        selected.forEach(element => {
+            setCompanyList(companyList.filter(item => item.id !== element));
+            return safeDelete(element);
+        })
+        setSelected([]);
+    }
+
+    const safeDelete = (id) => {
+
         executeDelete({url: `${baseURL}/companies/${id}`});
     }
 
@@ -129,7 +137,7 @@ function CompanyDashboard(props) {
             props.newSearch("");
         }
     }, []);
-    useEffect(() => setCompanyList(data), [data, dataAdd, dataEdit, newCompany]);
+    useEffect(() => setCompanyList(data), [data, dataAdd, dataEdit]);
 
     const handleRequestSort = (event, property) => {
 
@@ -233,6 +241,7 @@ function CompanyDashboard(props) {
                                                     labelId={labelId}
                                                     handleClick={handleClick}
                                                     selected={selected}
+                                                    delete={deleteCompany}
                                                     row={row}
                                                     edit={editCompany}
                                                     editMode={false}
