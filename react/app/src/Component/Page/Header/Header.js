@@ -15,6 +15,7 @@ import useAxios from 'axios-hooks';
 import { getUser } from '../../../Store/Selector/UserSelector';
 import { setUser } from '../../../Store/Action/UserAction';
 import {getSearchMode} from "../../../Store/Selector/SearchSelector";
+import { setToken } from '../../../Store/Action/ConnexionAction';
 
 const baseURL = 'http://localhost:8083/webapp/api/users';
 
@@ -68,6 +69,40 @@ function Header(props) {
         setState(false);
     }
 
+    const [{ }, getUser] = useAxios(
+        {
+           method: "GET"
+        },
+        { manual: true }
+    );
+
+    const userGet = () => {
+        getUser({
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            url: `${baseURL}/${localStorage.getItem('user')}`,
+            data: props.user
+        })
+            .then(res => {
+                console.log(res.data)
+                console.log(res.data)
+                props.setUser({
+                    userName: res.data.user.username,
+                    roleName: res.data.user.role.roleName,
+                    email: res.data.user.email
+                });
+                props.state(true)
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
+
+    const onClickUserCircle = () => {
+        userGet();
+        setState(true);
+    }
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -82,7 +117,7 @@ function Header(props) {
                         ?
                         <div>
 
-                            <Button onClick={toggleDrawer(true)} color="inherit">
+                            <Button onClick={onClickUserCircle} color="inherit">
                                 <AccountCircleIcon/>
                             </Button>
 
@@ -94,7 +129,7 @@ function Header(props) {
                         <div>
                             <Button onClick={toggleDrawer(true)} color="inherit">Login</Button>
                             <Drawer anchor='right' open={state} onClose={toggleDrawer(false)}>
-                                <Login closeDrawer={closeDrawer} state={state}/>
+                                <Login closeDrawer={closeDrawer} state={state} userGet={userGet}/>
                             </Drawer>
                         </div>
                     }
@@ -116,7 +151,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
 
-        setUser: user => dispatch(setUser(user)),
+        seToken: data => dispatch(setToken(data)),
+        setConnected: conn => dispatch(isConnected(conn)),
+        setUser: user => dispatch(setUser(user))
         
     }
 }

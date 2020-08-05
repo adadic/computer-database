@@ -79,13 +79,6 @@ function Login(props) {
         { manual: true }
     );
 
-    const [{ }, getUser] = useAxios(
-        {
-           method: "GET"
-        },
-        { manual: true }
-    );
-
     function connexion() {
         login({ data: user })
             .then((res) => {
@@ -101,7 +94,7 @@ function Login(props) {
                 props.setUser(user);
                 localStorage.setItem('user', user.userName)
                 props.closeDrawer();
-                userGet();
+                props.userGet();
                 history.push("/computers")
 
             }).catch((error) => {
@@ -128,28 +121,6 @@ function Login(props) {
                 console.log(error.config);
             });
     }
-
-    const userGet = () => {
-        getUser({
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-            url: `${baseURL}/users/${localStorage.getItem('user')}`,
-            data: props.user
-        })
-            .then(res => {
-                console.log(res.data)
-                props.setUser({
-                    userName: res.data.user.username,
-                    roleName: res.data.user.role.roleName,
-                    email: res.data.user.email
-                });
-                props.state(true)
-            }).catch((error) => {
-                console.log(error.status)
-            });
-    }
-
 
     function displaySuccessAlert() {
         setDisplaySuccess(true);
