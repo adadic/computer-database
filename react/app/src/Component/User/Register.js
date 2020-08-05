@@ -19,13 +19,14 @@ import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import green from "@material-ui/core/colors/green";
 import red from "@material-ui/core/colors/red";
+import Paper from "@material-ui/core/Paper";
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         '& .MuiTextField-root': {
             margin: theme.spacing(1),
-            width: 200,
+            width: '80%',
             display: 'flex',
             flexWrap: 'wrap',
         },
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
             marginTop: theme.spacing(3),
         },
         textField: {
-            width: '25ch',
+            width: '75px',
         },
         alert: {
             width: '100%',
@@ -257,16 +258,16 @@ function Register() {
     });
 
     return (
-        <div className="Register">
-
+        <div className="Register" style={{width: '515px', margin:'auto'}}>
+            <Paper style={{padding:'10px', width:'auto'}}>
             <Collapse in={displaySucess}>
                 <Alert className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
                        severity={success ? "success" : "error"}>{message}</Alert>
 
             </Collapse>
-            <form className={classes.root} noValidate autoComplete="off">
+            <form style={{width:'auto'}} >
 
-                <FormControl>
+                <FormControl style={{ display:'flex', flexDirection:'column'}} >
                     <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)}>
                         <InputLabel htmlFor="standard-adornment-username">Username</InputLabel>
                         <Input
@@ -311,29 +312,39 @@ function Register() {
                             }
                         />
 
-                        <Collapse in={checked}>
-                            <ListItem>
+                        <Collapse in={checked} >
+                            <ListItem style={{display:'flex', flexWrap:'wrap', margin:'auto', flexDirection:'space-between'}}>
+
+                                <div style={{display:'flex', flexDirection:'row', justifyContent:'center',}}>
                                 <ListItemText primary="Upper Case"/>
                                 <ListItemIcon>
 
                                     {passwordUpper ? <CheckIcon style={{color: green[500]}}/> :
                                         <ClearIcon style={{color: red[500]}}/>}
                                 </ListItemIcon>
+                                </div>
+                                <div style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>
                                 <ListItemText primary="Number"/>
                                 <ListItemIcon>
                                     {passwordNumber ? <CheckIcon style={{color: green[500]}}/> :
                                         <ClearIcon style={{color: red[500]}}/>}
                                 </ListItemIcon>
-                                <ListItemText primary="Eight characters or longer"/>
+                                </div>
+                                <div style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>
+                                <ListItemText primary="Min eight characters"/>
                                 <ListItemIcon>
                                     {passwordLength ? <CheckIcon style={{color: green[500]}}/> :
                                         <ClearIcon style={{color: red[500]}}/>}
                                 </ListItemIcon>
-                                <ListItemText primary="One special character or more (!@#$%^&*+)"/>
+                                </div>
+
+                                <div style={{display:'flex', flexDirection:'row', justifyContent:'center', margin:'auto'}}>
+                                <ListItemText primary="One special character (!@#$%^&*+)"/>
                                 <ListItemIcon>
                                     {passwordSpecial ? <CheckIcon style={{color: green[500]}}/> :
                                         <ClearIcon style={{color: red[500]}}/>}
                                 </ListItemIcon>
+                                </div>
 
                             </ListItem>
                         </Collapse>
@@ -350,11 +361,13 @@ function Register() {
 
                 </FormControl>
 
+
             </form>
 
             <br/>
             <Button onClick={addUser} variant="outlined" color="primary">Add</Button>{' '}
             <a style={{textDecoration:'none'}} href={'register'}><Button  variant="outlined" color="secondary">Reset</Button></a>
+        </Paper>
         </div>
     );
 
