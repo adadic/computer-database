@@ -1,19 +1,10 @@
 import React from 'react';
-
-
+import {useHistory} from "react-router-dom";
 import {Button} from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 
 import imageOne from './resources/imageOne.png'
-
-
-
-
-
-
-
-
 
 const welcome = {
     fontSize: '500%',
@@ -23,6 +14,7 @@ const welcome = {
 }
 function Home(){
 
+    const history = useHistory();
 
     return (
 
@@ -40,8 +32,8 @@ function Home(){
                     src={imageOne}
                 />
             <p style={welcome}>Welcome to Computer Database</p>
-            <a style={{textDecoration:'none'}} href={'about'}><Button  variant="contained" color="primary" size='large' startIcon={<DashboardIcon />}>About</Button></a>{' '}
-            <a style={{textDecoration:'none'}} href={'register'}><Button  variant="contained" size='large' color="primary" startIcon={<SaveIcon />}>Register</Button></a>
+            <a style={{textDecoration:'none'}}><Button onClick={() => history.push("/about")} variant="contained" color="primary" size='large' startIcon={<DashboardIcon />}>About</Button></a>{' '}
+            <a style={{textDecoration:'none'}}><Button onClick={() => history.push("/register")} variant="contained" size='large' color="primary" startIcon={<SaveIcon />}>Register</Button></a>
         </div>
 
     );
