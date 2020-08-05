@@ -260,7 +260,7 @@ function CompanyDashboard(props) {
                                             );
                                         })}
                                     {emptyRows > 0 && (
-                                        <TableRow style={{height: 80 * emptyRows}}>
+                                        <TableRow style={{height: 50 * emptyRows}}>
                                             <TableCell colSpan={3}/>
                                         </TableRow>
                                     )}
