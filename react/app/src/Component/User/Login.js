@@ -134,6 +134,14 @@ function Login(props) {
         history.push("/register");
     }
 
+    const submitForm = (e) => {
+
+        if(e.charCode === 13){
+            connexion();
+        }
+    }
+
+
     return (
         <div className="login">
             <Collapse in={displaySuccess}>
@@ -151,6 +159,7 @@ function Login(props) {
                             name="userName"
                             type='text'
                             onChange={(event) => setUser({ ...user, userName: event.target.value })}
+                            onKeyPress={submitForm}
                         />
                     </FormControl>
 
@@ -172,6 +181,7 @@ function Login(props) {
                                     </IconButton>
                                 </InputAdornment>
                             }
+                            onKeyPress={submitForm}
                         />
                     </FormControl>
 
