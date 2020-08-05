@@ -24,16 +24,24 @@ const styles = {
         backgroundColor: 'rgba(0,0,0,0.2)',
     },
 }
-const image1 = 'https://i.pinimg.com/originals/7a/bd/12/7abd1279564c43a005ecddedd9d371fe.jpg'
-const image2 = 'https://wallpaperaccess.com/full/1180986.jpg'
+
 
 function About() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <BackgroundSlider
-                images={[image1, image2]}
-                duration={100} transition={2}/>
+            <img
+                style={{
+                    position:'absolute',
+                    height:'100%',
+                    width:'100%',
+                    left:'0',
+                    top: '0',
+                    zIndex:'-1',
+                    opacity:'0.2'
+                }}
+                src='https://i.pinimg.com/originals/7a/bd/12/7abd1279564c43a005ecddedd9d371fe.jpg'
+            />
             <p style={styles.text}>The Dev Team</p>
 
             <Grid container style={{flexDirection: "row", justifyContent: 'space-between'}}>

@@ -20,17 +20,22 @@ import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 import {getSearch} from "../../Store/Selector/SearchSelector";
 import {newSearch, searchMode} from "../../Store/Action/SearchAction";
 import {connect} from "react-redux";
+import imageOne from "../Page/resources/imageOne.png";
+import BackgroundSlider from "react-background-slider";
 
 const useStyles = makeStyles((theme) => ({
 
     root: {
         width: '100%',
+
     },
+
     paper: {
         width: '28%',
         minWidth: 500,
         margin: "auto",
         marginBottom: theme.spacing(2),
+
     },
     table: {
         minHeight: 600,
@@ -180,8 +185,23 @@ function CompanyDashboard(props) {
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
+
     return (
         <div className="App">
+            <img
+            style={{
+                position:'absolute',
+                height:'100%',
+                width:'100%',
+                left:'0',
+                top: '0',
+                zIndex:'-1',
+                opacity:'0.2'
+            }}
+            src='https://wallpaperaccess.com/full/1180986.jpg'
+            />
+
+
             {error && <ErrorPage errorMessage=""/>}
             {loading
                 ?
