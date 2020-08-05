@@ -13,9 +13,9 @@ function ShowUser(props) {
 
     const history = useHistory();
 
-    function logout() {
+    const logout = () => {
         history.push("/logout")
-    }
+    };
 
     return (
         <div className="user">
@@ -34,6 +34,7 @@ function ShowUser(props) {
 }
 
 const mapStateToProps = (state) => {
+
     return {
         user: getUser(state),
         token: getToken(state),

@@ -73,7 +73,7 @@ function ComputerDashboard(props) {
             props.changeMode(false);
             props.newSearch("");
         }
-    }, [])
+    }, []);
 
     const handleRequestSort = (event, property) => {
 
@@ -163,18 +163,26 @@ function ComputerDashboard(props) {
     const addComputer = (computer) => {
 
         executeAdd({data: computer});
-    }
+    };
 
     const editComputer = (computer) => {
 
         executeEdit({data: computer});
-    }
+    };
 
-    const deleteComputer = (id) => {
+    const deleteComputer = () => {
 
-        setComputerList(computerList.filter(item => item.id !== id));
+        selected.forEach(element => {
+            setComputerList(computerList.filter(item => item.id !== element));
+            return safeDelete(element);
+        })
+        setSelected([]);
+    };
+
+    const safeDelete = (id) => {
+
         executeDelete({url: `${baseURL}/computers/${id}`});
-    }
+    };
 
     return (
         <div className="App">

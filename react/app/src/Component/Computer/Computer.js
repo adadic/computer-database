@@ -32,13 +32,13 @@ function Computer(props) {
 
         const {year, monthValue, dayOfMonth} = date;
         return year + "-" + (monthValue < 10 ? "0" + monthValue : monthValue) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
-    }
+    };
 
     const edit = () => (event) => {
 
         event.stopPropagation();
         setEdit(true);
-    }
+    };
 
     const cancelEdit = () => () => {
 
@@ -56,7 +56,7 @@ function Computer(props) {
 
         props.edit && props.edit(computer);
         setEdit(false);
-    }
+    };
 
     const handleIntroduced = (date) => {
         try {
@@ -65,7 +65,7 @@ function Computer(props) {
         catch (e) {
             setComputer({...computer, introduced: date})
         }
-    }
+    };
 
     const handleDiscontinued = (date) => {
         try {
@@ -74,7 +74,7 @@ function Computer(props) {
         catch (e) {
             setComputer({...computer, discontinued: date})
         }
-    }
+    };
 
     return (
         editMode ?

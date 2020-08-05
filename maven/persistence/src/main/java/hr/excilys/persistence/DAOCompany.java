@@ -78,16 +78,16 @@ public class DAOCompany {
 		return Optional.empty();
 	}
 
+	@Transactional
 	public boolean deleteCompany(long id) {
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			TypedQuery<Company> computerQuery = session
-					.createQuery(EnumQuery.DELETECOMPUTERCOMPANY.getQuery(), Company.class)
+			Query computerQuery = session
+					.createQuery(EnumQuery.DELETECOMPUTERCOMPANY.getQuery())
 					.setParameter("id_company", id);
-			TypedQuery<Company> companyQuery = session.createQuery(EnumQuery.DELETECOMPANY.getQuery(), Company.class)
+			Query companyQuery = session.createQuery(EnumQuery.DELETECOMPANY.getQuery())
 					.setParameter("id_company", id);
-
 			computerQuery.executeUpdate();
 			companyQuery.executeUpdate();
 			LOGGER.info("Computer with id_company : {} DELETED", id);

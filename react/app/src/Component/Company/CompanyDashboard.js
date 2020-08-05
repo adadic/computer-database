@@ -2,14 +2,9 @@ import React, {useEffect, useState} from 'react';
 import useAxios from "axios-hooks";
 import ErrorPage from "../Page/ErrorPage";
 import {
-    Backdrop,
-    CircularProgress, Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TablePagination,
-    TableRow
+    Backdrop, CircularProgress, Paper,
+    Table, TableBody, TableCell, TableContainer,
+    TablePagination, TableRow
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
@@ -20,16 +15,12 @@ import EnhancedTableFooter from "../Table/EnhancedTableFooter";
 import {getSearch} from "../../Store/Selector/SearchSelector";
 import {newSearch, searchMode} from "../../Store/Action/SearchAction";
 import {connect} from "react-redux";
-import imageOne from "../Page/resources/imageOne.png";
-import BackgroundSlider from "react-background-slider";
 
 const useStyles = makeStyles((theme) => ({
-
     root: {
         width: '100%',
 
     },
-
     paper: {
         width: '28%',
         minWidth: 500,
@@ -74,8 +65,7 @@ function CompanyDashboard(props) {
     const [newCompany, setNewCompany] = useState({
         id: 0,
         name: ""
-    })
-
+    });
 
     const [{data: dataAdd}, executeAdd] = useAxios(
         {
@@ -110,22 +100,30 @@ function CompanyDashboard(props) {
         {manual: true}
     );
 
-    const deleteCompany = (id) => {
+    const deleteCompany = () => {
 
-        setCompanyList(companyList.filter(item => item.id !== id));
+        selected.forEach(element => {
+            setCompanyList(companyList.filter(item => item.id !== element));
+            return safeDelete(element);
+        })
+        setSelected([]);
+    };
+
+    const safeDelete = (id) => {
+
         executeDelete({url: `${baseURL}/companies/${id}`});
-    }
+    };
 
     const editCompany = (company) => {
 
         executeEdit({data: company});
-    }
+    };
 
     const addCompany = (company) => {
 
         executeAdd({data: company});
         setAddNew(false);
-    }
+    };
 
     useEffect(() => {
         props.changeMode(true);
@@ -134,7 +132,7 @@ function CompanyDashboard(props) {
             props.newSearch("");
         }
     }, []);
-    useEffect(() => setCompanyList(data), [data, dataAdd, dataEdit, newCompany]);
+    useEffect(() => setCompanyList(data), [data, dataAdd, dataEdit]);
 
     const handleRequestSort = (event, property) => {
 
@@ -184,7 +182,6 @@ function CompanyDashboard(props) {
     };
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
-
 
     return (
         <div className="App">
@@ -253,6 +250,7 @@ function CompanyDashboard(props) {
                                                     labelId={labelId}
                                                     handleClick={handleClick}
                                                     selected={selected}
+                                                    delete={deleteCompany}
                                                     row={row}
                                                     edit={editCompany}
                                                     editMode={false}

@@ -1,8 +1,5 @@
 import React, {useState} from "react";
-import {Button, Checkbox, TableCell, TableRow, TextField} from "@material-ui/core";
-import CreateIcon from "@material-ui/icons/Create";
-import DoneIcon from '@material-ui/icons/Done';
-import CloseIcon from '@material-ui/icons/Close';
+import {TableCell, TableRow} from "@material-ui/core";
 
 function User(props) {
 
@@ -12,25 +9,6 @@ function User(props) {
         email: props.row.email,
         roleName: props.row.role.roleName,
     });
-    const [editMode, setEdit] = useState(false);
-
-    const edit = () => (event) => {
-
-        event.stopPropagation();
-        setEdit(true);
-    }
-
-    const cancelEdit = () => () => {
-
-        setUser({...user, username: props.row.username});
-        setEdit(false);
-    };
-
-    const editUser = () => () => {
-
-        props.edit && props.edit(user);
-        setEdit(false);
-    }
 
     return (
         <TableRow

@@ -2,14 +2,9 @@ import React, {useEffect, useState}  from 'react';
 import useAxios from "axios-hooks";
 import ErrorPage from "../Page/ErrorPage";
 import {
-    Backdrop,
-    CircularProgress, Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TablePagination,
-    TableRow
+    Backdrop, CircularProgress, Paper,
+    Table, TableBody, TableCell,
+    TableContainer, TablePagination, TableRow
 } from "@material-ui/core";
 import EnhancedTableToolbar from "../Table/EnhancedTableToolbar";
 import EnhancedTableHead from "../Table/EnhancedTableHead";
@@ -76,7 +71,7 @@ function UserDashboard(props) {
             props.changeMode(false);
             props.newSearch("");
         }
-    }, [])
+    }, []);
 
     const handleRequestSort = (event, property) => {
 
@@ -95,25 +90,6 @@ function UserDashboard(props) {
         setSelected([]);
     };
 
-    const handleClick = (event, name) => {
-
-        const selectedIndex = selected.indexOf(name);
-        let newSelected = [];
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
-        setSelected(newSelected);
-    };
-
     const handleChangePage = (event, newPage) => {
 
         setPage(newPage);
@@ -125,12 +101,7 @@ function UserDashboard(props) {
         setPage(0);
     };
 
-    const isSelected = (id) => selected.indexOf(id) !== -1;
-
-
-    useEffect(() => {
-        setUserList(data);
-    }, [data]);
+    useEffect(() =>setUserList(data), [data]);
 
     return (
         <div className="App">
@@ -219,6 +190,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => {
+
     return {
         newSearch: search => dispatch(newSearch(search)),
         changeMode: mode => dispatch(searchMode(mode)),

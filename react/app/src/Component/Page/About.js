@@ -6,7 +6,6 @@ import saad from './resources/saad.jpeg';
 import andro from './resources/andro.jpg';
 import yves from './resources/yves.jpg';
 import julien from './resources/julien.jpg';
-import BackgroundSlider from "react-background-slider";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,9 +24,10 @@ const styles = {
     },
 }
 
-
 function About() {
+
     const classes = useStyles();
+
     return (
         <div className={classes.root}>
             <img
@@ -46,43 +46,19 @@ function About() {
 
             <Grid container style={{flexDirection: "row", justifyContent: 'space-between'}}>
                 <Grid item>
-
-                    <ProfileUi
-                        imgUrl={julien}
-                        name='Julien'
-                        designation='Developer'
-                    />
-
-                </Grid>
-                <Grid item>
-
-                    <ProfileUi style={{padding: 0}}
-                               imgUrl={saad}
-                               name='Saad'
-                               designation='Developer'
-                    />
-
-
+                    <ProfileUi imgUrl={julien} name='Julien' designation='Developer'/>
                 </Grid>
 
                 <Grid item>
-
-                    <ProfileUi
-                        imgUrl={andro}
-                        name='Andro'
-                        designation='Developer'
-                    />
-
+                    <ProfileUi style={{padding: 0}} imgUrl={saad} name='Saad' designation='Developer'/>
                 </Grid>
 
                 <Grid item>
+                    <ProfileUi imgUrl={andro} name='Andro' designation='Developer'/>
+                </Grid>
 
-                    <ProfileUi
-                        imgUrl={yves}
-                        name='Yves'
-                        designation='Developer'
-                    />
-
+                <Grid item>
+                    <ProfileUi imgUrl={yves} name='Yves' designation='Developer'/>
                 </Grid>
             </Grid>
         </div>

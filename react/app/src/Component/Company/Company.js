@@ -16,7 +16,7 @@ function Company(props) {
 
         event.stopPropagation();
         setEdit(true);
-    }
+    };
 
     const cancelEdit = () => () =>{
 
@@ -28,17 +28,18 @@ function Company(props) {
 
         props.edit && props.edit(company);
         setEdit(false);
-    }
+    };
+
     const removeCompany = () => () => {
 
         props.delete && props.delete(false);
         setEdit(false);
-    }
+    };
 
     const addCompany = () => () => {
 
         props.add && props.add(company);
-    }
+    };
 
     return (
         props.addMode ?

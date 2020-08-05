@@ -55,17 +55,18 @@ function Register() {
         {
             baseURL: 'http://localhost:8083/webapp/api/register'
         }
-    )
+    );
 
     const config = {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
-    }
+    };
+
     function displaySuccessAlert(){
         setDisplaySuccess(true);
         setTimeout(function(){ setDisplaySuccess(false);}, 2000);
-    }
+    };
 
     const addUser = async () => {
         await api.post('', qs.stringify(user), config)
@@ -102,14 +103,14 @@ function Register() {
                 }
             });
 
-    }
+    };
+
     const model = {
         userName: '',
         password: '',
         matchingPassword: '',
         email: ''
     };
-
 
     const [showPassword, setShowPassword] = useState(false);
     const [user, setUser] = useState(model);
@@ -128,8 +129,6 @@ function Register() {
     const [usernameAlreadyExistsError, setUsernameAlreadyExistsError] = useState(false);
     const [displaySucess, setDisplaySuccess]=useState(false);
 
-
-
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -137,7 +136,6 @@ function Register() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
 
     const upper = new RegExp("(?=.*[A-Z])");
     const number = new RegExp("(?=.*[0-9])");
@@ -190,7 +188,7 @@ function Register() {
     };
 
 
-    function passwordCheck() {
+    const passwordCheck = () => {
 
         if (checkUpper() & checkNumber() & checkLength() & checkSpecial()) {
             setPasswordError(false);
@@ -198,9 +196,9 @@ function Register() {
             setPasswordError(true);
             setMessage("The password is invalid");
         }
-    }
+    };
 
-    function usernameCheck() {
+    const usernameCheck = () => {
 
         if (user.userName === '' || user.userName.includes(' ')) {
             setUsernameError(true);
@@ -208,53 +206,50 @@ function Register() {
         } else {
             setUsernameError(false);
         }
-    }
+    };
 
 
     const em2 = (e) => {
-        setUser({...user, password: e.target.value});
 
+        setUser({...user, password: e.target.value});
     };
 
-    function matchingPasswordCheck() {
+    const matchingPasswordCheck = () => {
+
         if (user.matchingPassword !== '' && user.password === user.matchingPassword) {
             setMatchingPasswordError(false);
         } else {
             setMatchingPasswordError(true);
             setMessage('The matching password is invalid');
-
         }
-    }
+    };
 
-    function emailCheck() {
+    const emailCheck = () => {
 
-        {
-            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.email)) {
-                setEmailError(false);
-            } else {
-                setEmailError(true);
-                setMessage('The email is invalid');
-            }
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user.email)) {
+            setEmailError(false);
+        } else {
+            setEmailError(true);
+            setMessage('The email is invalid');
         }
-    }
+    };
 
     const displayAlertError = () => {
+
         if (matchingPasswordError || passwordError || emailError || usernameError || usernameAlreadyExistsError) {
             setDisplayAlert(true);
         } else {
             setDisplayAlert(false);
         }
-
-    }
+    };
 
     useEffect(() => {
+
         usernameCheck(user.userName);
         passwordCheck(user.password);
         matchingPasswordCheck(user.matchingPassword);
         emailCheck(user.email);
         displayAlertError();
-
-
     });
 
     return (
@@ -373,7 +368,6 @@ function Register() {
 
                 </FormControl>
 
-
             </form>
 
             <br/>
@@ -382,7 +376,6 @@ function Register() {
         </Paper>
         </div>
     );
-
 }
 
 export default Register;
