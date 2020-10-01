@@ -199,7 +199,6 @@ function AddComputer(props) {
                 <Button
                 className={classes.button}
                 disabled={!fieldsValid}
-                href="/computers"
                 onClick={()=>{props.addComputer(computer)}}
                 variant="contained"
                 value="Ajouter"

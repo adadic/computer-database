@@ -50,6 +50,7 @@ function CompanyDashboard(props) {
     const baseURL = 'http://localhost:8083/webapp/api';
     const [{data, loading, error}] = useAxios(baseURL + "/companies");
     const [companyList, setCompanyList] = useState(data);
+
     const headCell = [
         {id: 'name', numeric: false, disablePadding: true, label: 'Name'}
     ];
@@ -63,7 +64,7 @@ function CompanyDashboard(props) {
     const emptyRows = companySize < 10 ? 10 - companySize % 10 : 0;
     const [addNew, setAddNew] = useState(false);
     const [newCompany, setNewCompany] = useState({
-        id: 0,
+        id: companyList ? companyList.length : 0,
         name: ""
     });
 
@@ -120,11 +121,14 @@ function CompanyDashboard(props) {
     };
 
     const addCompany = (company) => {
-
+        companyList.push(company);
+        setCompanyList(companyList);
+        company = {...company, companyId: 0};
         executeAdd({data: company});
         setAddNew(false);
     };
 
+    useEffect(() => setCompanyList(data), [data, dataAdd, dataEdit]);
     useEffect(() => {
         props.changeMode(true);
         return function cleanup() {
@@ -132,7 +136,6 @@ function CompanyDashboard(props) {
             props.newSearch("");
         }
     }, []);
-    useEffect(() => setCompanyList(data), [data, dataAdd, dataEdit]);
 
     const handleRequestSort = (event, property) => {
 
@@ -182,6 +185,9 @@ function CompanyDashboard(props) {
     };
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
+
+
+    console.log(companyList);
 
     return (
         <div className="App">
@@ -237,26 +243,28 @@ function CompanyDashboard(props) {
                                         addMode={true}
                                         addCompany={addCompany}
                                     />}
-                                    {companyList && stableSort(companyList.filter(item => item.name && item.name.includes(props.search)), getComparatorCompany(order, orderBy))
+                                    {
+                                        companyList && stableSort(companyList.filter(item => item.name && item.name.includes(props.search)), getComparatorCompany(order, orderBy))
                                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                        .map(row => {
-                                            const isItemSelected = isSelected(row.id);
-                                            const labelId = `enhanced-table-checkbox-${row.id}`;
+                                        .map(company => {
+                                            const isItemSelected = isSelected(company.id);
+                                            const labelId = `enhanced-table-checkbox-${company.id}`;
 
                                             return (
                                                 <Company
-                                                    key={row.id}
+                                                    key={company.id}
                                                     isItemSelected={isItemSelected}
                                                     labelId={labelId}
                                                     handleClick={handleClick}
                                                     selected={selected}
                                                     delete={deleteCompany}
-                                                    row={row}
+                                                    row={company}
                                                     edit={editCompany}
                                                     editMode={false}
                                                 />
                                             );
-                                        })}
+                                        })
+                                    }
                                     {emptyRows > 0 && (
                                         <TableRow style={{height: 50 * emptyRows}}>
                                             <TableCell colSpan={3}/>

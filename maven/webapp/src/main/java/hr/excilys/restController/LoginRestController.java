@@ -57,6 +57,7 @@ public class LoginRestController {
 		Objects.requireNonNull(username);
 		Objects.requireNonNull(password);
 
+		System.out.println("password " + password);
 		try {
 			UserDetails userDetails = userService.loadUserByUsername(username);
 			if(!(bCryptPasswordEncoder.matches(password, userDetails.getPassword()))) {
