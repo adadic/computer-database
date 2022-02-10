@@ -26,7 +26,7 @@
 		<h2.version>1.4.200</h2.version>
 		<apache.common.version>3.9</apache.common.version>
 		<spring.version>5.2.5.RELEASE</spring.version>
-		<hibernate.version>5.4.10.Final</hibernate.version>
+		<hibernate.version>5.4.24.Final</hibernate.version>
 	</properties>
 
 	<dependencyManagement>
